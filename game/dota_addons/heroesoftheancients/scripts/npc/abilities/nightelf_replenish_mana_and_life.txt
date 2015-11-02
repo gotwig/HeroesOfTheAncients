@@ -1,0 +1,80 @@
+// MOON WELL
+  "nightelf_replenish_mana_and_life"
+{
+"BaseClass"					"ability_datadriven"
+"AbilityTextureName"		"nightelf_replenish_mana_and_life"
+"MaxLevel"					"1"
+	
+"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+"AbilityUnitTargetFlags"    "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+	
+"AbilityCastRange"			"500"
+
+"AbilitySpecial"
+{
+	"01"
+	{
+		"var_type"			"FIELD_INTEGER"
+		"hp_per_mana"		"2"
+	}
+	"02"
+	{
+		"var_type"			"FIELD_FLOAT"
+		"mp_per_mana"		"0.5"
+	}
+}
+
+"OnSpellStart"
+{
+	"RunScript"
+	{
+		"ScriptFile"	"units/moon_well.lua"
+		"Function"		"Replenish"
+	}
+}
+
+"Modifiers"
+{
+	"modifier_replenish_autocast"
+	{
+		"Passive"			"1"
+		"IsHidden"			"1"
+		
+		//"OnCreated"
+		//{
+		//	"RunScript"
+		//	{
+		//		"ScriptFile"	"units/nightelf/shared.lua"
+		//		"Function"		"ToggleOnAutocast"
+		//	}
+		//}
+
+		"ThinkInterval" "1.0"
+		"OnIntervalThink"
+		{
+			"RunScript"
+			{
+				"ScriptFile"	"units/moon_well.lua"
+				"Function"		"ReplenishAutocast"
+			}
+			"RunScript"
+			{
+				"ScriptFile"	"units/moon_well.lua"
+				"Function"		"CheckTimeOfDay"
+			}
+		}
+	}
+
+	"modifier_mana_regeneration_daytime"
+	{
+		"Passive"			"1"
+		"IsHidden"			"1"
+		"Properties"
+		{
+			"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "-100"
+		}
+	}
+}
+}

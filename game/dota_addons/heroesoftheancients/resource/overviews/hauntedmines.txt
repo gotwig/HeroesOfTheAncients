@@ -1,0 +1,8 @@
+hauntedmines
+{
+	material materials/overviews/hauntedmines.vmat
+	pos_x -12800
+	pos_y 12800
+	scale 25.000
+}
+

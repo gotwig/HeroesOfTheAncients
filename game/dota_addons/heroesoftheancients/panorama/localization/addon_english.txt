@@ -1,0 +1,17 @@
+"addon"
+{
+	"Language"		"English"
+	"Tokens"
+	{	
+		"addon_game_name"	"Heroes of the Ancients"
+	}
+	"Unassigned"      								"Unassigned Team"
+	"Spectator"       								"Spectator Team"
+	"Neutrals"        								"Neutral Team"
+	"NoTeam"          								"No Team"
+
+	"DOTA_GoodGuys"   								"Blue"
+	"DOTA_BadGuys"    								"Red"
+	
+	"addonname"										"Heroes of the Ancients"
+}

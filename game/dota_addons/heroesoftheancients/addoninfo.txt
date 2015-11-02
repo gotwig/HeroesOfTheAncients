@@ -1,0 +1,18 @@
+"AddonInfo"
+{
+  "TeamCount" "2"
+  "maps"      "hauntedmines"
+  "IsPlayable"  "1"
+  "hauntedmines"
+  {
+          "MaxPlayers"                    "10"
+  }
+//  "desert_duo"
+//  {
+//          "MaxPlayers"                    "10"
+//  }
+//  "forest_solo"
+//  {
+//          "MaxPlayers"                    "10"
+//  }
+}

@@ -1,0 +1,13 @@
+<root>
+	<styles>
+		<include src="s2r://panorama/styles/dotastyles.vcss_c" />
+		<include src="file://{resources}/styles/custom_game/action_bar.css" />
+	</styles>
+	<scripts>
+		$.Msg("Loading action_bar");
+		<include src="file://{resources}/scripts/custom_game/action_bar.js" />
+	</scripts>
+	<Panel class="AbilityOverlayRoot">
+		<Panel id="ability_list" />
+	</Panel>
+</root>

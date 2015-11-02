@@ -1,0 +1,84 @@
+//=================================================================================
+// Building: Moon Well
+// Description: "Provides food, which increases the maximum number of units that can be trained. Has the Replenish Mana and Life ability. Can gain the Well Spring upgrade. Regenerates mana at night."
+//=================================================================================
+"nightelf_moon_well"
+{
+	// General
+	//----------------------------------------------------------------
+	"BaseClass"					"npc_dota_creature"
+	"Model"						"models/props_structures/rock_statue001.vmdl"
+	"ModelScale"				"1"
+	"Level"						"1"
+	"HealthBarOffset"			"140"
+	"ConsideredHero"			"1"
+	
+	// Abilities
+	//----------------------------------------------------------------
+	"AbilityLayout"				"4"
+	"Ability1"					"nightelf_replenish_mana_and_life"	 //Reference: Abds
+	"Ability2"					"nightelf_well_spring_disabled"	 //Reference: Ambt
+	//"Ability10"					"ability_building"
+	
+	// Armor
+	//----------------------------------------------------------------
+	"ArmorPhysical"				"5"
+	"MagicalResistance"			"0"
+	
+	// Attack
+	//----------------------------------------------------------------
+	"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+	"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+	"AttackDamageMin"			"0"
+	"AttackDamageMax"			"0"
+	
+	// Bounty
+	//----------------------------------------------------------------
+	"BountyGoldMin"				"0.0"
+	"BountyGoldMax"				"0.0"
+	
+	// Bounds
+	//----------------------------------------------------------------
+	"BoundsHullName"			"DOTA_HULL_SIZE_BUILDING"
+	"RingRadius"				"140"
+	"CollisionSize"				"72"
+	
+	// Building Cost Stats
+	//----------------------------------------------------------------
+	"GoldCost"					"180"
+	"LumberCost"				"40"
+	"BuildTime"					"50"
+	"FoodProduced"				"10"
+	
+	// Movement
+	//----------------------------------------------------------------
+	"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
+	"MovementSpeed"				"0"			// Speed
+	"MovementTurnRate"			"0"			// Turning rate.
+	
+	// Status
+	//----------------------------------------------------------------
+	"StatusHealth"				"600"
+	"StatusHealthRegen"			"0"
+	"StatusMana"				"300"
+	"StatusManaRegen"			"1.25" //Only at night
+	"StatusStartingMana"		"100"
+	
+	// Vision
+	//----------------------------------------------------------------
+	"VisionDaytimeRange"		"900"
+	"VisionNighttimeRange"		"600"
+	
+	// Team
+	//----------------------------------------------------------------
+	"TeamName"					"DOTA_TEAM_NEUTRALS"
+	"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+	"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+	"UnitRelationShipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+
+	"Creature"
+	{
+		"ManaGain"				"125" //Well Sprig
+	}
+	
+}
