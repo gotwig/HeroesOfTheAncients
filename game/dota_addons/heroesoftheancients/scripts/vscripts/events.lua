@@ -1,6 +1,9 @@
 -- This file contains all barebones-registered events and has already set up the passed-in parameters for your use.
 -- Do not remove the GameMode:_Function calls in these events as it will mess with the internal barebones systems.
 
+require ('maps/hauntedmines/skulls')
+
+
 -- Cleanup a player when they leave
 function GameMode:OnDisconnect(keys)
   DebugPrint('[BAREBONES] Player Disconnected ' .. tostring(keys.userid))
@@ -140,6 +143,22 @@ function GameMode:OnPlayerLevelUp(keys)
 
   local player = EntIndexToHScript(keys.player)
   local level = keys.level
+  
+  local heroes = HeroList:GetAllHeroes()
+  local allOver = true
+	for i=0,DOTA_MAX_TEAM_PLAYERS-1 do
+	  if PlayerResource:IsValidPlayer(i) and PlayerResource:GetLevel(i) < 3 then
+		allOver = false
+		break
+	  end
+	end
+
+	if allOver then
+	  if MINESOPENLOADED then return end
+	  MINESOPENLOADED = true
+	  hota:triggerMines(true)
+	end
+  
 end
 
 -- A player last hit a creep, a tower, or a hero
@@ -243,6 +262,11 @@ function GameMode:OnEntityKilled( keys )
   local damagebits = keys.damagebits -- This might always be 0 and therefore useless
 
   -- Put code here to handle when an entity gets killed
+ 		
+     dropSkull(killedUnit)
+   
+  
+  
 end
 
 

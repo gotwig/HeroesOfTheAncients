@@ -1,9 +1,25 @@
-lockCamera = 0;
+lockCamera = 0
+MINESOPEN = false
+MINESOPENLOADED = false
+numSpawned = 0
+numPlayerAmount = 0
 
 print ('[HOTA] hota.lua' )
 
---Always follow the maincharachter, deactivate custom 
---option missing yet
+
+function hota:triggerMines(open)
+if (open)
+	then
+		MINESOPEN = true
+		Say(nil, "The mines opened! Collect skulls", false)
+
+	else
+		MINESOPEN = false
+		Say(nil, "Support your skull golem / defend your base!", false)
+
+	end
+
+end
 
 function hota:lockCameraToHero( event )
 local pID = event.pID
@@ -23,6 +39,9 @@ end
 end
 
 --Listen for events
+
+
+	
 
 CustomGameEventManager:RegisterListener( "lockCameraToHero", Dynamic_Wrap(hota, "lockCameraToHero")) -- Check Camera Lock
 

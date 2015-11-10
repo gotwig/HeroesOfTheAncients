@@ -14,6 +14,9 @@ function Teleport(trigger)
 
 	if TeleportLocations[hname] then new_position = Entities:FindByName(nil, TeleportLocations[hname])
 	
+	if (MINESOPEN)
+	
+	then
 	activatorPlayer:Stop()
 	activatorPlayer:SetAbsOrigin(new_position:GetAbsOrigin())
 		
@@ -29,7 +32,7 @@ function Teleport(trigger)
 	)
 		
 
-
+	end
 
 	
 	end

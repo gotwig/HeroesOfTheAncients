@@ -1,5 +1,5 @@
 //Shield
-  "item_example_item"
+  "item_skull"
   {
     "ID"              "1836"
     "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
@@ -26,6 +26,8 @@
     "ItemShareability"        "ITEM_NOT_SHAREABLE"
     "ItemDeclarations"        "DECLARE_PURCHASES_TO_TEAMMATES | DECLARE_PURCHASES_TO_SPECTATORS"
     
+	"Model" 				  "models/heroes/necrolyte/necrolyte_skull.vmdl"
+	
     "MaxUpgradeLevel"       "1"
     "ItemBaseLevel"         "1"
     
@@ -37,31 +39,11 @@
     }
     "OnSpellStart"
     {
-      "LinearProjectile"
-      {
-        "EffectName"      "particles/frostivus_herofx/queen_shadow_strike_linear_parent.vpcf"
-        "MoveSpeed"       "%speed"
-        //"StartPosition"   "attach_attack1"
-        "FixedDistance"   "%distance"
-        "StartRadius"     "%radius"
-        "EndRadius"       "%radius"
-        "TargetTeams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
-        "TargetTypes"     "DOTA_UNIT_TARGET_HERO"
-        "TargetFlags"     "DOTA_UNIT_TARGET_FLAG_NONE"
-        "HasFrontalCone"    "0"
-        "ProvidesVision"    "0"
-        "VisionRadius"      "0"
-      }
-      "FireSound"
-      {
-        "EffectName"    "Hero_Abaddon.AphoticShield.Cast"
-        "Target"        "CASTER"
-      }
-      "ApplyModifier"
-      {
-        "Target"      "CASTER"
-        "ModifierName"  "modifier_item_shield"
-      }
+		"RunScript"
+		{
+			"ScriptFile"	"maps/hauntedmines/skulls.lua"
+			"Function"		"PickupSkull"
+		}
     }
     
     "OnProjectileHitUnit"

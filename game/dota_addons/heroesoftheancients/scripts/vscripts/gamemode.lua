@@ -70,6 +70,7 @@ end
   It can be used to initialize non-hero player state or adjust the hero selection (i.e. force random etc)
 ]]
 function GameMode:OnAllPlayersLoaded()
+  numPlayerAmount = PlayerResource:GetPlayerCountForTeam(0) + PlayerResource:GetPlayerCountForTeam(1)
   DebugPrint("[BAREBONES] All Players have loaded into the game")
 end
 
@@ -83,7 +84,7 @@ end
 function GameMode:OnHeroInGame(hero)
   DebugPrint("[BAREBONES] Hero spawned in game for first time -- " .. hero:GetUnitName())
 
-  -- This line for example will set the starting gold of every hero to 500 unreliable gold
+  -- This line for example will set the starting gold of every hero to 0 unreliable gold
   hero:SetGold(0, false)
 
   -- These lines will create an item and add it to the player, effectively ensuring they start with the item
@@ -162,7 +163,7 @@ function GameMode:InitGameMode()
   --All players share the same level ingame
   GameRules:GetGameModeEntity():SetModifyExperienceFilter( Dynamic_Wrap( GameMode, "FilterXP" ), self )
   
-  -- Never heard of Gold. Communism ftw. Everyones as poor as the other.
+  -- Never heard of Gold. Everyones as poor as the other.
   GameRules:GetGameModeEntity():SetModifyGoldFilter( Dynamic_Wrap( GameMode, "FilterGold" ), self )
 
   
@@ -185,4 +186,7 @@ function GameMode:ExampleConsoleCommand()
   end
 
   print( '*********************************************' )
+  
+  
+  
 end
