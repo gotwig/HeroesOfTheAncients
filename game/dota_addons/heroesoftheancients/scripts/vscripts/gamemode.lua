@@ -63,6 +63,17 @@ end
 ]]
 function GameMode:OnFirstPlayerLoaded()
   DebugPrint("[BAREBONES] First Player has loaded")
+	
+	GameRules.koboldEntitiesPositions = {}
+
+	local counter = 0
+
+	for key,value in pairs(Entities:FindAllByModel("models/creeps/neutral_creeps/n_creep_kobold/kobold_c/n_creep_kobold_c.vmdl"))
+	do
+		counter =  counter + 1
+		GameRules.koboldEntitiesPositions[counter] = value:GetAbsOrigin()
+	end
+
 end
 
 --[[

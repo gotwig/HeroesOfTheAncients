@@ -3,6 +3,7 @@
 
 require ('maps/hauntedmines/skulls')
 
+MINESOPENLOADED = false
 
 -- Cleanup a player when they leave
 function GameMode:OnDisconnect(keys)
@@ -138,6 +139,8 @@ end
 
 -- A player leveled up
 function GameMode:OnPlayerLevelUp(keys)
+  if MINESOPENLOADED then return end
+
   DebugPrint('[BAREBONES] OnPlayerLevelUp')
   DebugPrintTable(keys)
 
@@ -154,7 +157,6 @@ function GameMode:OnPlayerLevelUp(keys)
 	end
 
 	if allOver then
-	  if MINESOPENLOADED then return end
 	  MINESOPENLOADED = true
 	  hota:triggerMines(true)
 	end
@@ -263,7 +265,8 @@ function GameMode:OnEntityKilled( keys )
 
   -- Put code here to handle when an entity gets killed
  		
-     dropSkull(killedUnit)
+			
+  deadTrigger(killedUnit)
    
   
   

@@ -4,18 +4,31 @@ MINESOPENLOADED = false
 numSpawned = 0
 numPlayerAmount = 0
 
+
 print ('[HOTA] hota.lua' )
 
 
 function hota:triggerMines(open)
 if (open)
 	then
+		
+		
+		for key,value in pairs(Entities:FindAllByModel("models/creeps/neutral_creeps/n_creep_kobold/kobold_c/n_creep_kobold_c.vmdl"))
+		do
+		  value:ForceKill(false)
+		end
+		
+		
+		for key,value in pairs(GameRules.koboldEntitiesPositions)
+			do  
+				  CreateUnitByName("npc_dota_neutral_kobold", value, true, nil, nil, DOTA_TEAM_NEUTRALS)
+		end
+		
+		print("The mines opened! Collect skulls")
 		MINESOPEN = true
-		Say(nil, "The mines opened! Collect skulls", false)
-
 	else
 		MINESOPEN = false
-		Say(nil, "Support your skull golem / defend your base!", false)
+		print("Support your skull golem / defend your base!")
 
 	end
 
