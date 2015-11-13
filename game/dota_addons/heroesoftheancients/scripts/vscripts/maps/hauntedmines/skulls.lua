@@ -95,13 +95,13 @@ then
 	firstSkullGolemSpawn = false
 end
 
-	local wp1 = Entities:FindByName( nil, "lane_mid_pathcorner_goodguys_6"):GetAbsOrigin()
+	local wp1 = Entities:FindByName( nil, "lane_top_pathcorner_goodguys_6"):GetAbsOrigin()
 
 
 	skullunit_good = CreateUnitByName("npc_dota_neutral_skull_golem", GameRules.point1_good, true, nil, nil, DOTA_TEAM_GOODGUYS)
 	ExecuteOrderFromTable({ UnitIndex = skullunit_good:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = wp1, Queue = true})
 
-	local wp1 = Entities:FindByName( nil, "lane_mid_pathcorner_badguys_6"):GetAbsOrigin()
+	local wp1 = Entities:FindByName( nil, "lane_top_pathcorner_badguys_6"):GetAbsOrigin()
 
 	skullunit_bad = CreateUnitByName("npc_dota_neutral_skull_golem", GameRules.point1_bad, true, nil, nil, DOTA_TEAM_BADGUYS)
 	ExecuteOrderFromTable({ UnitIndex = skullunit_bad:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = wp1, Queue = true})

@@ -24,8 +24,8 @@ if (open)
 				  CreateUnitByName("npc_dota_neutral_kobold", value, true, nil, nil, DOTA_TEAM_NEUTRALS)
 		end
 		
-		print("The mines opened! Collect skulls")
 		MINESOPEN = true
+		print("The mines opened! Collect skulls")
 	else
 		MINESOPEN = false
 		print("Support your skull golem / defend your base!")
