@@ -6,6 +6,8 @@ Featuring
   - Heavy Teamcombat (All teamplayers share the same level)
   - Dynamic Events
   - No items, no gold
+  - Second Creep Waves
+  - Opening/Closing the mines
 
 The goal of those ideas, is heavy team combat, with, in ideal case, no long routes to go, and a lot of action for the players.
 
@@ -37,10 +39,8 @@ I am currently searching people in the following positions:
 
 ### Todos
 
- - Second Creep Waves
  - Health Drops from enemies
  - New UI
- - Opening/Closing the mines
  - Respawning neutral camps and the right timing, adjusted to the HotS counterpart.
  - Hideable Grass (in the works, there are good results)
  - Finishing the map "Haunted Mines"
