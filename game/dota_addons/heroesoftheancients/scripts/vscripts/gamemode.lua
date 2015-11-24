@@ -1,6 +1,9 @@
 -- This is the primary barebones gamemode script and should be used to assist in initializing your game mode
 
 
+
+
+
 -- Set this to true if you want to see a complete debug output of all events/processes done by barebones
 -- You can also change the cvar 'barebones_spew' at any time to 1 or 0 for output/no output
 BAREBONES_DEBUG_SPEW = false 
@@ -9,6 +12,8 @@ if GameMode == nil then
     DebugPrint( '[BAREBONES] creating barebones game mode' )
     _G.GameMode = class({})
 end
+
+
 
 -- This library allow for easily delayed/timed actions
 require('libraries/timers')
@@ -30,6 +35,7 @@ require('internal/events')
 
 -- settings.lua is where you can specify many different properties for your game mode and is one of the core barebones files.
 require('settings')
+
 -- events.lua is where you can specify the actions to be taken when any event occurs and is one of the core barebones files.
 require('events')
 
@@ -65,6 +71,7 @@ function GameMode:OnFirstPlayerLoaded()
   DebugPrint("[BAREBONES] First Player has loaded")
 	
 	GameRules.koboldEntitiesPositions = {}
+	GameRules.skullGolemPosition = nil
 
 	local counter = 0
 
@@ -73,6 +80,10 @@ function GameMode:OnFirstPlayerLoaded()
 		counter =  counter + 1
 		GameRules.koboldEntitiesPositions[counter] = value:GetAbsOrigin()
 	end
+	
+	
+	GameRules.skullGolemPosition = Entities:FindByModel(nil,"models/creeps/neutral_creeps/n_creep_golem_a/neutral_creep_golem_a.vmdl"):GetAbsOrigin()
+	
 
 end
 
@@ -121,45 +132,111 @@ function GameMode:OnGameInProgress()
 
    teamselection = ""
 
+
+   
 	Timers:CreateTimer(function()
 		
 		for teamnumber = 2,3 do
 			if (teamnumber == 2) then
 				teamselection = "good"
+				
+				SpawnTop( teamselection , teamnumber, 1)
+				SpawnBot( teamselection , teamnumber, 1)
+				
+				
+				
 			end
 		
 			if (teamnumber == 3) then
 				teamselection = "bad"
+				
+				SpawnTop( teamselection , teamnumber, 1) 
+				SpawnBot( teamselection , teamnumber, 1) 
+							
+			
 			end
 			
-			SpawnTop( teamselection , teamnumber, 1)
-			SpawnTop( teamselection , teamnumber, 2)
-			
-			SpawnBot( teamselection , teamnumber, 1)
-			SpawnBot( teamselection , teamnumber, 2)
-
 		end
+		
+		SpawnSiege()
 		return 30.0
 	end)
 end
 
 function SpawnTop( teamselection , teamnumber, position)
-		local rangedCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_ranged", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
-		local meleeCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_melee", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
-		--local siegeCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_siege",		Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_1"):GetAbsOrigin(), true, nil, nil, teamnumber)
-		ExecuteOrderFromTable({ UnitIndex = rangedCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE, Position = Entities:FindByName( nil, "lane_top_pathcorner_" .. teamselection .. "guys_6"):GetAbsOrigin(), Queue = true})
-		ExecuteOrderFromTable({ UnitIndex = meleeCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_top_pathcorner_".. teamselection .. "guys_6"):GetAbsOrigin(),Queue = true})
-		--ExecuteOrderFromTable({ UnitIndex = siegeCreep:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_mid_pathcorner_".. teamselection .. "guys_1"):GetAbsOrigin(),Queue = true})
+		if (Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_".. position .. ""))
+		then
+		
+			for i = 1,3 do
+			local rangedCreep = CreateUnitByName("npc_dota_necronomicon_archer_1_custom", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
+			local meleeCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_melee", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
+			
+			for i = 1,6 do
+			
+			ExecuteOrderFromTable({ UnitIndex = rangedCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE, Position = Entities:FindByName( nil, "lane_top_pathcorner_" .. teamselection .. "guys_" .. i ):GetAbsOrigin(), Queue = true})
+			ExecuteOrderFromTable({ UnitIndex = meleeCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_top_pathcorner_".. teamselection .. "guys_" .. i ):GetAbsOrigin(),Queue = true})
+		
+			end
+			
+			end
+			
+			local rangedMageCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_ranged", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
+			for i = 1,6 do
+			ExecuteOrderFromTable({ UnitIndex = rangedMageCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE, Position = Entities:FindByName( nil, "lane_top_pathcorner_" .. teamselection .. "guys_" .. i ):GetAbsOrigin(), Queue = true})
+			end
+		
+		end
 end
 
 function SpawnBot( teamselection , teamnumber, position )
-		local rangedCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_ranged", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_bot_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
-		local meleeCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_melee", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_bot_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
-		--local siegeCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_siege",		Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_1"):GetAbsOrigin(), true, nil, nil, teamnumber)
-		ExecuteOrderFromTable({ UnitIndex = rangedCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE, Position = Entities:FindByName( nil, "lane_bot_pathcorner_" .. teamselection .. "guys_4"):GetAbsOrigin(), Queue = true})
-		ExecuteOrderFromTable({ UnitIndex = meleeCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_bot_pathcorner_".. teamselection .. "guys_4"):GetAbsOrigin(),Queue = true})
-		--ExecuteOrderFromTable({ UnitIndex = siegeCreep:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_mid_pathcorner_".. teamselection .. "guys_1"):GetAbsOrigin(),Queue = true})
+		if (Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_bot_".. position .. ""))
+		then
+			for i = 1,3 do
 
+			local rangedCreep = CreateUnitByName("npc_dota_necronomicon_archer_1_custom", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_bot_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
+			local meleeCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_melee", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_bot_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
+			
+			for i = 1,4 do
+				ExecuteOrderFromTable({ UnitIndex = rangedCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE, Position = Entities:FindByName( nil, "lane_bot_pathcorner_" .. teamselection .. "guys_" .. i):GetAbsOrigin(), Queue = true})
+				ExecuteOrderFromTable({ UnitIndex = meleeCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_bot_pathcorner_".. teamselection .. "guys_" .. i):GetAbsOrigin(),Queue = true})
+			end
+			
+			end
+			
+			local rangedMageCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_ranged", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_bot_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
+
+			for i = 1,4 do
+			ExecuteOrderFromTable({ UnitIndex = rangedMageCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE, Position = Entities:FindByName( nil, "lane_bot_pathcorner_" .. teamselection .. "guys_" .. i):GetAbsOrigin(), Queue = true})
+			end
+			
+		end
+
+end
+
+function SpawnSiege()
+			if (GameRules.siegeTop['good'])
+			then
+			local siegeCreep = CreateUnitByName("npc_dota_goodguys_siege",		Entities:FindByName( nil, "npc_dota_spawner_good_top_1"):GetAbsOrigin(), true, nil, nil, 2)
+			ExecuteOrderFromTable({ UnitIndex = siegeCreep:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_top_pathcorner_goodguys_6"):GetAbsOrigin(),Queue = true})
+			end
+			
+			if (GameRules.siegeTop['bad'])
+			then
+			local siegeCreep = CreateUnitByName("npc_dota_badguys_siege",		Entities:FindByName( nil, "npc_dota_spawner_bad_top_1"):GetAbsOrigin(), true, nil, nil, 3)
+			ExecuteOrderFromTable({ UnitIndex = siegeCreep:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_top_pathcorner_badguys_6"):GetAbsOrigin(),Queue = true})
+			end
+			
+			if (GameRules.siegeBot['good'])
+			then
+			local siegeCreep = CreateUnitByName("npc_dota_goodguys_siege",		Entities:FindByName( nil, "npc_dota_spawner_good_bot_1"):GetAbsOrigin(), true, nil, nil, 2)
+			ExecuteOrderFromTable({ UnitIndex = siegeCreep:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_bot_pathcorner_goodguys_4"):GetAbsOrigin(),Queue = true})
+			end
+			
+			if (GameRules.siegeBot['bad'])
+			then
+			local siegeCreep = CreateUnitByName("npc_dota_badguys_siege",		Entities:FindByName( nil, "npc_dota_spawner_bad_bot_1"):GetAbsOrigin(), true, nil, nil, 3)
+			ExecuteOrderFromTable({ UnitIndex = siegeCreep:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_bot_pathcorner_badguys_4"):GetAbsOrigin(),Queue = true})
+			end
 
 end
 

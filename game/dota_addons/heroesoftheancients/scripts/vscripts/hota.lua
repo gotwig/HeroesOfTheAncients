@@ -18,11 +18,14 @@ if (open)
 		  value:ForceKill(false)
 		end
 		
+		Entities:FindByModel(nil,"models/creeps/neutral_creeps/n_creep_golem_a/neutral_creep_golem_a.vmdl"):ForceKill(false)
 		
 		for key,value in pairs(GameRules.koboldEntitiesPositions)
 			do  
 				  CreateUnitByName("npc_dota_neutral_kobold", value, true, nil, nil, DOTA_TEAM_NEUTRALS)
 		end
+		
+		CreateUnitByName("npc_dota_neutral_granite_golem", GameRules.skullGolemPosition, true, nil, nil, DOTA_TEAM_NEUTRALS)
 		
 		MINESOPEN = true
 		print("The mines opened! Collect skulls")

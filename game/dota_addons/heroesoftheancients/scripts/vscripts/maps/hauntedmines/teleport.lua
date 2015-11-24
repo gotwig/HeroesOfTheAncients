@@ -14,7 +14,7 @@ function Teleport(trigger)
 
 	if TeleportLocations[hname] then new_position = Entities:FindByName(nil, TeleportLocations[hname])
 	
-	if (MINESOPEN)
+	if (MINESOPEN or hname ==  "ug_to_mine_bot" or hname == "ug_to_mine_top")
 	
 	then
 	activatorPlayer:Stop()

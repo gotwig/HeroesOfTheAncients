@@ -1,0 +1,83 @@
+// Keeps
+"keep"
+{
+// General
+//----------------------------------------------------------------
+"BaseClass"					"npc_dota_creature"
+"Model"						"models/heroes/undying/undying_tower.vmdl"
+"ModelScale"				"1.5"
+"Level"						"1"
+"HealthBarOffset"			"140"
+
+// Abilities
+//----------------------------------------------------------------
+		"Ability1"					""			// Ability 1.
+		"Ability2"					""			// Ability 2.
+		"Ability3"					""			// Ability 3.
+		"Ability4"					""			// Ability 4.
+		"Ability5"					""			// Ability 5.
+		"Ability6"					""			// Ability 6 - Extra.
+		"Ability7"					""			// Ability 7 - Extra.
+		"Ability8"					""			// Ability 8 - Extra.
+
+// Armor
+//----------------------------------------------------------------
+"ArmorPhysical"				"5"
+"MagicalResistance"			"0"
+
+// Attack
+//----------------------------------------------------------------
+"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
+"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
+"AttackDamageMin"			"90.0"
+"AttackDamageMax"			"111.0"
+"AttackRate"				"2.5"
+"AttackAnimationPoint"		"0.3"
+"AttackAcquisitionRange"	"800"
+"AttackRange"				"800"
+"ProjectileModel"			"particles/units/heroes/hero_techies/techies_base_attack.vpcf"
+"ProjectileSpeed"			"700"
+
+// Bounty
+//----------------------------------------------------------------
+"BountyGoldMin"				"0.0"
+"BountyGoldMax"				"0.0"
+
+// Bounds
+//----------------------------------------------------------------
+"BoundsHullName"			"DOTA_HULL_SIZE_HERO"
+"RingRadius"				"100"
+"CollisionSize"				"72"
+
+// Building Cost Stats
+//----------------------------------------------------------------
+"GoldCost"					"200"
+"LumberCost"				"120"
+"BuildTime"					"75"
+
+// Movement
+//----------------------------------------------------------------
+"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"			// Type of locomotion - ground, air
+"MovementSpeed"				"0"			// Speed
+"MovementTurnRate"			"0"		// Turning rate.
+
+// Status
+//----------------------------------------------------------------
+"StatusHealth"				"600"
+"StatusHealthRegen"			"0"
+"StatusMana"				"0"
+"StatusManaRegen"			"0"
+
+// Vision
+//----------------------------------------------------------------
+"VisionDaytimeRange"		"1600"
+"VisionNighttimeRange"		"800"
+
+// Team
+//----------------------------------------------------------------
+"TeamName"					"DOTA_TEAM_NEUTRALS"
+"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_SIEGE"
+"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+"UnitRelationShipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+
+}

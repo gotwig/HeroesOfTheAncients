@@ -2,6 +2,38 @@
 -- Do not remove the GameMode:_Function calls in these events as it will mess with the internal barebones systems.
 
 require ('maps/hauntedmines/skulls')
+require ('units/keep_destroyed')
+require ('healthglobe')
+
+   -- STUFF
+
+GameRules.goodkeeps = {}
+GameRules.goodkeeps["top"] = {}
+
+for j = 1, 5 do
+        GameRules.goodkeeps["top"][j] = true
+end
+
+GameRules.goodkeeps["bot"] = {}
+
+for j = 1, 5 do
+        GameRules.goodkeeps["bot"][j] = true
+end
+
+
+GameRules.badkeeps = {}
+GameRules.badkeeps["top"] = {}
+
+for j = 1, 2 do
+        GameRules.badkeeps["top"][j] = true
+end
+
+GameRules.badkeeps["bot"] = {}
+
+for j = 1, 2 do
+        GameRules.badkeeps["bot"][j] = true
+end
+
 
 MINESOPENLOADED = false
 
@@ -265,10 +297,13 @@ function GameMode:OnEntityKilled( keys )
 
   -- Put code here to handle when an entity gets killed
  		
-			
+  destroyedKeep(killedUnit)
+
+	-- actual NPCS
   deadTrigger(killedUnit)
    
-  
+  -- drop health globes
+  dropHealthGlobe(killedUnit)
   
 end
 
@@ -368,3 +403,6 @@ function GameMode:OnPlayerChat(keys)
 
   local text = keys.text
 end
+
+
+
