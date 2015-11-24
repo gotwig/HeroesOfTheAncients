@@ -8,6 +8,7 @@ Featuring
   - No items, no gold
   - Second Creep Waves
   - Opening/Closing the mines
+  - wizard health drops
 
 The goal of those ideas, is heavy team combat, with, in ideal case, no long routes to go, and a lot of action for the players.
 
@@ -39,7 +40,6 @@ I am currently searching people in the following positions:
 
 ### Todos
 
- - Health Drops from enemies
  - New UI
  - Respawning neutral camps and the right timing, adjusted to the HotS counterpart.
  - Hideable Grass (in the works, there are good results)
