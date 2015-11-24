@@ -6,7 +6,6 @@ Featuring
   - Heavy Teamcombat (All teamplayers share the same level)
   - Dynamic Events
   - No items, no gold
-  - Second Creep Waves
   - Opening/Closing the mines
   - wizard health drops
 
