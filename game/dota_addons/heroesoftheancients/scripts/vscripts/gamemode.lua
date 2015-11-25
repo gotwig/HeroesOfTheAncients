@@ -1,7 +1,9 @@
 -- This is the primary barebones gamemode script and should be used to assist in initializing your game mode
 
 
+require ('libraries/notifications')
 
+matchstarttexts = {'Fight, kill!','Let the battle begin!','Now go, and summon my golems!'}
 
 
 -- Set this to true if you want to see a complete debug output of all events/processes done by barebones
@@ -129,6 +131,9 @@ end
 
 function GameMode:OnGameInProgress()
   DebugPrint("[BAREBONES] The game has officially begun")
+  
+  Notifications:TopToAll({text=matchstarttexts[RandomInt( 1, #matchstarttexts )], duration=10.0})
+
 
    teamselection = ""
 

@@ -1,8 +1,8 @@
 function destroyedKeep(unit)
 
-	if (unit:GetUnitName() == "keep")
+	if (unit:GetUnitName() == "keep" and string.sub( unit:GetName() , -1 ) == "1" )
 		then
-			print (unit:GetName()[string.len(unit:GetName())-1] )
+			print ()
 			if (unit:GetTeamNumber() == 2 )
 			then
 			teamnumber = 3

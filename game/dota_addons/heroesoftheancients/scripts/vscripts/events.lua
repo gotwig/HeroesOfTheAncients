@@ -4,6 +4,7 @@
 require ('maps/hauntedmines/skulls')
 require ('units/keep_destroyed')
 require ('healthglobe')
+require ('mercenaries')
 
    -- STUFF
 
@@ -304,6 +305,9 @@ function GameMode:OnEntityKilled( keys )
    
   -- drop health globes
   dropHealthGlobe(killedUnit)
+  
+  -- mercenary camps
+  onMercenaryDead(killedUnit)
   
 end
 

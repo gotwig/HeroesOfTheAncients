@@ -4,8 +4,11 @@ MINESOPENLOADED = false
 numSpawned = 0
 numPlayerAmount = 0
 
+require ('libraries/notifications')
 
 print ('[HOTA] hota.lua' )
+
+minesopentexts = {"Do you hear that clattering? I believe they're hungry...",'Enter heroes, the damned await.','Gather skulls and empower your golem!','Slay the undead and claim their skulls, heroes.',"There's no turning back now..."}
 
 
 function hota:triggerMines(open)
@@ -18,20 +21,27 @@ if (open)
 		  value:ForceKill(false)
 		end
 		
-		Entities:FindByModel(nil,"models/creeps/neutral_creeps/n_creep_golem_a/neutral_creep_golem_a.vmdl"):ForceKill(false)
+		if (Entities:FindByModel(nil,"models/creeps/neutral_creeps/n_creep_golem_a/neutral_creep_golem_a.vmdl"))
+		then
+			Entities:FindByModel(nil,"models/creeps/neutral_creeps/n_creep_golem_a/neutral_creep_golem_a.vmdl"):ForceKill(false)
+		end		
 		
 		for key,value in pairs(GameRules.koboldEntitiesPositions)
 			do  
-				  CreateUnitByName("npc_dota_neutral_kobold", value, true, nil, nil, DOTA_TEAM_NEUTRALS)
+				CreateUnitByName("npc_dota_neutral_kobold", value, true, nil, nil, DOTA_TEAM_NEUTRALS)
 		end
 		
 		CreateUnitByName("npc_dota_neutral_granite_golem", GameRules.skullGolemPosition, true, nil, nil, DOTA_TEAM_NEUTRALS)
 		
 		MINESOPEN = true
+		
+		
+		Notifications:TopToAll({text=minesopentexts[RandomInt( 1, #minesopentexts )], duration=10.0})
+
 		print("The mines opened! Collect skulls")
 	else
 		MINESOPEN = false
-		print("Support your skull golem / defend your base!")
+		
 
 	end
 
