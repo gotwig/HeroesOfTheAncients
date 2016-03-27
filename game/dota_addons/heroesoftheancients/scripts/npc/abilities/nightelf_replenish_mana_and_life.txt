@@ -17,12 +17,12 @@
 	"01"
 	{
 		"var_type"			"FIELD_INTEGER"
-		"hp_per_mana"		"2"
+		"hp_per_mana"		"5"
 	}
 	"02"
 	{
 		"var_type"			"FIELD_FLOAT"
-		"mp_per_mana"		"0.5"
+		"mp_per_mana"		"2.0"
 	}
 }
 
@@ -59,21 +59,6 @@
 				"ScriptFile"	"units/moon_well.lua"
 				"Function"		"ReplenishAutocast"
 			}
-			"RunScript"
-			{
-				"ScriptFile"	"units/moon_well.lua"
-				"Function"		"CheckTimeOfDay"
-			}
-		}
-	}
-
-	"modifier_mana_regeneration_daytime"
-	{
-		"Passive"			"1"
-		"IsHidden"			"1"
-		"Properties"
-		{
-			"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE" "-100"
 		}
 	}
 }
