@@ -116,34 +116,6 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityManaCost"       "0 0 0 0"
 	  }
-	//-------------------
-	// Dummy stuff
-	//-------------------
-	  
-	  "dummy_unit"
-	  {
-	    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	    "BaseClass"           "ability_datadriven"
-	    "AbilityTextureName"            "rubick_empty1"
-	    "MaxLevel"                      "1"
-	    
-		"Modifiers"
-		  {
-		    "modifier_nomove"
-		    {
-		      "Passive"     "0"
-		      "IsHidden"      "1"
-		      "Attributes" "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE | MODIFIER_ATTRIBUTE_PERMANENT"  
-	
-		      "Properties"
-		      {
-		        "MODIFIER_PROPERTY_DISABLE_TURNING" "1"
-		        "MODIFIER_PROPERTY_IGNORE_CAST_ANGLE" "1"
-		        "MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE" "0.0"
-		      }
-		    }
-		 }
-	  }
 	"example_ability"
 	  {
 	    "ID"              "1852"
@@ -415,4 +387,32 @@
 	}
 	
 	  
+	//-------------------
+	// No Rotation passive ability
+	//-------------------
+	  
+	  "noRotation"
+	  {
+	    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "BaseClass"           "ability_datadriven"
+	    "AbilityTextureName"            "rubick_empty1"
+	    "MaxLevel"                      "1"
+	    
+		"Modifiers"
+		  {
+		    "modifier_nomove"
+		    {
+		      "Passive"     "1"
+		      "IsHidden"      "1"
+		      "Attributes" "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE | MODIFIER_ATTRIBUTE_PERMANENT"  
+	
+		      "Properties"
+		      {
+		        "MODIFIER_PROPERTY_DISABLE_TURNING" "1"
+		        "MODIFIER_PROPERTY_IGNORE_CAST_ANGLE" "1"
+		        "MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE" "0.0"
+		      }
+		    }
+		 }
+	  }
 }

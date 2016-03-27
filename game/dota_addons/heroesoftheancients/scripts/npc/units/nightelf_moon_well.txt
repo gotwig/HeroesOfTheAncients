@@ -1,6 +1,6 @@
 //=================================================================================
 // Building: Moon Well
-// Description: "Provides food, which increases the maximum number of units that can be trained. Has the Replenish Mana and Life ability. Can gain the Well Spring upgrade. Regenerates mana at night."
+// Description: "Has the Replenish Mana and Life ability."
 //=================================================================================
 "nightelf_moon_well"
 {
@@ -20,7 +20,7 @@
 	"AbilityLayout"				"4"
 	"Ability1"					"nightelf_replenish_mana_and_life"	 //Reference: Abds
 	"Ability2"					"nightelf_well_spring_disabled"	 //Reference: Ambt
-	"Ability3"					"dummy_unit"
+	"Ability3"					"noRotation"
 	//"Ability10"					"ability_building"
 	
 	// Armor
@@ -30,7 +30,7 @@
 	
 	// Attack
 	//----------------------------------------------------------------
-	"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+	"AttackCapabilities"			"DOTA_UNIT_CAP_NO_ATTACK"
 	"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 	"AttackDamageMin"			"0"
 	"AttackDamageMax"			"0"
@@ -45,13 +45,6 @@
 	"BoundsHullName"			"DOTA_HULL_SIZE_BUILDING"
 	"RingRadius"				"140"
 	"CollisionSize"				"72"
-	
-	// Building Cost Stats
-	//----------------------------------------------------------------
-	"GoldCost"					"180"
-	"LumberCost"				"40"
-	"BuildTime"					"50"
-	"FoodProduced"				"10"
 	
 	// Movement
 	//----------------------------------------------------------------

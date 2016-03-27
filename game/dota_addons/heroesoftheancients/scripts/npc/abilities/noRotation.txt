@@ -1,8 +1,8 @@
 //-------------------
-// Dummy stuff
+// No Rotation passive ability
 //-------------------
   
-  "dummy_unit"
+  "noRotation"
   {
     "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
     "BaseClass"           "ability_datadriven"
@@ -13,7 +13,7 @@
 	  {
 	    "modifier_nomove"
 	    {
-	      "Passive"     "0"
+	      "Passive"     "1"
 	      "IsHidden"      "1"
 	      "Attributes" "MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE | MODIFIER_ATTRIBUTE_PERMANENT"  
 

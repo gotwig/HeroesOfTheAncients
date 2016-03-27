@@ -11,7 +11,7 @@
 
 // Abilities
 //----------------------------------------------------------------
-		"Ability1"					"dummy_unit"			// Ability 1.
+		"Ability1"					"noRotation"			// Ability 1.
 		"Ability2"					""			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
