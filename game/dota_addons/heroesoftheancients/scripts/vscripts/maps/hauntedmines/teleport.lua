@@ -17,9 +17,10 @@ function Teleport(trigger)
 	if (MINESOPEN or hname ==  "ug_to_mine_bot" or hname == "ug_to_mine_top")
 	
 	then
-	activatorPlayer:Stop()
-	activatorPlayer:SetAbsOrigin(new_position:GetAbsOrigin())
-		
+	activatorPlayer:Stop()	
+	FindClearSpaceForUnit(activatorPlayer,new_position:GetAbsOrigin(),true)
+
+	
 		Timers:CreateTimer(
 		function()
 			PlayerResource:SetCameraTarget(activatorPlayer:GetPlayerID(), activatorPlayer)

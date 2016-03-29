@@ -36,11 +36,13 @@
 				</Panel>
 			</Panel>
 			<Panel id="TimersPanel" hittest="false">
-				<Button id="heroLockActivator" onactivate="heroCamLock()">
-				<Label class="TimerDescription" text="(De)Activate Hero Camera Lock"/>
+			
+				<Button id="teleport" onactivate="teleportBase()">
+				<Image src="file://{images}/custom_game/hud/teleportBase.png" />
 				</Button>
+			
 				<Button id="heroLockActivator" onactivate="heroCamLock()">
-				<Label class="TimerDescription" text="Teleport back to Homebase"/>
+				<Label class="TimerText" text="Lock camera"/>
 				</Button>
 				
 				<Label id="SuddenDeathTimer" class="TimerText" text=""/>

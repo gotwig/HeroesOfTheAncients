@@ -64,16 +64,19 @@ end
 
 end
 
+function hota:teleportBase( event )
+local pID = event.pID
+
+PlayerResource:GetSelectedHeroEntity(event.pID):CastAbilityNoTarget(PlayerResource:GetSelectedHeroEntity(event.pID):FindAbilityByName("lw_teleport"), 0) 
+end
+
+
+
 --Listen for events
 
-
-	
-
+CustomGameEventManager:RegisterListener( "teleportBase", Dynamic_Wrap(hota, "teleportBase")) --Right click through panorama
 CustomGameEventManager:RegisterListener( "lockCameraToHero", Dynamic_Wrap(hota, "lockCameraToHero")) -- Check Camera Lock
-
-
 CustomGameEventManager:RegisterListener( "moonwell_order", Dynamic_Wrap(hota, "MoonWellOrder")) --Right click through panorama
-CustomGameEventManager:RegisterListener( "right_click_order", Dynamic_Wrap(hota, "RightClickOrder")) --Right click through panorama
 
 
 

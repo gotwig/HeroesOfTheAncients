@@ -34,32 +34,4 @@
 		"Function"		"Replenish"
 	}
 }
-
-"Modifiers"
-{
-	"modifier_replenish_autocast"
-	{
-		"Passive"			"1"
-		"IsHidden"			"1"
-		
-		//"OnCreated"
-		//{
-		//	"RunScript"
-		//	{
-		//		"ScriptFile"	"units/nightelf/shared.lua"
-		//		"Function"		"ToggleOnAutocast"
-		//	}
-		//}
-
-		"ThinkInterval" "1.0"
-		"OnIntervalThink"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"units/moon_well.lua"
-				"Function"		"ReplenishAutocast"
-			}
-		}
-	}
-}
 }

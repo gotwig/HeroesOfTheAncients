@@ -39,7 +39,7 @@ function Replenish( event )
 	if mana_needed > 0 then
 		moon_well:SpendMana(mana_needed, ability)
 
-		print("Replenished ",target:GetUnitName()," for "..replenish_life.." HP and "..replenish_mana.." MP")
+		--print("Replenished ",target:GetUnitName()," for "..replenish_life.." HP and "..replenish_mana.." MP")
 
 		ParticleManager:CreateParticle("particles/items3_fx/mango_active.vpcf", PATTACH_ABSORIGIN_FOLLOW, moon_well)
 		target:EmitSound("DOTA_Item.Mango.Activate")
@@ -47,37 +47,4 @@ function Replenish( event )
 
 end
 
-function ReplenishAutocast( event )
-	local caster = event.caster
-	local ability = event.ability
-	
-	-- Only autocast with 10 or more mana
-	if caster:GetMana() < 10 then 
-		return 
-	end
 
-	-- Get if the ability is on autocast mode and cast the ability on a target
-	if ability:GetAutoCastState() and ability:IsFullyCastable() and caster.state ~= "building" then
-		
-		-- Find targets in radius
-		local autocast_radius = ability:GetCastRange()
-
-		local target
-		local target_missing_health = 0
-		local units = FindUnitsInRadius(caster:GetTeamNumber(), caster:GetAbsOrigin(), nil, autocast_radius, DOTA_UNIT_TARGET_TEAM_FRIENDLY, DOTA_UNIT_TARGET_BASIC + DOTA_UNIT_TARGET_HERO, DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES, FIND_ANY_ORDER, false)		
-		for k,unit in pairs(units) do
-
-			-- Get the unit on lowest health
-			if not IsCustomBuilding(unit) and unit:GetHealthDeficit() > target_missing_health then
-				target_missing_health = unit:GetHealthDeficit()
-				target = unit				
-			end
-		end
-
-		if not target then
-			return
-		else 
-			caster:CastAbilityOnTarget(target, ability, caster:GetPlayerOwnerID())
-		end
-	end
-end

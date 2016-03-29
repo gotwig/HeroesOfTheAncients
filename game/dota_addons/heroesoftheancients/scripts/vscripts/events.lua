@@ -3,6 +3,8 @@
 
 require ('maps/hauntedmines/skulls')
 require ('units/keep_destroyed')
+require ('units/teleportBase')
+require ('units/sound')
 require ('healthglobe')
 require ('mercenaries')
 
@@ -62,13 +64,17 @@ end
 
 -- An NPC has spawned somewhere in game.  This includes heroes
 function GameMode:OnNPCSpawned(keys)
-  DebugPrint("[BAREBONES] NPC Spawned")
-  DebugPrintTable(keys)
-
   -- This internal handling is used to set up main barebones functions
   GameMode:_OnNPCSpawned(keys)
 
   local npc = EntIndexToHScript(keys.entindex)
+  
+  if npc:IsRealHero() then   
+	local newAbility = npc:AddAbility("lw_teleport")
+	newAbility:SetLevel(1)
+  end
+  
+  
 end
 
 -- An entity somewhere has been hurt.  This event fires very often with many units so don't do too many expensive
