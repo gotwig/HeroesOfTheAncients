@@ -10,6 +10,7 @@ Featuring
   - No items, no gold
   - Opening/Closing the mines
   - wizard health drops
+  - moon wells to restore hp/mp of your hero
 
 The goal of those ideas, is heavy team combat, with, in ideal case, no long routes to go, and a lot of action for the players.
 
