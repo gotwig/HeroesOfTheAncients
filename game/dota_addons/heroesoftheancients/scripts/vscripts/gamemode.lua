@@ -86,7 +86,10 @@ function GameMode:OnFirstPlayerLoaded()
 	
 	GameRules.skullGolemPosition = Entities:FindByModel(nil,"models/creeps/neutral_creeps/n_creep_golem_a/neutral_creep_golem_a.vmdl"):GetAbsOrigin()
 	
-
+	initCamp(1,2,20)
+	initCamp(2,4,20)
+	initCamp(3,2,20)
+	
 end
 
 --[[
