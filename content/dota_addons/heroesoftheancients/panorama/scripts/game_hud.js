@@ -13,3 +13,64 @@ function teleportBase(){
 	//Abilities.ExecuteAbility( Entities.GetAbilityByName( Players.GetPlayerHeroEntityIndex( 0 ) , "lw_teleport" ), Players.GetPlayerHeroEntityIndex( 0 ), true )
 	GameEvents.SendCustomGameEventToServer( "teleportBase", { pID: iPlayerid })
 }
+
+var tbClass = "TimeGreen";
+var tbName = "Capture Camp";
+var tbActive = false;
+
+var previousName = "";
+
+var per = 0;
+
+function TimeBar()
+{
+  var left = $("#TimeBarLeft");
+  left.SetHasClass("TimePurple", false);
+  left.SetHasClass("TimeYellow", false);
+  left.SetHasClass("TimeRed", false);
+  left.SetHasClass(tbClass, true);
+
+  $("#TimeBar").visible = tbActive;
+
+  if (tbActive){
+    left.style.transition = "width 0.1s linear 0.0s;"
+    
+
+	
+    left.style.width = per * 2.4 + "px";
+    $("#TimeName").text = tbName;
+  }
+  $.Schedule(1/10, TimeBar);
+}
+
+function showCapturepoint(msg)
+{  
+  previousName = msg.name;
+  tbActive = true;
+}
+
+function hideCapturepoint(msg)
+{
+  if (msg.name == previousName){
+	tbActive = false;
+  }
+  
+}
+
+function capturePointsChanged( table_name, key, data )
+{
+	per = data.value;
+}
+
+(function(){
+  TimeBar();
+
+  GameEvents.Subscribe("showCapturepoint", showCapturepoint);
+  GameEvents.Subscribe("hideCapturepoint", hideCapturepoint); 
+
+
+  //GameEvents.SendEventClientSide("control_override_cvar", {"pid":-1, "cvar":"dota_hide_cursor", "value":""} );
+
+  CustomNetTables.SubscribeNetTableListener( "merc_capturepoints", capturePointsChanged );
+  
+})(); 

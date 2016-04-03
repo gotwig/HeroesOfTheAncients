@@ -47,6 +47,13 @@
 				
 				<Label id="SuddenDeathTimer" class="TimerText" text=""/>
 			</Panel>
+			
+			<Panel hittest="false" id="TimeBar">
+			  <Panel hittest="false" id="TimeBarLeft" class="TimeYellow"> 
+			  		<Label hittest="false" id="TimeName" class="UIText" text="Capturing Camp"/>
+			  </Panel>
+			</Panel>
+			
 		</Panel>
 	</Panel>
 </root>

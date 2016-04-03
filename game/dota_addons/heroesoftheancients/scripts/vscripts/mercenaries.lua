@@ -1,7 +1,13 @@
-function setContains(set, key)
-    return set[key] ~= nil
+function GetIndex(list, element)
+    for k, v in pairs(list) do
+        if v == element then
+            return k
+        end
+    end
+
+    return nil
 end
- 
+
 function switch(c)
   local swtbl = {
     casevar = c,
@@ -26,6 +32,8 @@ end
  
 mercenaryCamps = {}
 
+onlyRunOnce = false
+
 --[[
     STATE Codes for each mercenary camp:
 	
@@ -35,6 +43,7 @@ mercenaryCamps = {}
 	3 - summoned camp got killed, trigger countdown, than reset to 0
 --]]
 
+
 function initCamp(id,limitnumber, respawnDelaySecs)
     local camp = {}
     local spawned = {}
@@ -43,7 +52,6 @@ function initCamp(id,limitnumber, respawnDelaySecs)
     for i = 1,limitnumber do
         local targetName = "merc_" .. id .. "_" .. i
         local unit = Entities:FindByName(nil,targetName)
-		print(targetName)
         local unitData = {}
  
         unitData.name = unit:GetUnitName()
@@ -68,44 +76,216 @@ function initCamp(id,limitnumber, respawnDelaySecs)
     camp.monstersToSpawn = toSpawn
     camp.spawnedMonsters = spawned
 	camp.state = 0
+	camp.captureCounter = 50
+	camp.allyTeam = 0
+	camp.captureGood = false
+	camp.captureBad = false
+	
+	camp.onlyRunOnce = true
 	camp.respawnDelay = respawnDelaySecs
  
     mercenaryCamps[id] = camp
 end
 
+function respawnCamp(id)
+
+	for key,unitData in pairs(mercenaryCamps[id].monstersToSpawn) do
+
+		local newUnit = CreateUnitByName(unitData.name,
+												 unitData.position,
+												 true,
+												 nil,
+												 nil,
+												 DOTA_TEAM_NEUTRALS)
+												 
+		newUnit:SetForwardVector(unitData.rotation)
+		table.insert(mercenaryCamps[id].spawnedMonsters,newUnit)	
+
+	end
+	
+	if (mercenaryCamps[id].state == 3)
+	then
+		mercenaryCamps[id].state = 0
+		mercenaryCamps[id].captureCounter = 50
+	end
+	
+end
+
+function respawnAllyCamp(id)
+
+	for key,unitData in pairs(mercenaryCamps[id].monstersToSpawn) do
+
+		local newUnit = CreateUnitByName(unitData.name .. "_ally",
+												 unitData.position,
+												 true,
+												 nil,
+												 nil,
+												 mercenaryCamps[id].allyTeam)
+												 
+		newUnit:SetForwardVector(unitData.rotation)
+		
+		if (mercenaryCamps[id].allyTeam == 2)
+		then
+			for i = 3,6 do
+				ExecuteOrderFromTable({ UnitIndex = newUnit:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_top_pathcorner_goodguys_" .. i ):GetAbsOrigin(), Queue = true})
+			end
+		end
+		
+		if (mercenaryCamps[id].allyTeam == 3)
+		then
+			for i = 3,6 do
+				ExecuteOrderFromTable({ UnitIndex = newUnit:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_top_pathcorner_badguys_" .. i ):GetAbsOrigin(), Queue = true})
+			end
+		end
+		
+		table.insert(mercenaryCamps[id].spawnedMonsters,newUnit)	
+
+	end
+	
+end
+
 Timers:CreateTimer(function()
         for key,value in pairs(mercenaryCamps) do
+
+			switch(mercenaryCamps[key].state) : caseof 
+				{
+				[1]   = function (x) print(x,"one ENDLESS")
+							local merc = key
+						
+							value.captureBad = false
+							value.captureGood = false
+							
+							for key,value in pairs(HeroList:GetAllHeroes()) do
+							
+							local unitCapture = Entities:FindByName(nil,"merc_" .. merc .. "_trigger"):IsTouching(value)
+						
+								if (unitCapture)
+								then
+									CustomGameEventManager:Send_ServerToPlayer(value:GetPlayerOwner() , "showCapturepoint", { name = "merc_" .. merc .. "_trigger" } )
+									
+									if (value:GetTeamNumber() == 2 )
+									then
+										mercenaryCamps[merc].captureGood = true
+									end
+									
+									if (value:GetTeamNumber() == 3 )
+									then
+										mercenaryCamps[merc].captureBad = true
+									end
+									
+									
+								else
+									CustomGameEventManager:Send_ServerToPlayer(value:GetPlayerOwner() , "hideCapturepoint", { name = "merc_" .. merc .. "_trigger" } )
+								end
+
+							end
+							
+							if (not value.captureGood and not value.captureBad)
+							then
+								value.captureCounter = 50
+							end
+						
+						
+						
+							if (mercenaryCamps[key].captureCounter ~=  100 or mercenaryCamps[key].captureCounter ~= 0 )
+							then
+								if ( not (value.captureBad and value.captureGood ))
+								then
+								
+									if (value.captureBad)
+									then
+										mercenaryCamps[key].captureCounter = mercenaryCamps[key].captureCounter - 1;
+									end
+									
+									if (value.captureGood)
+									then
+										mercenaryCamps[key].captureCounter = mercenaryCamps[key].captureCounter + 1;
+									end
+
+								end
+							
+								CustomNetTables:SetTableValue( "merc_capturepoints", "merc_" .. key, { value = mercenaryCamps[key].captureCounter } )
+							end
+							
+							if (mercenaryCamps[key].captureCounter <= 0)
+							then
+							
+							print("red wins")
+							changeState(key, 2)
+							value.allyTeam = 3;
+							CustomGameEventManager:Send_ServerToAllClients( "hideCapturepoint", { name = "merc_" .. key .. "_trigger" } )
+							
+							end
+							
+							if (mercenaryCamps[key].captureCounter >= 100)
+							then
+							changeState(key, 2)
+							value.allyTeam = 2;
+							CustomGameEventManager:Send_ServerToAllClients( "hideCapturepoint", { name = "merc_" .. key .. "_trigger" } )
+							
+							end
+
+						
+						end,
+				  default = function (x)  end,
+				  missing = function (x)  end,
+				}
 			
-			switch(mercenaryCamps[key].state) : caseof {
-			[0]   = function (x) print(x,"ZERO") end,
-			[1]   = function (x) print(x,"one") end,
-			[2]   = function (x) print(x,"two") end,
-			[3]   = 12345, -- this is an invalid case stmt
-			  default = function (x) print(x,"default") end,
-			  missing = function (x) print(x,"missing") end,
-}
+			if (not mercenaryCamps[key].onlyRunOnce)
+			then
+				switch(mercenaryCamps[key].state) : caseof 
+				{
+				[0]   = function (x) print(x,"ZERO") 
+						respawnCamp(key)
+						end,
+				[1]   = function (x) print(x,"one")
+						mercenaryCamps[key].captureCounter = 50
+						CustomNetTables:SetTableValue( "merc_capturepoints", "merc_" .. key, { value = mercenaryCamps[key].captureCounter } )
+						end,
+				[2]   = function (x) print(x,"two")
+						respawnAllyCamp(key)
+						end,
+				[3]   = function (x) print(x,"three")
+							Timers:CreateTimer( 90.0, function()									
+									respawnCamp(key)
+								end
+							)
+						end,
+				  default = function (x) end,
+				  missing = function (x) end,
+				}
+			mercenaryCamps[key].onlyRunOnce = true
+			end
+			
 			
 		end
 	
-return 1.0
+return 0.1
 end)
  
+ 
+ function changeState(id, newState)
+	mercenaryCamps[id].state = newState
+	mercenaryCamps[id].onlyRunOnce = false
+ end
+
 function onMercenaryDead(unit)
         for key,value in pairs(mercenaryCamps) do
-            if (setContains(mercenaryCamps[key].spawnedMonsters,unit))
+			local index = GetIndex(mercenaryCamps[key].spawnedMonsters,unit)
+			if (index)
             then
-            table.remove(mercenaryCamps[key].spawnedMonsters,unit)
-            
-			-- if no spawned monsters of a camp exist, switch to capture
-			if next(mercenaryCamps[key].spawnedMonsters) == nil and mercenaryCamps[key].state == 0
-			then
-			   mercenaryCamps[key].state = 1
-			end
+				table.remove(mercenaryCamps[key].spawnedMonsters,index)	
+				
+				-- if no spawned monsters of a camp exist, switch to capture
+				if next(mercenaryCamps[key].spawnedMonsters) == nil and mercenaryCamps[key].state == 0
+				then
+				   changeState(key, 1)
+				end
 			
-			if next(mercenaryCamps[key].spawnedMonsters) == nil and mercenaryCamps[key].state == 2
-			then
-			   mercenaryCamps[key].state = 3
-			end
+				if next(mercenaryCamps[key].spawnedMonsters) == nil and mercenaryCamps[key].state == 2
+				then
+				   changeState(key, 3)
+				end
 			
             end
      

@@ -323,7 +323,6 @@
 				{
 						"ScriptFile"	"units/sound.lua"
 						"Function"		"FireSound"
-						"Target"		"CASTER"
 						"sound_name"	"Portal.Loop_Disappear"
 				}
 				
@@ -346,6 +345,7 @@
 	                "ModifierName"  "modifier_teleport"
 	                "Target"        "CASTER"
 	            }
+				
 				"FireSound"
 				{
 						"EffectName"	"Portal.Hero_Appear"
@@ -355,7 +355,6 @@
 				{
 						"ScriptFile"	"units/sound.lua"
 						"Function"		"StopSound"
-						"Target"		"CASTER"
 						"sound_name"	"Portal.Loop_Disappear"
 				}
 	        }
@@ -371,7 +370,6 @@
 				{
 						"ScriptFile"	"units/StopSound.lua"
 						"Function"		"StopSound"
-						"Target"		"CASTER"
 						"sound_name"	"Portal.Loop_Disappear"
 				}
 				

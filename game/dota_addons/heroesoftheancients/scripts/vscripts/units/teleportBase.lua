@@ -11,7 +11,6 @@ function Teleport( event )
 	end
 	end
 	
-	
 	caster:Stop()
 	
 	PlayerResource:SetCameraTarget(event.caster:GetPlayerID(), event.caster)
