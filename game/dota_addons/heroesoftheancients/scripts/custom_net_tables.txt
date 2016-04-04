@@ -3,6 +3,7 @@
   custom_net_tables =
   [
     "containers_lua",
-	"merc_capturepoints"
+	"merc_capturepoints",
+	"watch_capturepoints"
   ]
 }

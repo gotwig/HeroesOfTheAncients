@@ -90,6 +90,8 @@ function GameMode:OnFirstPlayerLoaded()
 	initCamp(2,4,20)
 	initCamp(3,2,20)
 	
+	initTowers(2)
+	
 end
 
 --[[
@@ -291,7 +293,7 @@ function GameMode:InitGameMode()
   -- This also sets up event hooks for all event handlers in events.lua
   -- Check out internals/gamemode to see/modify the exact code
   GameMode:_InitGameMode()
-
+	
   
   --Communism ftw
   --All players share the same level ingame
@@ -300,6 +302,8 @@ function GameMode:InitGameMode()
   -- Never heard of Gold. Everyones as poor as the other.
   GameRules:GetGameModeEntity():SetModifyGoldFilter( Dynamic_Wrap( GameMode, "FilterGold" ), self )
 
+  -- Deactivate Day/Night Cycle
+  GameRules:GetGameModeEntity():SetDaynightCycleDisabled(true) 
   
   -- Commands can be registered for debugging purposes or as functions that can be called by the custom Scaleform UI
   Convars:RegisterCommand( "command_example", Dynamic_Wrap(GameMode, 'ExampleConsoleCommand'), "A console command example", FCVAR_CHEAT )

@@ -7,6 +7,7 @@ require ('units/teleportBase')
 require ('units/sound')
 require ('healthglobe')
 require ('mercenaries')
+require ('watchtower')
 
    -- STUFF
 

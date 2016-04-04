@@ -15,7 +15,7 @@ function teleportBase(){
 }
 
 var tbClass = "TimeGreen";
-var tbName = "Capture Camp";
+var tbName = "";
 var tbActive = false;
 
 var previousName = "";
@@ -59,7 +59,9 @@ function hideCapturepoint(msg)
 
 function capturePointsChanged( table_name, key, data )
 {
-	per = data.value;
+	if (previousName == key ){ 
+		per = data.value;
+	}
 }
 
 (function(){
@@ -68,9 +70,7 @@ function capturePointsChanged( table_name, key, data )
   GameEvents.Subscribe("showCapturepoint", showCapturepoint);
   GameEvents.Subscribe("hideCapturepoint", hideCapturepoint); 
 
-
-  //GameEvents.SendEventClientSide("control_override_cvar", {"pid":-1, "cvar":"dota_hide_cursor", "value":""} );
-
   CustomNetTables.SubscribeNetTableListener( "merc_capturepoints", capturePointsChanged );
+  CustomNetTables.SubscribeNetTableListener( "watch_capturepoints", capturePointsChanged );
   
 })(); 

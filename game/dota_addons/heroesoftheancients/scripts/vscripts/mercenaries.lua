@@ -149,7 +149,7 @@ Timers:CreateTimer(function()
 
 			switch(mercenaryCamps[key].state) : caseof 
 				{
-				[1]   = function (x) print(x,"one ENDLESS")
+				[1]   = function (x)
 							local merc = key
 						
 							value.captureBad = false
@@ -204,7 +204,7 @@ Timers:CreateTimer(function()
 
 								end
 							
-								CustomNetTables:SetTableValue( "merc_capturepoints", "merc_" .. key, { value = mercenaryCamps[key].captureCounter } )
+								CustomNetTables:SetTableValue( "merc_capturepoints", "merc_" .. key .. "_trigger" , { value = mercenaryCamps[key].captureCounter } )
 							end
 							
 							if (mercenaryCamps[key].captureCounter <= 0)
