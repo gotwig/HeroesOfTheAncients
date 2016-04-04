@@ -9,8 +9,9 @@ Featuring
   - Dynamic Events
   - No items, no gold
   - Opening/Closing the mines
-  - wizard health drops
-  - moon wells to restore hp/mp of your hero
+  - Wizard health drops
+  - Moon wells to restore hp/mp of your hero
+  - Mercenary Camps, groups of monsters which are for the fight winner to capture
 
 The goal of those ideas, is heavy team combat, with, in ideal case, no long routes to go, and a lot of action for the players.
 
@@ -43,7 +44,6 @@ I am currently searching people in the following positions:
 ### Todos
 
  - New UI
- - Respawning neutral camps and the right timing, adjusted to the HotS counterpart.
  - Hideable Grass (in the works, there are good results)
  - Finishing the map "Haunted Mines"
 
