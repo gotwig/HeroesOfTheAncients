@@ -10,8 +10,10 @@
 	"Neutrals"        								"Neutral Team"
 	"NoTeam"          								"No Team"
 
-	"DOTA_GoodGuys"   								"Blue"
-	"DOTA_BadGuys"    								"Red"
+	"DOTA_GoodGuys"									"Blue"
+	"DOTA_BadGuys"									"Red"
+	"DOTA_GoodGuysCaps"								"BLUE"
+	"DOTA_BadGuysCaps"								"RED"
 	
 	"addonname"										"Heroes of the Ancients"
 }

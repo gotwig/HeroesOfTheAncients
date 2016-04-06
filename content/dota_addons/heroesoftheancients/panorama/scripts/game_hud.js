@@ -1,6 +1,10 @@
 "use strict";
 
-
+function flipMinimap(){
+	$.Msg( "Flipping Minimap" );
+	var iPlayerid = Players.GetLocalPlayer();
+	GameEvents.SendCustomGameEventToServer( "flipMinimap", { pID: iPlayerid })
+}
 
 function heroCamLock(){
 	$.Msg( "Switching hero cam lock ON/OFF" );
@@ -90,32 +94,80 @@ function showGameTime(){
 
 function teamLevels(){
 	
-	  $("#teamLevel2").text = Players.GetLevel(Players.GetLocalPlayer());
-	  
-	   
-	  if (Entities.GetTeamNumber(Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer())) == 2) {
-		if (Game.GetPlayerIDsOnTeam(3)[0]){
-			$("#teamLevel3").text = Players.GetLevel(Game.GetPlayerIDsOnTeam(3)[0]);
-		}
-	  }
-	  else{
-		if (Game.GetPlayerIDsOnTeam(2)[0]){
-			$("#teamLevel3").text = Players.GetLevel(Game.GetPlayerIDsOnTeam(2)[0]);
-		}
-	  }
-	  
+
+	if (Game.GetPlayerIDsOnTeam(2).length > 0){
+		$("#teamLevel2").text = Players.GetLevel(Game.GetPlayerIDsOnTeam(2)[0]);
+	}
+
+	if (Game.GetPlayerIDsOnTeam(3).length > 0){
+		$("#teamLevel3").text = Players.GetLevel(Game.GetPlayerIDsOnTeam(3)[0]);
+	}
+  
 	$.Schedule(1/10, teamLevels);
 }
 
 
+
 function showCustomCursor(){
 	$("#cursorImage").style["position"] = GameUI.GetCursorPosition()[0] + "px " + GameUI.GetCursorPosition()[1] + "px 0px;" 
+		
+		
+	if (GameUI.FindScreenEntities( GameUI.GetCursorPosition() )[0]){
+		if ( Entities.GetTeamNumber(GameUI.FindScreenEntities( GameUI.GetCursorPosition() )[0].entityIndex) == yourTeam ){
+			$("#cursorImage").style["background-image"] = 'url("file://{images}/custom_game/hud/cursors/cursor_ally.png");';
+		}
+		
+		if ( Entities.GetTeamNumber(GameUI.FindScreenEntities( GameUI.GetCursorPosition() )[0].entityIndex) == enemyTeam){
+			$("#cursorImage").style["background-image"] = 'url("file://{images}/custom_game/hud/cursors/cursor_enemy.png");';
+		}
+	}
+	
+	else {
+		$("#cursorImage").style["background-image"] = 'url("file://{images}/custom_game/hud/cursors/cursor.png");'; 
+	}
+	
 	$.Schedule(1/1000, showCustomCursor);
-
 }
 
+function checkFlipped(){
+	if (Game.IsHUDFlipped()){
+		$("#TimersPanel").style["horizontal-align"] = "left;";
+	}
+	else {		
+		$("#TimersPanel").style["horizontal-align"] = "right;";
+	}
+
+	$.Schedule(1/10, checkFlipped);
+}
+
+function initAbilities(){
+		
+	var abilityBar = $("#abilities");
+	
+}
+
+function executeAbility(abilitySlotNumber) {
+	Abilities.ExecuteAbility( Entities.GetAbility( Players.GetPlayerHeroEntityIndex( 0 ), abilitySlotNumber-1 ), Players.GetPlayerHeroEntityIndex( 0 ), false );
+	
+}
+
+  var yourTeam = 0;
+  var enemyTeam = 0;
+	
+	
 (function(){
 
+  yourTeam = Players.GetTeam(Players.GetLocalPlayer());
+
+  if (yourTeam == 2){
+	enemyTeam = 3;
+  }
+	
+  else {
+	enemyTeam = 2;
+  }
+
+  
   // capture bar
   TimeBar();
   
@@ -124,6 +176,8 @@ function showCustomCursor(){
   teamLevels();
   
   showCustomCursor()
+  
+  checkFlipped()
   
   GameEvents.Subscribe("showCapturepoint", showCapturepoint);
   GameEvents.Subscribe("hideCapturepoint", hideCapturepoint); 

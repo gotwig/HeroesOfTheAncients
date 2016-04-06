@@ -302,7 +302,7 @@
 	        "AbilityManaCost"                   "0"
 	        "AbilityCooldown"                   "0"
 	        "MaxLevel"                          "1"
-	        "AbilityChannelTime"                "3"
+	        "AbilityChannelTime"                "6"
 	
 	        "precache"
 	        {
@@ -368,7 +368,7 @@
 				
 				"RunScript"
 				{
-						"ScriptFile"	"units/StopSound.lua"
+						"ScriptFile"	"units/sound.lua"
 						"Function"		"StopSound"
 						"sound_name"	"Portal.Loop_Disappear"
 				}
@@ -392,6 +392,7 @@
 					
 					
 	            }
+				
 	        }
 	    }
 	// MOON WELL

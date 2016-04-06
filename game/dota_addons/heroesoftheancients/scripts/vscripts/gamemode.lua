@@ -116,6 +116,22 @@ end
 function GameMode:OnHeroInGame(hero)
 
   Convars:SetBool("dota_hide_cursor", true)
+  
+
+  Convars:SetInt("dota_minimap_hero_size", 1100)
+  Convars:SetInt("dota_minimap_creep_scale", 1)
+  Convars:SetFloat("dota_enemy_color_r", 0.70)
+  Convars:SetFloat("dota_enemy_color_g", 0.00)
+  Convars:SetFloat("dota_enemy_color_b", 0.04)
+  Convars:SetFloat("dota_neutral_color_r", 0.71)
+  Convars:SetFloat("dota_neutral_color_g", 0.59)
+  Convars:SetFloat("dota_neutral_color_b", 0.10)
+  Convars:SetFloat("dota_friendly_color_r ", 0.16)
+  Convars:SetFloat("dota_friendly_color_g", 0.26)
+  Convars:SetFloat("dota_friendly_color_b", 0.77)
+  Convars:SetInt("dota_minimap_always_draw_hero_icons", 1)
+
+  
 
   DebugPrint("[BAREBONES] Hero spawned in game for first time -- " .. hero:GetUnitName())
 

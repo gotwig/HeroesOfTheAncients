@@ -64,6 +64,13 @@ end
 
 end
 
+function hota:flipMinimap( event )
+local pID = event.pID
+
+SendToConsole("toggle dota_hud_flip");
+
+end
+
 function hota:teleportBase( event )
 local pID = event.pID
 
@@ -74,6 +81,7 @@ end
 
 --Listen for events
 
+CustomGameEventManager:RegisterListener( "flipMinimap", Dynamic_Wrap(hota, "flipMinimap")) -- Flip Minimap
 CustomGameEventManager:RegisterListener( "teleportBase", Dynamic_Wrap(hota, "teleportBase")) --Right click through panorama
 CustomGameEventManager:RegisterListener( "lockCameraToHero", Dynamic_Wrap(hota, "lockCameraToHero")) -- Check Camera Lock
 CustomGameEventManager:RegisterListener( "moonwell_order", Dynamic_Wrap(hota, "MoonWellOrder")) --Right click through panorama

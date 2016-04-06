@@ -34,23 +34,6 @@
 				
 				</Panel>
 			</Panel>
-
-			<Panel id="TimersPanel" hittest="false">
-			
-
-				<Button id="teleport" onactivate="teleportBase()">
-				<Image src="file://{images}/custom_game/hud/teleportBase.png" />
-				</Button>
-			
-				<Button id="heroLockActivator" onactivate="heroCamLock()">
-				<Label class="TimerText" text="Lock camera"/>
-				</Button>
-				
-
-
-				
-				<Label id="SuddenDeathTimer" class="TimerText" text=""/>
-			</Panel>
 			
 			<Panel hittest="false" id="topbar">
 				<Panel hittest="false" id="topInfo">
@@ -66,13 +49,54 @@
 					</Panel>
 				</Panel>
 			</Panel>
-			<DOTAScenePanel style="width:200px;height:200px;" unit="npc_dota_hero_sven"/>
+			
+			<Panel hittest="false" id="bottombar">
+			
+				<Panel id="abilityBar" hittest="false">
+				
+				
+					<Panel id="abilities" hittest="false">
+					
+
+					
+					</Panel>
+					<Button id="teleport" onactivate="teleportBase()">
+						<Image src="file://{images}/custom_game/hud/teleportBase.png" />
+					</Button>
+
+			
+				</Panel>
+			
+				<Panel id="TimersPanel" hittest="false">
+				
+				
+					<Button id="flipMinimap" onactivate="flipMinimap()">
+						<Label class="TimerText" text="Flip Minimap (GLOBAL!)"/>
+					</Button>
+				
+					<Button id="heroLockActivator" onactivate="heroCamLock()">
+						<Label class="TimerText" text="Lock camera"/>
+					</Button>
+					
+
+					
+					<Label id="SuddenDeathTimer" class="TimerText" text=""/>
+				</Panel>
+				
+				
+				
+			</Panel>
+			
+				<DOTAScenePanel style="width:200px;height:200px;" unit="npc_dota_hero_sven"/>
 
 			<Panel hittest="false" id="TimeBar">
 			  <Panel hittest="false" id="TimeBarLeft" class="TimeYellow"> 
 			  		<Label hittest="false" id="TimeName" class="UIText" text="Capturing Camp"/>
 			  </Panel>
 			</Panel>
+			
+
+
 		</Panel>
 
 		

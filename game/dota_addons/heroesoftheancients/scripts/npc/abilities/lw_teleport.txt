@@ -76,7 +76,7 @@
 			
 			"RunScript"
 			{
-					"ScriptFile"	"units/StopSound.lua"
+					"ScriptFile"	"units/sound.lua"
 					"Function"		"StopSound"
 					"sound_name"	"Portal.Loop_Disappear"
 			}
@@ -94,9 +94,6 @@
 
                 "EffectName"        "particles/econ/events/ti4/teleport_start_ti4.vpcf"
                 "EffectAttachType"  "attach_origin"
-				
-				
-
 				
 				
             }

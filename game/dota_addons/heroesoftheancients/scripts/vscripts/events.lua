@@ -116,23 +116,6 @@ function GameMode:OnPlayerReconnect(keys)
   DebugPrintTable(keys) 
 end
 
--- An item was purchased by a player
-function GameMode:OnItemPurchased( keys )
-  DebugPrint( '[BAREBONES] OnItemPurchased' )
-  DebugPrintTable(keys)
-
-  -- The playerID of the hero who is buying something
-  local plyID = keys.PlayerID
-  if not plyID then return end
-
-  -- The name of the item purchased
-  local itemName = keys.itemname 
-  
-  -- The cost of the item purchased
-  local itemcost = keys.itemcost
-  
-end
-
 -- An ability was used by a player
 function GameMode:OnAbilityUsed(keys)
   DebugPrint('[BAREBONES] AbilityUsed')
@@ -305,6 +288,35 @@ function GameMode:OnEntityKilled( keys )
 
   -- Put code here to handle when an entity gets killed
  		
+  --handle death of Heroes
+  
+  if (killedUnit:IsRealHero())
+  then	
+	local deathMessage = " team hero killed"
+
+	if (killedUnit:GetTeamNumber() == 2 )
+	then
+		deathMessage = "Blue " .. deathMessage
+		deathMessage = string.upper(deathMessage)
+		
+	    Notifications:TopToAll({text=deathMessage, style={color="red"}, duration=8.0})
+		Notifications:TopToAll({hero=killedUnit:GetUnitName(), duration=8.0, imagestyle="landscape"})
+		
+		
+	elseif (killedUnit:GetTeamNumber() == 3 )
+	then
+		deathMessage = "Red " .. deathMessage
+		deathMessage = string.upper(deathMessage)
+		
+		Notifications:TopToAll({text=deathMessage, style={color="blue"}, duration=8.0})
+		Notifications:TopToAll({hero=killedUnit:GetUnitName(), duration=8.0, imagestyle="landscape"})
+
+	end
+	
+
+  end
+		
+		
   destroyedKeep(killedUnit)
 
 	-- actual NPCS
@@ -348,23 +360,6 @@ function GameMode:OnIllusionsCreated(keys)
   DebugPrintTable(keys)
 
   local originalEntity = EntIndexToHScript(keys.original_entindex)
-end
-
--- This function is called whenever an item is combined to create a new item
-function GameMode:OnItemCombined(keys)
-  DebugPrint('[BAREBONES] OnItemCombined')
-  DebugPrintTable(keys)
-
-  -- The playerID of the hero who is buying something
-  local plyID = keys.PlayerID
-  if not plyID then return end
-  local player = PlayerResource:GetPlayer(plyID)
-
-  -- The name of the item purchased
-  local itemName = keys.itemname 
-  
-  -- The cost of the item purchased
-  local itemcost = keys.itemcost
 end
 
 -- This function is called whenever an ability begins its PhaseStart phase (but before it is actually cast)
