@@ -12,6 +12,7 @@ Featuring
   - Wizard health drops
   - Moon wells to restore hp/mp of your hero
   - Mercenary Camps, groups of monsters which are for the fight winner to capture
+  - Watch Towers, which grant large map vision once captured
 
 The goal of those ideas, is heavy team combat, with, in ideal case, no long routes to go, and a lot of action for the players.
 
