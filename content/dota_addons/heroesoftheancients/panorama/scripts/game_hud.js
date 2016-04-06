@@ -1,5 +1,7 @@
 "use strict";
 
+
+
 function heroCamLock(){
 	$.Msg( "Switching hero cam lock ON/OFF" );
 	var iPlayerid = Players.GetLocalPlayer();
@@ -21,6 +23,10 @@ var tbActive = false;
 var previousName = "";
 
 var per = 0;
+
+var minutes = "";
+var seconds = "";
+
 
 function TimeBar()
 {
@@ -64,9 +70,61 @@ function capturePointsChanged( table_name, key, data )
 	}
 }
 
-(function(){
-  TimeBar();
+function showGameTime(){
+  minutes = Math.floor(Game.GetDOTATime( true, false)/60);
+  seconds = Math.floor(Game.GetDOTATime( true, false) % 60); 
+    
+  if (minutes < 10) {
+	  minutes = "0" + minutes;
+  }
+  
+ if (seconds < 10) {
+	  seconds = "0" + seconds;
+  }
+  
+  $("#timeGameMinutes").text = minutes + ":";
+  $("#timeGameSeconds").text = seconds;
+  
+  $.Schedule(1/10, showGameTime);
+}
 
+function teamLevels(){
+	
+	  $("#teamLevel2").text = Players.GetLevel(Players.GetLocalPlayer());
+	  
+	   
+	  if (Entities.GetTeamNumber(Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer())) == 2) {
+		if (Game.GetPlayerIDsOnTeam(3)[0]){
+			$("#teamLevel3").text = Players.GetLevel(Game.GetPlayerIDsOnTeam(3)[0]);
+		}
+	  }
+	  else{
+		if (Game.GetPlayerIDsOnTeam(2)[0]){
+			$("#teamLevel3").text = Players.GetLevel(Game.GetPlayerIDsOnTeam(2)[0]);
+		}
+	  }
+	  
+	$.Schedule(1/10, teamLevels);
+}
+
+
+function showCustomCursor(){
+	$("#cursorImage").style["position"] = GameUI.GetCursorPosition()[0] + "px " + GameUI.GetCursorPosition()[1] + "px 0px;" 
+	$.Schedule(1/1000, showCustomCursor);
+
+}
+
+(function(){
+
+  // capture bar
+  TimeBar();
+  
+  //topBar
+  showGameTime();
+  teamLevels();
+  
+  showCustomCursor()
+  
   GameEvents.Subscribe("showCapturepoint", showCapturepoint);
   GameEvents.Subscribe("hideCapturepoint", hideCapturepoint); 
 

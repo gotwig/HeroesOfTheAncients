@@ -10,7 +10,7 @@
         "AbilityManaCost"                   "0"
         "AbilityCooldown"                   "0"
         "MaxLevel"                          "1"
-        "AbilityChannelTime"                "3"
+        "AbilityChannelTime"                "6"
 
         "precache"
         {
@@ -100,5 +100,6 @@
 				
 				
             }
+			
         }
     }

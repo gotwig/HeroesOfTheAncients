@@ -5,13 +5,57 @@ Button{
 	margin-right: 25px;
 }
 
+.rootPanel{
+	width: 100%;
+    height: 100%;
+}
 
-
-.MainPanel
+#MainPanel
 {
     width: 100%;
     height: 100%;
 	flow-children: down;
+}
+
+#topbar{
+width: 1460px;
+height: 72px;
+background-image: url("file://{images}/custom_game/hud/topbar.png");
+horizontal-align: center;
+margin-top: -95.8%;
+}
+
+#topInfo{
+	horizontal-align: center;
+}
+
+#teamLevels{
+	width: 185px;
+	padding-top: 10px;
+
+}
+
+#teamLevel2{
+	font-size: 52px;
+	horizontal-align: left;
+}
+
+#teamLevel3{
+	font-size: 52px;
+	horizontal-align: right;
+
+}
+
+#timeGame{
+	horizontal-align: center;
+	width: 55px;
+}
+
+#timeGameMinutes{
+	horizontal-align: left;
+}
+#timeGameSeconds{
+	horizontal-align: right;
 }
 
 #HeroPanel
@@ -309,6 +353,13 @@ Button{
     vertical-align: middle;
     text-shadow: -1px 1px 2px 2.0 #000000;
     color: #CCB966;
+}
+
+#cursorImage{
+	width: 32px;
+	height: 32px;
+	background-image: url("file://{images}/custom_game/hud/cursor.png");
+	z-index: 100;
 }
 
 .AnimationHeroHudHidden

@@ -5,21 +5,20 @@
 	</styles>
 	<scripts>
 
-	
-		<include src="file://{resources}/scripts/unit_selection.js" />
-		<include src="file://{resources}/scripts/clicks.js" />
-		<include src="file://{resources}/scripts/game_hud.js" />
+	<include src="file://{resources}/scripts/unit_selection.js" />
+	<include src="file://{resources}/scripts/clicks.js" />
+	<include src="file://{resources}/scripts/game_hud.js" />
 		
 	</scripts>
 	<script>
 		$.Msg( "Compiled Panorama Scripts!" );
 	</script>
 
-	<Panel class="MainPanel" hittest="false">
-
-		<Panel id="MainPanel" class="MainPanel" hittest="false">
+	<Panel class="rootPanel" hittest="false">
+		<Panel id="cursorImage">
+			</Panel>
+		<Panel id="MainPanel" hittest="false">
 			
-
 			<Panel id="DebugPanel" hittest="false">
 			</Panel>
 			<Panel id="HeroPanel" hittest="false">
@@ -35,8 +34,10 @@
 				
 				</Panel>
 			</Panel>
+
 			<Panel id="TimersPanel" hittest="false">
 			
+
 				<Button id="teleport" onactivate="teleportBase()">
 				<Image src="file://{images}/custom_game/hud/teleportBase.png" />
 				</Button>
@@ -45,15 +46,35 @@
 				<Label class="TimerText" text="Lock camera"/>
 				</Button>
 				
+
+
+				
 				<Label id="SuddenDeathTimer" class="TimerText" text=""/>
 			</Panel>
 			
+			<Panel hittest="false" id="topbar">
+				<Panel hittest="false" id="topInfo">
+				
+				<Panel id="timeGame" hittest="false">
+					<Label id="timeGameMinutes" hittest="false"  class="TimerText" text=""/>
+					<Label id="timeGameSeconds" hittest="false"  class="TimerText" text=""/>
+				</Panel>
+					
+					<Panel hittest="false" id="teamLevels">
+						<Label id="teamLevel2" hittest="false" class="TimerText" text="1"/>
+						<Label id="teamLevel3" hittest="false" class="TimerText" text="1"/>
+					</Panel>
+				</Panel>
+			</Panel>
+			<DOTAScenePanel style="width:200px;height:200px;" unit="npc_dota_hero_sven"/>
+
 			<Panel hittest="false" id="TimeBar">
 			  <Panel hittest="false" id="TimeBarLeft" class="TimeYellow"> 
 			  		<Label hittest="false" id="TimeName" class="UIText" text="Capturing Camp"/>
 			  </Panel>
 			</Panel>
-			
 		</Panel>
+
+		
 	</Panel>
 </root>

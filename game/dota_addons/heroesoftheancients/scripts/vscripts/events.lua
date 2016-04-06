@@ -45,7 +45,7 @@ MINESOPENLOADED = false
 function GameMode:OnDisconnect(keys)
   DebugPrint('[BAREBONES] Player Disconnected ' .. tostring(keys.userid))
   DebugPrintTable(keys)
-
+  
   local name = keys.name
   local networkid = keys.networkid
   local reason = keys.reason

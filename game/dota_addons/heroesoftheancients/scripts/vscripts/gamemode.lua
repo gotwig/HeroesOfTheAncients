@@ -63,6 +63,8 @@ function GameMode:PostLoadPrecache()
 
   --PrecacheUnitByNameAsync("npc_dota_hero_viper", function(...) end)
   --PrecacheUnitByNameAsync("npc_dota_hero_enigma", function(...) end)
+  	LinkLuaModifier( "modifier_bush_hiding_lua", "modifiers/modifier_bush_hiding.lua", LUA_MODIFIER_MOTION_NONE ) 
+
 end
 
 --[[
@@ -92,6 +94,7 @@ function GameMode:OnFirstPlayerLoaded()
 	
 	initTowers(2)
 	
+
 end
 
 --[[
@@ -111,11 +114,33 @@ end
   The hero parameter is the hero entity that just spawned in
 ]]
 function GameMode:OnHeroInGame(hero)
+
+  Convars:SetBool("dota_hide_cursor", true)
+
   DebugPrint("[BAREBONES] Hero spawned in game for first time -- " .. hero:GetUnitName())
 
   -- This line for example will set the starting gold of every hero to 0 unreliable gold
   hero:SetGold(0, false)
 
+  	for playerID = 0, DOTA_MAX_TEAM_PLAYERS do 
+
+	local player = PlayerResource:GetPlayer(playerID)
+
+		if (PlayerResource:IsValidPlayerID(playerID) and player:GetTeamNumber() == hero:GetTeamNumber()) then  
+
+			if (hero:GetPlayerID() ~= playerID)
+			then
+				for i = 1,PlayerResource:GetLevel(playerID)-1 do
+					hero:HeroLevelUp(false)
+				end
+				hero:AddExperience(PlayerResource:GetSelectedHeroEntity(playerID):GetCurrentXP(), 0, false, false)
+				return false
+			end
+
+		end 
+
+	end  
+  
   -- These lines will create an item and add it to the player, effectively ensuring they start with the item
   --local item = CreateItem("item_example_item", hero, hero)
   --hero:AddItem(item)
@@ -126,6 +151,10 @@ function GameMode:OnHeroInGame(hero)
   local abil = hero:GetAbilityByIndex(1)
   hero:RemoveAbility(abil:GetAbilityName())
   hero:AddAbility("example_ability")]]
+  
+  hero:AddNewModifier(hero, nil, "modifier_bush_hiding", {duration=.5}) 
+
+  
 end
 
 --[[
@@ -256,22 +285,22 @@ local actPlayer = PlayerResource:GetPlayer(filterTable.player_id_const)
  
 local xp = filterTable.experience
  
-for playerID = 0, DOTA_MAX_TEAM_PLAYERS do 
+	for playerID = 0, DOTA_MAX_TEAM_PLAYERS do 
 
-local player = PlayerResource:GetPlayer(playerID)
+	local player = PlayerResource:GetPlayer(playerID)
 
-if PlayerResource:IsValidPlayerID(playerID) and player:GetTeamNumber() == actPlayer:GetTeamNumber() then 
+		if PlayerResource:IsValidPlayerID(playerID) and player:GetTeamNumber() == actPlayer:GetTeamNumber() then 
 
-local teamplayers = PlayerResource:GetPlayerCountForTeam(actPlayer:GetTeamNumber())
+			local teamplayers = PlayerResource:GetPlayerCountForTeam(actPlayer:GetTeamNumber())
 
-PlayerResource:GetSelectedHeroEntity(playerID):AddExperience(math.floor(xp/teamplayers),
-															filterTable.reason_const,
-															false,
-															false)
+			PlayerResource:GetSelectedHeroEntity(playerID):AddExperience(math.floor(xp/teamplayers),
+																		filterTable.reason_const,
+																		false,
+																		false)
 
-end 
+		end 
 
-end
+	end
 
 return false
 
@@ -286,6 +315,10 @@ end
 -- This function initializes the game mode and is called before anyone loads into the game
 -- It can be used to pre-initialize any values/tables that will be needed later
 function GameMode:InitGameMode()
+
+  Convars:SetBool("dota_hide_cursor", false);
+  
+
   GameMode = self
   DebugPrint('[BAREBONES] Starting to load Barebones gamemode...')
 
@@ -294,7 +327,6 @@ function GameMode:InitGameMode()
   -- Check out internals/gamemode to see/modify the exact code
   GameMode:_InitGameMode()
 	
-  
   --Communism ftw
   --All players share the same level ingame
   GameRules:GetGameModeEntity():SetModifyExperienceFilter( Dynamic_Wrap( GameMode, "FilterXP" ), self )
@@ -307,7 +339,7 @@ function GameMode:InitGameMode()
   
   -- Commands can be registered for debugging purposes or as functions that can be called by the custom Scaleform UI
   Convars:RegisterCommand( "command_example", Dynamic_Wrap(GameMode, 'ExampleConsoleCommand'), "A console command example", FCVAR_CHEAT )
-
+  
   DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
 end
 
