@@ -1,0 +1,3 @@
+						<Button class="ability" onactivate="executeAbility(1)">
+						<Image class="abilityImage" src="file://{images}/custom_game/hud/teleportBase.png" />
+						</Button>

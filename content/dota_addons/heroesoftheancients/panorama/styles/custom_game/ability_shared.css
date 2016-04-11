@@ -28,19 +28,14 @@
 #ManaCost
 {
 	color: #c0e8fb;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: bold;
-	text-shadow: 4px 4px 5px 20 #245191;
-	/*margin-right: -2px;*/
-	/*margin-bottom: -4px;*/
-	
-	/*background-color: gradient( linear, 0% 0%, 0% 100%, from( #3860AA ), to( #4470BB ) );*/
-	vertical-align: center;
-	text-align: center;
-	min-width: 30px;
+	text-shadow: 0px 0px 6px 8 #245191;
+	margin-right: -2px;
+	margin-bottom: -4px;
 
-	vertical-align: top;
-	horizontal-align: center;
+	vertical-align: bottom;
+	horizontal-align: right;
 }
 
 .no_mana_cost #ManaCost
@@ -48,16 +43,28 @@
 	visibility: collapse;
 }
 
+#ActiveAbility
+{
+	width: 100%;
+	height: 100%;
+	background-color: gradient( radial, 50% -20%, 0% 0%, 80% 80%, from( #FFFFFF ), to( #FFFFFF00 ) );
+	border: 4px solid #FFFFFF40;
+	opacity: 0;
+}
+
+.is_active #ActiveAbility
+{
+	opacity: 1;
+}
+
 #Hotkey
 {
-	margin-bottom: -10px;
-	
-	border-radius:8px;
+	margin-left: -4px;
 
-	vertical-align: bottom;
-	horizontal-align: center;
-	min-width: 30px;
-	min-height: 30px;
+	vertical-align: top;
+	horizontal-align: left;
+	min-width: 18px;
+	min-height: 18px;
 
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #393939 ), to( #414849 ) );
 	border: 1px solid #ffffff05;
@@ -77,10 +84,12 @@
 }
 
 .no_level #Hotkey,
+.no_item #Hotkey,
 .is_passive #Hotkey,
 #stash_row #Hotkey,
 .no_hotkey #Hotkey
 {
 	visibility: collapse;
 }
+
 

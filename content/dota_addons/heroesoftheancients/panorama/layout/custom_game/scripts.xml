@@ -7,7 +7,9 @@
 
 	<include src="file://{resources}/scripts/unit_selection.js" />
 	<include src="file://{resources}/scripts/clicks.js" />
+	<include src="file://{resources}/scripts/buff_bar.js" />
 	<include src="file://{resources}/scripts/game_hud.js" />
+
 		
 	</scripts>
 	<script>
@@ -19,22 +21,6 @@
 			</Panel>
 		<Panel id="MainPanel" hittest="false">
 			
-			<Panel id="DebugPanel" hittest="false">
-			</Panel>
-			<Panel id="HeroPanel" hittest="false">
-				<Panel class="BuffPanel" id="BuffPanel">
-				
-				</Panel>
-
-				<Panel class="HealthPanel" id="HealthPanel">
-				
-				</Panel>
-
-				<Panel class="AbilityPanel" hittest="false" id="AbilityPanel">
-				
-				</Panel>
-			</Panel>
-			
 			<Panel hittest="false" id="topbar">
 				<Panel hittest="false" id="topInfo">
 				
@@ -42,7 +28,16 @@
 					<Label id="timeGameMinutes" hittest="false"  class="TimerText" text=""/>
 					<Label id="timeGameSeconds" hittest="false"  class="TimerText" text=""/>
 				</Panel>
-					
+					<Panel hittest="false" id="xpbars">
+						<Panel hittest="false" id="xpbar1">
+						  <Panel hittest="false" id="xpbar1Left" class="TimeYellow"> 
+						  </Panel>
+						</Panel>
+						<Panel hittest="false" id="xpbar2">
+						  <Panel hittest="false" id="xpbar2Left" class="TimeYellow"> 
+						  </Panel>
+						</Panel>
+					</Panel>
 					<Panel hittest="false" id="teamLevels">
 						<Label id="teamLevel2" hittest="false" class="TimerText" text="1"/>
 						<Label id="teamLevel3" hittest="false" class="TimerText" text="1"/>
@@ -52,20 +47,34 @@
 			
 			<Panel hittest="false" id="bottombar">
 			
-				<Panel id="abilityBar" hittest="false">
-				
-				
-					<Panel id="abilities" hittest="false">
+				<Panel id="heroPanel" hittest="false">
 					
-
-					
+					<Panel class="BuffPanel" id="BuffPanel">
 					</Panel>
-					<Button id="teleport" onactivate="teleportBase()">
-						<Image src="file://{images}/custom_game/hud/teleportBase.png" />
-					</Button>
+					
+					<Panel id="HeroPortraitContainer">
+						<DOTAHeroMovie id="HeroPortrait"/>
+					</Panel>
 
-			
+					
+					<Panel hittest="false" id="healmanabars">
+						<Panel hittest="false" id="healthbar">
+								<Panel hittest="false" id="healthbarLeft" class="TimeYellow"> 
+								</Panel>
+								<Label id="healthbarText" hittest="false" class="TimerText" text="1212 / 1212"/>
+
+						</Panel>
+						<Panel hittest="false" id="manabar">
+								<Panel hittest="false" id="manabarLeft" class="TimeYellow"> 
+								</Panel>
+								<Label id="manabarText" hittest="false" class="TimerText" text="1212 / 1212"/>
+
+						</Panel>
+					</Panel>
+
 				</Panel>
+			
+
 			
 				<Panel id="TimersPanel" hittest="false">
 				
@@ -87,8 +96,6 @@
 				
 			</Panel>
 			
-				<DOTAScenePanel style="width:200px;height:200px;" unit="npc_dota_hero_sven"/>
-
 			<Panel hittest="false" id="TimeBar">
 			  <Panel hittest="false" id="TimeBarLeft" class="TimeYellow"> 
 			  		<Label hittest="false" id="TimeName" class="UIText" text="Capturing Camp"/>

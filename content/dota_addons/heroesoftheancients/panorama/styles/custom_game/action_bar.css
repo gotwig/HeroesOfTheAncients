@@ -1,36 +1,145 @@
-.AbilityOverlayRoot
+#teleport
 {
+	width: 26px;
+	height: 26px;
+	
 	horizontal-align: center;
 	vertical-align: bottom;
 	margin-bottom: 20px;
 }
 
+.AbilityOverlayRoot
+{
+	vertical-align: bottom;
+	width: 40%;
+	height: 138px;
+	horizontal-align: center;
+	flow-children: right-wrap;
+	margin-bottom: -20px;
+	background-repeat: no-repeat;
+	
+
+}
+
+.abilityWing{
+	width: 110px;
+	height: 76px;
+	vertical-align: bottom;
+	margin-bottom: 20px;
+}
+
+.abilityLeftWing{
+	background-image: url( "file://{images}/custom_game/hud/abilities/abilityBarLeft.png" );
+}
+
+.abilityRightWing{
+	background-image: url( "file://{images}/custom_game/hud/abilities/abilityBarRight.png" );
+}
+
+#cooldownOverlay{
+	width: 100%;
+	height: 100%;
+	opacity-mask: url( "file://{images}/custom_game/hud/masks/abilityPanel.png" );
+
+	
+}
+
 #ability_list
 {
 	flow-children: right;
-	/*border: 2px solid black;*/
-	/*background-color: #272823;*/
+	horizontal-align: center;
+	margin-left: 5px;
 }
 
 .AbilityPanel
 {
-	/*margin-left: 8px;*/
-	/*margin-right: 8px;*/
-	/*margin-top: 4px;*/
-	/*margin-bottom: 4px;*/
+	margin-left: 2px;
+	margin-right: 2px;
+	margin-top: 4px;
+	margin-bottom: 0px;
+	
+	background-image: url("file://{images}/custom_game/hud/abilities/ability.png");
+	background-repeat: no-repeat;
+}
+
+.AbilityPanel.no_ability
+{
+	visibility: collapse;
+}
+
+#LevelUpButton
+{
+	border: 1px solid black;
+    background-color: #c4a529;
+	width: 114px;
+	height: 28px;
+	margin-bottom: 6px;
+	visibility: collapse;
+}
+
+.could_level_up #LevelUpButton
+{
+	visibility: visible;
+}
+
+#LevelUpButton:hover
+{
+}
+
+#LevelUpButtonInset
+{
+	width: 100%;
+	height: 100%;
+	border: 2px solid black;
+	margin: 1px;
+}
+
+#LevelUpButton:hover #LevelUpButtonInset
+{
+}
+
+#LevelUpButton Label
+{
+	text-transform: uppercase;
+	text-shadow: 0px 1px 3px 2.5 #000000;
+	color: white;
+	vertical-align: center;
+	horizontal-align: center;
 }
 
 #ButtonAndLevel
 {
 	flow-children: down;
+
+
+}
+
+#AbilityImage{
+	margin-left: -4px;
+	height: 100%;
+	margin-top: -4px;
+	opacity-mask: url( "file://{images}/custom_game/hud/masks/abilityPanel.png" );
+
 }
 
 #AbilityButton
 {
 	width: 80px;
-	height: 80px;
-	border: 4px solid black;
-	border-radius:20px;
+	height: 96px;
+	border: 2px solid transparent;
+
+	
+}
+
+.is_passive #AbilityButton
+{
+	border: 2px solid #00000000;
+}
+
+
+
+.learnable_ability #UpgradeBorder
+{
 }
 
 #AbilityButton:hover
@@ -43,29 +152,27 @@
 	border: 4px solid white;
 }
 
-.is_passive #AbilityButton
-{
-	border: 0px;
-}
-
 .no_level DOTAAbilityImage
 {
-	
+	saturation: 0;
 	wash-color: #303030;
 }
 
 .insufficient_mana DOTAAbilityImage
 {
-
+	saturation: 0;
 	wash-color: #1569be;
 }
 
+.potential_upgrade.no_level DOTAAbilityImage
+{
+	saturation: 1;
+	wash-color: white;
+}
 
 #AbilityStatusBorder
 {
-	margin: 2px;
-	border: 4px solid transparent;
-	border-radius:20px;
+	border: 2px solid transparent;
 }
 
 .auto_cast_enabled #AbilityStatusBorder
@@ -73,7 +180,7 @@
 	border: 4px solid orange;
 }
 
-.toggle_active #AbilityStatusBorder
+.toggle_enabled #AbilityStatusBorder
 {
 	border: 4px solid green;
 }
@@ -102,4 +209,5 @@
 	background-color: #ceaa31;
 	border: 2px solid #734918;
 }
+
 

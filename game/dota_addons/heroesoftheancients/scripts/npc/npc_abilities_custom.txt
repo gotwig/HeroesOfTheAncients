@@ -294,7 +294,7 @@
 	    {
 	        "BaseClass"                         "ability_datadriven"
 	
-	        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
 	
 	        "AbilityTextureName"                "chen_penitence"
 	        "AbilityCastAnimation"              "ACT_DOTA_TELEPORT"
@@ -304,6 +304,9 @@
 	        "MaxLevel"                          "1"
 	        "AbilityChannelTime"                "6"
 	
+			"IsCastableWhileHidden" "1"
+	
+			
 	        "precache"
 	        {
 	            "particle"  "particles/econ/events/ti4/teleport_start_ti4.vpcf"
@@ -386,9 +389,6 @@
 	
 	                "EffectName"        "particles/econ/events/ti4/teleport_start_ti4.vpcf"
 	                "EffectAttachType"  "attach_origin"
-					
-					
-	
 					
 					
 	            }
