@@ -90,6 +90,16 @@ function showGameTime(){
   
   $.Schedule(1/10, showGameTime);
 }
+
+function dynamicEventInfoChanged( table_name, key, data )
+{
+	$.Msg( "Table ", table_name, " changed: '", key, "' = ", data );
+
+	$("#mapEventInfoTeam2").text = data.team1;
+	$("#mapEventInfoTeam3").text = data.team2;
+	$("#mapEventInfoRemaining").text =  data.remaining;
+}
+
 	var perTeam1 = 0.1;
 	var perTeam2 = 0.1;
 	var perTeam1LvlFactor = 0.1;
@@ -212,12 +222,12 @@ function OnPlayerLevelUp( data ) {
 function heroPanel(){
 
 
-		var healPer = 	Entities.GetHealthPercent( Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()) );
+	  var healPer = 	Entities.GetHealthPercent( Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()) );
 
-		var currentHealth = Entities.GetHealth(Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()) );
-		var maxHealth = Entities.GetMaxHealth( Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()) );
+	  var currentHealth = Entities.GetHealth(Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()) );
+	  var maxHealth = Entities.GetMaxHealth( Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()) );
 		
-	  	var left2 = $("#healthbarLeft");
+	  var left2 = $("#healthbarLeft");
 	  left2.SetHasClass("TimeBlue", false);
 	  left2.SetHasClass("TimeRed", true);
 
@@ -254,6 +264,17 @@ var sceneContainer = $("#heroCam");
 $("#HeroPortrait").heroname = unit;
 
 }
+
+function showDynamicEventInfo(msg){
+  $("#mapEventInfo").style["background-image"] = 'url("file://{images}/custom_game/maps/' + Game.GetMapInfo().map_display_name + '/eventMap.png")';
+  $("#mapEventInfo").visible = true;
+ 
+  
+}
+	
+function hideDynamicEventInfo(){
+  $("#mapEventInfo").visible = false;
+}
 	
 (function(){
 
@@ -288,6 +309,10 @@ $("#HeroPortrait").heroname = unit;
 
   CustomNetTables.SubscribeNetTableListener( "merc_capturepoints", capturePointsChanged );
   CustomNetTables.SubscribeNetTableListener( "watch_capturepoints", capturePointsChanged );
+
+  GameEvents.Subscribe("showDynamicEventInfo", showDynamicEventInfo);
+  GameEvents.Subscribe("hideDynamicEventInfo", hideDynamicEventInfo); 
+  CustomNetTables.SubscribeNetTableListener( "dynamic_MapEvents", dynamicEventInfoChanged );
   
   GameEvents.Subscribe( "dota_player_gained_level", OnPlayerLevelUp );
   

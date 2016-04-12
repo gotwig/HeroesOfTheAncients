@@ -92,7 +92,14 @@
 					<Label id="SuddenDeathTimer" class="TimerText" text=""/>
 				</Panel>
 				
-				
+				<Panel id="mapEventInfo" hittest="false">
+					
+					<Label hittest="false" id="mapEventInfoRemaining" class="UIText" text=""/>
+					<Label hittest="false" id="mapEventInfoTeam2" class="UIText" text=""/>
+					<Label hittest="false" id="mapEventInfoTeam3" class="UIText" text=""/>
+
+
+				</Panel>
 				
 			</Panel>
 			

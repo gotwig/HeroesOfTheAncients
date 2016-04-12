@@ -32,29 +32,33 @@ horizontal-align: center;
 margin-top: 84%;
 }
 
-#abilityBar{
-	width: 638px;
-	height: 98px;
-	background-image: url("file://{images}/custom_game/hud/abilities/bar.png");
+#mapEventInfo{
+	width: 250px;
+	height: 35px;
+	
+	horizontal-align: right;
+	vertical-align: bottom;
+	margin-right: 12px;
+	//background-image: url("file://{images}/custom_game/maps/hauntedmines/eventMap.png");
+}
+
+#mapEventInfoTeam2{
+	horizontal-align: left;
+	margin-left: 60px;
+	font-size: 30px;
+}
+
+#mapEventInfoTeam3{
+	horizontal-align: right;
+	margin-right: 50px;
+	font-size: 30px;
+}
+
+#mapEventInfoRemaining{
 	horizontal-align: center;
-}
-
-#abilities{
-	width: 415px;
-	horizontal-align: center;
-	flow-children: right-wrap;
-}
-
-.ability{
-	width: 80px;
-	height: 96px;
-	background-image: url("file://{images}/custom_game/hud/abilities/ability.png");
-	padding: 22px;
-	margin-right: 3px;
-}
-
-.abilityImage{
-
+	font-size: 20px;
+	margin-left: 20px;
+	margin-top: -5px;
 }
 
 #topInfo{
@@ -125,7 +129,7 @@ margin-top: 84%;
 	
     width: 196px;
     height: 261px;
-	margin-top: -5px;
+	margin-top: -30px;
 	margin-left:-2px;
 }
 

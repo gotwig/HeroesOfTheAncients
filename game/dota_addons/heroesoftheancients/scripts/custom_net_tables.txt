@@ -4,6 +4,7 @@
   [
     "containers_lua",
 	"merc_capturepoints",
-	"watch_capturepoints"
+	"watch_capturepoints",
+	"dynamic_MapEvents"
   ]
 }

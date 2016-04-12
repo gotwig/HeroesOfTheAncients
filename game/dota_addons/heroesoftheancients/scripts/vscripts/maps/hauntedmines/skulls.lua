@@ -32,6 +32,7 @@ function deadTrigger (unit)
 					local pos = unit:GetAbsOrigin()
 					local drop = CreateItemOnPositionSync( pos, item )
 					local pos_launch = pos+RandomVector(RandomFloat(150,200))
+					
 					item:LaunchLoot(true, 200, 0.75, pos_launch)
 			end
 		
@@ -155,6 +156,9 @@ end
 function PickupSkull( event )
 
 teamSkullPoints[event.unit:GetTeamNumber()-1] = teamSkullPoints[event.unit:GetTeamNumber()-1] + 1
+
+CustomNetTables:SetTableValue( "dynamic_MapEvents", "dynamic_event" , { team1 = teamSkullPoints[1], team2 = teamSkullPoints[2], remaining = (100 - (teamSkullPoints[1] + teamSkullPoints[2]))} )
+
 
 print (teamSkullPoints[1])
 

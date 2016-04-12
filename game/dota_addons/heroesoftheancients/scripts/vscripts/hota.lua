@@ -35,13 +35,16 @@ if (open)
 		
 		MINESOPEN = true
 		
+		CustomGameEventManager:Send_ServerToAllClients( "showDynamicEventInfo", {} )
+        CustomNetTables:SetTableValue( "dynamic_MapEvents", "dynamic_event" , { team1 = 0, team2 = 0, remaining = 100} )
+
 		
 		Notifications:TopToAll({text=minesopentexts[RandomInt( 1, #minesopentexts )], duration=10.0})
 
 		print("The mines opened! Collect skulls")
 	else
 		MINESOPEN = false
-		
+		CustomGameEventManager:Send_ServerToAllClients( "hideDynamicEventInfo", {} )
 
 	end
 
