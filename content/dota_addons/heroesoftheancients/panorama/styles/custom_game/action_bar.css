@@ -8,6 +8,62 @@
 	margin-bottom: 20px;
 }
 
+#TeleportHotkey
+{
+	margin-right: 25px;
+	margin-top: 40px;
+	
+	vertical-align: middle;
+	horizontal-align: right;
+	min-width: 18px;
+	min-height: 18px;
+
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #393939 ), to( #414849 ) );
+	border: 1px solid #ffffff05;
+	box-shadow: fill black 1px 1px 2px 2px;
+	z-index: 10;
+}
+
+#TeleportHotkeyText
+{
+	color: #bba995;
+ 	text-shadow: 1px 1px 2px 2 #000000;
+    font-size: 14px;
+    font-weight: bold;
+	vertical-align: center;
+	text-align: center;
+	width: 100%;
+	margin: -2px;
+}
+
+#LevelupHotkey
+{
+	margin-left: 25px;
+	margin-top: 40px;
+	
+	vertical-align: middle;
+	horizontal-align: left;
+	min-width: 18px;
+	min-height: 18px;
+
+	background-color: gradient( linear, 0% 0%, 0% 100%, from( #393939 ), to( #414849 ) );
+	border: 1px solid #ffffff05;
+	box-shadow: fill black 1px 1px 2px 2px;
+	z-index: 10;
+}
+
+#LevelupHotkeyText
+{
+	color: #bba995;
+ 	text-shadow: 1px 1px 2px 2 #000000;
+    font-size: 14px;
+    font-weight: bold;
+	vertical-align: center;
+	text-align: center;
+	width: 100%;
+	margin: -2px;
+}
+
 .AbilityOverlayRoot
 {
 	vertical-align: bottom;

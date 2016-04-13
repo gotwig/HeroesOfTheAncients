@@ -252,7 +252,7 @@ transform:  rotateX(-66.0deg ) translate3d( 245.0px, 0.0px, 0.0px );
 {
   horizontal-align: center;
 
-  margin-top: 50%;
+  margin-top: -30%;
   width: 240px;
   height: 40px;
   border: 2px solid #000000; 

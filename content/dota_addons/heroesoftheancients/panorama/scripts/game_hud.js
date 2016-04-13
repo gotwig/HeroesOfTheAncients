@@ -316,4 +316,7 @@ function hideDynamicEventInfo(){
   
   GameEvents.Subscribe( "dota_player_gained_level", OnPlayerLevelUp );
   
+  Game.AddCommand( "+AbilityTeleportTrigger", teleportBase, "", 0 );
+
+  
 })(); 

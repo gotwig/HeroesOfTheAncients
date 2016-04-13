@@ -7,12 +7,15 @@
   {
           "MaxPlayers"                    "10"
   }
-//  "desert_duo"
-//  {
-//          "MaxPlayers"                    "10"
-//  }
-//  "forest_solo"
-//  {
-//          "MaxPlayers"                    "10"
-//  }
+
+  "Default_Keys"
+  {
+       "01"
+       {
+            "Key"       "B"
+            "Command"   "+AbilityTeleportTrigger"
+            "Name"      "Execute Teleport ability"
+       }
+   }
+  
 }

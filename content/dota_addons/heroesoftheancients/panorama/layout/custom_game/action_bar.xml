@@ -10,6 +10,16 @@
 	<Panel class="AbilityOverlayRoot">
 	
 		<Panel class="abilityLeftWing abilityWing">
+		
+			<Button id="teleport" onactivate="teleportBase()">
+
+				<Image src="file://{images}/custom_game/hud/teleportBase.png" />
+			</Button>
+			
+			<Panel id="LevelupHotkey">
+				<Label id="LevelupHotkeyText" text="O" />
+			</Panel>
+		
 		</Panel>
 		
 		<Panel id="ability_list" />
@@ -17,8 +27,14 @@
 					
 		<Panel class="abilityRightWing abilityWing">
 			<Button id="teleport" onactivate="teleportBase()">
-						<Image src="file://{images}/custom_game/hud/teleportBase.png" />
+
+				<Image src="file://{images}/custom_game/hud/teleportBase.png" />
 			</Button>
+			
+			<Panel id="TeleportHotkey">
+				<Label id="TeleportHotkeyText" text="B" />
+			</Panel>
+			
 		</Panel>
 		
 
