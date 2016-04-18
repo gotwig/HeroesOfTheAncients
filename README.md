@@ -1,7 +1,6 @@
 # Heroes of the Ancients
 <img src="https://www.dropbox.com/s/shmfox3ewlk0ffk/Logo_transparent_HD.png?raw=1" width="400">
 
-
 Heroes of the Ancients is an upcoming DotA2 mod, trying to bring the best ideas from Heroes of the Storm TM from Blizzard Entertainment TM to Valves DotA2.
 
 Featuring
@@ -52,4 +51,7 @@ Thanks for your interest in this mod.
 
 **Free Software, Hell Yeah!**
 
+****Credits****
+horse image (mount ability): 
+<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="http://www.flaticon.com" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 
