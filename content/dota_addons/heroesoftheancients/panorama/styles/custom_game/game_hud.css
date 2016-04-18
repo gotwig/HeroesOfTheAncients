@@ -17,6 +17,21 @@ Button{
 	flow-children: down;
 }
 
+#leveluptextteam2{
+	font-size: 15px;
+	color: white;
+	vertical-align: middle;
+	horizontal-align: center;
+
+}
+
+#leveluptextteam3{
+	font-size: 15px;
+	color: white;
+	vertical-align: middle;
+	horizontal-align: center;
+}
+
 #topbar{
 width: 1460px;
 height: 72px;
@@ -210,37 +225,28 @@ margin-left: 4px;
 }
 
 #xpbars{
-width: 940px;
-	
+margin-left:-2px;
+width: 450px;
 }
 
+.xpbar{
+	height: 18px;
+	margin-top: 34%;
+	width: 106px;
+ 
+
+}
 
 #xpbar1{
   horizontal-align: left;
-
-  margin-top: 22%;
-  width: 100px;
-  height: 50px;
-  border: 2px solid #000000; 
-  transform-origin: 0px 0px;
-
-transform:  rotateX(-66.0deg ) translate3d( 245.0px, 0.0px, 0.0px );
+  opacity-mask: url( "file://{images}/custom_game/hud/masks/xpbar1.png" );
 
 }
 
 #xpbar2{
   horizontal-align: right;
-
-  margin-left: 30px;
-  margin-top: 22%;
-  width: 100px;
-  height: 50px;
-  border: 2px solid #000000; 
-  transform-origin: 0px 0px;
-
-  transform:  rotateX(-66.0deg ) translate3d( -245.0px, 0.0px, 0.0px );
-
-
+  margin-right: -4px;
+  opacity-mask: url( "file://{images}/custom_game/hud/masks/xpbar2.png" );
 }
 
 #xpbar1Left

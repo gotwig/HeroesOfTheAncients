@@ -320,7 +320,8 @@ function GameMode:OnEntityKilled( keys )
 		Notifications:TopToAll({hero=killedUnit:GetUnitName(), duration=8.0, imagestyle="landscape"})
 
 	end
-	
+	Notifications:Top(killedUnit:GetPlayerID(), {text="YOU HAVE DIED", style={color="red"}, duration=3.0})
+
 
   end
 		

@@ -55,7 +55,7 @@ function heroDeathTimebar()
 
 		  $("#DeathTimeBar").visible = true ;
 
-		  left.style.transition = "width 0.1s linear 0.0s;"
+		  left.style.transition = "width 0.01s linear 0.0s;"
 
 		if (deathMaxTime == -1){
 			deathMaxTime = Players.GetRespawnSeconds ( Players.GetLocalPlayer() )
@@ -115,8 +115,8 @@ function capturePointsChanged( table_name, key, data )
 }
 
 function showGameTime(){
-  minutes = Math.floor(Game.GetDOTATime( true, false)/60);
-  seconds = Math.floor(Game.GetDOTATime( true, false) % 60); 
+  minutes = Math.floor(Game.GetDOTATime( false, false)/60);
+  seconds = Math.floor(Game.GetDOTATime( false, false) % 60); 
     
   if (minutes < 10) {
 	  minutes = "0" + minutes;
@@ -185,14 +185,14 @@ function teamLevels(){
 	  left1.SetHasClass("TimeRed", false);
 
 	  left1.style.transition = "width 0.1s linear 0.0s;"
-	  left1.style.width = perTeam1 * 1 + "px";
+	  left1.style.width = perTeam1 * 1 + "%";
 	  
 	  	var left2 = $("#xpbar2Left");
 	  left2.SetHasClass("TimeBlue", false);
 	  left2.SetHasClass("TimeRed", true);
 
 	  left2.style.transition = "width 0.1s linear 0.0s;"
-	  left2.style.width = perTeam2 * 1 + "px";
+	  left2.style.width = perTeam2 * 1 + "%";
   
   
   
@@ -252,6 +252,13 @@ function executeAbility(abilitySlotNumber) {
   var yourTeam = 0;
   var enemyTeam = 0;
 	
+function leveluptextteam2(){
+	$("#levelupTextTeam2").visible = false;
+}
+function leveluptextteam3(){
+	$("#levelupTextTeam3").visible = false;
+}
+
 function OnPlayerLevelUp( data ) {
 	
 	if (Game.GetPlayerIDsOnTeam(2).length > 0){
@@ -261,6 +268,12 @@ function OnPlayerLevelUp( data ) {
 			var neededXP =	Entities.GetNeededXPToLevel(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(2)[0]));
 			
 			perTeam1LvlFactor = ( neededXP - (neededXP - currentXP ) );
+			
+			$("#levelupTextTeam2").visible = true;
+			
+			$.Schedule( 4, leveluptextteam2 );
+
+			
 		}
 	}
 	if (Game.GetPlayerIDsOnTeam(3).length > 0){
@@ -270,6 +283,12 @@ function OnPlayerLevelUp( data ) {
 			var neededXP =	Entities.GetNeededXPToLevel(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(3)[0]));
 			
 			perTeam2LvlFactor = ( neededXP - (neededXP - currentXP ) );
+			
+			$("#levelupTextTeam3").visible = true;
+			
+			$.Schedule( 4, leveluptextteam3 );
+			
+			
 		}
 	}
 
@@ -359,6 +378,11 @@ function hideDynamicEventInfo(){
   else {
 	enemyTeam = 2;
   }
+  
+  //Levelup text xp bar
+  leveluptextteam2();
+  leveluptextteam3();
+  
   
   //Setup char camera 
   heroCamera();

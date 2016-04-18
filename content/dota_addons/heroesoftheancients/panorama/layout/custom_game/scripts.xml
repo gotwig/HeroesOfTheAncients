@@ -29,13 +29,17 @@
 					<Label id="timeGameSeconds" hittest="false"  class="TimerText" text=""/>
 				</Panel>
 					<Panel hittest="false" id="xpbars">
-						<Panel hittest="false" id="xpbar1">
-						  <Panel hittest="false" id="xpbar1Left" class="TimeYellow"> 
+						<Panel hittest="false" class="xpbar" id="xpbar1">
+						  <Panel hittest="false" id="xpbar1Left" class="TimeYellow">
+						  
 						  </Panel>
+						  <Label id="levelupTextTeam2" text="LEVEL UP!" />
+
 						</Panel>
-						<Panel hittest="false" id="xpbar2">
+						<Panel hittest="false" class="xpbar" id="xpbar2">
 						  <Panel hittest="false" id="xpbar2Left" class="TimeYellow"> 
 						  </Panel>
+						  <Label id="levelupTextTeam3" text="LEVEL UP!" />
 						</Panel>
 					</Panel>
 					<Panel hittest="false" id="teamLevels">
