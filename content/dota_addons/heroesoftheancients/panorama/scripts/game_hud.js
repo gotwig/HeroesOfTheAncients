@@ -48,14 +48,14 @@ function heroDeathTimebar()
 {
 	  if (Players.GetRespawnSeconds ( Players.GetLocalPlayer() ) > -1){
 		  
-		  var left = $("#DeathTimeBarLeft");
-		  left.SetHasClass("TimeBlue", false);
-		  left.SetHasClass("TimeRed", false);
-		  left.SetHasClass(tbClass, true);
+		  var leftDeath = $("#DeathTimeBarLeft");
+		  leftDeath.SetHasClass("TimeBlue", false);
+		  leftDeath.SetHasClass("TimeRed", false);
+		  leftDeath.SetHasClass(tbClass, true);
 
 		  $("#DeathTimeBar").visible = true ;
 
-		  left.style.transition = "width 0.01s linear 0.0s;"
+		  leftDeath.style.transition = "width 0.01s linear 0.0s;"
 
 		if (deathMaxTime == -1){
 			deathMaxTime = Players.GetRespawnSeconds ( Players.GetLocalPlayer() )
@@ -64,7 +64,7 @@ function heroDeathTimebar()
 		if (deathMaxTime > 0){
 			$("#HeroRespawnTime").text = Players.GetRespawnSeconds ( Players.GetLocalPlayer());
 
-		left.style.width = ((Players.GetRespawnSeconds ( Players.GetLocalPlayer()) / deathMaxTime) * 100) * 2.4 + "px";
+		leftDeath.style.width = ((Players.GetRespawnSeconds ( Players.GetLocalPlayer()) / deathMaxTime) * 100) * 2.4 + "px";
 		}
 
 
@@ -116,17 +116,20 @@ function capturePointsChanged( table_name, key, data )
 
 function showGameTime(){
   minutes = Math.floor(Game.GetDOTATime( false, false)/60);
-  seconds = Math.floor(Game.GetDOTATime( false, false) % 60); 
+  seconds = Math.floor(Game.GetDOTATime( false, true) % 60); 
     
   if (minutes < 10) {
 	  minutes = "0" + minutes;
   }
   
- if (seconds < 10) {
-	  seconds = "0" + seconds;
+  
+  if (minutes > -1 && seconds > 0){
+  $("#timeGameMinutes").text = minutes + ":";
+	  if (seconds < 10) {
+		  seconds = "0" + seconds;
+	  }
   }
   
-  $("#timeGameMinutes").text = minutes + ":";
   $("#timeGameSeconds").text = seconds;
   
   $.Schedule(1/10, showGameTime);
