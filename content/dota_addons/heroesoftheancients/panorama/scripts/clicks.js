@@ -30,10 +30,6 @@ function OnRightButtonPressed()
 				return false; //Keep the unit order
 			}
 
-			else
-			{
-				//GameEvents.SendCustomGameEventToServer( "right_click_order", { pID: iPlayerID })
-			}
 		}
 	}
 

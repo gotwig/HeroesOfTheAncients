@@ -39,6 +39,7 @@ margin-top: 84%;
 	horizontal-align: right;
 	vertical-align: bottom;
 	margin-right: 12px;
+	margin-left: 15px;
 	//background-image: url("file://{images}/custom_game/maps/hauntedmines/eventMap.png");
 }
 
@@ -100,7 +101,6 @@ margin-top: 84%;
 	horizontal-align: left;
 	margin-left: 5%;
 
-
     width: 440px;
     height: 200px;
 	background-image: url("file://{images}/custom_game/hud/heroPanel.png");
@@ -134,10 +134,22 @@ margin-top: 84%;
 }
 
 
+#MiniMapBorders{
+	height: 500px;
+	width: 310px;
+	background-image: url( "file://{images}/custom_game/hud/minimap.png" );
+	horizontal-align: left;
+	background-size: 100%;
+	background-repeat: no-repeat;
+	margin-top: -33%;
+	margin-right: -23px;
+}
+
 #TimersPanel
 {
     horizontal-align: right;
 	
+	margin-left: 300px;
     width: 30%;
     height: 80px;
     flow-children: right-wrap;
@@ -248,6 +260,19 @@ transform:  rotateX(-66.0deg ) translate3d( 245.0px, 0.0px, 0.0px );
   horizontal-align: right;
 }
 
+#DeathTimeBar
+{
+  horizontal-align: center;
+
+  margin-top: -30%;
+  width: 240px;
+  height: 40px;
+  border: 2px solid #000000; 
+  background-color: gradient( linear, 0% 0%, 0% 100%, from( #220000 ), color-stop( 0.1, #ff4444 ), color-stop( 0.2, #AA0000 ), color-stop( 0.8, #AA0000 ), to( #220000 ) );
+  border-radius: 5px; 
+  opacity: .8;
+}
+
 #TimeBar
 {
   horizontal-align: center;
@@ -278,6 +303,24 @@ transform:  rotateX(-66.0deg ) translate3d( 245.0px, 0.0px, 0.0px );
   border-bottom-right-radius: 6px;
   border-top-right-radius: 6px;
   //opacity: .5;
+  visibility: collapse;
+}
+
+#DeathTimeBarLeft
+{
+  width: 100%;
+  height: 100%;
+  transition: width 0.1s linear 0.0s;
+  border-bottom-right-radius: 6px;
+  border-top-right-radius: 6px;
+  //opacity: .5;
+  horizontal-align: center;
+}
+
+#HeroRespawnTime{
+	horizontal-align: center;
+	color: white;
+	font-size: 30px;
 }
 
 #TimeName

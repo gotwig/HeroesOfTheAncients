@@ -4,20 +4,13 @@ function flipMinimap(){
 	$.Msg( "Flipping Minimap" );
 	var iPlayerid = Players.GetLocalPlayer();
 	GameEvents.SendCustomGameEventToServer( "flipMinimap", { pID: iPlayerid })
+	
 }
 
 function heroCamLock(){
 	$.Msg( "Switching hero cam lock ON/OFF" );
 	var iPlayerid = Players.GetLocalPlayer();
 	GameEvents.SendCustomGameEventToServer( "lockCameraToHero", { pID: iPlayerid })
-}
-
-function teleportBase(){
-	$.Msg( "trigger teleport back to base event" );
-	var iPlayerid = Players.GetLocalPlayer();
-	//$.Msg(Entities.GetAbilityByName( Players.GetPlayerHeroEntityIndex( 0 ) , "lw_teleport" )   );
-	//Abilities.ExecuteAbility( Entities.GetAbilityByName( Players.GetPlayerHeroEntityIndex( 0 ) , "lw_teleport" ), Players.GetPlayerHeroEntityIndex( 0 ), true )
-	GameEvents.SendCustomGameEventToServer( "teleportBase", { pID: iPlayerid })
 }
 
 var tbClass = "TimeBlue";
@@ -31,6 +24,7 @@ var per = 0;
 var minutes = "";
 var seconds = "";
 
+var deathMaxTime = 0;
 
 function TimeBar()
 {
@@ -44,13 +38,60 @@ function TimeBar()
   if (tbActive){
     left.style.transition = "width 0.1s linear 0.0s;"
     
-
-	
     left.style.width = per * 2.4 + "px";
     $("#TimeName").text = tbName;
   }
   $.Schedule(1/10, TimeBar);
 }
+
+function heroDeathTimebar()
+{
+	  if (Players.GetRespawnSeconds ( Players.GetLocalPlayer() ) > -1){
+		  
+		  var left = $("#DeathTimeBarLeft");
+		  left.SetHasClass("TimeBlue", false);
+		  left.SetHasClass("TimeRed", false);
+		  left.SetHasClass(tbClass, true);
+
+		  $("#DeathTimeBar").visible = true ;
+
+		  left.style.transition = "width 0.1s linear 0.0s;"
+
+		if (deathMaxTime == -1){
+			deathMaxTime = Players.GetRespawnSeconds ( Players.GetLocalPlayer() )
+		}
+		
+		if (deathMaxTime > 0){
+			$("#HeroRespawnTime").text = Players.GetRespawnSeconds ( Players.GetLocalPlayer());
+
+		left.style.width = ((Players.GetRespawnSeconds ( Players.GetLocalPlayer()) / deathMaxTime) * 100) * 2.4 + "px";
+		}
+
+
+	  }
+	  
+	  else {
+		$("#DeathTimeBar").visible = false;
+	  }
+	
+  $.Schedule(1/1000, heroDeathTimebar);
+}
+
+function OnHeroDeath(data){
+	if (data.entindex_killed == Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ) ){
+		$.Msg( "Your Hero Died" );
+		
+		deathMaxTime = Players.GetRespawnSeconds ( Players.GetLocalPlayer() );
+		
+	}
+}
+
+function OnHeroRespawn(data){
+	if (data.entindex == Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ) ){
+		$.Msg( "Your Hero Respawned" );
+	}
+}
+
 
 function showCapturepoint(msg)
 {  
@@ -183,6 +224,21 @@ function showCustomCursor(){
 
 function checkFlipped(){
 
+	if (Game.IsHUDFlipped()){
+		$("#heroPanel").style["horizontal-align"] = "left;";
+		$("#TimersPanel").style["horizontal-align"] = "right;";
+		$("#MiniMapBorders").style["horizontal-align"] = "right;";
+		$("#mapEventInfo").style["horizontal-align"] = "right;";
+
+
+	}
+	else {		
+		$("#heroPanel").style["horizontal-align"] = "right;";
+		$("#TimersPanel").style["horizontal-align"] = "left;";
+		$("#MiniMapBorders").style["horizontal-align"] = "left;";
+		$("#mapEventInfo").style["horizontal-align"] = "left;";
+
+	}
 	
 	$.Schedule(1/10, checkFlipped);
 }
@@ -222,10 +278,14 @@ function OnPlayerLevelUp( data ) {
 function heroPanel(){
 
 
-	  var healPer = 	Entities.GetHealthPercent( Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()) );
+	var selectedEnt = Players.GetLocalPlayerPortraitUnit();
 
-	  var currentHealth = Entities.GetHealth(Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()) );
-	  var maxHealth = Entities.GetMaxHealth( Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()) );
+	  
+	if(selectedEnt){
+	  var healPer = Entities.GetHealthPercent( selectedEnt );
+
+	  var currentHealth = Entities.GetHealth(selectedEnt );
+	  var maxHealth = Entities.GetMaxHealth( selectedEnt );
 		
 	  var left2 = $("#healthbarLeft");
 	  left2.SetHasClass("TimeBlue", false);
@@ -237,31 +297,43 @@ function heroPanel(){
 	  $("#healthbarText").text = currentHealth + " / " + maxHealth;
 	  
 	  // Mana
-	  var maxMana = Entities.GetMaxMana( Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()) );
-	  var currentMana = Entities.GetMana( Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()) );
 	  
-	  var manaPer = (currentMana * 100) / maxMana;
-	  
-	  var left1 = $("#manabarLeft");
-	  left1.SetHasClass("TimeBlue", true);
-	  left1.SetHasClass("TimeRed", false);
+	  if (Entities.GetMana(selectedEnt) > 0 ){
+		  var maxMana = Entities.GetMaxMana( selectedEnt );
+		  var currentMana = Entities.GetMana( selectedEnt );
+		  
+		  var manaPer = (currentMana * 100) / maxMana;
+		  
+		  var left1 = $("#manabarLeft");
+		  left1.SetHasClass("TimeBlue", true);
+		  left1.SetHasClass("TimeRed", false);
 
-	  left1.style.transition = "width 0.1s linear 0.0s;"
-	  left1.style.width = manaPer + "%";
+		  left1.style.transition = "width 0.1s linear 0.0s;"
+		  left1.style.width = manaPer + "%";
+		  
+		  $("#manabarText").text = currentMana + " / " + maxMana;
 	  
-	  $("#manabarText").text = currentMana + " / " + maxMana;
+	  }
+	  
+	  else {
+		  $("#manabarText").text = "No Mana"
+	  }
+	  
+	}
 	  
 	$.Schedule(1/10, heroPanel);
 }
 
 function heroCamera(){
 	
-	
-var unit = Entities.GetUnitName ( Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer()) );
+var selectedEnt = Players.GetLocalPlayerPortraitUnit();
+var unit = Entities.GetUnitName ( selectedEnt );
 
 var sceneContainer = $("#heroCam");
 
 $("#HeroPortrait").heroname = unit;
+
+$.Schedule(1/10, heroCamera);
 
 }
 
@@ -294,6 +366,8 @@ function hideDynamicEventInfo(){
   // capture bar
   TimeBar();
 
+  heroDeathTimebar();
+  
   heroPanel();
   
   //topBar
@@ -316,7 +390,8 @@ function hideDynamicEventInfo(){
   
   GameEvents.Subscribe( "dota_player_gained_level", OnPlayerLevelUp );
   
-  Game.AddCommand( "+AbilityTeleportTrigger", teleportBase, "", 0 );
+  GameEvents.Subscribe( "entity_killed", OnHeroDeath );
+  GameEvents.Subscribe( "npc_spawned", OnHeroRespawn );
 
   
 })(); 

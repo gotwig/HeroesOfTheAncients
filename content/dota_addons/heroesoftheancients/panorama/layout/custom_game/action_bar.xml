@@ -11,13 +11,13 @@
 	
 		<Panel class="abilityLeftWing abilityWing">
 		
-			<Button id="teleport" onactivate="teleportBase()">
+			<Button id="mount" onactivate="mountHorse()">
 
-				<Image src="file://{images}/custom_game/hud/teleportBase.png" />
+				<Image src="file://{images}/custom_game/hud/mount.png" />
 			</Button>
 			
-			<Panel id="LevelupHotkey">
-				<Label id="LevelupHotkeyText" text="O" />
+			<Panel id="MountHotkey">
+				<Label id="MountHotkeyText" text="V" />
 			</Panel>
 		
 		</Panel>
@@ -36,7 +36,13 @@
 			</Panel>
 			
 		</Panel>
-		
+				<Button id="LevelUpButton" onactivate="OnLevelUpClicked()">
+			<Panel id="LevelUpButtonInset">
+				<Label id="levelupText" text="#LevelUp" />
+			</Panel>
+
+		</Button>
+			<Label  id="LevelUpButtonSkill" text="Select a skill" />
 
 	</Panel>
 

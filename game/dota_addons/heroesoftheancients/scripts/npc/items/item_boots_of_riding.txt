@@ -1,0 +1,63 @@
+"item_boots_of_riding"
+{
+    "BaseClass"                     "item_datadriven"
+    "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "AbilityTextureName"            "item_boots_of_speed"
+    
+    "ItemCost"                      "175"
+    "ItemQuality"                   "common"
+    "ItemAliases"                   "circlet"
+
+    "AbilitySpecial"
+    {
+        "01"
+        {
+            "var_type"              "FIELD_INTEGER"
+            "bonus_movement_speed"  "70"
+        }
+    }
+    
+    "Modifiers"
+    {
+        "modifier_boots_of_speed"
+        {
+            "Passive"           "1"
+            "IsHidden"          "1"
+            
+            "Properties"
+            {
+                "MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "%bonus_movement_speed"
+            }
+        }
+		
+		"mount_effect"
+		{
+		"Passive" "1"
+		"IsHidden" "0"
+		
+		"EffectName" "particles/econ/courier/courier_trail_orbit/courier_trail_orbit.vpcf"
+		"EffectAttachType" "follow_origin"
+		
+		"OnAttacked"
+		{
+			"RunScript"
+			{
+					"ScriptFile"	"units/mountHorse.lua"
+					"Function"		"Dismount"
+			}
+		}
+		
+		"OnDealDamage"
+		{
+			"RunScript"
+			{
+					"ScriptFile"	"units/mountHorse.lua"
+					"Function"		"Dismount"
+			}
+		}
+		
+
+		}
+		
+    }
+}

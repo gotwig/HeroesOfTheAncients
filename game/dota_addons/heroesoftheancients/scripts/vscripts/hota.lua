@@ -10,6 +10,7 @@ print ('[HOTA] hota.lua' )
 
 minesopentexts = {"Do you hear that clattering? I believe they're hungry...",'Enter heroes, the damned await.','Gather skulls and empower your golem!','Slay the undead and claim their skulls, heroes.',"There's no turning back now..."}
 
+abilityIndex = nil
 
 function hota:triggerMines(open)
 if (open)
@@ -74,18 +75,39 @@ SendToConsole("toggle dota_hud_flip");
 
 end
 
-function hota:teleportBase( event )
-local pID = event.pID
-
-PlayerResource:GetSelectedHeroEntity(event.pID):CastAbilityNoTarget(PlayerResource:GetSelectedHeroEntity(event.pID):FindAbilityByName("lw_teleport"), 0) 
+function hota:mountHorse( event )
+	local pID = event.pID
+	local caster = PlayerResource:GetSelectedHeroEntity(pID)
+	
+	caster:CastAbilityNoTarget(caster:GetItemInSlot(0), 0) 
 end
 
+function hota:teleportBase( event )
+	local pID = event.pID
+	local caster = PlayerResource:GetSelectedHeroEntity(pID)
+	
+	caster:CastAbilityNoTarget(caster:GetItemInSlot(1), 0) 
+end
+
+
+function hota:MoonWellOrder( event )
+    local pID = event.pID
+    local entityIndex = event.mainSelected
+    local target = EntIndexToHScript(entityIndex)
+    local targetIndex = event.targetIndex
+    local moon_well = EntIndexToHScript(targetIndex)
+
+    local replenish = moon_well:FindAbilityByName("nightelf_replenish_mana_and_life")
+    moon_well:CastAbilityOnTarget(target, replenish, moon_well:GetPlayerOwnerID())
+end
 
 
 --Listen for events
 
 CustomGameEventManager:RegisterListener( "flipMinimap", Dynamic_Wrap(hota, "flipMinimap")) -- Flip Minimap
-CustomGameEventManager:RegisterListener( "teleportBase", Dynamic_Wrap(hota, "teleportBase")) --Right click through panorama
+CustomGameEventManager:RegisterListener( "teleportBase", Dynamic_Wrap(hota, "teleportBase")) 
+CustomGameEventManager:RegisterListener( "mountHorse", Dynamic_Wrap(hota, "mountHorse")) 
+
 CustomGameEventManager:RegisterListener( "lockCameraToHero", Dynamic_Wrap(hota, "lockCameraToHero")) -- Check Camera Lock
 CustomGameEventManager:RegisterListener( "moonwell_order", Dynamic_Wrap(hota, "MoonWellOrder")) --Right click through panorama
 

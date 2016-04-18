@@ -74,7 +74,6 @@
 
 				</Panel>
 			
-
 			
 				<Panel id="TimersPanel" hittest="false">
 				
@@ -103,13 +102,26 @@
 				
 			</Panel>
 			
+			
+			<Panel id="MiniMapBorders" hittest="false">
+				
+			</Panel>
+			
 			<Panel hittest="false" id="TimeBar">
 			  <Panel hittest="false" id="TimeBarLeft" class="TimeYellow"> 
 			  		<Label hittest="false" id="TimeName" class="UIText" text="Capturing Camp"/>
 			  </Panel>
 			</Panel>
 			
+			<Panel hittest="false" id="DeathTimeBar">
+			  <Panel hittest="false" id="DeathTimeBarLeft" class="TimeYellow"> 
+			  </Panel>
+			  		<Label hittest="false" id="HeroRespawnTime" class="UIText" text="0"/>
 
+			</Panel>
+			
+
+			
 
 		</Panel>
 

@@ -290,6 +290,110 @@
 	      }
 	    }
 	  }
+	"lw_mountHorse"
+	    {
+	        "BaseClass"                         "ability_datadriven"
+	
+	        "AbilityBehavior"                   "DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	
+	        "AbilityTextureName"                "mountHorse"
+	        "AbilityCastAnimation"              "ACT_DOTA_TELEPORT"
+	
+	        "AbilityManaCost"                   "0"
+	        "AbilityCooldown"                   "0"
+	        "MaxLevel"                          "1"
+	        "AbilityChannelTime"                "2"
+	
+			"IsCastableWhileHidden" "1"
+	
+			
+	        "precache"
+	        {
+	            "particle"  "particles/econ/events/ti4/teleport_start_ti4.vpcf"
+	            "particle"  "particles/units/heroes/hero_chen/chen_teleport_flash.vpcf"
+				"soundfile"	"soundevents/game_sounds_custom.vsndevts"
+				"soundfile"	"soundevents/game_sounds.vsndevts"
+	
+	        }
+	
+	        "OnSpellStart"
+	        {
+	            "ApplyModifier"
+	            {
+	                "ModifierName"      "modifier_teleport"
+	                "Target"            "CASTER"
+	            }
+				
+	
+				
+	        }
+	        "OnChannelSucceeded"
+	        {
+	            "AttachEffect"
+	            {
+	                "EffectName"        "particles/units/heroes/hero_chen/chen_teleport_flash.vpcf"
+	                "EffectAttachType"  "attach_origin"
+	                "Target"            "CASTER"
+	            }
+	            "RunScript"
+	            {
+	                "ScriptFile"            "units/mountHorse.lua"
+	                "Function"              "MountHorse"
+	            }
+	            "RemoveModifier"
+	            {
+	                "ModifierName"  "modifier_teleport"
+	                "Target"        "CASTER"
+	            }
+				
+				
+				"RunScript"
+				{
+						"ScriptFile"	"units/sound.lua"
+						"Function"		"FireSound"
+						"sound_name"	"Courier.Footsteps"
+				}
+				
+				"RunScript"
+				{
+						"ScriptFile"	"units/restoreInvoker.lua"
+						"Function"		"Mount"
+				}
+				
+	        }
+	        "OnChannelInterrupted"
+	        {
+	            "RemoveModifier"
+	            {
+	                "ModifierName"  "modifier_teleport"
+	                "Target"        "CASTER"
+	            }
+				
+				"RunScript"
+				{
+						"ScriptFile"	"units/restoreInvoker.lua"
+						"Function"		"Mount"
+				}
+				
+				
+	        }
+	
+	        "Modifiers"
+	        {
+	            "modifier_teleport"
+	            {
+	                "Passive"           "0"
+	                "IsHidden"          "1"
+	                "IsDebuff"          "0"
+	
+	                "EffectName"        "particles/econ/events/ti4/teleport_start_ti4.vpcf"
+	                "EffectAttachType"  "attach_origin"
+					
+					
+	            }
+				
+	        }
+	    }
 	"lw_teleport"
 	    {
 	        "BaseClass"                         "ability_datadriven"
@@ -360,6 +464,12 @@
 						"Function"		"StopSound"
 						"sound_name"	"Portal.Loop_Disappear"
 				}
+							
+				"RunScript"
+				{
+						"ScriptFile"	"units/restoreInvoker.lua"
+						"Function"		"Teleport"
+				}
 	        }
 	        "OnChannelInterrupted"
 	        {
@@ -374,6 +484,12 @@
 						"ScriptFile"	"units/sound.lua"
 						"Function"		"StopSound"
 						"sound_name"	"Portal.Loop_Disappear"
+				}
+				
+				"RunScript"
+				{
+						"ScriptFile"	"units/restoreInvoker.lua"
+						"Function"		"Teleport"
 				}
 				
 				

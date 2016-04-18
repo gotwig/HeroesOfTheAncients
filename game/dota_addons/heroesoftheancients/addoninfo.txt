@@ -16,6 +16,13 @@
             "Command"   "+AbilityTeleportTrigger"
             "Name"      "Execute Teleport ability"
        }
-   }
+		
+       "02"
+       {
+            "Key"       "V"
+            "Command"   "+AbilityMountTrigger"
+            "Name"      "Execute Mount ability"
+       }
+  }
   
 }

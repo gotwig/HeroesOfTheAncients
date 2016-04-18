@@ -48,7 +48,10 @@ function UpdateAbility()
 	$.GetContextPanel().SetHasClass( "toggle_enabled", Abilities.GetToggleState(m_Ability) );
 	$.GetContextPanel().SetHasClass( "is_active", ( m_Ability == Abilities.GetLocalPlayerActiveAbility() ) );
 
-	abilityButton.enabled = ( isCastable || m_bInLevelUp );
+	// CHANGED MANUALY
+	if (abilityButton){
+		abilityButton.enabled = ( isCastable || m_bInLevelUp );
+	}
 	
 	$( "#HotkeyText" ).text = hotkey;
 	
@@ -126,7 +129,11 @@ function RightClickAbility()
 function RebuildAbilityUI()
 {
 	var abilityLevelContainer = $( "#AbilityLevelContainer" );
-	abilityLevelContainer.RemoveAndDeleteChildren();
+	
+	if(abilityLevelContainer){
+		abilityLevelContainer.RemoveAndDeleteChildren();
+	}
+	
 	var currentLevel = Abilities.GetLevel( m_Ability );
 	for ( var lvl = 0; lvl < Abilities.GetMaxLevel( m_Ability ); lvl++ )
 	{

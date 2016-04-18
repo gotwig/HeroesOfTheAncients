@@ -91,6 +91,15 @@ function UpdateBuffs()
 function AutoUpdateBuffs()
 {
 	UpdateBuffs();
+	
+	if (Game.IsHUDFlipped()){
+		
+		$.GetContextPanel().style["horizontal-align"] = "left;";
+	}
+	else {		
+		$.GetContextPanel().style["horizontal-align"] = "right;";
+	}
+	
 	$.Schedule( 0.1, AutoUpdateBuffs );
 }
 

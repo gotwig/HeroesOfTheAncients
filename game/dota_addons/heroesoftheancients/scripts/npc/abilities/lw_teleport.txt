@@ -68,6 +68,12 @@
 					"Function"		"StopSound"
 					"sound_name"	"Portal.Loop_Disappear"
 			}
+						
+			"RunScript"
+			{
+					"ScriptFile"	"units/restoreInvoker.lua"
+					"Function"		"Teleport"
+			}
         }
         "OnChannelInterrupted"
         {
@@ -82,6 +88,12 @@
 					"ScriptFile"	"units/sound.lua"
 					"Function"		"StopSound"
 					"sound_name"	"Portal.Loop_Disappear"
+			}
+			
+			"RunScript"
+			{
+					"ScriptFile"	"units/restoreInvoker.lua"
+					"Function"		"Teleport"
 			}
 			
 			

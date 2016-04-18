@@ -1,0 +1,129 @@
+"item_teleportBase"
+{
+
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+	
+	
+    "AbilityTextureName"                "chen_penitence"
+    "AbilityCastAnimation"              "ACT_DOTA_TELEPORT"
+
+    "AbilityManaCost"                   "0"
+    "AbilityCooldown"                   "0"
+    "MaxLevel"                          "1"
+    "AbilityChannelTime"                "6"
+	
+	"Model"							"models/props_gameplay/salve.vmdl" //Green
+	"Effect" 						"particles/generic_gameplay/dropped_item.vpcf"
+
+	
+	"BaseClass"						"item_datadriven"
+	"ItemKillable"                  "0"
+	"ItemSellable"                  "0"
+	"ItemDroppable"                 "0"
+	
+	// Item Info
+	//-------------------------------------------------------------------------------------------------------------
+	"ItemCost"						"600"
+	"ItemShopTags"					"consumable"
+	"ItemQuality"					"consumable"
+	"ItemStackable"					"1"
+	"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+	"ItemPermanent"					"1"
+	"ItemInitialCharges"			"1"
+	"SideShop"						"0"
+	"SecretShop" "1"
+
+	"precache"
+    {
+        "particle"  "particles/econ/events/ti4/teleport_start_ti4.vpcf"
+        "particle"  "particles/units/heroes/hero_chen/chen_teleport_flash.vpcf"
+		"soundfile"	"soundevents/game_sounds.vsndevts"
+    }
+	
+	
+		"OnSpellStart"
+		{
+				"ApplyModifier"
+				{
+					"ModifierName"      "modifier_teleport"
+					"Target"            "CASTER"
+				}
+				
+				"RunScript"
+				{
+						"ScriptFile"	"units/sound.lua"
+						"Function"		"FireSound"
+						"sound_name"	"Portal.Loop_Disappear"
+				}
+			
+		}
+	
+	    "OnChannelSucceeded"
+        {
+            "AttachEffect"
+            {
+                "EffectName"        "particles/units/heroes/hero_chen/chen_teleport_flash.vpcf"
+                "EffectAttachType"  "attach_origin"
+                "Target"            "CASTER"
+            }
+            "RunScript"
+            {
+                "ScriptFile"            "units/teleportBase.lua"
+                "Function"              "Teleport"
+            }
+            "RemoveModifier"
+            {
+                "ModifierName"  "modifier_teleport"
+                "Target"        "CASTER"
+            }
+			
+			"FireSound"
+			{
+					"EffectName"	"Portal.Hero_Appear"
+					"Target" 		"CASTER"
+			}
+			"RunScript"
+			{
+					"ScriptFile"	"units/sound.lua"
+					"Function"		"StopSound"
+					"sound_name"	"Portal.Loop_Disappear"
+			}
+        }
+        "OnChannelInterrupted"
+        {
+            "RemoveModifier"
+            {
+                "ModifierName"  "modifier_teleport"
+                "Target"        "CASTER"
+            }
+			
+			"RunScript"
+			{
+					"ScriptFile"	"units/sound.lua"
+					"Function"		"StopSound"
+					"sound_name"	"Portal.Loop_Disappear"
+			}
+			
+        }
+       "Modifiers"
+        {
+            "modifier_teleport"
+            {
+                "Passive"           "0"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+
+                "EffectName"        "particles/econ/events/ti4/teleport_start_ti4.vpcf"
+                "EffectAttachType"  "attach_origin"
+				
+				
+            }
+			
+        }
+	
+
+	
+}
+

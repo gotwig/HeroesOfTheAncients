@@ -4,6 +4,7 @@
 require ('maps/hauntedmines/skulls')
 require ('units/keep_destroyed')
 require ('units/teleportBase')
+require ('units/mountHorse')
 require ('units/sound')
 require ('healthglobe')
 require ('mercenaries')
@@ -70,9 +71,16 @@ function GameMode:OnNPCSpawned(keys)
 
   local npc = EntIndexToHScript(keys.entindex)
   
-  if npc:IsRealHero() then   
-	local newAbility = npc:AddAbility("lw_teleport")
-	newAbility:SetLevel(1)
+  if ( npc:IsRealHero() ) then   
+    npc:AddItemByName("item_mountHorse")
+    npc:AddItemByName("item_teleportBase")
+	
+	if ( not npc:HasItemInInventory("item_boots_of_riding") )
+		then
+			npc:AddItemByName("item_boots_of_riding")
+	end
+
+	
   end
   
   

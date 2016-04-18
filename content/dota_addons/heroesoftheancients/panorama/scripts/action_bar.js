@@ -5,9 +5,15 @@ var m_AbilityPanels = []; // created up to a high-water mark, but reused when se
 function teleportBase(){
 	$.Msg( "trigger teleport back to base event" );
 	var iPlayerid = Players.GetLocalPlayer();
-	//$.Msg(Entities.GetAbilityByName( Players.GetPlayerHeroEntityIndex( 0 ) , "lw_teleport" )   );
-	//Abilities.ExecuteAbility( Entities.GetAbilityByName( Players.GetPlayerHeroEntityIndex( 0 ) , "lw_teleport" ), Players.GetPlayerHeroEntityIndex( 0 ), true )
+
 	GameEvents.SendCustomGameEventToServer( "teleportBase", { pID: iPlayerid })
+}
+
+function mountHorse(){
+	$.Msg( "Mount the horse" );
+	var iPlayerid = Players.GetLocalPlayer();
+	
+	GameEvents.SendCustomGameEventToServer( "mountHorse", { pID: iPlayerid })
 }
 
 function OnLevelUpClicked()
@@ -29,6 +35,7 @@ function OnAbilityLearnModeToggled( bEnabled )
 
 function UpdateAbilityList()
 {
+	
 	var abilityListPanel = $( "#ability_list" );
 	if ( !abilityListPanel )
 		return;
@@ -73,6 +80,12 @@ function UpdateAbilityList()
 		var abilityPanel = m_AbilityPanels[ i ];
 		abilityPanel.SetAbility( -1, -1, false );
 	}
+	if (nUsedPanels > 0) {
+		$.GetContextPanel().visible = true;
+	} else {
+		$.GetContextPanel().visible = false;
+	}
+	
 }
 
 (function()
@@ -85,5 +98,9 @@ function UpdateAbilityList()
 	GameEvents.Subscribe( "dota_hero_ability_points_changed", UpdateAbilityList );
 	
 	UpdateAbilityList(); // initial update
+	
+	Game.AddCommand( "+AbilityTeleportTrigger", teleportBase, "", 0 );
+    Game.AddCommand( "+AbilityMountTrigger", mountHorse, "", 0 );
+	
 })();
 

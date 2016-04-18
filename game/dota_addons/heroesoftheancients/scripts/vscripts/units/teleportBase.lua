@@ -21,6 +21,10 @@ function Teleport( event )
 		end
 	)
 	
+	if ( not caster:HasItemInInventory("item_boots_of_riding") )
+		then
+			caster:AddItemByName("item_boots_of_riding")
+	end
 
 
 end

@@ -11,7 +11,7 @@
 			"Model"						"models/creeps/item_creeps/i_creep_necro_archer/necro_archer.vmdl"	// Model.
 			"SoundSet"					"Creep_Good_Range"					// Name of sound set.
 			"Level"						"3"
-			"ModelScale"				"0.55"
+			"ModelScale"				"0.45"
 			"IsSummoned"				"1"
 			
 			"UnitLabel"					"necroarcher"

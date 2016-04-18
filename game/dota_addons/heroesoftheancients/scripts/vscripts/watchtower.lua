@@ -86,12 +86,12 @@ Timers:CreateTimer(function()
 							
 				if (watchTowers[key].captureCounter <= 0)
 				then
-					AddFOWViewer( 3, watchTowers[key].position, 3000, 1.0, false)
+					AddFOWViewer( 3, watchTowers[key].position, 2400, 1.0, false)
 				end
 							
 				if (watchTowers[key].captureCounter >= 100)
 				then
-					AddFOWViewer( 2, watchTowers[key].position, 3000, 1.0, false)
+					AddFOWViewer( 2, watchTowers[key].position, 2400, 1.0, false)
 				end
 
 				  
