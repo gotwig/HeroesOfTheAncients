@@ -57,7 +57,7 @@ local pID = event.pID
 if (lockCamera == 0) 
 
 then 
-PlayerResource:SetCameraTarget(event.pID, PlayerResource:GetSelectedHeroEntity(event.pID))
+PlayerResource:SetCameraTarget(event.pID, EntIndexToHScript(event.entID))
 lockCamera = 1
 
 else
@@ -76,16 +76,12 @@ SendToConsole("toggle dota_hud_flip");
 end
 
 function hota:mountHorse( event )
-	local pID = event.pID
-	local caster = PlayerResource:GetSelectedHeroEntity(pID)
-	
+	local caster = EntIndexToHScript(event.entID)
 	caster:CastAbilityNoTarget(caster:GetItemInSlot(0), 0) 
 end
 
 function hota:teleportBase( event )
-	local pID = event.pID
-	local caster = PlayerResource:GetSelectedHeroEntity(pID)
-	
+	local caster = EntIndexToHScript(event.entID)
 	caster:CastAbilityNoTarget(caster:GetItemInSlot(1), 0) 
 end
 

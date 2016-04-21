@@ -1,3 +1,5 @@
+require("libraries/worldpanels")
+
 function GetIndex(list, element)
     for k, v in pairs(list) do
         if v == element then
@@ -81,10 +83,20 @@ function initCamp(id,limitnumber, respawnDelaySecs)
 	camp.captureGood = false
 	camp.captureBad = false
 	
+	camp.wp = nil
+	
 	camp.onlyRunOnce = true
 	camp.respawnDelay = respawnDelaySecs
+	camp.currentDelay = respawnDelaySecs
  
     mercenaryCamps[id] = camp
+		
+	  Timers:CreateTimer(1, function()
+	WorldPanels:CreateWorldPanelForAll(
+		{layout = "file://{resources}/layout/custom_game/worldpanels/arrow.xml",
+			position = Entities:FindByName(nil,"merc_" .. id .. "_trigger"):GetAbsOrigin() + Vector(0,200,0)
+		})
+	end)
 end
 
 function respawnCamp(id)
@@ -105,6 +117,7 @@ function respawnCamp(id)
 	
 	if (mercenaryCamps[id].state == 3)
 	then
+		mercenaryCamps[id].currentDelay = mercenaryCamps[id].respawnDelay
 		mercenaryCamps[id].state = 0
 		mercenaryCamps[id].captureCounter = 50
 	end
@@ -146,6 +159,8 @@ end
 
 Timers:CreateTimer(function()
         for key,value in pairs(mercenaryCamps) do
+
+		
 
 			switch(mercenaryCamps[key].state) : caseof 
 				{
@@ -244,12 +259,34 @@ Timers:CreateTimer(function()
 						end,
 				[2]   = function (x) print(x,"two")
 						respawnAllyCamp(key)
+						
+						mercenaryCamps[key].wp = WorldPanels:CreateWorldPanelForAll(
+						{layout = "file://{resources}/layout/custom_game/worldpanels/mercSpawnCount.xml",
+							position = Entities:FindByName(nil,"merc_"  .. key .. "_trigger"):GetAbsOrigin()  + Vector(0,130,0),
+							name = "merc_"  .. key
+						})
+						
 						end,
 				[3]   = function (x) print(x,"three")
-							Timers:CreateTimer( 90.0, function()									
-									respawnCamp(key)
-								end
-							)
+				    print("merc_"  .. key .. " _trigger")
+	
+						 local decreaseTimer = Timers:CreateTimer(0, function()
+								mercenaryCamps[key].currentDelay = mercenaryCamps[key].currentDelay - 1
+								CustomNetTables:SetTableValue( "merc_capturepoints", "merc_" .. key , { value = mercenaryCamps[key].currentDelay } )
+							  return 1.0
+							end
+						  )
+	
+					
+						Timers:CreateTimer( mercenaryCamps[key].respawnDelay, function()
+										mercenaryCamps[key].wp:Delete()
+										respawnCamp(key)
+										Timers:RemoveTimer(decreaseTimer)
+									end
+						)
+
+					
+					
 						end,
 				  default = function (x) end,
 				  missing = function (x) end,

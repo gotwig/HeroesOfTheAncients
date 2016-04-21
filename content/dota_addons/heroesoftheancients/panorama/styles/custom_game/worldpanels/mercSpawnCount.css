@@ -1,0 +1,18 @@
+.ArrowPanel
+{
+  flow-children:down;
+}
+
+#head{
+	border-bottom: 3px solid yellow;
+	margin-bottom: 10px;
+}
+
+.textthing{
+	horizontal-align: center;
+	vertical-align:bottom;
+	color:white;
+	font-size: 24px;
+	margin-bottom: -8px;
+	text-shadow: 3px 5px 40px black;
+}

@@ -4,16 +4,27 @@ var m_AbilityPanels = []; // created up to a high-water mark, but reused when se
 
 function teleportBase(){
 	$.Msg( "trigger teleport back to base event" );
-	var iPlayerid = Players.GetLocalPlayer();
+	
+	var ent = Players.GetLocalPlayerPortraitUnit();
+	
+	if (Entities.IsControllableByPlayer( ent, Players.GetLocalPlayer() )){
+		GameEvents.SendCustomGameEventToServer( "teleportBase", { entID: ent })
+	
+	}
+	
 
-	GameEvents.SendCustomGameEventToServer( "teleportBase", { pID: iPlayerid })
 }
 
 function mountHorse(){
 	$.Msg( "Mount the horse" );
 	var iPlayerid = Players.GetLocalPlayer();
 	
-	GameEvents.SendCustomGameEventToServer( "mountHorse", { pID: iPlayerid })
+	var ent = Players.GetLocalPlayerPortraitUnit();
+	
+	if (Entities.IsControllableByPlayer( ent, Players.GetLocalPlayer() )){
+		GameEvents.SendCustomGameEventToServer( "mountHorse", { entID: ent })
+	
+	}
 }
 
 function OnLevelUpClicked()

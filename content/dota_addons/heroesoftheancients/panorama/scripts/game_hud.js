@@ -4,13 +4,14 @@ function flipMinimap(){
 	$.Msg( "Flipping Minimap" );
 	var iPlayerid = Players.GetLocalPlayer();
 	GameEvents.SendCustomGameEventToServer( "flipMinimap", { pID: iPlayerid })
-	
 }
 
 function heroCamLock(){
 	$.Msg( "Switching hero cam lock ON/OFF" );
+
 	var iPlayerid = Players.GetLocalPlayer();
-	GameEvents.SendCustomGameEventToServer( "lockCameraToHero", { pID: iPlayerid })
+	var entityID = Players.GetLocalPlayerPortraitUnit();
+	GameEvents.SendCustomGameEventToServer( "lockCameraToHero", { pID: iPlayerid, entID: entityID })
 }
 
 var tbClass = "TimeBlue";

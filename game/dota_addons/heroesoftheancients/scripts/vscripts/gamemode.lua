@@ -1,5 +1,10 @@
 -- This is the primary barebones gamemode script and should be used to assist in initializing your game mode
 
+-- This library can be used to synchronize client-server data via player/client-specific nettables
+require('libraries/playertables')
+
+require("worldpanels/worldpanelsInit")
+
 
 require ('libraries/notifications')
 
@@ -332,9 +337,10 @@ end
 -- It can be used to pre-initialize any values/tables that will be needed later
 function GameMode:InitGameMode()
 
-  Convars:SetBool("dota_hide_cursor", false);
+  Convars:SetBool("dota_hide_cursor", false)
   
-
+  SetTeamCustomHealthbarColor(2, 97,194,211)
+  
   GameMode = self
   DebugPrint('[BAREBONES] Starting to load Barebones gamemode...')
 

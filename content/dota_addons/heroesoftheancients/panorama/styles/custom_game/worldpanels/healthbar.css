@@ -1,0 +1,61 @@
+#playerHeroName{
+	horizontal-align: center;
+	vertical-align:bottom;
+	color:white;
+	font-size: 18px;
+	margin-bottom: -8px;
+	text-shadow: 3px 5px 40px black;
+}
+
+.worldHeroStats
+{
+  padding:2px;
+  flow-children: down;
+}
+
+.HealthBar
+{
+  background-color: #000000;
+  padding:1px;
+  flow-children:right;
+  border: 1px solid #b2b4af;
+  height: 15px;
+}
+
+.ManaBar
+{
+  background-color: #000000;
+  padding:1px;
+  flow-children:right;
+  border-bottom: 1px solid #b2b4af;
+  border-left: 1px solid #b2b4af;
+  border-right: 1px solid #b2b4af;
+
+  height: 6px;
+}
+
+.Bubble
+{
+  width: 122px;
+  height: 100%;
+  vertical-align: center;
+}
+
+
+#HP
+{
+  width: 100%;
+  height: 100%;
+  align: left center;
+  background-image: url("file://{images}/custom_game/hud/healthbar_overlay.png");
+  box-shadow: inset #333333b0 0px 1px 0px 3px; // inner
+
+}
+
+#mp
+{
+  width: 100%;
+  height: 100%;
+  align: left center;
+  background-color: gradient( linear, 0% 0%, 0% 100%, from( #7ac6d3 ), to( #61c2d3 ) );
+}

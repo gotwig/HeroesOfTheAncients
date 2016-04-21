@@ -1,0 +1,11 @@
+<root> 
+  <styles>
+    <include src="s2r://panorama/styles/dotastyles.vcss_c" />
+    <include src="file://{resources}/styles/custom_game/worldpanels/arrow.css" />
+  </styles>
+  <Panel hittest="false" class="ArrowPanel">
+    <Label class="textthing" id="head" text="Mercenary Camp"> </Label>
+    <Label class="textthing" text="Defeat or bribe this camp"> </Label>
+    <Label class="textthing" text="to gain Mercenaries"> </Label>
+  </Panel>
+</root>

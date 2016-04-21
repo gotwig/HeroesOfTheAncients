@@ -6,6 +6,9 @@
 	<include src="file://{resources}/scripts/action_bar_ability.js" />
 	<include src="file://{resources}/scripts/buff_list.js" />
 		
+	<include src="file://{resources}/scripts/playertables/playertables_base.js" />
+
+		
   </scripts>
   <script>
     // Uncomment any of the following lines in order to disable that portion of the default UI
@@ -55,7 +58,7 @@
 	
 	<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/scripts.xml" />
 	
-
+    <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_worldpanels.xml" />
 	
 	
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_notifications.xml" /> 
