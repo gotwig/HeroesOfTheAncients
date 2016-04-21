@@ -263,7 +263,7 @@ Timers:CreateTimer(function()
 						mercenaryCamps[key].wp = WorldPanels:CreateWorldPanelForAll(
 						{layout = "file://{resources}/layout/custom_game/worldpanels/mercSpawnCount.xml",
 							position = Entities:FindByName(nil,"merc_"  .. key .. "_trigger"):GetAbsOrigin()  + Vector(0,130,0),
-							name = "merc_"  .. key
+							name = "merc_"  .. key .. "_delay"
 						})
 						
 						end,
@@ -272,7 +272,7 @@ Timers:CreateTimer(function()
 	
 						 local decreaseTimer = Timers:CreateTimer(0, function()
 								mercenaryCamps[key].currentDelay = mercenaryCamps[key].currentDelay - 1
-								CustomNetTables:SetTableValue( "merc_capturepoints", "merc_" .. key , { value = mercenaryCamps[key].currentDelay } )
+								CustomNetTables:SetTableValue( "merc_capturepoints", "merc_" .. key .. "_delay" , { value = mercenaryCamps[key].currentDelay } )
 							  return 1.0
 							end
 						  )
