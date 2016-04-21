@@ -5,7 +5,6 @@ Heroes of the Ancients is an upcoming DotA2 mod, trying to bring the best ideas 
 
 Featuring
   - "Haunted Mines" - a complete playable map.
-  
   - Heavy Teamcombat (All teamplayers share the same level)
   - Dynamic Events
   - No items, no gold
