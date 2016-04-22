@@ -408,7 +408,7 @@
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
-		"ItemCost"						"600"
+	
 		"ItemShopTags"					"consumable"
 		"ItemQuality"					"consumable"
 		"ItemStackable"					"1"

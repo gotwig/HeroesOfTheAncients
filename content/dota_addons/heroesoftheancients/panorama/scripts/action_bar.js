@@ -27,6 +27,21 @@ function mountHorse(){
 	}
 }
 
+function AbiShowTooltip(name)
+{
+	$.Msg( "SHOW TOOLTIP" );
+
+	var abilityButton = $( "#" + name );
+	var abilityName = "lw_" + name;
+	$.DispatchEvent( "DOTAShowAbilityTooltip", abilityButton, abilityName );
+}
+
+function AbiHideTooltip(name)
+{
+	var abilityButton = $( "#" + name );
+	$.DispatchEvent( "DOTAHideAbilityTooltip", abilityButton );
+}
+
 function OnLevelUpClicked()
 {
 	if ( Game.IsInAbilityLearnMode() )

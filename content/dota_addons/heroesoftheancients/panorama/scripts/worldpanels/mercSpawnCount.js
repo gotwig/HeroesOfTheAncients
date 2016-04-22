@@ -9,6 +9,7 @@ var myNumber = 0;
 function changeTime()
 {
 var wp = $.GetContextPanel().WorldPanel
+var offScreen = $.GetContextPanel().OffScreen;
 
 if (wp){
 	

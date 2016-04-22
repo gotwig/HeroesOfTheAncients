@@ -9,10 +9,9 @@
 
 	<Panel class="AbilityOverlayRoot">
 	
-		<Panel class="abilityLeftWing abilityWing">
+		<Panel id="mountHorse" onmouseover="AbiShowTooltip('mountHorse')" onmouseout="AbiHideTooltip('mountHorse')" class="abilityLeftWing abilityWing">
 		
 			<Button id="mount" onactivate="mountHorse()">
-
 				<Image src="file://{images}/custom_game/hud/mount.png" />
 			</Button>
 			
@@ -25,9 +24,8 @@
 		<Panel id="ability_list" />
 					
 					
-		<Panel class="abilityRightWing abilityWing">
+		<Panel  id="teleportBase" onmouseover="AbiShowTooltip('teleportBase')" onmouseout="AbiHideTooltip('teleportBase')" class="abilityRightWing abilityWing">
 			<Button id="teleport" onactivate="teleportBase()">
-
 				<Image src="file://{images}/custom_game/hud/teleportBase.png" />
 			</Button>
 			

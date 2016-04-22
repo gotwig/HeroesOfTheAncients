@@ -9,6 +9,7 @@ function flipMinimap(){
 function heroCamLock(){
 	$.Msg( "Switching hero cam lock ON/OFF" );
 
+	
 	var iPlayerid = Players.GetLocalPlayer();
 	var entityID = Players.GetLocalPlayerPortraitUnit();
 	GameEvents.SendCustomGameEventToServer( "lockCameraToHero", { pID: iPlayerid, entID: entityID })

@@ -116,6 +116,29 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityManaCost"       "0 0 0 0"
 	  }
+  "dummy_unit"
+  {
+    "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+    "BaseClass"           "ability_datadriven"
+    "AbilityTextureName"            "rubick_empty1"
+    "MaxLevel"                      "1"
+    
+    "Modifiers"
+    {
+      "dummy_unit"
+      {
+          "Passive"                        "1"
+          "IsHidden"                        "1"    
+          "States"
+          {
+              "MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+              "MODIFIER_STATE_INVULNERABLE"    "MODIFIER_STATE_VALUE_ENABLED"
+              "MODIFIER_STATE_NOT_ON_MINIMAP" "MODIFIER_STATE_VALUE_ENABLED"
+              "MODIFIER_STATE_NO_HEALTH_BAR"  "MODIFIER_STATE_VALUE_ENABLED"
+          }
+      }
+    }
+  }
 	"example_ability"
 	  {
 	    "ID"              "1852"
@@ -307,94 +330,8 @@
 			"IsCastableWhileHidden" "1"
 	
 			
-	        "precache"
-	        {
-	            "particle"  "particles/econ/events/ti4/teleport_start_ti4.vpcf"
-	            "particle"  "particles/units/heroes/hero_chen/chen_teleport_flash.vpcf"
-				"soundfile"	"soundevents/game_sounds_custom.vsndevts"
-				"soundfile"	"soundevents/game_sounds.vsndevts"
-	
-	        }
-	
-	        "OnSpellStart"
-	        {
-	            "ApplyModifier"
-	            {
-	                "ModifierName"      "modifier_teleport"
-	                "Target"            "CASTER"
-	            }
-				
-	
-				
-	        }
-	        "OnChannelSucceeded"
-	        {
-	            "AttachEffect"
-	            {
-	                "EffectName"        "particles/units/heroes/hero_chen/chen_teleport_flash.vpcf"
-	                "EffectAttachType"  "attach_origin"
-	                "Target"            "CASTER"
-	            }
-	            "RunScript"
-	            {
-	                "ScriptFile"            "units/mountHorse.lua"
-	                "Function"              "MountHorse"
-	            }
-	            "RemoveModifier"
-	            {
-	                "ModifierName"  "modifier_teleport"
-	                "Target"        "CASTER"
-	            }
-				
-				
-				"RunScript"
-				{
-						"ScriptFile"	"units/sound.lua"
-						"Function"		"FireSound"
-						"sound_name"	"Courier.Footsteps"
-				}
-				
-				"RunScript"
-				{
-						"ScriptFile"	"units/restoreInvoker.lua"
-						"Function"		"Mount"
-				}
-				
-	        }
-	        "OnChannelInterrupted"
-	        {
-	            "RemoveModifier"
-	            {
-	                "ModifierName"  "modifier_teleport"
-	                "Target"        "CASTER"
-	            }
-				
-				"RunScript"
-				{
-						"ScriptFile"	"units/restoreInvoker.lua"
-						"Function"		"Mount"
-				}
-				
-				
-	        }
-	
-	        "Modifiers"
-	        {
-	            "modifier_teleport"
-	            {
-	                "Passive"           "0"
-	                "IsHidden"          "1"
-	                "IsDebuff"          "0"
-	
-	                "EffectName"        "particles/econ/events/ti4/teleport_start_ti4.vpcf"
-	                "EffectAttachType"  "attach_origin"
-					
-					
-	            }
-				
-	        }
 	    }
-	"lw_teleport"
+	"lw_teleportBase"
 	    {
 	        "BaseClass"                         "ability_datadriven"
 	
@@ -409,107 +346,6 @@
 	        "AbilityChannelTime"                "6"
 	
 			"IsCastableWhileHidden" "1"
-	
-			
-	        "precache"
-	        {
-	            "particle"  "particles/econ/events/ti4/teleport_start_ti4.vpcf"
-	            "particle"  "particles/units/heroes/hero_chen/chen_teleport_flash.vpcf"
-				"soundfile"	"soundevents/game_sounds.vsndevts"
-	        }
-	
-	        "OnSpellStart"
-	        {
-	            "ApplyModifier"
-	            {
-	                "ModifierName"      "modifier_teleport"
-	                "Target"            "CASTER"
-	            }
-				
-				"RunScript"
-				{
-						"ScriptFile"	"units/sound.lua"
-						"Function"		"FireSound"
-						"sound_name"	"Portal.Loop_Disappear"
-				}
-				
-	        }
-	        "OnChannelSucceeded"
-	        {
-	            "AttachEffect"
-	            {
-	                "EffectName"        "particles/units/heroes/hero_chen/chen_teleport_flash.vpcf"
-	                "EffectAttachType"  "attach_origin"
-	                "Target"            "CASTER"
-	            }
-	            "RunScript"
-	            {
-	                "ScriptFile"            "units/teleportBase.lua"
-	                "Function"              "Teleport"
-	            }
-	            "RemoveModifier"
-	            {
-	                "ModifierName"  "modifier_teleport"
-	                "Target"        "CASTER"
-	            }
-				
-				"FireSound"
-				{
-						"EffectName"	"Portal.Hero_Appear"
-						"Target" 		"CASTER"
-				}
-				"RunScript"
-				{
-						"ScriptFile"	"units/sound.lua"
-						"Function"		"StopSound"
-						"sound_name"	"Portal.Loop_Disappear"
-				}
-							
-				"RunScript"
-				{
-						"ScriptFile"	"units/restoreInvoker.lua"
-						"Function"		"Teleport"
-				}
-	        }
-	        "OnChannelInterrupted"
-	        {
-	            "RemoveModifier"
-	            {
-	                "ModifierName"  "modifier_teleport"
-	                "Target"        "CASTER"
-	            }
-				
-				"RunScript"
-				{
-						"ScriptFile"	"units/sound.lua"
-						"Function"		"StopSound"
-						"sound_name"	"Portal.Loop_Disappear"
-				}
-				
-				"RunScript"
-				{
-						"ScriptFile"	"units/restoreInvoker.lua"
-						"Function"		"Teleport"
-				}
-				
-				
-	        }
-	
-	        "Modifiers"
-	        {
-	            "modifier_teleport"
-	            {
-	                "Passive"           "0"
-	                "IsHidden"          "1"
-	                "IsDebuff"          "0"
-	
-	                "EffectName"        "particles/econ/events/ti4/teleport_start_ti4.vpcf"
-	                "EffectAttachType"  "attach_origin"
-					
-					
-	            }
-				
-	        }
 	    }
 	// MOON WELL
 	  "nightelf_replenish_mana_and_life"

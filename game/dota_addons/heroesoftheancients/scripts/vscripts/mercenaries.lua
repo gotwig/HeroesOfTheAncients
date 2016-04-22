@@ -94,9 +94,17 @@ function initCamp(id,limitnumber, respawnDelaySecs)
 	  Timers:CreateTimer(1, function()
 	WorldPanels:CreateWorldPanelForAll(
 		{layout = "file://{resources}/layout/custom_game/worldpanels/arrow.xml",
-			position = Entities:FindByName(nil,"merc_" .. id .. "_trigger"):GetAbsOrigin() + Vector(0,200,0)
+			position = Entities:FindByName(nil, "merc_" .. id .. "_delay"):GetAbsOrigin() + Vector(0,80,0)
 		})
+		
+	 --Level stuff
+	 Entities:FindByName(nil, "merc_" .. id .. "_delay"):FindAbilityByName("dummy_unit"):SetLevel(1)
+	
+		
 	end)
+	
+
+	
 end
 
 function respawnCamp(id)
@@ -262,7 +270,7 @@ Timers:CreateTimer(function()
 						
 						mercenaryCamps[key].wp = WorldPanels:CreateWorldPanelForAll(
 						{layout = "file://{resources}/layout/custom_game/worldpanels/mercSpawnCount.xml",
-							position = Entities:FindByName(nil,"merc_"  .. key .. "_trigger"):GetAbsOrigin()  + Vector(0,130,0),
+							entity = Entities:FindByName(nil, "merc_" .. key .. "_delay"):GetEntityIndex(),
 							name = "merc_"  .. key .. "_delay"
 						})
 						
