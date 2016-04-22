@@ -4,6 +4,7 @@
 Heroes of the Ancients is an upcoming DotA2 mod, trying to bring the best ideas from Heroes of the Storm TM from Blizzard Entertainment TM to Valves DotA2.
 
 Featuring
+  - "Haunted Mines" - a complete playable map.
   - Heavy Teamcombat (All teamplayers share the same level)
   - Dynamic Events
   - No items, no gold
@@ -12,6 +13,8 @@ Featuring
   - Moon wells to restore hp/mp of your hero
   - Mercenary Camps, groups of monsters which are for the fight winner to capture
   - Watch Towers, which grant large map vision once captured
+  - "Mount" ability for faster movement
+  - "Teleport" ability to homebase across the map
 
 The goal of those ideas, is heavy team combat, with, in ideal case, no long routes to go, and a lot of action for the players.
 
@@ -42,10 +45,7 @@ I am currently searching people in the following positions:
 * Map Designer - Design with Hammer new HotA maps, which make use of our new custom entities, and dynamic events
 
 ### Todos
-
- - New UI
  - Hideable Grass (in the works, there are good results)
- - Finishing the map "Haunted Mines"
 
 Thanks for your interest in this mod.
 
