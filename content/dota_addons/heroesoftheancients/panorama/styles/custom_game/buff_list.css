@@ -3,15 +3,15 @@
 	horizontal-align: left;
 	vertical-align: bottom;
 	margin-bottom: 120px;
-	margin-left: 330px;
-
+	margin-left: 320px;
+	width: 210px;
 	
 	flow-children: down;
 }
 
 #buffs_list
 {
-	flow-children: right;
+	flow-children: right-wrap;
 }
 
 .BuffRoot

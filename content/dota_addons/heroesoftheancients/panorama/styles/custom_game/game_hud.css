@@ -83,19 +83,19 @@ margin-top: 84%;
 
 #teamLevels{
 	width: 180px;
-	padding-top: 10px;
+	padding-top: 15px;
 	horizontal-align: center;
 
 
 }
 
 #teamLevel2{
-	font-size: 52px;
+	font-size: 46px;
 	horizontal-align: left;
 }
 
 #teamLevel3{
-	font-size: 52px;
+	font-size: 46px;
 	horizontal-align: right;
 }
 
@@ -175,15 +175,17 @@ margin-top: 84%;
 	width: 220px;
 	height: 60px;
 	vertical-align:center;
-	margin-top: 45px;
+	margin-top: 46px;
 }
 
 #healthbar{
-  margin-top: 29%;
+  margin-top: 28%;
   width: 196px;
-  height: 21px;
-  opacity-mask: url( "file://{images}/custom_game/hud/masks/hpmpbar.png" );
-margin-left: 4px;
+  height: 28px;
+  opacity-mask: url( "file://{images}/custom_game/hud/masks/hpbar.png" );
+  margin-left: 3px;
+  z-index: 10;
+
 
 }
 
@@ -192,15 +194,16 @@ margin-left: 4px;
   width: 100%;
   height: 100%;
   transition: width 0.1s linear 0.0s;
-  opacity-mask: url( "file://{images}/custom_game/hud/masks/hpmpbar.png" );
+  opacity-mask: url( "file://{images}/custom_game/hud/masks/hpbar.png" );
+  background-color: #3cad15;
+
 }
 
 
 #manabar{
   vertical-align: bottom;
   width: 196px;
-  height: 20px;
-
+  height: 21px;
   margin-left: -10px;
 
   opacity-mask: url( "file://{images}/custom_game/hud/masks/hpmpbar.png" );
@@ -212,16 +215,18 @@ margin-left: 4px;
   height: 100%;
   transition: width 0.1s linear 0.0s;
   opacity-mask: url( "file://{images}/custom_game/hud/masks/hpmpbar.png" );
-
-  //opacity: .5; rotate3d( -0.0deg, 0.0deg, 55.0deg );
+  background-color: #1c9ecf;
 }
 
 #manabarText{
 	margin-left: 10px;
+	margin-top:-1px;
+
 }
 
 #healthbarText{
 	margin-left: 10px;
+	margin-top:-2px;
 }
 
 #xpbars{

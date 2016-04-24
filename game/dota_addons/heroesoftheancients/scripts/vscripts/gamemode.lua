@@ -193,6 +193,14 @@ function GameMode:OnGameInProgress()
    teamselection = ""
 
 
+   local startBlockers = Entities:FindAllByClassname("tutorial_npc_blocker")
+   
+   
+       for i,v in ipairs(startBlockers)
+	   do
+		v:RemoveSelf()
+	   end
+
    
 	Timers:CreateTimer(function()
 		

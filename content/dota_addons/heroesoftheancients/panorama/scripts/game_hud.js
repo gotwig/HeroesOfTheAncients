@@ -26,7 +26,7 @@ var per = 0;
 var minutes = "";
 var seconds = "";
 
-var deathMaxTime = 0;
+var deathMaxTime = -1;
 
 function TimeBar()
 {
@@ -312,8 +312,7 @@ function heroPanel(){
 	  var maxHealth = Entities.GetMaxHealth( selectedEnt );
 		
 	  var left2 = $("#healthbarLeft");
-	  left2.SetHasClass("TimeBlue", false);
-	  left2.SetHasClass("TimeRed", true);
+
 
 	  left2.style.transition = "width 0.1s linear 0.0s;"
 	  left2.style.width = healPer + "%";
@@ -329,8 +328,6 @@ function heroPanel(){
 		  var manaPer = (currentMana * 100) / maxMana;
 		  
 		  var left1 = $("#manabarLeft");
-		  left1.SetHasClass("TimeBlue", true);
-		  left1.SetHasClass("TimeRed", false);
 
 		  left1.style.transition = "width 0.1s linear 0.0s;"
 		  left1.style.width = manaPer + "%";

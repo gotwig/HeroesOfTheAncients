@@ -1,6 +1,7 @@
 .ArrowPanel
 {
   flow-children:down;
+  z-index: -10;
 }
 
 #head{
