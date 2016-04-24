@@ -15,6 +15,7 @@ Featuring
   - Watch Towers, which grant large map vision once captured
   - "Mount" ability for faster movement
   - "Teleport" ability to homebase across the map
+  - Hide in high grass from your enemies to plan deadly attacks or heal yourself up
 
 The goal of those ideas, is heavy team combat, with, in ideal case, no long routes to go, and a lot of action for the players.
 
@@ -45,7 +46,8 @@ I am currently searching people in the following positions:
 * Map Designer - Design with Hammer new HotA maps, which make use of our new custom entities, and dynamic events
 
 ### Todos
- - Hideable Grass (in the works, there are good results)
+ - Nothing, except game testing and some UI bugs. Except:
+ - Release on Steam Workshop
 
 Thanks for your interest in this mod.
 
