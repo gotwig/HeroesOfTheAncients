@@ -120,7 +120,7 @@ end
 ]]
 function GameMode:OnHeroInGame(hero)
 
-  Convars:SetBool("dota_hide_cursor", true)
+  --Convars:SetBool("dota_hide_cursor", true)
   
 
   Convars:SetInt("dota_minimap_hero_size", 1100)
@@ -345,7 +345,7 @@ end
 -- It can be used to pre-initialize any values/tables that will be needed later
 function GameMode:InitGameMode()
 
-  Convars:SetBool("dota_hide_cursor", false)
+  --Convars:SetBool("dota_hide_cursor", false)
   
   SetTeamCustomHealthbarColor(2, 97,194,211)
   

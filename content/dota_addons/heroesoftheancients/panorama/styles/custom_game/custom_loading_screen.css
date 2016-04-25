@@ -39,21 +39,15 @@
 
 #CustomBg
 {
-
-  margin-top: 350px;
-    overflow: clip;
-  pre-transform-scale2d: 1.0;
-  animation-name: gamemode_anim;
-  animation-delay: AnimationDelay;
-  animation-duration: TotalLength;
-  animation-timing-function: TimingFunc;
-  animation-iteration-count: IterationCount;
+	width: 60%;
+	height: 60%;
+	vertical-align: middle;
 }
 
 #gamemode
 {
-  margin-left: 160px;
-  /*margin-bottom: 0px;*/
+
+
   
 }
 

@@ -26,7 +26,7 @@ var per = 0;
 var minutes = "";
 var seconds = "";
 
-var deathMaxTime = -1;
+var deathMaxTime = 0;
 
 function TimeBar()
 {
@@ -69,7 +69,6 @@ function heroDeathTimebar()
 		leftDeath.style.width = ((Players.GetRespawnSeconds ( Players.GetLocalPlayer()) / deathMaxTime) * 100) * 2.4 + "px";
 		}
 
-
 	  }
 	  
 	  else {
@@ -83,7 +82,7 @@ function OnHeroDeath(data){
 	if (data.entindex_killed == Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ) ){
 		$.Msg( "Your Hero Died" );
 		
-		deathMaxTime = Players.GetRespawnSeconds ( Players.GetLocalPlayer() );
+		deathMaxTime = -1;
 		
 	}
 }
@@ -400,7 +399,7 @@ function hideDynamicEventInfo(){
   showGameTime();
   teamLevels();
   
-  showCustomCursor()
+  //showCustomCursor()
   
   checkFlipped()
   
