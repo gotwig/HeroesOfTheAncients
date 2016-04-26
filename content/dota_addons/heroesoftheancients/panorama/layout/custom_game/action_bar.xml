@@ -9,9 +9,9 @@
 
 	<Panel class="AbilityOverlayRoot">
 	
-		<Panel id="mountHorse" onmouseover="AbiShowTooltip('mountHorse')" onmouseout="AbiHideTooltip('mountHorse')" class="abilityLeftWing abilityWing">
+		<Panel hittest="false" id="mountHorse"  class="abilityLeftWing abilityWing">
 		
-			<Button id="mount" onactivate="mountHorse()">
+			<Button id="mount" onmouseover="AbiShowTooltip('mountHorse')" onmouseout="AbiHideTooltip('mountHorse')" onactivate="mountHorse()">
 				<Image src="file://{images}/custom_game/hud/mount.png" />
 			</Button>
 			
@@ -24,8 +24,8 @@
 		<Panel id="ability_list" />
 					
 					
-		<Panel  id="teleportBase" onmouseover="AbiShowTooltip('teleportBase')" onmouseout="AbiHideTooltip('teleportBase')" class="abilityRightWing abilityWing">
-			<Button id="teleport" onactivate="teleportBase()">
+		<Panel hittest="false" id="teleportBase"  class="abilityRightWing abilityWing">
+			<Button id="teleport" onactivate="teleportBase()" onmouseover="AbiShowTooltip('teleportBase')" onmouseout="AbiHideTooltip('teleportBase')">
 				<Image src="file://{images}/custom_game/hud/teleportBase.png" />
 			</Button>
 			
@@ -34,13 +34,11 @@
 			</Panel>
 			
 		</Panel>
-				<Button id="LevelUpButton" onactivate="OnLevelUpClicked()">
+		<Button id="LevelUpButton" onactivate="OnLevelUpClicked()">
 			<Panel id="LevelUpButtonInset">
-				<Label id="levelupText" text="#LevelUp" />
+				<Label text="#LevelUp" />
 			</Panel>
-
 		</Button>
-			<Label  id="LevelUpButtonSkill" text="Select a skill" />
 
 	</Panel>
 

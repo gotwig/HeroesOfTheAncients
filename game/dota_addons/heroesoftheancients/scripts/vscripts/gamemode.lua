@@ -5,7 +5,7 @@ require('libraries/playertables')
 
 require("worldpanels/worldpanelsInit")
 
-
+require ('constants')
 require ('libraries/notifications')
 
 matchstarttexts = {'Fight, kill!','Let the battle begin!','Now go, and summon my golems!'}

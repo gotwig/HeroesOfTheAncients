@@ -43,7 +43,7 @@ function AbiHideTooltip(name)
 }
 
 function OnLevelUpClicked()
-{
+{		
 	if ( Game.IsInAbilityLearnMode() )
 	{
 		Game.EndAbilityLearnMode();
@@ -69,6 +69,7 @@ function UpdateAbilityList()
 	var queryUnit = Players.GetLocalPlayerPortraitUnit();
 
 	// see if we can level up
+	
 	var nRemainingPoints = Entities.GetAbilityPoints( queryUnit );
 	var bPointsToSpend = ( nRemainingPoints > 0 );
 	var bControlsUnit = Entities.IsControllableByPlayer( queryUnit, Game.GetLocalPlayerID() );

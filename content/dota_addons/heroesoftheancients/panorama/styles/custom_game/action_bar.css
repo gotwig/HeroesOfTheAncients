@@ -7,7 +7,7 @@
 	background-repeat: no-repeat;
 	
 	horizontal-align: center;
-
+	
 }
 
 .abilityWing{
@@ -66,22 +66,12 @@
     background-color: #c4a529;
 	width: 114px;
 	height: 28px;
-	margin-top: -20px;
 	visibility: collapse;
 	margin-left: -50%;
+	vertical-align: top;
 }
 
-#LevelUpButtonSkill
-{
-	border: 1px solid black;
-    background-color: #c4a529;
-	width: 114px;
-	height: 28px;
-	margin-top: -10px;
-	color: red;
-	visibility:collapse;
-	margin-left: -42%;
-}
+
 
 .could_level_up #LevelUpButton
 {
@@ -153,7 +143,7 @@
 	border: 4px solid white;
 }
 
-.no_level DOTAAbilityImage
+.no_level1 DOTAAbilityImage
 {
 	saturation: 0;
 	wash-color: #595959;
@@ -165,7 +155,7 @@
 	wash-color: #1569be;
 }
 
-.potential_upgrade.no_level DOTAAbilityImage
+.potential_upgrade.no_level1 DOTAAbilityImage
 {
 	saturation: 1;
 	wash-color: white;

@@ -35,12 +35,12 @@ function UpdateAbility()
 	var abilityName = Abilities.GetAbilityName( m_Ability );
 
 	var noLevel =( 0 == Abilities.GetLevel( m_Ability ) );
-	var isCastable = !Abilities.IsPassive( m_Ability ) && !noLevel;
+	var isCastable = !Abilities.IsPassive( m_Ability );
 	var manaCost = Abilities.GetManaCost( m_Ability );
 	var hotkey = Abilities.GetKeybind( m_Ability, m_QueryUnit );
 	var unitMana = Entities.GetMana( m_QueryUnit );
 
-	$.GetContextPanel().SetHasClass( "no_level", noLevel );
+	$.GetContextPanel().SetHasClass( "no_level1", noLevel );
 	$.GetContextPanel().SetHasClass( "is_passive", Abilities.IsPassive(m_Ability) );
 	$.GetContextPanel().SetHasClass( "no_mana_cost", ( 0 == manaCost ) );
 	$.GetContextPanel().SetHasClass( "insufficient_mana", ( manaCost > unitMana ) );
@@ -48,17 +48,21 @@ function UpdateAbility()
 	$.GetContextPanel().SetHasClass( "toggle_enabled", Abilities.GetToggleState(m_Ability) );
 	$.GetContextPanel().SetHasClass( "is_active", ( m_Ability == Abilities.GetLocalPlayerActiveAbility() ) );
 
-	// CHANGED MANUALY
-	if (abilityButton){
-		abilityButton.enabled = ( isCastable || m_bInLevelUp );
+
+
+	
+	if ($( "#HotkeyText" )){
+		$( "#HotkeyText" ).text = hotkey;
 	}
 	
-	$( "#HotkeyText" ).text = hotkey;
-	
-	$( "#AbilityImage" ).abilityname = abilityName;
-	$( "#AbilityImage" ).contextEntityIndex = m_Ability;
-	
-	$( "#ManaCost" ).text = manaCost;
+	if ($( "#AbilityImage" )) {
+		$( "#AbilityImage" ).abilityname = abilityName;
+		$( "#AbilityImage" ).contextEntityIndex = m_Ability;
+	}
+
+	if ($( "#ManaCost" )){
+		$( "#ManaCost" ).text = manaCost;
+	}
 	
 	if ( Abilities.IsCooldownReady( m_Ability ) )
 	{
@@ -75,9 +79,13 @@ function UpdateAbility()
 		
 		var progress = (-360 * (cooldownRemaining / cooldownLength)).toString();
 		
-		$( "#CooldownTimer" ).text = Math.ceil( cooldownRemaining );
+		if ($( "#CooldownTimer" )){
+			$( "#CooldownTimer" ).text = Math.ceil( cooldownRemaining );
+		}
 
-		$( "#CooldownOverlay" ).style.clip = "radial(50% 50%, 0deg, " + progress + "deg)";
+		if($( "#CooldownOverlay" )){
+			$( "#CooldownOverlay" ).style.clip = "radial(50% 50%, 0deg, " + progress + "deg)";
+		}
 	}
 	
 }
@@ -101,9 +109,12 @@ function AbilityHideTooltip()
 
 function ActivateAbility()
 {
-	if ( m_bInLevelUp )
+	if ( Game.IsInAbilityLearnMode() )
 	{
 		Abilities.AttemptToUpgrade( m_Ability );
+			
+		Game.EndAbilityLearnMode();
+
 		return;
 	}
 	Abilities.ExecuteAbility( m_Ability, m_QueryUnit, false );
