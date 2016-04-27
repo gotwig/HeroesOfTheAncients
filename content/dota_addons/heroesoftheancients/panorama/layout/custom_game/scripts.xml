@@ -81,16 +81,9 @@
 			
 				<Panel id="TimersPanel" hittest="false">
 				
-				
-					<Button id="flipMinimap" onactivate="flipMinimap()">
-						<Label class="TimerText" text="Flip Minimap (GLOBAL!)"/>
-					</Button>
-				
 					<Button id="heroLockActivator" onactivate="heroCamLock()">
-						<Label class="TimerText" text="Lock camera"/>
+						<Label id="herocamLockText" class="TimerText" text="Lock camera"/>
 					</Button>
-					
-
 					
 					<Label id="SuddenDeathTimer" class="TimerText" text=""/>
 				</Panel>

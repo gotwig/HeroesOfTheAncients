@@ -265,9 +265,12 @@ function leveluptextteam3(){
 
 function OnPlayerLevelUp( data ) {
 	
+		$.Msg( data.playerID );
+	
 	if (Game.GetPlayerIDsOnTeam(2).length > 0){
 
-		if (data.PlayerID == Game.GetPlayerIDsOnTeam(2)[0]){
+		if (data.playerID == Game.GetPlayerIDsOnTeam(2)[0] +1){
+
 			var currentXP = Entities.GetCurrentXP(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(2)[0]));
 			var neededXP =	Entities.GetNeededXPToLevel(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(2)[0]));
 			
@@ -282,11 +285,12 @@ function OnPlayerLevelUp( data ) {
 	}
 	if (Game.GetPlayerIDsOnTeam(3).length > 0){
 
-		if (data.PlayerID == Game.GetPlayerIDsOnTeam(3)[0]){
-			var currentXP = Entities.GetCurrentXP(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(3)[0]));
-			var neededXP =	Entities.GetNeededXPToLevel(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(3)[0]));
+		if (data.playerID == Game.GetPlayerIDsOnTeam(3)[0] +1){
 			
-			perTeam2LvlFactor = ( neededXP - (neededXP - currentXP ) );
+			var currentXP1 = Entities.GetCurrentXP(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(3)[0]));
+			var neededXP1 =	Entities.GetNeededXPToLevel(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(3)[0]));
+			
+			perTeam2LvlFactor = ( neededXP1 - (neededXP1 - currentXP1 ) );
 			
 			$("#levelupTextTeam3").visible = true;
 			
@@ -413,7 +417,7 @@ function hideDynamicEventInfo(){
   GameEvents.Subscribe("hideDynamicEventInfo", hideDynamicEventInfo); 
   CustomNetTables.SubscribeNetTableListener( "dynamic_MapEvents", dynamicEventInfoChanged );
   
-  GameEvents.Subscribe( "dota_player_gained_level", OnPlayerLevelUp );
+  GameEvents.Subscribe( "dota_player_gained_level_all", OnPlayerLevelUp );
   
   GameEvents.Subscribe( "entity_killed", OnHeroDeath );
   GameEvents.Subscribe( "npc_spawned", OnHeroRespawn );

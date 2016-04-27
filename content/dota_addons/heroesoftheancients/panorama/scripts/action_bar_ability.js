@@ -107,14 +107,20 @@ function AbilityHideTooltip()
 	$.DispatchEvent( "DOTAHideAbilityTooltip", abilityButton );
 }
 
+function endAbilityUpgradeMode(){
+		if (!Entities.GetAbilityPoints( Players.GetLocalPlayerPortraitUnit() ) > 0 ) {
+			Game.EndAbilityLearnMode();
+		};}
+
 function ActivateAbility()
 {
 	if ( Game.IsInAbilityLearnMode() )
 	{
 		Abilities.AttemptToUpgrade( m_Ability );
-			
-		Game.EndAbilityLearnMode();
+		
+		$.Schedule( 1/10, endAbilityUpgradeMode );
 
+		
 		return;
 	}
 	Abilities.ExecuteAbility( m_Ability, m_QueryUnit, false );

@@ -170,11 +170,16 @@ end
 
 -- A player leveled up
 function GameMode:OnPlayerLevelUp(keys)
+
+  CustomGameEventManager:Send_ServerToAllClients( "dota_player_gained_level_all", {playerID = keys.player} )
+
+
   if MINESOPENLOADED then return end
 
   DebugPrint('[BAREBONES] OnPlayerLevelUp')
   DebugPrintTable(keys)
 
+  
   local player = EntIndexToHScript(keys.player)
   local level = keys.level
   
