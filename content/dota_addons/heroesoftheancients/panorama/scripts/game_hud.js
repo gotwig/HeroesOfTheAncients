@@ -28,6 +28,7 @@ var seconds = "";
 
 var deathMaxTime = 0;
 var showDeathTimebar = false;
+var initShowDeath = false;
 
 function TimeBar()
 {
@@ -49,12 +50,20 @@ function TimeBar()
 
 function heroDeathTimebar()
 {
+
 	  if (Players.GetRespawnSeconds ( Players.GetLocalPlayer()) < 0){
 		  showDeathTimebar = false;
 	  }
-	
+	  
+	  if (Players.GetRespawnSeconds ( Players.GetLocalPlayer()) > 0 && initShowDeath){
+		  deathMaxTime = Players.GetRespawnSeconds ( Players.GetLocalPlayer() )
+
+		  initShowDeath = false;
+	  }
+	  
+
 	  if (showDeathTimebar){
-		  
+
 		  var leftDeath = $("#DeathTimeBarLeft");
 		  leftDeath.SetHasClass("TimeBlue", false);
 		  leftDeath.SetHasClass("TimeRed", false);
@@ -85,7 +94,7 @@ function OnHeroDeath(data){
 	if (data.entindex_killed == Players.GetPlayerHeroEntityIndex( Players.GetLocalPlayer() ) ){
 		$.Msg( "Your Hero Died" );
 		
-		deathMaxTime = Players.GetRespawnSeconds ( Players.GetLocalPlayer() )
+		initShowDeath = true;
 
 		$.Schedule(1, initDeath);
 
@@ -271,8 +280,6 @@ function leveluptextteam3(){
 
 function OnPlayerLevelUp( data ) {
 	
-		$.Msg( data.playerID );
-	
 	if (Game.GetPlayerIDsOnTeam(2).length > 0){
 
 		if (data.playerID == Game.GetPlayerIDsOnTeam(2)[0] +1){
@@ -286,7 +293,6 @@ function OnPlayerLevelUp( data ) {
 			
 			$.Schedule( 4, leveluptextteam2 );
 
-			
 		}
 	}
 	if (Game.GetPlayerIDsOnTeam(3).length > 0){

@@ -354,7 +354,7 @@
 	"AbilityTextureName"		"nightelf_replenish_mana_and_life"
 	"MaxLevel"					"1"
 		
-	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 	"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
 	"AbilityUnitTargetFlags"    "DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
@@ -429,4 +429,53 @@
 		    }
 		 }
 	  }
+	"towerAbility"
+	    {
+	        // General
+	        //-------------------------------------------------------------------------------------------------------------
+	          "BaseClass"                   "ability_datadriven"
+	          "AbilityName"                 "cannibal_ghoul_frenzy"
+	          "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	          "AbilityTextureName"          "life_stealer_feast"
+	          "MaxLevel"                    "1"
+	
+	        "Modifiers"
+	        {
+	         "modifier_customTowerStuff"
+	         {
+	            "IsHidden"              "0"
+	            "IsBuff"                "1"
+	            "Passive"               "1"
+	
+	          "OnAttackLanded"
+	           {
+				"RunScript"
+				{
+					"ScriptFile"	"towers.lua"
+					"Function"		"ShotFired"
+				}
+	            }
+				"OnCreated"
+	           {
+				"RunScript"
+				{
+					"ScriptFile"	"towers.lua"
+					"Function"		"initShots"
+				}
+	           } 
+				
+				"ThinkInterval" "1.0"
+	            "OnIntervalThink"
+	            {
+					"RunScript"
+					{
+						"ScriptFile"	"towers.lua"
+						"Function"		"thinkShots"
+					}
+	            }
+				
+	          }
+	        } 
+	
+	    }
 }

@@ -1,0 +1,49 @@
+"towerAbility"
+    {
+        // General
+        //-------------------------------------------------------------------------------------------------------------
+          "BaseClass"                   "ability_datadriven"
+          "AbilityName"                 "cannibal_ghoul_frenzy"
+          "AbilityBehavior"             "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+          "AbilityTextureName"          "life_stealer_feast"
+          "MaxLevel"                    "1"
+
+        "Modifiers"
+        {
+         "modifier_customTowerStuff"
+         {
+            "IsHidden"              "0"
+            "IsBuff"                "1"
+            "Passive"               "1"
+
+          "OnAttackLanded"
+           {
+			"RunScript"
+			{
+				"ScriptFile"	"towers.lua"
+				"Function"		"ShotFired"
+			}
+            }
+			"OnCreated"
+           {
+			"RunScript"
+			{
+				"ScriptFile"	"towers.lua"
+				"Function"		"initShots"
+			}
+           } 
+			
+			"ThinkInterval" "1.0"
+            "OnIntervalThink"
+            {
+				"RunScript"
+				{
+					"ScriptFile"	"towers.lua"
+					"Function"		"thinkShots"
+				}
+            }
+			
+          }
+        } 
+
+    }

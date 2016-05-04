@@ -1,0 +1,28 @@
+<root> 
+  <styles>
+    <include src="s2r://panorama/styles/dotastyles.vcss_c" />
+    <include src="file://{resources}/styles/custom_game/worldpanels/towerAmmo.css" />
+  </styles>
+  <scripts>
+    <include src="file://{resources}/scripts/worldpanels/towerAmmo.js" /> 
+  </scripts>
+  <Panel hittest="false" class="towerAmmoInfo">
+
+						<Panel hittest="false" id="remainingAmmoTop">
+							<Panel hittest="false" id="remainingAmmo">
+								<Panel hittest="false" id="remainingAmmoLeft">
+								</Panel>
+							</Panel>
+						</Panel>
+						
+						<Panel hittest="false" id="remainingAmmoTop2">
+							<Panel hittest="false" id="remainingAmmo2">
+								<Panel hittest="false" id="remainingAmmoLeft2">
+								</Panel>
+							</Panel>
+						</Panel>
+
+	   <Panel id="noAmmo">
+	   </Panel>
+	</Panel>
+</root>

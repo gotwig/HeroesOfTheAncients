@@ -10,10 +10,10 @@ PRE_GAME_TIME = 35.0                    -- How long after people select their he
 POST_GAME_TIME = 60.0                   -- How long should we let people look at the scoreboard before closing the server automatically?
 TREE_REGROW_TIME = 60.0                 -- How long should it take individual trees to respawn after being cut down/destroyed?
 
-GOLD_PER_TICK = 0                     -- How much gold should players get per tick?
+GOLD_PER_TICK = 0                       -- How much gold should players get per tick?
 GOLD_TICK_TIME = 5                      -- How long should we wait in seconds between gold ticks?
 
-RECOMMENDED_BUILDS_DISABLED = false     -- Should we disable the recommened builds for heroes
+RECOMMENDED_BUILDS_DISABLED = true     -- Should we disable the recommened builds for heroes
 CAMERA_DISTANCE_OVERRIDE = 1134.0       -- How far out should we allow the camera to go?  1134 is the default in Dota
 
 MINIMAP_ICON_SIZE = 1                   -- What icon size should we use for our heroes?
@@ -42,9 +42,9 @@ DISABLE_GOLD_SOUNDS = true             -- Should we disable the gold sound when 
 END_GAME_ON_KILLS = false                -- Should the game end after a certain number of kills?
 KILLS_TO_END_GAME_FOR_TEAM = 50         -- How many kills for a team should signify an end of game?
 
-USE_CUSTOM_HERO_LEVELS = true           -- Should we allow heroes to have custom levels?
-MAX_LEVEL = 25                          -- What level should we let heroes get to?
-USE_CUSTOM_XP_VALUES = true             -- Should we use custom XP values to level up heroes, or the default Dota numbers?
+USE_CUSTOM_HERO_LEVELS = false           -- Should we allow heroes to have custom levels?
+MAX_LEVEL = 16                          -- What level should we let heroes get to?
+USE_CUSTOM_XP_VALUES = false            -- Should we use custom XP values to level up heroes, or the default Dota numbers?
 
 -- Fill this table up with the required XP per level if you want to change it
 XP_PER_LEVEL_TABLE = {}
@@ -52,7 +52,7 @@ for i=1,MAX_LEVEL do
   XP_PER_LEVEL_TABLE[i] = (i-1) * 100
 end
 
-ENABLE_FIRST_BLOOD = true               -- Should we enable first blood for the first kill in this game?
+ENABLE_FIRST_BLOOD = false               -- Should we enable first blood for the first kill in this game?
 HIDE_KILL_BANNERS = false               -- Should we hide the kill banners that show when a player is killed?
 LOSE_GOLD_ON_DEATH = true               -- Should we have players lose the normal amount of dota gold on death?
 SHOW_ONLY_PLAYER_INVENTORY = false      -- Should we only allow players to see their own inventory even when selecting other units?

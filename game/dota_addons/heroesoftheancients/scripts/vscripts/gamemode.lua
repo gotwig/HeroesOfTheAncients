@@ -3,9 +3,11 @@
 -- This library can be used to synchronize client-server data via player/client-specific nettables
 require('libraries/playertables')
 
+require("towers")
 require("worldpanels/worldpanelsInit")
 
 require ('libraries/notifications')
+require("libraries/worldpanels")
 
 matchstarttexts = {'Fight, kill!','Let the battle begin!','Now go, and summon my golems!'}
 
@@ -191,6 +193,46 @@ function GameMode:OnGameInProgress()
 
    teamselection = ""
 
+   --initTowers()
+   	for key,value in pairs(Entities:FindAllByName("customTowers")) do
+		  
+			local maxPoints = 20
+		
+		  
+		  value.worldPanel = WorldPanels:CreateWorldPanelForAll(
+      {layout = "file://{resources}/layout/custom_game/worldpanels/towerAmmo.xml",
+        entity = value:GetEntityIndex(),
+        entityHeight = 260,
+		name = maxPoints
+      })
+
+	end
+   
+    for key,value in pairs(Entities:FindAllByModel("models/heroes/undying/undying_tower.vmdl")) do
+		  
+		local maxPoints = 40
+		  
+		 value.worldPanel = WorldPanels:CreateWorldPanelForAll(
+			{layout = "file://{resources}/layout/custom_game/worldpanels/towerAmmo.xml",
+				entity = value:GetEntityIndex(),
+				entityHeight = 260,
+				name = maxPoints
+			})
+
+	end
+   
+   
+    -- Remove building invulnerability
+    print("Make buildings vulnerable")
+    local allBuildings = Entities:FindAllByClassname('npc_dota_building')
+    for i = 1, #allBuildings, 1 do
+        local building = allBuildings[i]
+        if building:HasModifier('modifier_invulnerable') then
+            building:RemoveModifierByName('modifier_invulnerable')
+            --building:AddNewModifier(building, nil, "modifier_tower_truesight_aura", {})
+        end
+    end
+   
 
    local startBlockers = Entities:FindAllByClassname("tutorial_npc_blocker")
    

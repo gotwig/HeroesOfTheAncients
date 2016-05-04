@@ -3,6 +3,7 @@
 
 require ('maps/hauntedmines/skulls')
 require ('units/keep_destroyed')
+require ('units/gate_destroyed')
 require ('units/teleportBase')
 require ('units/mountHorse')
 require ('units/sound')
@@ -341,6 +342,8 @@ function GameMode:OnEntityKilled( keys )
   
   -- mercenary camps
   onMercenaryDead(killedUnit)
+  
+  onGateDeath(killedUnit)
   
 end
 

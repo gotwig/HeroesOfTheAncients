@@ -7,12 +7,12 @@
 "Model"						"models/heroes/undying/undying_tower.vmdl"
 "ModelScale"				"1.5"
 "Level"						"1"
-"HealthBarOffset"			"140"
+"HealthBarOffset"			"270"
 
 // Abilities
 //----------------------------------------------------------------
 		"Ability1"					"noRotation"			// Ability 1.
-		"Ability2"					""			// Ability 2.
+		"Ability2"					"towerAbility"			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
