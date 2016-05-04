@@ -16,6 +16,8 @@ Featuring
   - "Mount" ability for faster movement
   - "Teleport" ability to homebase across the map
   - Hide in high grass from your enemies to plan deadly attacks or heal yourself up
+  - Towers have ammo limitations
+  - Gates protect you from taking damage
 
 The goal of those ideas, is heavy team combat, with, in ideal case, no long routes to go, and a lot of action for the players.
 
@@ -46,8 +48,9 @@ I am currently searching people in the following positions:
 * Map Designer - Design with Hammer new HotA maps, which make use of our new custom entities, and dynamic events
 
 ### Todos
- - Nothing, except game testing and some UI bugs. Except:
  - Release on Steam Workshop
+ - Some other things
+ - Gameplay Tests
 
 Thanks for your interest in this mod.
 
