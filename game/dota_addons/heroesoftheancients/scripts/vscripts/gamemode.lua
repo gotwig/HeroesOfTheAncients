@@ -69,7 +69,7 @@ function GameMode:PostLoadPrecache()
 
   --PrecacheUnitByNameAsync("npc_dota_hero_viper", function(...) end)
   --PrecacheUnitByNameAsync("npc_dota_hero_enigma", function(...) end)
-  	LinkLuaModifier( "modifier_bush_hiding_lua", "modifiers/modifier_bush_hiding.lua", LUA_MODIFIER_MOTION_NONE ) 
+	LinkLuaModifier("modifier_behindGate", "modifiers/modifier_behindGate", LUA_MODIFIER_MOTION_NONE)
 
 end
 
@@ -382,6 +382,50 @@ return false
 
 end
 
+function GameMode:FilterDamage( filterTable )
+
+if (filterTable['entindex_victim_const'] and filterTable['entindex_attacker_const'] )
+then
+	local victim = EntIndexToHScript(filterTable['entindex_victim_const'])
+	local caster = EntIndexToHScript(filterTable['entindex_attacker_const'])
+	
+	if (victim:GetTeamNumber() ~= caster:GetTeamNumber())
+	then
+		if (victim:HasModifier("modifier_behindGate"))
+		then
+			return false
+		end
+	end
+	
+end
+
+return true
+
+end
+
+function GameMode:FilterModifier( filterTable )
+
+if (filterTable['entindex_parent_const'] and filterTable['entindex_caster_const'] )
+then
+	local victim = EntIndexToHScript(filterTable['entindex_parent_const'])
+	local caster = EntIndexToHScript(filterTable['entindex_caster_const'])
+	
+	if (victim:GetTeamNumber() ~= caster:GetTeamNumber())
+	then
+		if (victim:HasModifier("modifier_behindGate"))
+		then
+			return false
+		end
+	end
+	
+end
+
+
+
+return true
+end
+
+
 -- This function initializes the game mode and is called before anyone loads into the game
 -- It can be used to pre-initialize any values/tables that will be needed later
 function GameMode:InitGameMode()
@@ -405,6 +449,14 @@ function GameMode:InitGameMode()
   -- Never heard of Gold. Everyones as poor as the other.
   GameRules:GetGameModeEntity():SetModifyGoldFilter( Dynamic_Wrap( GameMode, "FilterGold" ), self )
 
+  
+  -- Filter Abilities
+  GameRules:GetGameModeEntity():SetModifierGainedFilter( Dynamic_Wrap( GameMode, "FilterModifier" ), self )
+
+  -- Filter Damage
+  GameRules:GetGameModeEntity():SetDamageFilter( Dynamic_Wrap( GameMode, "FilterDamage" ), self )
+  
+  
   -- Deactivate Day/Night Cycle
   GameRules:GetGameModeEntity():SetDaynightCycleDisabled(true) 
   

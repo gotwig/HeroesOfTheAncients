@@ -6,7 +6,7 @@
 {
 	// General
 	//----------------------------------------------------------------
-	"BaseClass"					"npc_dota_creature"
+	"BaseClass"					"npc_dota_building"
 	"Model"						"models/props_structures/rock_statue001.vmdl"
 	"ModelScale"				"1"
 	"Level"						"1"

@@ -2017,7 +2017,7 @@
 	{
 	// General
 	//----------------------------------------------------------------
-	"BaseClass"					"npc_dota_creature"
+	"BaseClass"					"npc_dota_building"
 	"Model"						"models/heroes/undying/undying_tower.vmdl"
 	"ModelScale"				"1.5"
 	"Level"						"1"
@@ -2036,16 +2036,16 @@
 	
 	// Armor
 	//----------------------------------------------------------------
-	"ArmorPhysical"				"5"
+	"ArmorPhysical"				"30"
 	"MagicalResistance"			"0"
 	
 	// Attack
 	//----------------------------------------------------------------
 	"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
 	"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
-	"AttackDamageMin"			"90.0"
-	"AttackDamageMax"			"111.0"
-	"AttackRate"				"2.5"
+	"AttackDamageMin"			"130.0"
+	"AttackDamageMax"			"140.0"
+	"AttackRate"				"1.2"
 	"AttackAnimationPoint"		"0.3"
 	"AttackAcquisitionRange"	"800"
 	"AttackRange"				"800"
@@ -2255,7 +2255,7 @@
 	{
 		// General
 		//----------------------------------------------------------------
-		"BaseClass"					"npc_dota_creature"
+		"BaseClass"					"npc_dota_building"
 		"Model"						"models/props_structures/rock_statue001.vmdl"
 		"ModelScale"				"1"
 		"Level"						"1"

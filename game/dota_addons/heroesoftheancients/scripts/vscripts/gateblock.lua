@@ -1,5 +1,8 @@
 require('libraries/timers')
-  
+
+LinkLuaModifier("modifier_behindGate", "modifiers/modifier_behindGate", LUA_MODIFIER_MOTION_NONE)
+
+
 function GetIndex(list, element)
     for k, v in pairs(list) do
         if v == element then
@@ -31,13 +34,14 @@ local boxcollider = Physics:AddCollider(thisEntity:GetName(), Physics:ColliderFr
 boxcollider.test = function(self, unit)
   if (unit.IsRealHero and unit:IsRealHero() and unit:GetTeamNumber() == thisEntity:GetTeamNumber()) then
 	
-	mod = unit:FindModifierByName("modifier_invulnerable")
+	mod = unit:FindModifierByName("modifier_behindGate")
 	if (mod)
 	then
 		mod:SetDuration(.06, true)
 	else
-		unit:AddNewModifier(unit, nil, "modifier_invulnerable", {})
+		unit:AddNewModifier(unit, nil, "modifier_behindGate", {})
 	end
+
 	
   end
   

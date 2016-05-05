@@ -5,19 +5,27 @@
 }
 
 #noAmmo{
-	margin-top: -10px;
-	width: 72px;
-	height: 65px;
+	width: 64px;
+	height: 64px;
 	horizontal-align: center;
-	background-color: black;
 	visibility: collapse;
+}
+
+.noAmmo2{
+	background-image: url("file://{images}/custom_game/hud/Bomb_blue.png");
+	margin-top: -10px;
+}
+
+.noAmmo3{
+	background-image: url("file://{images}/custom_game/hud/Bomb_red.png");
+	margin-top: -26px;
 }
 
 #remainingAmmoTop{
 	background-image: url("file://{images}/custom_game/hud/ammoSlots.png");
 	width: 144px;
 	height: 7px;
-	margin-top: 68px;
+	margin-top: 66px;
 }
 
 #remainingAmmo{
@@ -38,6 +46,7 @@
 	width: 144px;
 	height: 7px;
 	visibility: collapse;
+	margin-top: 72px;
 }
 
 #remainingAmmo2{

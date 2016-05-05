@@ -1,6 +1,6 @@
-$.Msg("AMMO CHECK");
-
 var ent = null;
+
+var teamNumber = 0;
 
 function ammoCheck()
 {
@@ -19,6 +19,7 @@ function ammoCheck()
 		$("#remainingAmmoTop2").visible = true;
 	}
 	  
+	teamNumber = Entities.GetTeamNumber( ent );
 	  
     }
   }
@@ -44,7 +45,11 @@ function ammoPointsChanged( table_name, key, data )
 			$("#noAmmo").visible = false;
 		}
 		else {
+			
+			$("#noAmmo").SetHasClass("noAmmo" + teamNumber, true);
 			$("#noAmmo").visible = true;
+			
+			
 		}
 		
 		
