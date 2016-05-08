@@ -215,6 +215,7 @@ function IntellectTomeUsed( event )
 end
 
 function Heal(event)
+	print(event.entindex)
     event.caster:GetPlayerOwner():GetAssignedHero():Heal(event.heal_amount, event.caster)
     --PopupHealing(event.caster, event.heal_amount)
 end

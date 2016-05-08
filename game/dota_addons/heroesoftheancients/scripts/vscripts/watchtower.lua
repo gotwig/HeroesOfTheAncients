@@ -83,15 +83,35 @@ Timers:CreateTimer(function()
 					end
 
 			end
-							
+				
+				if (watchTowers[key].captureCounter > 0 and watchTowers[key].captureCounter < 100)
+				then
+					watchTowers[key].onlyRunOnce = true
+				end
+				
 				if (watchTowers[key].captureCounter <= 0)
 				then
 					AddFOWViewer( 3, watchTowers[key].position, 2400, 1.0, false)
+
+					if (watchTowers[key].onlyRunOnce)
+					then
+						Entities:FindByName(nil, "watch_" .. tower .. "_trigger_" .. "blue"):AddEffects( EF_NODRAW )
+						Entities:FindByName(nil, "watch_" .. tower .. "_trigger_" .. "red"):RemoveEffects( EF_NODRAW )
+						watchTowers[key].onlyRunOnce = false
+					end
+					
 				end
 							
 				if (watchTowers[key].captureCounter >= 100)
 				then
 					AddFOWViewer( 2, watchTowers[key].position, 2400, 1.0, false)
+					
+					if (watchTowers[key].onlyRunOnce)
+					then
+						Entities:FindByName(nil, "watch_" .. tower .. "_trigger_" .. "red"):AddEffects( EF_NODRAW )
+						Entities:FindByName(nil, "watch_" .. tower .. "_trigger_" .. "blue"):RemoveEffects( EF_NODRAW )
+						watchTowers[key].onlyRunOnce = false
+					end
 				end
 
 				  

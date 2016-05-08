@@ -48,6 +48,62 @@ function TimeBar()
   $.Schedule(1/10, TimeBar);
 }
 
+var teamDeathMax = [10]
+var teamDeathOnce = [10]
+
+function heroTeamDeathTimebar()
+{
+	  if (Game.GetAllPlayerIDs()){
+	  
+	  var playerIDs = Game.GetAllPlayerIDs()
+	
+	  for (var i = 0; i < playerIDs.length;i++){
+		  if (Players.IsValidPlayerID( playerIDs[i] )){
+
+			  var respawnSecs = Players.GetRespawnSeconds (playerIDs[i]);
+
+			  if (respawnSecs < 0){
+					$("#heroDeath" + (playerIDs[i])).visible = false;
+					teamDeathOnce[playerIDs[i]] = false;
+			  }
+		  
+			  if (respawnSecs > 0 && !teamDeathOnce[ playerIDs[i] ] ){
+				  teamDeathMax[playerIDs[i]] = respawnSecs;
+			  }
+		  
+			  if (respawnSecs > 0){
+			  teamDeathOnce[playerIDs[i]] = true
+				  				  
+			  $("#heroDeath" + (playerIDs[i])).visible = true ;
+			  var myStyle = $("#heroDeath" + (playerIDs[i]));
+			  
+			  myStyle.GetChild(1).heroname = Entities.GetUnitName(Players.GetPlayerHeroEntityIndex(playerIDs[i]))
+			  myStyle.GetChild(2).text = respawnSecs;
+
+			  myStyle.SetHasClass("Team" +  Players.GetTeam( playerIDs[i] ) + "DeathBar", true);
+			  
+			  if (Players.GetTeam( playerIDs[i]) == 2) {
+				 myStyle.style['margin-right'] = ( (830 / teamDeathMax[playerIDs[i]]) * respawnSecs ) + 560     + "px;";
+			  }
+			  
+			  if (Players.GetTeam( playerIDs[i]) == 3) {
+				 myStyle.style['margin-left'] = ( (830 / teamDeathMax[playerIDs[i]]) * respawnSecs ) + 560     + "px;";
+			  }
+			  
+			  //$("#heroDeath" + playerIDs[i]).style.margin = respawnSecs + "px";
+			  }
+			  }
+		  
+
+		  
+	  }
+	  }
+	
+
+	
+  $.Schedule(1/1000, heroTeamDeathTimebar);
+}
+
 function heroDeathTimebar()
 {
 
@@ -86,8 +142,22 @@ function heroDeathTimebar()
   $.Schedule(1/1000, heroDeathTimebar);
 }
 
+function heroTeamDeath(entity){
+	
+	var teamNumber = Entities.GetTeamNumber(entity)
+
+	$("#heroDeath_" + teamNumber + "_" + 1).visible = true;
+	
+	$.Schedule(1, initTeamDeath);
+
+}
+
 function initDeath(){
-	showDeathTimebar = true;
+	showDeathTimebar = true;	
+}
+
+function initTeamDeath(){
+	showTeamDeathTimebar = true;
 }
 
 function OnHeroDeath(data){
@@ -100,6 +170,9 @@ function OnHeroDeath(data){
 
 		
 	}
+	
+	//heroTeamDeath(data.entindex_killed);
+	
 }
 
 function OnHeroRespawn(data){
@@ -127,6 +200,17 @@ function capturePointsChanged( table_name, key, data )
 {
 	if (previousName == key ){ 
 		per = data.value;
+	}
+}
+
+function attributesChanged( table_name, key, data )
+{
+	if (key == Players.GetLocalPlayerPortraitUnit() ){
+		
+		$("#attributeStrText").text = Math.floor(data.str);
+		$("#attributeIntText").text = Math.floor(data.int);
+		$("#attributeAgiText").text = Math.floor(data.agi);
+		
 	}
 }
 
@@ -369,6 +453,19 @@ var sceneContainer = $("#heroCam");
 
 $("#HeroPortrait").heroname = unit;
 
+
+var ability = Entities.GetAbilityByName( Players.GetLocalPlayerPortraitUnit(), "attribute_bonus");
+
+var canUpgrade = Abilities.CanAbilityBeUpgraded( ability )
+
+if (canUpgrade == 0 && Entities.GetAbilityPoints( Players.GetLocalPlayerPortraitUnit() ) > 0) {
+		$("#levelupAttributesHint").visible = true;
+}
+
+else {
+	$("#levelupAttributesHint").visible = false;
+}
+
 $.Schedule(1/10, heroCamera);
 
 }
@@ -379,10 +476,39 @@ function showDynamicEventInfo(msg){
  
   
 }
+
+function unitSelectionChanged(){
+	if (Entities.IsHero( Players.GetLocalPlayerPortraitUnit() )){	
+		var newUnit = CustomNetTables.GetTableValue( "hero_attributes", Players.GetLocalPlayerPortraitUnit() )
+		
+		if ( newUnit ){
+			$("#attributeStrText").text = Math.floor(newUnit.str);
+			$("#attributeIntText").text = Math.floor(newUnit.int);
+			$("#attributeAgiText").text = Math.floor(newUnit.agi);
+		}
+		
+	}
+	
+	if (!Entities.IsHero( Players.GetLocalPlayerPortraitUnit() )){
+
+		$("#attributeStrText").text = "";
+		$("#attributeIntText").text = "";
+		$("#attributeAgiText").text = "";
+	}
+	
+}
 	
 function hideDynamicEventInfo(){
   $("#mapEventInfo").visible = false;
 }
+	
+	function updateHeroStats(){
+	if (Entities.IsControllableByPlayer( Players.GetLocalPlayerPortraitUnit(), Players.GetLocalPlayer() )){
+		Abilities.AttemptToUpgrade(Entities.GetAbilityByName( Players.GetLocalPlayerPortraitUnit(), "attribute_bonus"))
+	}
+	
+}
+
 	
 (function(){
 
@@ -409,6 +535,8 @@ function hideDynamicEventInfo(){
 
   heroDeathTimebar();
   
+  heroTeamDeathTimebar();
+  
   heroPanel();
   
   //topBar
@@ -424,7 +552,10 @@ function hideDynamicEventInfo(){
 
   CustomNetTables.SubscribeNetTableListener( "merc_capturepoints", capturePointsChanged );
   CustomNetTables.SubscribeNetTableListener( "watch_capturepoints", capturePointsChanged );
+  CustomNetTables.SubscribeNetTableListener( "hero_attributes", attributesChanged );
 
+  
+  
   GameEvents.Subscribe("showDynamicEventInfo", showDynamicEventInfo);
   GameEvents.Subscribe("hideDynamicEventInfo", hideDynamicEventInfo); 
   CustomNetTables.SubscribeNetTableListener( "dynamic_MapEvents", dynamicEventInfoChanged );
@@ -434,5 +565,8 @@ function hideDynamicEventInfo(){
   GameEvents.Subscribe( "entity_killed", OnHeroDeath );
   GameEvents.Subscribe( "npc_spawned", OnHeroRespawn );
 
-  
+  GameEvents.Subscribe( "dota_player_update_query_unit", unitSelectionChanged );
+  GameEvents.Subscribe( "dota_player_update_selected_unit", unitSelectionChanged );
+
+
 })(); 

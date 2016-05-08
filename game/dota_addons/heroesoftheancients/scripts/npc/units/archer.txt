@@ -5,7 +5,7 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_creep"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creep_lane"	// Class of entity of link to.
 		"Model"						"models/creeps/item_creeps/i_creep_necro_archer/necro_archer.vmdl"	// Model.
 		"SoundSet"					"Creep_Good_Range"					// Name of sound set.
 		"Level"						"3"
@@ -68,13 +68,13 @@
 		// Movement
 		//----------------------------------------------------------------
 		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"			// Type of locomotion - ground, air
-		"MovementSpeed"				"328"		// Speed
+		"MovementSpeed"				"325"		// Speed
 		"MovementTurnRate"			"0.5"		// Turning rate.
 
 		// Status
 		//----------------------------------------------------------------
 		"StatusHealth"				"290"		// Base health.
-		"StatusHealthRegen"			"1"			// Health regeneration rate.
+		"StatusHealthRegen"			"0.5"			// Health regeneration rate.
 		"StatusMana"				"0"			// Base mana.
 		"StatusManaRegen"			"0"			// Mana regeneration rate.
 

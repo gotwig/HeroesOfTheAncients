@@ -12,6 +12,47 @@ require("libraries/worldpanels")
 matchstarttexts = {'Fight, kill!','Let the battle begin!','Now go, and summon my golems!'}
 
 
+function GetGridAroundPoint( numUnits, point )
+    local navPoints = {}  
+
+	local SQUARE_FACTOR = 0.4 --1 is a perfect square, higher numbers will increase the units per row
+	
+    local unitsPerRow = 3
+    local unitsPerColumn = 2
+    local remainder = numUnits - (unitsPerRow*unitsPerColumn) 
+
+    local forward = point:Normalized()
+    local right = RotatePosition(Vector(0,0,0), QAngle(0,90,0), forward)
+
+    local start = (unitsPerColumn-1)* -.5
+
+    local curX = start
+    local curY = 0
+
+    local offsetX = 100
+    local offsetY = 100
+
+    for i=1,unitsPerRow do
+      for j=1,unitsPerColumn do
+        local newPoint = point + (curX * offsetX * right) + (curY * offsetY * forward)
+        navPoints[#navPoints+1] = newPoint
+        curX = curX + 1
+      end
+      curX = start
+      curY = curY - 1
+    end
+
+    local curX = ((remainder-1) * -.5)
+
+    for i=1,remainder do 
+        local newPoint = point + (curX * offsetX * right) + (curY * offsetY * forward)
+        navPoints[#navPoints+1] = newPoint
+        curX = curX + 1
+    end
+
+    return navPoints
+end
+
 -- Set this to true if you want to see a complete debug output of all events/processes done by barebones
 -- You can also change the cvar 'barebones_spew' at any time to 1 or 0 for output/no output
 BAREBONES_DEBUG_SPEW = false 
@@ -79,6 +120,13 @@ end
 ]]
 function GameMode:OnFirstPlayerLoaded()
   DebugPrint("[BAREBONES] First Player has loaded")
+	
+	
+	for i = 1, 2, 1 do
+		Entities:FindByName( nil, "watch_" .. i .. "_trigger_" .. "blue"):AddEffects( EF_NODRAW )
+		Entities:FindByName( nil, "watch_" .. i .. "_trigger_" .. "red"):AddEffects( EF_NODRAW )
+	end
+	
 	
 	GameRules.koboldEntitiesPositions = {}
 	GameRules.skullGolemPosition = nil
@@ -174,8 +222,17 @@ function GameMode:OnHeroInGame(hero)
   hero:RemoveAbility(abil:GetAbilityName())
   hero:AddAbility("example_ability")]]
   
-  hero:AddNewModifier(hero, nil, "modifier_bush_hiding", {duration=.5}) 
+  --hero:AddNewModifier(hero, nil, "modifier_bush_hiding", {duration=.5}) 
 
+			
+  	-- Sync Attribute Bonuses with Clients
+Timers:CreateTimer(function()
+			for k, v in pairs( HeroList:GetAllHeroes() ) do
+				CustomNetTables:SetTableValue( "hero_attributes", "" .. v:entindex(), { str = v:GetStrength(), agi = v:GetAgility(), int = v:GetIntellect() } )
+			end
+		return 0.1
+	end)
+  
   
 end
 
@@ -270,28 +327,107 @@ function GameMode:OnGameInProgress()
 		SpawnSiege()
 		return 30.0
 	end)
+	
+	--SCAN for GATE
+	
+	Timers:CreateTimer(function()
+	
+		local allCreeps = Entities:FindAllByClassname('npc_dota_creep_lane')
+		for i = 1, #allCreeps, 1 do
+
+			local enemyTeam = 0
+		
+			if (allCreeps[i]:GetTeamNumber() == 2 )
+			then
+				enemyTeam = 3
+			end
+			
+			if (allCreeps[i]:GetTeamNumber() == 3 )
+			then
+				enemyTeam = 2
+			end
+			
+			
+		
+			local scannedUnits = FindUnitsInRadius(enemyTeam,
+												allCreeps[i]:GetAbsOrigin(),
+												nil,
+												600,
+												DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+												DOTA_UNIT_TARGET_ALL,
+												DOTA_UNIT_TARGET_FLAG_NONE,
+												FIND_ANY_ORDER,
+												false)
+								  
+			for k, v in pairs(scannedUnits) do
+				if (v:GetModelName() == "models/props_structures/gate_entrance002.vmdl" )
+				then
+					local order = 
+					{
+						UnitIndex = allCreeps[i]:entindex(),
+						OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+						TargetIndex = v:entindex()
+					}
+				
+					ExecuteOrderFromTable(order)
+				end
+			end
+		
+		
+		end
+
+		return 1.0
+	end)
+	
+
+	
 end
 
 function SpawnTop( teamselection , teamnumber, position)
 		if (Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_".. position .. ""))
 		then
 		
-			for i = 1,3 do
-			local rangedCreep = CreateUnitByName("npc_dota_necronomicon_archer_1_custom", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
+			gridPositions = {}
+			for i = 1,6 do
+				table.insert(gridPositions, GetGridAroundPoint( 7, Entities:FindByName( nil, "lane_top_pathcorner_" .. teamselection .. "guys_" .. i ):GetAbsOrigin() ) )
+			end
+		
+		
+		
 			local meleeCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_melee", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
 			
-			for i = 1,6 do
+				for i = 1,6 do
+				
+				ExecuteOrderFromTable({ UnitIndex = meleeCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = gridPositions[i][1], Queue = true})
 			
-			ExecuteOrderFromTable({ UnitIndex = rangedCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE, Position = Entities:FindByName( nil, "lane_top_pathcorner_" .. teamselection .. "guys_" .. i ):GetAbsOrigin(), Queue = true})
-			ExecuteOrderFromTable({ UnitIndex = meleeCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_top_pathcorner_".. teamselection .. "guys_" .. i ):GetAbsOrigin(),Queue = true})
+				end
 		
-			end
+			for ix = 5,6 do
+				local meleeCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_melee", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
+			
+				for i = 1,6 do
+				
+				ExecuteOrderFromTable({ UnitIndex = meleeCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = gridPositions[i][ix], Queue = true})
+			
+				end
 			
 			end
+			
+			for ix = 2,4 do
+				local rangedCreep = CreateUnitByName("npc_dota_necronomicon_archer_1_custom", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
+			
+				for i = 1,6 do
+				
+				ExecuteOrderFromTable({ UnitIndex = rangedCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE, Position = gridPositions[i][ix]  , Queue = true})
+			
+				end
+			
+			end
+			
 			
 			local rangedMageCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_ranged", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
 			for i = 1,6 do
-			ExecuteOrderFromTable({ UnitIndex = rangedMageCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE, Position = Entities:FindByName( nil, "lane_top_pathcorner_" .. teamselection .. "guys_" .. i ):GetAbsOrigin(), Queue = true})
+				ExecuteOrderFromTable({ UnitIndex = rangedMageCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE, Position = gridPositions[i][7]  , Queue = true})
 			end
 		
 		end
@@ -300,24 +436,50 @@ end
 function SpawnBot( teamselection , teamnumber, position )
 		if (Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_bot_".. position .. ""))
 		then
-			for i = 1,3 do
-
-			local rangedCreep = CreateUnitByName("npc_dota_necronomicon_archer_1_custom", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_bot_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
+		
+			gridPositions = {}
+			for i = 1,4 do
+				table.insert(gridPositions, GetGridAroundPoint( 7, Entities:FindByName( nil, "lane_bot_pathcorner_" .. teamselection .. "guys_" .. i ):GetAbsOrigin() ) )
+			end
+		
+		
+		
 			local meleeCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_melee", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_bot_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
 			
-			for i = 1,4 do
-				ExecuteOrderFromTable({ UnitIndex = rangedCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE, Position = Entities:FindByName( nil, "lane_bot_pathcorner_" .. teamselection .. "guys_" .. i):GetAbsOrigin(), Queue = true})
-				ExecuteOrderFromTable({ UnitIndex = meleeCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_bot_pathcorner_".. teamselection .. "guys_" .. i):GetAbsOrigin(),Queue = true})
-			end
+				for i = 1,4 do
+				
+				ExecuteOrderFromTable({ UnitIndex = meleeCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = gridPositions[i][1], Queue = true})
+			
+				end
+		
+			for ix = 5,6 do
+				local meleeCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_melee", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_bot_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
+			
+				for i = 1,4 do
+				
+				ExecuteOrderFromTable({ UnitIndex = meleeCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = gridPositions[i][ix], Queue = true})
+			
+				end
 			
 			end
+			
+			for ix = 2,4 do
+				local rangedCreep = CreateUnitByName("npc_dota_necronomicon_archer_1_custom", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_bot_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
+			
+				for i = 1,4 do
+				
+				ExecuteOrderFromTable({ UnitIndex = rangedCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE, Position = gridPositions[i][ix]  , Queue = true})
+			
+				end
+			
+			end
+			
 			
 			local rangedMageCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_ranged", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_bot_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
-
 			for i = 1,4 do
-			ExecuteOrderFromTable({ UnitIndex = rangedMageCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE, Position = Entities:FindByName( nil, "lane_bot_pathcorner_" .. teamselection .. "guys_" .. i):GetAbsOrigin(), Queue = true})
+				ExecuteOrderFromTable({ UnitIndex = rangedMageCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE, Position = gridPositions[i][7]  , Queue = true})
 			end
-			
+		
 		end
 
 end
@@ -391,6 +553,13 @@ then
 	
 	if (victim:GetTeamNumber() ~= caster:GetTeamNumber())
 	then
+		if (caster:HasModifier("modifier_invisible"))
+		then
+			caster:RemoveModifierByName("modifier_invisible")
+			return true
+		end
+	
+	
 		if (victim:HasModifier("modifier_behindGate"))
 		then
 			return false
@@ -431,8 +600,6 @@ end
 function GameMode:InitGameMode()
 
   --Convars:SetBool("dota_hide_cursor", false)
-  
-  SetTeamCustomHealthbarColor(2, 97,194,211)
   
   GameMode = self
   DebugPrint('[BAREBONES] Starting to load Barebones gamemode...')

@@ -34,8 +34,9 @@ Button{
 
 #topbar{
 width: 1460px;
-height: 72px;
+height: 140px;
 background-image: url("file://{images}/custom_game/hud/topbar.png");
+background-repeat: no-repeat;
 horizontal-align: center;
 }
 
@@ -44,7 +45,7 @@ width: 100%;
 height: 400px;
 
 horizontal-align: center;
-margin-top: 84%;
+margin-top: 78%;
 }
 
 #mapEventInfo{
@@ -75,6 +76,81 @@ margin-top: 84%;
 	font-size: 20px;
 	margin-left: 20px;
 	margin-top: -5px;
+}
+
+#deathBarTeam2{
+	width: 455px;
+	height: 100px;
+}
+
+#deathBarTeam3{
+	width: 455px;
+	height: 100px;
+	horizontal-align: right;
+}
+
+.heroDeath{
+	height: 300px;
+	width: 70px;
+	visibility: collapse;
+	horizontal-align: center;
+    flow-children: down;
+}
+
+.attributeText{
+	vertical-align: middle;
+	horizontal-align: center;
+
+	font-size: 20px;
+	color:white;
+}
+
+#heroAttributes{
+	flow-children: right;
+	height: 400px;
+	width: 200px;
+	margin-top : -45px;
+	horizontal-align: center;
+	margin-left: 200px;
+}
+
+.attributeButtons{
+	height: 100px;
+	width: 40px;
+	vertical-align: bottom;
+	padding-right: 0px;
+	padding-left: 0px;
+}
+
+.remainingTeamDeath{
+	font-size: 26px;
+	horizontal-align: center;
+}
+
+.arrowTeamDeath{
+	margin-top: 3px;
+	margin-bottom: 6px;
+	horizontal-align: center;
+	background-image: url("file://{images}/custom_game/hud/deathBarArrow.png");
+	background-repeat: no-repeat;
+	width: 13px;
+	height: 6px;
+}
+
+.Team2DeathBar{
+	color: white;
+}
+
+.Team3DeathBar{
+	color: white;
+}
+
+.heroTeamDeath{
+	width: 70px;
+    height: 62px;
+    overflow:clip;
+
+	opacity-mask: url( "file://{images}/custom_game/hud/masks/herocam.png" );
 }
 
 #topInfo{
@@ -117,7 +193,7 @@ margin-top: 84%;
 	margin-left: 5%;
 
     width: 440px;
-    height: 200px;
+    height: 220px;
 	background-image: url("file://{images}/custom_game/hud/heroPanel.png");
 	background-repeat: no-repeat;
     flow-children: right-wrap;
@@ -171,19 +247,30 @@ margin-top: 84%;
 
 }
 
+#levelupAttributesHint{
+    font-family: Goudy Trajan Medium, FZKai-Z03, TH Sarabun New;
+    text-shadow: -1px 1px 2px 2.0 #000000;
+    color: #CCB966;
+    font-size: 18px;
+	margin-left: -200px;
+	margin-top: 6px;
+	background-color: black;
+	border-radius: 4px;
+}
+
 #healmanabars{
 	width: 220px;
 	height: 60px;
 	vertical-align:center;
-	margin-top: 46px;
+	margin-top: 26px;
 }
 
 #healthbar{
   margin-top: 28%;
-  width: 196px;
+  width: 194px;
   height: 28px;
   opacity-mask: url( "file://{images}/custom_game/hud/masks/hpbar.png" );
-  margin-left: 3px;
+  margin-left: 4px;
   z-index: 10;
 
 
@@ -202,9 +289,9 @@ margin-top: 84%;
 
 #manabar{
   vertical-align: bottom;
-  width: 196px;
+  width: 194px;
   height: 21px;
-  margin-left: -10px;
+  margin-left: -9px;
 
   opacity-mask: url( "file://{images}/custom_game/hud/masks/hpmpbar.png" );
 }
@@ -237,7 +324,7 @@ width: 450px;
 
 .xpbar{
 	height: 18px;
-	margin-top: 34%;
+	margin-top: 26%;
 	width: 106px;
  
 

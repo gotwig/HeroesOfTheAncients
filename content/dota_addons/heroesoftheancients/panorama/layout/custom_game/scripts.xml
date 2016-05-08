@@ -47,6 +47,81 @@
 						<Label id="teamLevel3" hittest="false" class="TimerText" text="1"/>
 					</Panel>
 				</Panel>
+				
+				<Panel id="heroDeath0" class="heroDeath">
+				
+				<Panel class="arrowTeamDeath"> </Panel>
+				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
+				
+				</Panel>
+				
+				<Panel id="heroDeath1" class="heroDeath">
+				
+				<Panel class="arrowTeamDeath"> </Panel>
+				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
+				
+				</Panel>
+				
+				<Panel id="heroDeath2" class="heroDeath">
+
+				<Panel class="arrowTeamDeath"> </Panel>
+				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
+				</Panel>
+				
+				<Panel id="heroDeath3" class="heroDeath">
+				<Panel class="arrowTeamDeath"> </Panel>
+				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
+				
+				</Panel>
+				
+				<Panel id="heroDeath4" class="heroDeath">
+				<Panel class="arrowTeamDeath"> </Panel>
+				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
+
+				</Panel>
+				
+				<Panel id="heroDeath5" class="heroDeath">
+				<Panel class="arrowTeamDeath"> </Panel>
+				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
+
+				</Panel>
+		
+				<Panel id="heroDeath6" class="heroDeath">
+				<Panel class="arrowTeamDeath"> </Panel>
+				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
+				</Panel>
+				
+				<Panel id="heroDeath7" class="heroDeath">
+				<Panel class="arrowTeamDeath"> </Panel>
+				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
+				</Panel>
+				
+				<Panel id="heroDeath8" class="heroDeath">
+				<Panel class="arrowTeamDeath"> </Panel>
+				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
+				</Panel>
+				
+				<Panel id="heroDeath9" class="heroDeath">
+				<Panel class="arrowTeamDeath"> </Panel>
+				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
+				</Panel>
+				
+				<Panel id="heroDeath10" class="heroDeath">
+				<Panel class="arrowTeamDeath"> </Panel>
+				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
+				</Panel>
+				
 			</Panel>
 			
 			<Panel hittest="false" id="bottombar">
@@ -74,10 +149,33 @@
 								<Label id="manabarText" hittest="false" class="TimerText" text="1212 / 1212"/>
 
 						</Panel>
+						
+
+						
 					</Panel>
 
+					<Panel id="heroAttributes" hittest="false">
+					<Button onactivate="updateHeroStats()" class="attributeButtons"> 
+						<Label id="attributeStrText" class="attributeText" text=""/>
+					</Button>
+					
+					<Button onactivate="updateHeroStats()" class="attributeButtons" >
+						<Label id="attributeAgiText" class="attributeText" text=""/>
+					</Button>
+					
+					<Button onactivate="updateHeroStats()" class="attributeButtons">
+						<Label id="attributeIntText" class="attributeText" text=""/>
+					</Button>
+					
+
+					
+					</Panel>
+
+					<Label id="levelupAttributesHint" text="  + LEVEL STATS +  "></Label>
+
+					
 				</Panel>
-			
+
 			
 				<Panel id="TimersPanel" hittest="false">
 				

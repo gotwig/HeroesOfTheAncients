@@ -26,7 +26,7 @@ local boxcollider = Physics:AddCollider(thisEntity:GetName(), Physics:ColliderFr
 
   if (string.sub(thisEntity:GetName(), 6,6) == "1")
   then
-    boxcollider.box = Physics:CreateBox(pointA,pointB, 3000, true)
+    boxcollider.box = Physics:CreateBox(pointA,pointB, 2700, true)
   else
     boxcollider.box = Physics:CreateBox(pointA,pointB, 1800, true)
   end
@@ -52,7 +52,7 @@ boxcollider.test = function(self, unit)
   end
   
 end
-  boxcollider.draw = true
+  boxcollider.draw = false
 
 
     end
