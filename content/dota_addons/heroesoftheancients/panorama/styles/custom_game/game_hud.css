@@ -115,11 +115,12 @@ margin-top: 78%;
 }
 
 .attributeButtons{
-	height: 100px;
+	height: 20px;
 	width: 40px;
-	vertical-align: bottom;
+	vertical-align: center;
 	padding-right: 0px;
 	padding-left: 0px;
+	
 }
 
 .remainingTeamDeath{
@@ -251,8 +252,8 @@ margin-top: 78%;
     font-family: Goudy Trajan Medium, FZKai-Z03, TH Sarabun New;
     text-shadow: -1px 1px 2px 2.0 #000000;
     color: #CCB966;
-    font-size: 18px;
-	margin-left: -200px;
+    font-size: 16.5px;
+	margin-left: -228px;
 	margin-top: 6px;
 	background-color: black;
 	border-radius: 4px;

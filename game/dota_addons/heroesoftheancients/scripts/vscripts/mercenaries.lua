@@ -238,14 +238,21 @@ Timers:CreateTimer(function()
 							value.allyTeam = 3;
 							CustomGameEventManager:Send_ServerToAllClients( "hideCapturepoint", { name = "merc_" .. key .. "_trigger" } )
 							
+							EmitAnnouncerSoundForTeam("announcer_ann_custom_adventure_alerts_30", 3)
+							EmitAnnouncerSoundForTeam("announcer_ann_custom_adventure_alerts_32", 2)
+							
 							end
 							
 							if (mercenaryCamps[key].captureCounter >= 100)
 							then
+							print("blue wins")
 							changeState(key, 2)
 							value.allyTeam = 2;
 							CustomGameEventManager:Send_ServerToAllClients( "hideCapturepoint", { name = "merc_" .. key .. "_trigger" } )
 							
+							EmitAnnouncerSoundForTeam("announcer_ann_custom_adventure_alerts_30", 2)
+							EmitAnnouncerSoundForTeam("announcer_ann_custom_adventure_alerts_32", 3)
+
 							end
 
 						

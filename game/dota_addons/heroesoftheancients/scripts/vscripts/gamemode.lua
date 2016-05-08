@@ -122,6 +122,65 @@ function GameMode:OnFirstPlayerLoaded()
   DebugPrint("[BAREBONES] First Player has loaded")
 	
 	
+	
+	-- Play Sound countdown 10..1 
+	Timers:CreateTimer(function()
+	
+	
+			if(math.floor(GameRules:GetDOTATime(false, true)) == -14 )
+			then
+				EmitAnnouncerSound("announcer_ann_custom_countdown_10")
+			end
+			
+			if(math.floor(GameRules:GetDOTATime(false, true)) == -13 )
+			then
+				EmitAnnouncerSound("announcer_ann_custom_countdown_09")
+			end
+			
+			if(math.floor(GameRules:GetDOTATime(false, true)) == -12 )
+			then
+				EmitAnnouncerSound("announcer_ann_custom_countdown_08")
+			end
+			
+			if(math.floor(GameRules:GetDOTATime(false, true)) == -11 )
+			then
+				EmitAnnouncerSound("announcer_ann_custom_countdown_07")
+			end
+			
+			if(math.floor(GameRules:GetDOTATime(false, true)) == -10 )
+			then
+				EmitAnnouncerSound("announcer_ann_custom_countdown_06")
+			end
+			
+			if(math.floor(GameRules:GetDOTATime(false, true)) == -9 )
+			then
+				EmitAnnouncerSound("announcer_ann_custom_countdown_05")
+			end
+			
+			if(math.floor(GameRules:GetDOTATime(false, true)) == -8 )
+			then
+				EmitAnnouncerSound("announcer_ann_custom_countdown_04")
+			end
+			
+			if(math.floor(GameRules:GetDOTATime(false, true)) == -7 )
+			then
+				EmitAnnouncerSound("announcer_ann_custom_countdown_03")
+			end
+			
+			if(math.floor(GameRules:GetDOTATime(false, true)) == -6 )
+			then
+				EmitAnnouncerSound("announcer_ann_custom_countdown_02")
+			end
+			
+			if(math.floor(GameRules:GetDOTATime(false, true)) == -5 )
+			then
+				EmitAnnouncerSound("announcer_ann_custom_countdown_01")
+			end
+			
+		return 1
+	end)
+	
+	
 	for i = 1, 2, 1 do
 		Entities:FindByName( nil, "watch_" .. i .. "_trigger_" .. "blue"):AddEffects( EF_NODRAW )
 		Entities:FindByName( nil, "watch_" .. i .. "_trigger_" .. "red"):AddEffects( EF_NODRAW )

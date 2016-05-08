@@ -30,14 +30,14 @@
 	
 			// Armor
 			//----------------------------------------------------------------
-			"ArmorPhysical"				"0"			// Physical protection.
+			"ArmorPhysical"				"5"			// Physical protection.
 			"MagicalResistance"			"0"			// Magical protection.
 	
 			// Attack
 			//----------------------------------------------------------------
 			"AttackCapabilities"		"DOTA_UNIT_CAP_RANGED_ATTACK"
-			"AttackDamageMin"			"15"		// Damage range min.
-			"AttackDamageMax"			"19"		// Damage range max.
+			"AttackDamageMin"			"20"		// Damage range min.
+			"AttackDamageMax"			"25"		// Damage range max.
 			"AttackDamageType"			"DAMAGE_TYPE_ArmorPhysical"
 			"AttackRate"				"1"			// Speed of attack.
 			"AttackAnimationPoint"		"0.7"		// Normalized time in animation cycle to attack.
@@ -75,7 +75,7 @@
 	
 			// Status
 			//----------------------------------------------------------------
-			"StatusHealth"				"290"		// Base health.
+			"StatusHealth"				"160"		// Base health.
 			"StatusHealthRegen"			"0.5"			// Health regeneration rate.
 			"StatusMana"				"0"			// Base mana.
 			"StatusManaRegen"			"0"			// Mana regeneration rate.
@@ -134,7 +134,7 @@
 			"AttackRate"				"1"			// Speed of attack.
 			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
-			"AttackRange"				"510"		// Range within a target can be attacked.
+			"AttackRange"				"580"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
 			"ProjectileSpeed"			"600"		// Speed of projectile.
 	
@@ -226,7 +226,7 @@
 			"AttackRate"				"1"			// Speed of attack.
 			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
-			"AttackRange"				"510"		// Range within a target can be attacked.
+			"AttackRange"				"580"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
 			"ProjectileSpeed"			"600"		// Speed of projectile.
 	
@@ -318,7 +318,7 @@
 			"AttackRate"				"1"			// Speed of attack.
 			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
-			"AttackRange"				"510"		// Range within a target can be attacked.
+			"AttackRange"				"580"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
 			"ProjectileSpeed"			"600"		// Speed of projectile.
 	
@@ -410,7 +410,7 @@
 			"AttackRate"				"0.95"		// Speed of attack.
 			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
-			"AttackRange"				"510"		// Range within a target can be attacked.
+			"AttackRange"				"580"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
 			"ProjectileSpeed"			"600"		// Speed of projectile.
 	
@@ -502,7 +502,7 @@
 			"AttackRate"				"0.95"		// Speed of attack.
 			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
-			"AttackRange"				"510"		// Range within a target can be attacked.
+			"AttackRange"				"580"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
 			"ProjectileSpeed"			"600"		// Speed of projectile.
 	
@@ -595,7 +595,7 @@
 			"AttackRate"				"0.95"		// Speed of attack.
 			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
-			"AttackRange"				"510"		// Range within a target can be attacked.
+			"AttackRange"				"580"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
 			"ProjectileSpeed"			"600"		// Speed of projectile.
 	
@@ -688,7 +688,7 @@
 			"AttackRate"				"0.95"		// Speed of attack.
 			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
-			"AttackRange"				"510"		// Range within a target can be attacked.
+			"AttackRange"				"580"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
 			"ProjectileSpeed"			"600"		// Speed of projectile.
 	
@@ -779,7 +779,7 @@
 			"AttackRate"				"0.95"		// Speed of attack.
 			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
-			"AttackRange"				"510"		// Range within a target can be attacked.
+			"AttackRange"				"580"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
 			"ProjectileSpeed"			"600"		// Speed of projectile.
 	
@@ -871,7 +871,7 @@
 			"AttackRate"				"0.95"		// Speed of attack.
 			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
-			"AttackRange"				"510"		// Range within a target can be attacked.
+			"AttackRange"				"580"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
 			"ProjectileSpeed"			"600"		// Speed of projectile.
 	
@@ -964,7 +964,7 @@
 			"AttackRate"				"0.95"		// Speed of attack.
 			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
-			"AttackRange"				"510"		// Range within a target can be attacked.
+			"AttackRange"				"580"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
 			"ProjectileSpeed"			"600"		// Speed of projectile.
 	
@@ -1056,7 +1056,7 @@
 			"AttackRate"				"1"			// Speed of attack.
 			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
-			"AttackRange"				"510"		// Range within a target can be attacked.
+			"AttackRange"				"580"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
 			"ProjectileSpeed"			"600"		// Speed of projectile.
 	
@@ -1148,7 +1148,7 @@
 			"AttackRate"				"1"			// Speed of attack.
 			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
-			"AttackRange"				"510"		// Range within a target can be attacked.
+			"AttackRange"				"580"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
 			"ProjectileSpeed"			"600"		// Speed of projectile.
 	
@@ -1239,7 +1239,7 @@
 			"AttackRate"				"1"			// Speed of attack.
 			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
-			"AttackRange"				"510"		// Range within a target can be attacked.
+			"AttackRange"				"580"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
 			"ProjectileSpeed"			"600"		// Speed of projectile.
 	
@@ -1331,7 +1331,7 @@
 			"AttackRate"				"0.95"		// Speed of attack.
 			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
-			"AttackRange"				"510"		// Range within a target can be attacked.
+			"AttackRange"				"580"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
 			"ProjectileSpeed"			"600"		// Speed of projectile.
 	
@@ -1423,7 +1423,7 @@
 			"AttackRate"				"0.95"		// Speed of attack.
 			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
-			"AttackRange"				"510"		// Range within a target can be attacked.
+			"AttackRange"				"580"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
 			"ProjectileSpeed"			"600"		// Speed of projectile.
 	
@@ -1515,7 +1515,7 @@
 			"AttackRate"				"0.95"		// Speed of attack.
 			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
-			"AttackRange"				"510"		// Range within a target can be attacked.
+			"AttackRange"				"580"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
 			"ProjectileSpeed"			"600"		// Speed of projectile.
 	
@@ -1607,7 +1607,7 @@
 			"AttackRate"				"0.95"		// Speed of attack.
 			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
-			"AttackRange"				"510"		// Range within a target can be attacked.
+			"AttackRange"				"580"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
 			"ProjectileSpeed"			"600"		// Speed of projectile.
 	
@@ -1699,7 +1699,7 @@
 			"AttackRate"				"0.95"		// Speed of attack.
 			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
-			"AttackRange"				"510"		// Range within a target can be attacked.
+			"AttackRange"				"580"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
 			"ProjectileSpeed"			"600"		// Speed of projectile.
 	
@@ -1791,7 +1791,7 @@
 			"AttackRate"				"0.95"		// Speed of attack.
 			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
-			"AttackRange"				"510"		// Range within a target can be attacked.
+			"AttackRange"				"580"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
 			"ProjectileSpeed"			"600"		// Speed of projectile.
 	
@@ -1883,7 +1883,7 @@
 			"AttackRate"				"0.95"		// Speed of attack.
 			"AttackAnimationPoint"		"0.6"		// Normalized time in animation cycle to attack.
 			"AttackAcquisitionRange"	"600"		// Range within a target can be acquired.
-			"AttackRange"				"510"		// Range within a target can be attacked.
+			"AttackRange"				"580"		// Range within a target can be attacked.
 			"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
 			"ProjectileSpeed"			"600"		// Speed of projectile.
 	
@@ -1940,7 +1940,7 @@
 	{
 	// General
 	//----------------------------------------------------------------
-	"BaseClass"					"npc_dota_creature"
+	"BaseClass"					"npc_dota_building"
 	"Model"						"models/props_structures/gate_entrance002.vmdl"
 	"ModelScale"				"2.2"
 	"Level"						"1"
@@ -1959,8 +1959,8 @@
 	
 	// Armor
 	//----------------------------------------------------------------
-	"ArmorPhysical"				"5"
-	"MagicalResistance"			"0"
+	"ArmorPhysical"				"15"		// Physical protection.
+	"MagicalResistance"				"0"			// Magical protection.
 	
 	// Attack
 	//----------------------------------------------------------------
@@ -1994,7 +1994,7 @@
 	
 	// Status
 	//----------------------------------------------------------------
-	"StatusHealth"				"600"
+	"StatusHealth"				"1200"
 	"StatusHealthRegen"			"0"
 	"StatusMana"				"0"
 	"StatusManaRegen"			"0"

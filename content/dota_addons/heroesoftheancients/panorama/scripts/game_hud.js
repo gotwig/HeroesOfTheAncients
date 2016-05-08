@@ -218,6 +218,10 @@ function showGameTime(){
   minutes = Math.floor(Game.GetDOTATime( false, false)/60);
   seconds = Math.floor(Game.GetDOTATime( false, true) % 60); 
     
+  if (seconds < -0){
+	  seconds = seconds + 4;
+  }
+	
   if (minutes < 10) {
 	  minutes = "0" + minutes;
   }
@@ -466,18 +470,7 @@ else {
 	$("#levelupAttributesHint").visible = false;
 }
 
-$.Schedule(1/10, heroCamera);
 
-}
-
-function showDynamicEventInfo(msg){
-  $("#mapEventInfo").style["background-image"] = 'url("file://{images}/custom_game/maps/' + Game.GetMapInfo().map_display_name + '/eventMap.png")';
-  $("#mapEventInfo").visible = true;
- 
-  
-}
-
-function unitSelectionChanged(){
 	if (Entities.IsHero( Players.GetLocalPlayerPortraitUnit() )){	
 		var newUnit = CustomNetTables.GetTableValue( "hero_attributes", Players.GetLocalPlayerPortraitUnit() )
 		
@@ -495,7 +488,17 @@ function unitSelectionChanged(){
 		$("#attributeIntText").text = "";
 		$("#attributeAgiText").text = "";
 	}
-	
+
+
+$.Schedule(1/10, heroCamera);
+
+}
+
+function showDynamicEventInfo(msg){
+  $("#mapEventInfo").style["background-image"] = 'url("file://{images}/custom_game/maps/' + Game.GetMapInfo().map_display_name + '/eventMap.png")';
+  $("#mapEventInfo").visible = true;
+ 
+  
 }
 	
 function hideDynamicEventInfo(){
@@ -564,9 +567,5 @@ function hideDynamicEventInfo(){
   
   GameEvents.Subscribe( "entity_killed", OnHeroDeath );
   GameEvents.Subscribe( "npc_spawned", OnHeroRespawn );
-
-  GameEvents.Subscribe( "dota_player_update_query_unit", unitSelectionChanged );
-  GameEvents.Subscribe( "dota_player_update_selected_unit", unitSelectionChanged );
-
 
 })(); 
