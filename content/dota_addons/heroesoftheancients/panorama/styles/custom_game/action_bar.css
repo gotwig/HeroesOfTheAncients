@@ -5,7 +5,6 @@
 	flow-children: right-wrap;
 	margin-bottom: -20px;
 	background-repeat: no-repeat;
-	
 	horizontal-align: center;
 	
 }
@@ -63,6 +62,7 @@
 #LevelUpButton
 {
 	border: 1px solid black;
+	margin-top: -8px;
     background-color: #c4a529;
 	width: 114px;
 	height: 28px;
@@ -107,10 +107,10 @@
 {
 	flow-children: down;
 
-
 }
 
 #AbilityImage{
+	margin-left: 3px;
 	height: 90px;
 	opacity-mask: url( "file://{images}/custom_game/hud/masks/abilityPanel.png" );
 }
@@ -126,7 +126,6 @@
 {
 	border: 2px solid #00000000;
 }
-
 
 
 .learnable_ability #UpgradeBorder
@@ -163,17 +162,22 @@
 
 #AbilityStatusBorder
 {
-	border: 2px solid transparent;
 }
 
 .auto_cast_enabled #AbilityStatusBorder
 {
-	border: 4px solid orange;
+background-color:GoldenRod;
+opacity-mask: url( "file://{images}/custom_game/hud/masks/abilityStatusPanel.png" );
+width: 90px;
+height: 96px;
 }
 
 .toggle_enabled #AbilityStatusBorder
 {
-	border: 4px solid green;
+background-color:Chartreuse ;
+opacity-mask: url( "file://{images}/custom_game/hud/masks/abilityStatusPanel.png" );
+width: 90px;
+height: 96px;
 }
 
 #AbilityLevelContainer

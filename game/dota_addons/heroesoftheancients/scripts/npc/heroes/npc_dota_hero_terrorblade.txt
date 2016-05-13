@@ -1,0 +1,5 @@
+    "npc_dota_hero_terrorblade"
+    {
+        "override_hero" "npc_dota_hero_terrorblade"
+        "MovementTurnRate"  "1.0"
+    }

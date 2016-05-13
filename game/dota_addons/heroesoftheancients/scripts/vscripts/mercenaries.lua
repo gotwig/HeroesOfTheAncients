@@ -147,15 +147,15 @@ function respawnAllyCamp(id)
 		
 		if (mercenaryCamps[id].allyTeam == 2)
 		then
-			for i = 3,6 do
-				ExecuteOrderFromTable({ UnitIndex = newUnit:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_top_pathcorner_goodguys_" .. i ):GetAbsOrigin(), Queue = true})
+			for i = 2,4 do
+				ExecuteOrderFromTable({ UnitIndex = newUnit:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_bot_pathcorner_goodguys_" .. i ):GetAbsOrigin(), Queue = true})
 			end
 		end
 		
 		if (mercenaryCamps[id].allyTeam == 3)
 		then
-			for i = 3,6 do
-				ExecuteOrderFromTable({ UnitIndex = newUnit:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_top_pathcorner_badguys_" .. i ):GetAbsOrigin(), Queue = true})
+			for i = 2,4 do
+				ExecuteOrderFromTable({ UnitIndex = newUnit:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_bot_pathcorner_badguys_" .. i ):GetAbsOrigin(), Queue = true})
 			end
 		end
 		

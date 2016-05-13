@@ -215,10 +215,13 @@ function IntellectTomeUsed( event )
 end
 
 function Heal(event)
-	print(event.entindex)
-    event.caster:GetPlayerOwner():GetAssignedHero():Heal(event.heal_amount, event.caster)
-    --PopupHealing(event.caster, event.heal_amount)
+    event.caster:Heal(event.heal_amount, event.caster)
 end
+
+function CustomMana(event)
+	event.caster:GiveMana(event.mana_amount)
+end
+
 
 function ReplenishMana(event)
     event.caster:GetPlayerOwner():GetAssignedHero():GiveMana(event.mana_amount)

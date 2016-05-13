@@ -7,18 +7,20 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/props_structures/tower_good.vmdl"// Model.
 		"SoundSet"					"Tower.Water"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower90"
 		"MinimapIconSize"			"320"
-		"Level"						"1"
+		"Level"						"1" 
+	    "ConsideredHero" 	 "1"
 		
+
 		// Abilities
 		//----------------------------------------------------------------
 		
 		"Ability1"					"towerAbility"			// Ability 1.
-		"Ability2"					""			// Ability 2.
+		"Ability2"					"ability_building"			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
@@ -99,18 +101,19 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/props_structures/tower_good.vmdl"// Model.
 		"SoundSet"					"Tower.Water"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower45"
 		"MinimapIconSize"			"320"
-		"Level"						"1"
+		"Level"						"1" 
+	    "ConsideredHero" 	 "1"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		
 		"Ability1"					"towerAbility"			// Ability 1.
-		"Ability2"					""			// Ability 2.
+		"Ability2"					"ability_building"			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
@@ -191,18 +194,19 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/props_structures/tower_good.vmdl"// Model.
 		"SoundSet"					"Tower.Water"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower90"
 		"MinimapIconSize"			"320"
-		"Level"						"1"
+		"Level"						"1" 
+	    "ConsideredHero" 	 "1"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		
 		"Ability1"					"towerAbility"			// Ability 1.
-		"Ability2"					""			// Ability 2.
+		"Ability2"					"ability_building"			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
@@ -283,19 +287,20 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/props_structures/tower_good.vmdl"// Model.
 		"SoundSet"					"Tower.Water"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower90"
 		"MinimapIconSize"			"320"
-		"Level"						"2"
+		"Level"						"2" 
+	    "ConsideredHero" 	 "1"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		
 		"Ability1"					"backdoor_protection"			// Ability 1.
 		"Ability2"					"towerAbility"			// Ability 2.
-		"Ability3"					""			// Ability 3.
+		"Ability3"					"ability_building"			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
 		"Ability6"					""			// Ability 6 - Extra.
@@ -375,19 +380,20 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/props_structures/tower_good.vmdl"// Model.
 		"SoundSet"					"Tower.Water"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower45"
 		"MinimapIconSize"			"320"
-		"Level"						"2"
+		"Level"						"2" 
+	    "ConsideredHero" 	 "1"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		
 		"Ability1"					"backdoor_protection"			// Ability 1.
 		"Ability2"					"towerAbility"			// Ability 2.
-		"Ability3"					""			// Ability 3.
+		"Ability3"					"ability_building"			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
 		"Ability6"					""			// Ability 6 - Extra.
@@ -468,19 +474,20 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/props_structures/tower_good.vmdl"// Model.
 		"SoundSet"					"Tower.Water"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower90"
 		"MinimapIconSize"			"320"
-		"Level"						"2"
+		"Level"						"2" 
+	    "ConsideredHero" 	 "1"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		
 		"Ability1"					"backdoor_protection"			// Ability 1.
 		"Ability2"					"towerAbility"			// Ability 2.
-		"Ability3"					""			// Ability 3.
+		"Ability3"					"ability_building"			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
 		"Ability6"					""			// Ability 6 - Extra.
@@ -561,19 +568,20 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/props_structures/tower_good.vmdl"// Model.
 		"SoundSet"					"Tower.Water"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower90"
 		"MinimapIconSize"			"320"
-		"Level"						"3"
+		"Level"						"3" 
+	    "ConsideredHero" 	 "1"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		
 		"Ability1"					"backdoor_protection"			// Ability 1.
 		"Ability2"					"towerAbility"			// Ability 2.
-		"Ability3"					""			// Ability 3.
+		"Ability3"					"ability_building"			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
 		"Ability6"					""			// Ability 6 - Extra.
@@ -652,19 +660,20 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/props_structures/tower_good.vmdl"// Model.
 		"SoundSet"					"Tower.Water"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower45"
 		"MinimapIconSize"			"320"
-		"Level"						"3"
+		"Level"						"3" 
+	    "ConsideredHero" 	 "1"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		
 		"Ability1"					"backdoor_protection"			// Ability 1.
 		"Ability2"					"towerAbility"			// Ability 2.
-		"Ability3"					""			// Ability 3.
+		"Ability3"					"ability_building"			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
 		"Ability6"					""			// Ability 6 - Extra.
@@ -744,19 +753,20 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/props_structures/tower_good.vmdl"// Model.
 		"SoundSet"					"Tower.Water"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower90"
 		"MinimapIconSize"			"320"
-		"Level"						"3"
+		"Level"						"3" 
+	    "ConsideredHero" 	 "1"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		
 		"Ability1"					"backdoor_protection"			// Ability 1.
 		"Ability2"					"towerAbility"			// Ability 2.
-		"Ability3"					""			// Ability 3.
+		"Ability3"					"ability_building"			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
 		"Ability6"					""			// Ability 6 - Extra.
@@ -837,19 +847,20 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/props_structures/tower_good"// Model.
 		"SoundSet"					"Tower.Water"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower45"
 		"MinimapIconSize"			"320"
-		"Level"						"4"
+		"Level"						"4" 
+	    "ConsideredHero" 	 "1"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		
 		"Ability1"					"backdoor_protection"			// Ability 1.
 		"Ability2"					"towerAbility"			// Ability 2.
-		"Ability3"					""			// Ability 3.
+		"Ability3"					"ability_building"			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
 		"Ability6"					""			// Ability 6 - Extra.
@@ -929,18 +940,19 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/props_structures/tower_bad.vmdl"// Model.
 		"SoundSet"					"Tower.Fire"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower90"
 		"MinimapIconSize"			"320"
-		"Level"						"1"
+		"Level"						"1" 
+	    "ConsideredHero" 	 "1"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		
 		"Ability1"					"towerAbility"			// Ability 1.
-		"Ability2"					""			// Ability 2.
+		"Ability2"					"ability_building"			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
@@ -951,7 +963,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"20"		// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"				"50"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -1021,18 +1033,19 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/props_structures/tower_bad.vmdl"// Model.
 		"SoundSet"					"Tower.Fire"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower45"
 		"MinimapIconSize"			"320"
-		"Level"						"1"
+		"Level"						"1" 
+	    "ConsideredHero" 	 "1"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		
 		"Ability1"					"towerAbility"			// Ability 1.
-		"Ability2"					""			// Ability 2.
+		"Ability2"					"ability_building"			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
@@ -1112,18 +1125,19 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/props_structures/tower_bad.vmdl"// Model.
 		"SoundSet"					"Tower.Fire"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower90"
 		"MinimapIconSize"			"320"
-		"Level"						"1"
+		"Level"						"1" 
+	    "ConsideredHero" 	 "1"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		
 		"Ability1"					"towerAbility"			// Ability 1.
-		"Ability2"					""			// Ability 2.
+		"Ability2"					"ability_building"			// Ability 2.
 		"Ability3"					""			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
@@ -1204,19 +1218,20 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/props_structures/tower_bad.vmdl"// Model.
 		"SoundSet"					"Tower.Fire"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower90"
 		"MinimapIconSize"			"320"
-		"Level"						"2"
+		"Level"						"2" 
+	    "ConsideredHero" 	 "1"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		
 		"Ability1"					"backdoor_protection"			// Ability 1.
 		"Ability2"					"towerAbility"			// Ability 2.
-		"Ability3"					""			// Ability 3.
+		"Ability3"					"ability_building"			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
 		"Ability6"					""			// Ability 6 - Extra.
@@ -1296,19 +1311,20 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/props_structures/tower_bad.vmdl"// Model.
 		"SoundSet"					"Tower.Fire"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower45"
 		"MinimapIconSize"			"320"
-		"Level"						"2"
+		"Level"						"2" 
+	    "ConsideredHero" 	 "1"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		
 		"Ability1"					"backdoor_protection"			// Ability 1.
 		"Ability2"					"towerAbility"			// Ability 2.
-		"Ability3"					""			// Ability 3.
+		"Ability3"					"ability_building"			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
 		"Ability6"					""			// Ability 6 - Extra.
@@ -1388,19 +1404,20 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/props_structures/tower_bad.vmdl"// Model.
 		"SoundSet"					"Tower.Fire"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower90"
 		"MinimapIconSize"			"320"
-		"Level"						"2"
+		"Level"						"2" 
+	    "ConsideredHero" 	 "1"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		
 		"Ability1"					"backdoor_protection"			// Ability 1.
 		"Ability2"					"towerAbility"			// Ability 2.
-		"Ability3"					""			// Ability 3.
+		"Ability3"					"ability_building"			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
 		"Ability6"					""			// Ability 6 - Extra.
@@ -1480,19 +1497,20 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/props_structures/tower_bad.vmdl"// Model.
 		"SoundSet"					"Tower.Fire"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower90"
 		"MinimapIconSize"			"320"
-		"Level"						"3"
+		"Level"						"3" 
+	    "ConsideredHero" 	 "1"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		
 		"Ability1"					"backdoor_protection"			// Ability 1.
 		"Ability2"					"towerAbility"			// Ability 2.
-		"Ability3"					""			// Ability 3.
+		"Ability3"					"ability_building"			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
 		"Ability6"					""			// Ability 6 - Extra.
@@ -1572,19 +1590,20 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/props_structures/tower_bad.vmdl"// Model.
 		"SoundSet"					"Tower.Fire"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower45"
 		"MinimapIconSize"			"320"
-		"Level"						"3"
+		"Level"						"3" 
+	    "ConsideredHero" 	 "1"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		
 		"Ability1"					"backdoor_protection"			// Ability 1.
 		"Ability2"					"towerAbility"			// Ability 2.
-		"Ability3"					""			// Ability 3.
+		"Ability3"					"ability_building"			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
 		"Ability6"					""			// Ability 6 - Extra.
@@ -1664,19 +1683,20 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/props_structures/tower_bad.vmdl"// Model.
 		"SoundSet"					"Tower.Fire"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower90"
 		"MinimapIconSize"			"320"
-		"Level"						"3"
+		"Level"						"3" 
+	    "ConsideredHero" 	 "1"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		
 		"Ability1"					"backdoor_protection"			// Ability 1.
 		"Ability2"					"towerAbility"			// Ability 2.
-		"Ability3"					""			// Ability 3.
+		"Ability3"					"ability_building"			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
 		"Ability6"					""			// Ability 6 - Extra.
@@ -1756,19 +1776,20 @@
 	{
 		// General
 		//
-		"BaseClass"					"npc_dota_building"	// Class of entity of link to.
+		"BaseClass"					"npc_dota_creature"	// Class of entity of link to.
 		"Model"						"models/props_structures/tower_bad.vmdl"// Model.
 		"SoundSet"					"Tower.Fire"					// Name of sound set.
 		"MinimapIcon"				"minimap_tower45"
 		"MinimapIconSize"			"320"
-		"Level"						"4"
+		"Level"						"4" 
+	    "ConsideredHero" 	 "1"
 		
 		// Abilities
 		//----------------------------------------------------------------
 		
 		"Ability1"					"backdoor_protection"			// Ability 1.
 		"Ability2"					"towerAbility"			// Ability 2.
-		"Ability3"					""			// Ability 3.
+		"Ability3"					"ability_building"			// Ability 3.
 		"Ability4"					""			// Ability 4.
 		"Ability5"					""			// Ability 5.
 		"Ability6"					""			// Ability 6 - Extra.

@@ -111,6 +111,8 @@ function GameMode:PostLoadPrecache()
   --PrecacheUnitByNameAsync("npc_dota_hero_viper", function(...) end)
   --PrecacheUnitByNameAsync("npc_dota_hero_enigma", function(...) end)
 	LinkLuaModifier("modifier_behindGate", "modifiers/modifier_behindGate", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("modifier_lowAttackPrio", "modifiers/modifier_lowAttackPrio", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("modifier_breaker_stun", "modifiers/modifier_breaker_stun", LUA_MODIFIER_MOTION_NONE)
 
 end
 
@@ -121,61 +123,73 @@ end
 function GameMode:OnFirstPlayerLoaded()
   DebugPrint("[BAREBONES] First Player has loaded")
 	
-	
-	
 	-- Play Sound countdown 10..1 
 	Timers:CreateTimer(function()
 	
 	
-			if(math.floor(GameRules:GetDOTATime(false, true)) == -14 )
-			then
-				EmitAnnouncerSound("announcer_ann_custom_countdown_10")
-			end
-			
-			if(math.floor(GameRules:GetDOTATime(false, true)) == -13 )
-			then
-				EmitAnnouncerSound("announcer_ann_custom_countdown_09")
-			end
-			
-			if(math.floor(GameRules:GetDOTATime(false, true)) == -12 )
-			then
-				EmitAnnouncerSound("announcer_ann_custom_countdown_08")
-			end
-			
-			if(math.floor(GameRules:GetDOTATime(false, true)) == -11 )
-			then
-				EmitAnnouncerSound("announcer_ann_custom_countdown_07")
-			end
-			
-			if(math.floor(GameRules:GetDOTATime(false, true)) == -10 )
-			then
-				EmitAnnouncerSound("announcer_ann_custom_countdown_06")
-			end
-			
-			if(math.floor(GameRules:GetDOTATime(false, true)) == -9 )
-			then
-				EmitAnnouncerSound("announcer_ann_custom_countdown_05")
-			end
-			
-			if(math.floor(GameRules:GetDOTATime(false, true)) == -8 )
-			then
-				EmitAnnouncerSound("announcer_ann_custom_countdown_04")
-			end
-			
-			if(math.floor(GameRules:GetDOTATime(false, true)) == -7 )
-			then
-				EmitAnnouncerSound("announcer_ann_custom_countdown_03")
-			end
-			
-			if(math.floor(GameRules:GetDOTATime(false, true)) == -6 )
-			then
-				EmitAnnouncerSound("announcer_ann_custom_countdown_02")
-			end
-			
-			if(math.floor(GameRules:GetDOTATime(false, true)) == -5 )
-			then
-				EmitAnnouncerSound("announcer_ann_custom_countdown_01")
-			end
+		for playerID = 0, DOTA_DEFAULT_MAX_TEAM_PLAYERS	 do 
+
+		local player = PlayerResource:GetPlayer(playerID)
+
+			if (PlayerResource:IsValidPlayerID(playerID) and PlayerResource:GetSelectedHeroEntity(playerID)) then 
+
+				if(math.floor(GameRules:GetDOTATime(false, true)) == -15 )
+				then
+					EmitAnnouncerSoundForPlayer("announcer_ann_custom_countdown_10", playerID)
+				end
+				
+				if(math.floor(GameRules:GetDOTATime(false, true)) == -14 )
+				then
+					EmitAnnouncerSoundForPlayer("announcer_ann_custom_countdown_09", playerID)
+				end
+				
+				if(math.floor(GameRules:GetDOTATime(false, true)) == -13 )
+				then
+					EmitAnnouncerSoundForPlayer("announcer_ann_custom_countdown_08", playerID)
+				end
+				
+				if(math.floor(GameRules:GetDOTATime(false, true)) == -12 )
+				then
+					EmitAnnouncerSoundForPlayer("announcer_ann_custom_countdown_07", playerID)
+				end
+				
+				if(math.floor(GameRules:GetDOTATime(false, true)) == -11 )
+				then
+					EmitAnnouncerSoundForPlayer("announcer_ann_custom_countdown_06", playerID)
+				end
+				
+				if(math.floor(GameRules:GetDOTATime(false, true)) == -10 )
+				then
+					EmitAnnouncerSoundForPlayer("announcer_ann_custom_countdown_05", playerID)
+				end
+				
+				if(math.floor(GameRules:GetDOTATime(false, true)) == -9 )
+				then
+					EmitAnnouncerSoundForPlayer("announcer_ann_custom_countdown_04", playerID)
+				end
+				
+				if(math.floor(GameRules:GetDOTATime(false, true)) == -8 )
+				then
+					EmitAnnouncerSoundForPlayer("announcer_ann_custom_countdown_03", playerID)
+				end
+				
+				if(math.floor(GameRules:GetDOTATime(false, true)) == -7 )
+				then
+					EmitAnnouncerSoundForPlayer("announcer_ann_custom_countdown_02", playerID)
+				end
+				
+				if(math.floor(GameRules:GetDOTATime(false, true)) == -6 )
+				then
+					EmitAnnouncerSoundForPlayer("announcer_ann_custom_countdown_01", playerID)
+				end
+
+			end 
+
+		end
+	
+	
+	
+
 			
 		return 1
 	end)
@@ -229,7 +243,6 @@ end
 function GameMode:OnHeroInGame(hero)
 
   --Convars:SetBool("dota_hide_cursor", true)
-  
 
   Convars:SetInt("dota_minimap_hero_size", 1100)
   Convars:SetInt("dota_minimap_creep_scale", 1)
@@ -288,6 +301,23 @@ function GameMode:OnHeroInGame(hero)
 Timers:CreateTimer(function()
 			for k, v in pairs( HeroList:GetAllHeroes() ) do
 				CustomNetTables:SetTableValue( "hero_attributes", "" .. v:entindex(), { str = v:GetStrength(), agi = v:GetAgility(), int = v:GetIntellect() } )
+
+				
+				-- Forbid spirit breaker to rush from ug to top or other side around
+				if(v.chargeTarget) then				
+					if (v.chargeTarget:GetAbsOrigin().y < 626 and v:GetAbsOrigin().y > 626 ) then
+						v:AddNewModifier(v, nil, "modifier_breaker_stun", {duration = 0.06})
+
+					end
+					if (v.chargeTarget:GetAbsOrigin().y > 626 and v:GetAbsOrigin().y < 626 ) then
+						v:AddNewModifier(v, nil, "modifier_breaker_stun", {duration = 0.06})
+
+					end
+					if (not v:HasModifier("modifier_spirit_breaker_charge_of_darkness")) then
+						print("no target anymore")
+						v.chargeTarget = nil
+					end
+				end
 			end
 		return 0.1
 	end)
@@ -305,7 +335,6 @@ function GameMode:OnGameInProgress()
   DebugPrint("[BAREBONES] The game has officially begun")
   
   Notifications:TopToAll({text=matchstarttexts[RandomInt( 1, #matchstarttexts )], duration=10.0})
-
 
    teamselection = ""
 
@@ -639,11 +668,28 @@ then
 	local caster = EntIndexToHScript(filterTable['entindex_caster_const'])
 	
 	if (victim:GetTeamNumber() ~= caster:GetTeamNumber())
-	then
+	then	
+		if (victim:HasModifier("modifier_spirit_breaker_charge_of_darkness_vision"))
+		then
+			caster.chargeTarget = victim
+			if (victim:GetAbsOrigin().y < 1257.65 and caster:GetAbsOrigin().y > 1257.65) then				
+				return false
+			end
+			if (victim:GetAbsOrigin().y > 1257.65 and caster:GetAbsOrigin().y < 1257.65) then
+				return false
+			end
+			
+		end
+	
 		if (victim:HasModifier("modifier_behindGate"))
 		then
 			return false
 		end
+		if (victim:HasAbility("ability_building"))
+		then
+			return false
+		end
+		
 	end
 	
 end

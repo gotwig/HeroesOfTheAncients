@@ -1,0 +1,5 @@
+    "npc_dota_hero_juggernaut"
+    {
+        "override_hero" "npc_dota_hero_juggernaut"
+        "MovementTurnRate"  "1.0"
+    }

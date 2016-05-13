@@ -1,0 +1,5 @@
+    "npc_dota_hero_tiny"
+    {
+        "override_hero" "npc_dota_hero_tiny"
+        "MovementTurnRate"  "1.0"
+    }

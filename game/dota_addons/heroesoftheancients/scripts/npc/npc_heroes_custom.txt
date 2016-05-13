@@ -1,3 +1,569 @@
 "DOTAHeroes"
 {
+    "npc_dota_hero_abaddon"
+    {
+        "override_hero" "npc_dota_hero_abaddon"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_alchemist"
+    {
+        "override_hero" "npc_dota_hero_alchemist"
+        "MovementTurnRate"  "1.0"
+		"Ability3" ""
+    }
+    "npc_dota_hero_ancient_apparition"
+    {
+        "override_hero" "npc_dota_hero_ancient_apparition"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_antimage"
+    {
+        "override_hero" "npc_dota_hero_antimage"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_arc_warden"
+    {
+        "override_hero" "npc_dota_hero_arc_warden"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_axe"
+    {
+        "override_hero" "npc_dota_hero_axe"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_bane"
+    {
+        "override_hero" "npc_dota_hero_bane"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_base"
+    {
+        "override_hero" "npc_dota_hero_base"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_batrider"
+    {
+        "override_hero" "npc_dota_hero_batrider"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_beastmaster"
+    {
+        "override_hero" "npc_dota_hero_beastmaster"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_bloodseeker"
+    {
+        "override_hero" "npc_dota_hero_bloodseeker"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_bounty_hunter"
+    {
+        "override_hero" "npc_dota_hero_bounty_hunter"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_brewmaster"
+    {
+        "override_hero" "npc_dota_hero_brewmaster"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_bristleback"
+    {
+        "override_hero" "npc_dota_hero_bristleback"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_broodmother"
+    {
+        "override_hero" "npc_dota_hero_broodmother"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_centaur"
+    {
+        "override_hero" "npc_dota_hero_centaur"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_chaos_knight"
+    {
+        "override_hero" "npc_dota_hero_chaos_knight"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_chen"
+    {
+        "override_hero" "npc_dota_hero_chen"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_clinkz"
+    {
+        "override_hero" "npc_dota_hero_clinkz"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_crystal_maiden"
+    {
+        "override_hero" "npc_dota_hero_crystal_maiden"
+        "MovementTurnRate"  "1.0"
+		
+		"Ability3"		"crystal_maiden_brilliance_sentry_aura"
+
+    }
+    "npc_dota_hero_dark_seer"
+    {
+        "override_hero" "npc_dota_hero_dark_seer"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_dazzle"
+    {
+        "override_hero" "npc_dota_hero_dazzle"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_death_prophet"
+    {
+        "override_hero" "npc_dota_hero_death_prophet"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_disruptor"
+    {
+        "override_hero" "npc_dota_hero_disruptor"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_doom_bringer"
+    {
+        "override_hero" "npc_dota_hero_doom_bringer"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_dragon_knight"
+    {
+        "override_hero" "npc_dota_hero_dragon_knight"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_drow_ranger"
+    {
+        "override_hero" "npc_dota_hero_drow_ranger"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_earthshaker"
+    {
+        "override_hero" "npc_dota_hero_earthshaker"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_earth_spirit"
+    {
+        "override_hero" "npc_dota_hero_earth_spirit"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_elder_titan"
+    {
+        "override_hero" "npc_dota_hero_elder_titan"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_ember_spirit"
+    {
+        "override_hero" "npc_dota_hero_ember_spirit"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_enchantress"
+    {
+        "override_hero" "npc_dota_hero_enchantress"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_enigma"
+    {
+        "override_hero" "npc_dota_hero_enigma"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_faceless_void"
+    {
+        "override_hero" "npc_dota_hero_faceless_void"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_furion"
+    {
+        "override_hero" "npc_dota_hero_furion"
+        "MovementTurnRate"  "1.0"
+		"Ability2"		"sentryWard_Aura"
+    }
+    "npc_dota_hero_gyrocopter"
+    {
+        "override_hero" "npc_dota_hero_gyrocopter"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_huskar"
+    {
+        "override_hero" "npc_dota_hero_huskar"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_invoker"
+    {
+        "override_hero" "npc_dota_hero_invoker"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_jakiro"
+    {
+        "override_hero" "npc_dota_hero_jakiro"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_juggernaut"
+    {
+        "override_hero" "npc_dota_hero_juggernaut"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_keeper_of_the_light"
+    {
+        "override_hero" "npc_dota_hero_keeper_of_the_light"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_kunkka"
+    {
+        "override_hero" "npc_dota_hero_kunkka"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_legion_commander"
+    {
+        "override_hero" "npc_dota_hero_legion_commander"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_leshrac"
+    {
+        "override_hero" "npc_dota_hero_leshrac"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_lich"
+    {
+        "override_hero" "npc_dota_hero_lich"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_life_stealer"
+    {
+        "override_hero" "npc_dota_hero_life_stealer"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_lina"
+    {
+        "override_hero" "npc_dota_hero_lina"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_lion"
+    {
+        "override_hero" "npc_dota_hero_lion"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_lone_druid"
+    {
+        "override_hero" "npc_dota_hero_lone_druid"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_luna"
+    {
+        "override_hero" "npc_dota_hero_luna"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_lycan"
+    {
+        "override_hero" "npc_dota_hero_lycan"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_magnataur"
+    {
+        "override_hero" "npc_dota_hero_magnataur"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_medusa"
+    {
+        "override_hero" "npc_dota_hero_medusa"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_meepo"
+    {
+        "override_hero" "npc_dota_hero_meepo"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_mirana"
+    {
+        "override_hero" "npc_dota_hero_mirana"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_morphling"
+    {
+        "override_hero" "npc_dota_hero_morphling"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_naga_siren"
+    {
+        "override_hero" "npc_dota_hero_naga_siren"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_necrolyte"
+    {
+        "override_hero" "npc_dota_hero_necrolyte"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_nevermore"
+    {
+        "override_hero" "npc_dota_hero_nevermore"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_night_stalker"
+    {
+        "override_hero" "npc_dota_hero_night_stalker"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_nyx_assassin"
+    {
+        "override_hero" "npc_dota_hero_nyx_assassin"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_obsidian_destroyer"
+    {
+        "override_hero" "npc_dota_hero_obsidian_destroyer"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_ogre_magi"
+    {
+        "override_hero" "npc_dota_hero_ogre_magi"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_omniknight"
+    {
+        "override_hero" "npc_dota_hero_omniknight"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_oracle"
+    {
+        "override_hero" "npc_dota_hero_oracle"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_phantom_assassin"
+    {
+        "override_hero" "npc_dota_hero_phantom_assassin"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_phantom_lancer"
+    {
+        "override_hero" "npc_dota_hero_phantom_lancer"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_phoenix"
+    {
+        "override_hero" "npc_dota_hero_phoenix"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_puck"
+    {
+        "override_hero" "npc_dota_hero_puck"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_pudge"
+    {
+        "override_hero" "npc_dota_hero_pudge"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_pugna"
+    {
+        "override_hero" "npc_dota_hero_pugna"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_queenofpain"
+    {
+        "override_hero" "npc_dota_hero_queenofpain"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_rattletrap"
+    {
+        "override_hero" "npc_dota_hero_rattletrap"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_razor"
+    {
+        "override_hero" "npc_dota_hero_razor"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_riki"
+    {
+        "override_hero" "npc_dota_hero_riki"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_rubick"
+    {
+        "override_hero" "npc_dota_hero_rubick"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_sand_king"
+    {
+        "override_hero" "npc_dota_hero_sand_king"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_shadow_demon"
+    {
+        "override_hero" "npc_dota_hero_shadow_demon"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_shadow_shaman"
+    {
+        "override_hero" "npc_dota_hero_shadow_shaman"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_shredder"
+    {
+        "override_hero" "npc_dota_hero_shredder"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_silencer"
+    {
+        "override_hero" "npc_dota_hero_silencer"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_skeleton_king"
+    {
+        "override_hero" "npc_dota_hero_skeleton_king"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_skywrath_mage"
+    {
+        "override_hero" "npc_dota_hero_skywrath_mage"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_slardar"
+    {
+        "override_hero" "npc_dota_hero_slardar"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_slark"
+    {
+        "override_hero" "npc_dota_hero_slark"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_sniper"
+    {
+        "override_hero" "npc_dota_hero_sniper"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_spectre"
+    {
+        "override_hero" "npc_dota_hero_spectre"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_spirit_breaker"
+    {
+        "override_hero" "npc_dota_hero_spirit_breaker"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_storm_spirit"
+    {
+        "override_hero" "npc_dota_hero_storm_spirit"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_sven"
+    {
+        "override_hero" "npc_dota_hero_sven"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_techies"
+    {
+        "override_hero" "npc_dota_hero_techies"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_templar_assassin"
+    {
+        "override_hero" "npc_dota_hero_templar_assassin"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_terrorblade"
+    {
+        "override_hero" "npc_dota_hero_terrorblade"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_tidehunter"
+    {
+        "override_hero" "npc_dota_hero_tidehunter"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_tinker"
+    {
+        "override_hero" "npc_dota_hero_tinker"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_tiny"
+    {
+        "override_hero" "npc_dota_hero_tiny"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_treant"
+    {
+        "override_hero" "npc_dota_hero_treant"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_troll_warlord"
+    {
+        "override_hero" "npc_dota_hero_troll_warlord"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_tusk"
+    {
+        "override_hero" "npc_dota_hero_tusk"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_undying"
+    {
+        "override_hero" "npc_dota_hero_undying"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_ursa"
+    {
+        "override_hero" "npc_dota_hero_ursa"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_vengefulspirit"
+    {
+        "override_hero" "npc_dota_hero_vengefulspirit"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_venomancer"
+    {
+        "override_hero" "npc_dota_hero_venomancer"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_viper"
+    {
+        "override_hero" "npc_dota_hero_viper"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_visage"
+    {
+        "override_hero" "npc_dota_hero_visage"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_warlock"
+    {
+        "override_hero" "npc_dota_hero_warlock"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_weaver"
+    {
+        "override_hero" "npc_dota_hero_weaver"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_windrunner"
+    {
+        "override_hero" "npc_dota_hero_windrunner"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_winter_wyvern"
+    {
+        "override_hero" "npc_dota_hero_winter_wyvern"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_wisp"
+    {
+        "override_hero" "npc_dota_hero_wisp"
+        "MovementTurnRate"  "1.0"
+		"Ability7"		"sentryWard_Aura"
+    }
+    "npc_dota_hero_witch_doctor"
+    {
+        "override_hero" "npc_dota_hero_witch_doctor"
+        "MovementTurnRate"  "1.0"
+    }
+    "npc_dota_hero_zuus"
+    {
+        "override_hero" "npc_dota_hero_zuus"
+        "MovementTurnRate"  "1.0"
+    }
 }

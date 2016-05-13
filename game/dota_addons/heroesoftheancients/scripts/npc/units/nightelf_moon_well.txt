@@ -6,7 +6,7 @@
 {
 	// General
 	//----------------------------------------------------------------
-	"BaseClass"					"npc_dota_building"
+	"BaseClass"					"npc_dota_creature"
 	"Model"						"models/props_structures/rock_statue001.vmdl"
 	"ModelScale"				"1"
 	"Level"						"1"
@@ -21,7 +21,7 @@
 	"Ability1"					"nightelf_replenish_mana_and_life"	 //Reference: Abds
 	"Ability2"					"nightelf_well_spring_disabled"	 //Reference: Ambt
 	"Ability3"					"noRotation"
-	//"Ability10"					"ability_building"
+	"Ability4"					"ability_building"
 	
 	// Armor
 	//----------------------------------------------------------------
@@ -73,7 +73,7 @@
 
 	"Creature"
 	{
-		"ManaGain"				"125" //Well Sprig
+		"ManaGain"				"125" //Well Spring
 	}
 	
 }

@@ -80,7 +80,7 @@ function heroTeamDeathTimebar()
 			  myStyle.GetChild(1).heroname = Entities.GetUnitName(Players.GetPlayerHeroEntityIndex(playerIDs[i]))
 			  myStyle.GetChild(2).text = respawnSecs;
 
-			  myStyle.SetHasClass("Team" +  Players.GetTeam( playerIDs[i] ) + "DeathBar", true);
+			  //myStyle.SetHasClass("Team" +  Players.GetTeam( playerIDs[i] ) + "DeathBar", true);
 			  
 			  if (Players.GetTeam( playerIDs[i]) == 2) {
 				 myStyle.style['margin-right'] = ( (830 / teamDeathMax[playerIDs[i]]) * respawnSecs ) + 560     + "px;";

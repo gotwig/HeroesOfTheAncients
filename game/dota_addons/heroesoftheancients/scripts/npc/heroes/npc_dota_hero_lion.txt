@@ -1,0 +1,5 @@
+    "npc_dota_hero_lion"
+    {
+        "override_hero" "npc_dota_hero_lion"
+        "MovementTurnRate"  "1.0"
+    }

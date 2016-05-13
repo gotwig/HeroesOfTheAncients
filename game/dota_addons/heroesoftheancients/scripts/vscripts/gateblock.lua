@@ -48,7 +48,19 @@ boxcollider.test = function(self, unit)
   if ((unit:GetTeamNumber() ~= DOTA_TEAM_GOODGUYS) and (unit:GetTeamNumber() ~= DOTA_TEAM_BADGUYS) ) then
     return false
   else
+	if (unit:GetTeamNumber() ~= thisEntity:GetTeamNumber()) then
+	
+		if (unit:HasModifier("modifier_spirit_breaker_charge_of_darkness")) then
+			unit:AddNewModifier(v, nil, "modifier_breaker_stun", {duration = 0.06})
+			return unit:GetTeamNumber() ~= thisEntity:GetTeamNumber()
+		else
+			return unit:GetTeamNumber() ~= thisEntity:GetTeamNumber()
+		end
+	
+	end
+	
     return unit:GetTeamNumber() ~= thisEntity:GetTeamNumber()
+
   end
   
 end

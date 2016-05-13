@@ -116,6 +116,240 @@
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityManaCost"       "0 0 0 0"
 	  }
+	"crystal_maiden_brilliance_sentry_aura"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_AURA"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
+		"AbilityTextureName"			"crystal_maiden_brilliance_aura"
+		"AbilityCastRange"				"%aura_radius"
+		"AbilityManacost"				"30 45 100 100"
+	
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"mana_regen"		"1.0 1.5 2.0 3.0"
+			}
+			
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"mana_regen_self_display"		"2.0 3.0 4.0 8.0"
+			}
+			
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"manacost_per_second"				"15 30 45 45"
+			}
+			
+			// Extra variables
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"global_radius"		"9000"
+			}
+			
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"aura_radius"		"400 600 800 800"
+			}
+			
+			"06"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"mana_regen_self"		"1.0 1.5 2.0 5.0"
+			}
+			
+		}
+		
+				"OnToggleOn"
+			{
+					"ApplyModifier"
+				{
+					"Target"	"CASTER"
+					"ModifierName"	"modifier_sentry"
+				}
+		
+					"FireSound"
+				{
+					"EffectName"	"Hero_EmberSpirit.FlameGuard.Cast"
+					"Target"	"CASTER"
+				}
+		
+			}
+		
+			"OnToggleOff"
+			{
+					"RemoveModifier"
+				{
+					"Target"	"CASTER"
+					"ModifierName"	"modifier_sentry"
+				}
+		
+			}
+		
+		
+		// Data driven
+		//-------------------------------------------------------------------------------------------------------------
+		"Modifiers"
+		{
+			"modifier_brilliance_aura_caster_datadriven"
+			{
+				"Passive"				"1"
+				"IsPurgable"			"0"
+				"IsHidden"				"1"
+				"Aura"					"modifier_brilliance_aura_effect_datadriven"
+				"Aura_Radius"			"%global_radius"
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_HERO"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"		"%mana_regen_self"
+				}
+			}
+			
+			"modifier_brilliance_aura_effect_datadriven"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"		"%mana_regen"
+				}
+			}
+			
+			"modifier_sentry"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+		
+				"Aura"          	"modifier_sentry_aura"
+				"Aura_Radius"   	"%aura_radius"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC" //mechanic?
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE" //immune?
+				
+				
+				"ThinkInterval"	"1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"secManaCost.lua"
+						"Function"		"start"
+						"mpPerSec"		"%manacost_per_second"
+					}
+		
+				}
+	
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"radar.lua"
+						"Function"		"showRadar"
+					}
+				}
+				
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"radar.lua"
+						"Function"		"destroyRadar"
+					}
+				}
+				
+				
+			}
+			
+			"modifier_sentry_aura"
+			{
+				"IsHidden"			"0" //hidden?
+				"IsDebuff"			"0"
+			
+				"Priority"                     "MODIFIER_PRIORITY_ULTRA"
+				
+				"States"
+				{
+	                "MODIFIER_STATE_INVISIBLE"          "MODIFIER_STATE_VALUE_DISABLED"
+				}
+				
+				
+			}
+			
+			
+		}
+	}
+	"ability_building"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"MaxLevel" 						"1"
+	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	
+		"Modifiers"
+		{
+			"modifier_building"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE | MODIFIER_ATTRIBUTE_PERMANENT"	
+				"States"
+				{
+					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED" // Prevents moving
+					"MODIFIER_STATE_SPECIALLY_DENIABLE" "MODIFIER_STATE_VALUE_ENABLED" // Allows attacking own buildings
+					"MODIFIER_STATE_LOW_ATTACK_PRIORITY" "MODIFIER_STATE_VALUE_ENABLED" // Makes it a secondary target when A-clicking ground			
+				}
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DISABLE_TURNING" "1"
+					"MODIFIER_PROPERTY_IGNORE_CAST_ANGLE" "1"
+					"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE"	"0.1"
+				}
+				
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"neverMove.lua"
+						"Function"		"neverMove"
+					}
+				}
+							
+				
+			}
+		}		
+	}
+	"ability_gate"
+	{
+		"BaseClass"             		"ability_datadriven"
+		"MaxLevel" 						"1"
+	
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+	
+		"Modifiers"
+		{
+			"modifier_building"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"Attributes"		"MODIFIER_ATTRIBUTE_IGNORE_INVULNERABLE | MODIFIER_ATTRIBUTE_PERMANENT"	
+				"States"
+				{
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+			}
+		}		
+	}
   "dummy_unit"
   {
     "AbilityBehavior"     "DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -478,4 +712,133 @@
 	        } 
 	
 	    }
+	"sentryWard_Aura"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_datadriven"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+		"AbilityManacost"	"30 45 100"
+		"AbilityCooldown" "4"
+		
+		"OnCastbar"					"0"
+		"AbilityTextureName"			"witch_doctor_voodoo_restoration"
+		
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"aura_radius"				"400 600 800"
+			}
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"manacost_per_second"				"15 30 45"
+			}
+			
+		}
+	
+		
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"%aura_radius"
+		
+			"OnToggleOn"
+			{
+					"ApplyModifier"
+				{
+					"Target"	"CASTER"
+					"ModifierName"	"modifier_sentry"
+				}
+		
+					"FireSound"
+				{
+					"EffectName"	"Hero_EmberSpirit.FlameGuard.Cast"
+					"Target"	"CASTER"
+				}
+		
+			}
+		
+			"OnToggleOff"
+			{
+					"RemoveModifier"
+				{
+					"Target"	"CASTER"
+					"ModifierName"	"modifier_sentry"
+				}
+		
+			}
+		
+		"Modifiers"
+		{
+			"modifier_sentry"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+		
+				"Aura"          	"modifier_sentry_aura"
+				"Aura_Radius"   	"%aura_radius"
+				"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC" //mechanic?
+				"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE" //immune?
+				
+				
+				"ThinkInterval"	"1"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"secManaCost.lua"
+						"Function"		"start"
+						"mpPerSec"		"%manacost_per_second"
+					}
+		
+				}
+				
+				
+				
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"radar.lua"
+						"Function"		"showRadar"
+					}
+				}
+				
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"radar.lua"
+						"Function"		"destroyRadar"
+					}
+				}
+				
+				
+			}
+			
+			"modifier_sentry_aura"
+			{
+				"IsHidden"			"0" //hidden?
+				"IsDebuff"			"0"
+			
+				"Priority"                     "MODIFIER_PRIORITY_ULTRA"
+				
+				"States"
+				{
+	                "MODIFIER_STATE_INVISIBLE"          "MODIFIER_STATE_VALUE_DISABLED"
+				}
+				
+				
+			}
+			
+		}
+	}
 }

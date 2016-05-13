@@ -126,6 +126,8 @@ margin-top: 78%;
 .remainingTeamDeath{
 	font-size: 26px;
 	horizontal-align: center;
+	text-shadow: 0px 0px 5px 4 black;
+	color:white;
 }
 
 .arrowTeamDeath{
@@ -138,13 +140,7 @@ margin-top: 78%;
 	height: 6px;
 }
 
-.Team2DeathBar{
-	color: white;
-}
 
-.Team3DeathBar{
-	color: white;
-}
 
 .heroTeamDeath{
 	width: 70px;

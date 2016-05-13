@@ -1,0 +1,129 @@
+"sentryWard_Aura"
+{
+	// General
+	//-------------------------------------------------------------------------------------------------------------
+	"BaseClass"						"ability_datadriven"
+	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE"
+	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+	"AbilityManacost"	"30 45 100"
+	"AbilityCooldown" "4"
+	
+	"OnCastbar"					"0"
+	"AbilityTextureName"			"witch_doctor_voodoo_restoration"
+	
+
+	// Special
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilitySpecial"
+	{
+		"01"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"aura_radius"				"400 600 800"
+		}
+		"02"
+		{
+			"var_type"						"FIELD_INTEGER"
+			"manacost_per_second"				"15 30 45"
+		}
+		
+	}
+
+	
+	// Casting
+	//-------------------------------------------------------------------------------------------------------------
+	"AbilityCastRange"				"%aura_radius"
+	
+		"OnToggleOn"
+		{
+				"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_sentry"
+			}
+	
+				"FireSound"
+			{
+				"EffectName"	"Hero_EmberSpirit.FlameGuard.Cast"
+				"Target"	"CASTER"
+			}
+	
+		}
+	
+		"OnToggleOff"
+		{
+				"RemoveModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_sentry"
+			}
+	
+		}
+	
+	"Modifiers"
+	{
+		"modifier_sentry"
+		{
+			"Passive"			"0"
+			"IsHidden"			"1"
+	
+			"Aura"          	"modifier_sentry_aura"
+			"Aura_Radius"   	"%aura_radius"
+			"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+			"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC" //mechanic?
+			"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE" //immune?
+			
+			
+			"ThinkInterval"	"1"
+			"OnIntervalThink"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"secManaCost.lua"
+					"Function"		"start"
+					"mpPerSec"		"%manacost_per_second"
+				}
+	
+			}
+			
+			
+			
+			"OnCreated"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"radar.lua"
+					"Function"		"showRadar"
+				}
+			}
+			
+			"OnDestroy"
+			{
+				"RunScript"
+				{
+					"ScriptFile"	"radar.lua"
+					"Function"		"destroyRadar"
+				}
+			}
+			
+			
+		}
+		
+		"modifier_sentry_aura"
+		{
+			"IsHidden"			"0" //hidden?
+			"IsDebuff"			"0"
+		
+			"Priority"                     "MODIFIER_PRIORITY_ULTRA"
+			
+			"States"
+			{
+                "MODIFIER_STATE_INVISIBLE"          "MODIFIER_STATE_VALUE_DISABLED"
+			}
+			
+			
+		}
+		
+	}
+}

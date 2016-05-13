@@ -1,0 +1,5 @@
+    "npc_dota_hero_shadow_shaman"
+    {
+        "override_hero" "npc_dota_hero_shadow_shaman"
+        "MovementTurnRate"  "1.0"
+    }

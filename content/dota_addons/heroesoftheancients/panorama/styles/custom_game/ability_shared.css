@@ -28,14 +28,15 @@
 #ManaCost
 {
 	color: #c0e8fb;
-    font-size: 14px;
+    font-size: 20px;
     font-weight: bold;
-	text-shadow: 0px 0px 6px 8 #245191;
-	margin-right: -2px;
-	margin-bottom: -4px;
+	text-shadow: 0px 0px 5px 6 #245191;
+	margin-right: 6px;
+	margin-bottom: 12px;
 
 	vertical-align: bottom;
 	horizontal-align: right;
+	z-index: 1000;
 }
 
 .no_mana_cost #ManaCost
@@ -55,6 +56,10 @@
 .is_active #ActiveAbility
 {
 	opacity: 1;
+	background-color: gold;
+	opacity-mask: url( "file://{images}/custom_game/hud/masks/abilityStatusPanel.png" );
+	width: 90px;
+	height: 96px;
 }
 
 #Hotkey

@@ -80,7 +80,6 @@ function GameMode:OnNPCSpawned(keys)
 		then
 			npc:AddItemByName("item_boots_of_riding")
 	end
-
 	
   end
   
@@ -322,7 +321,7 @@ function GameMode:OnEntityKilled( keys )
 		deathMessage = "Red " .. deathMessage
 		deathMessage = string.upper(deathMessage)
 		
-		Notifications:TopToAll({text=deathMessage, style={color="blue"}, duration=8.0})
+		Notifications:TopToAll({text=deathMessage, style={color="#52e2ff"}, duration=8.0})
 		Notifications:TopToAll({hero=killedUnit:GetUnitName(), duration=8.0, imagestyle="landscape"})
 
 	end
