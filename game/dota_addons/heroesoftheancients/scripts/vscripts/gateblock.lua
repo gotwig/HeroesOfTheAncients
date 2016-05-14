@@ -39,7 +39,7 @@ boxcollider.test = function(self, unit)
 	then
 		mod:SetDuration(.06, true)
 	else
-		unit:AddNewModifier(unit, nil, "modifier_behindGate", {})
+		unit:AddNewModifier(unit, nil, "modifier_behindGate", {duration=0.12})
 	end
 
 	

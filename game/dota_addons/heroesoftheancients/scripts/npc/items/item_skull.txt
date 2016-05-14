@@ -9,6 +9,8 @@
     "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
     "AbilityTextureName"      "item_example_item"
 
+	"ItemCastOnPickup" "1"
+	
     // Stats
     //-------------------------------------------------------------------------------------------------------------
     "AbilityCastRange"        "900"

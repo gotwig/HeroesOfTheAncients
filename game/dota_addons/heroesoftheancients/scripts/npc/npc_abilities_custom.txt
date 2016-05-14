@@ -126,6 +126,10 @@
 		"AbilityTextureName"			"crystal_maiden_brilliance_aura"
 		"AbilityCastRange"				"%aura_radius"
 		"AbilityManacost"				"30 45 100 100"
+		"AbilityCooldown" "4"
+	
+		
+			"ResetToggleOnRespawn" "1"
 	
 		
 		// Special
@@ -216,6 +220,8 @@
 				{
 					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"		"%mana_regen_self"
 				}
+				
+	
 			}
 			
 			"modifier_brilliance_aura_effect_datadriven"
@@ -267,8 +273,6 @@
 						"Function"		"destroyRadar"
 					}
 				}
-				
-				
 			}
 			
 			"modifier_sentry_aura"
@@ -306,7 +310,6 @@
 				"States"
 				{
 					"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED" // Prevents moving
-					"MODIFIER_STATE_SPECIALLY_DENIABLE" "MODIFIER_STATE_VALUE_ENABLED" // Allows attacking own buildings
 					"MODIFIER_STATE_LOW_ATTACK_PRIORITY" "MODIFIER_STATE_VALUE_ENABLED" // Makes it a secondary target when A-clicking ground			
 				}
 				"Properties"
@@ -725,6 +728,8 @@
 		
 		"OnCastbar"					"0"
 		"AbilityTextureName"			"witch_doctor_voodoo_restoration"
+		
+		"ResetToggleOnRespawn" "1"
 		
 	
 		// Special

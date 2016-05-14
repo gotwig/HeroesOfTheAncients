@@ -7,7 +7,11 @@
 	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
 	"AbilityTextureName"			"crystal_maiden_brilliance_aura"
 	"AbilityCastRange"				"%aura_radius"
-	"AbilityManacost"				"30 45 100 100"
+	"AbilityManacost"				"7 14 28 28"
+	"AbilityCooldown" "4"
+
+	
+		"ResetToggleOnRespawn" "1"
 
 	
 	// Special
@@ -29,7 +33,7 @@
 		"03"
 		{
 			"var_type"						"FIELD_INTEGER"
-			"manacost_per_second"				"15 30 45 45"
+			"manacost_per_second"				"7 14 28 28"
 		}
 		
 		// Extra variables
@@ -98,6 +102,8 @@
 			{
 				"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"		"%mana_regen_self"
 			}
+			
+
 		}
 		
 		"modifier_brilliance_aura_effect_datadriven"
@@ -149,8 +155,6 @@
 					"Function"		"destroyRadar"
 				}
 			}
-			
-			
 		}
 		
 		"modifier_sentry_aura"

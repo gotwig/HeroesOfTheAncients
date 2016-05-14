@@ -115,6 +115,9 @@ function GameMode:OnItemPickedUp(keys)
   local itemEntity = EntIndexToHScript(keys.ItemEntityIndex)
   local player = PlayerResource:GetPlayer(keys.PlayerID)
   local itemname = keys.itemname
+  
+--heroEntity.healthDropPlace = heroEntity:GetAbsOrigin()
+  
 end
 
 -- A player has reconnected to the game.  This function can be used to repaint Player-based particles or change
@@ -122,6 +125,10 @@ end
 function GameMode:OnPlayerReconnect(keys)
   DebugPrint( '[BAREBONES] OnPlayerReconnect' )
   DebugPrintTable(keys) 
+  
+
+  
+  
 end
 
 -- An ability was used by a player
@@ -368,6 +375,33 @@ function GameMode:OnConnectFull(keys)
   
   -- The Player ID of the joining player
   local playerID = ply:GetPlayerID()
+  
+    	-- Sync Attribute Bonuses with Clients
+		Timers:CreateTimer(function()
+			for k, v in pairs( HeroList:GetAllHeroes() ) do
+				CustomNetTables:SetTableValue( "hero_attributes", "" .. v:entindex(), { str = v:GetStrength(), agi = v:GetAgility(), int = v:GetIntellect() } )
+
+				
+				-- Forbid spirit breaker to rush from ug to top or other side around
+				if(v.chargeTarget) then				
+					if (v.chargeTarget:GetAbsOrigin().y < 626 and v:GetAbsOrigin().y > 626 ) then
+						v:AddNewModifier(v, nil, "modifier_breaker_stun", {duration = 0.06})
+
+					end
+					if (v.chargeTarget:GetAbsOrigin().y > 626 and v:GetAbsOrigin().y < 626 ) then
+						v:AddNewModifier(v, nil, "modifier_breaker_stun", {duration = 0.06})
+
+					end
+					if (not v:HasModifier("modifier_spirit_breaker_charge_of_darkness")) then
+						print("no target anymore")
+						v.chargeTarget = nil
+					end
+				end
+			end
+		return 0.1
+	end)
+  
+  
 end
 
 -- This function is called whenever illusions are created and tells you which was/is the original entity

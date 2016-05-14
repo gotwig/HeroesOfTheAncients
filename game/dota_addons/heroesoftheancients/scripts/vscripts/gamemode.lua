@@ -295,32 +295,6 @@ function GameMode:OnHeroInGame(hero)
   hero:AddAbility("example_ability")]]
   
   --hero:AddNewModifier(hero, nil, "modifier_bush_hiding", {duration=.5}) 
-
-			
-  	-- Sync Attribute Bonuses with Clients
-Timers:CreateTimer(function()
-			for k, v in pairs( HeroList:GetAllHeroes() ) do
-				CustomNetTables:SetTableValue( "hero_attributes", "" .. v:entindex(), { str = v:GetStrength(), agi = v:GetAgility(), int = v:GetIntellect() } )
-
-				
-				-- Forbid spirit breaker to rush from ug to top or other side around
-				if(v.chargeTarget) then				
-					if (v.chargeTarget:GetAbsOrigin().y < 626 and v:GetAbsOrigin().y > 626 ) then
-						v:AddNewModifier(v, nil, "modifier_breaker_stun", {duration = 0.06})
-
-					end
-					if (v.chargeTarget:GetAbsOrigin().y > 626 and v:GetAbsOrigin().y < 626 ) then
-						v:AddNewModifier(v, nil, "modifier_breaker_stun", {duration = 0.06})
-
-					end
-					if (not v:HasModifier("modifier_spirit_breaker_charge_of_darkness")) then
-						print("no target anymore")
-						v.chargeTarget = nil
-					end
-				end
-			end
-		return 0.1
-	end)
   
   
 end

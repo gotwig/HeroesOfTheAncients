@@ -26,6 +26,8 @@ var per = 0;
 var minutes = "";
 var seconds = "";
 
+$("#mapEventInfo").style["background-image"] = 'url("file://{images}/custom_game/maps/' + Game.GetMapInfo().map_display_name + '/eventMap.png")';
+
 var deathMaxTime = 0;
 var showDeathTimebar = false;
 var initShowDeath = false;
@@ -246,6 +248,14 @@ function dynamicEventInfoChanged( table_name, key, data )
 	$("#mapEventInfoTeam2").text = data.team1;
 	$("#mapEventInfoTeam3").text = data.team2;
 	$("#mapEventInfoRemaining").text =  data.remaining;
+	
+	if (data.remaining > 0){
+		$("#mapEventInfo").visible = true;
+	}
+	
+	
+
+	
 }
 
 	var perTeam1 = 0.1;
@@ -253,12 +263,10 @@ function dynamicEventInfoChanged( table_name, key, data )
 	var perTeam1LvlFactor = 0.1;
 	var perTeam2LvlFactor = 0.1;
 
-function teamLevels(){
+function teamLevel2(){
 
-	//Set Levels
+	if (Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_GOODGUYS).length > 0){
 
-
-	if (Game.GetPlayerIDsOnTeam( DOTATeam_t.DOTA_TEAM_GOODGUYS ).length > 0){
 		$("#teamLevel2").text = Players.GetLevel(Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_GOODGUYS)[0]);
 		
 		var currentXP = Entities.GetCurrentXP(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_GOODGUYS)[0]));
@@ -270,43 +278,45 @@ function teamLevels(){
 		neededXP -= perTeam1LvlFactor; 
 		
 		perTeam1 = (currentXP * 100) / neededXP;
-	}
 
-	if (Game.GetPlayerIDsOnTeam( DOTATeam_t.DOTA_TEAM_BADGUYS ).length > 0){
-		$("#teamLevel3").text = Players.GetLevel(Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_BADGUYS)[0]);
-		
-		var currentXP = Entities.GetCurrentXP(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_BADGUYS)[0]));
-		var neededXP =	Entities.GetNeededXPToLevel(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_BADGUYS)[0]));
-		
-		currentXP -= perTeam2LvlFactor; 
-		neededXP -= perTeam2LvlFactor; 
-		
-		perTeam2 = (currentXP * 100) / neededXP;
-	}
-  
-	//Set XP Bars
 	
-	
-	var left1 = $("#xpbar1Left");
+	  var left1 = $("#xpbar1Left");
 	  left1.SetHasClass("TimeBlue", true);
 	  left1.SetHasClass("TimeRed", false);
 
 	  left1.style.transition = "width 0.1s linear 0.0s;"
 	  left1.style.width = perTeam1 * 1 + "%";
+	}
+  
+  
+	$.Schedule(1/10, teamLevel2);
+}
+
+function teamLevel3(){
+
+	if (Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_BADGUYS).length > 0){
+		$("#teamLevel3").text = Players.GetLevel(Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_BADGUYS)[0]);
+		
+		var currentXP2 = Entities.GetCurrentXP(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_BADGUYS)[0]));
+		var neededXP2 =	Entities.GetNeededXPToLevel(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_BADGUYS)[0]));
+		
+		currentXP2 -= perTeam2LvlFactor; 
+		neededXP2 -= perTeam2LvlFactor; 
+		
+		perTeam2 = (currentXP2 * 100) / neededXP2;
+  
 	  
-	  	var left2 = $("#xpbar2Left");
+	  var left2 = $("#xpbar2Left");
 	  left2.SetHasClass("TimeBlue", false);
 	  left2.SetHasClass("TimeRed", true);
 
 	  left2.style.transition = "width 0.1s linear 0.0s;"
 	  left2.style.width = perTeam2 * 1 + "%";
   
+	}
   
-  
-	$.Schedule(1/10, teamLevels);
+	$.Schedule(1/10, teamLevel3);
 }
-
-
 
 function showCustomCursor(){
 	$("#cursorImage").style["position"] = GameUI.GetCursorPosition()[0] + "px " + GameUI.GetCursorPosition()[1] + "px 0px;" 
@@ -544,8 +554,9 @@ function hideDynamicEventInfo(){
   
   //topBar
   showGameTime();
-  teamLevels();
-  
+  teamLevel2();
+  teamLevel3();
+
   //showCustomCursor()
   
   checkFlipped()

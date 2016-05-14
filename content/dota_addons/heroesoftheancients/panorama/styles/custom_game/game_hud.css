@@ -57,6 +57,7 @@ margin-top: 78%;
 	margin-right: 12px;
 	margin-left: 15px;
 	//background-image: url("file://{images}/custom_game/maps/hauntedmines/eventMap.png");
+	visibility: collapse;
 }
 
 #mapEventInfoTeam2{
@@ -360,7 +361,7 @@ width: 450px;
 {
   horizontal-align: center;
 
-  margin-top: -30%;
+  margin-top: -26%;
   width: 240px;
   height: 40px;
   border: 2px solid #000000; 
@@ -374,7 +375,7 @@ width: 450px;
 {
   horizontal-align: center;
 
-  margin-top: -30%;
+  margin-top: -26%;
   width: 240px;
   height: 40px;
   border: 2px solid #000000; 

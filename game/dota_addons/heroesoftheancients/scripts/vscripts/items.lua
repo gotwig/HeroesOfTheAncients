@@ -51,6 +51,39 @@ function items_attack( event )
     end
 end
 
+function DropIt( event )
+	--DeepPrintTable(event)
+	local item = nil
+
+		print(event.ability:GetAbilityName())
+
+			if (event.caster:GetTeamNumber() == 2)
+			then
+				item = CreateItem("item_potion_of_healing_blue", nil, nil)
+			else
+				item = CreateItem("item_potion_of_healing_red", nil, nil)
+			end
+	
+			local drop = CreateItemOnPositionSync( event.caster:GetAbsOrigin(), item )
+
+			item:LaunchLoot( true, 20, 0.75, event.caster:GetAbsOrigin() + RandomVector( RandomFloat( 50, 150 ) ) )
+
+			
+			Timers:CreateTimer( 15.0, function()
+			if (drop)
+			then
+					UTIL_Remove(drop)
+			end
+					return nil
+				end
+			)
+			
+
+			
+		
+	
+	--event.caster:DropItemAtPositionImmediate(event.item,event.caster.healthDropPlace)
+end
 
 function DropItemOnDeath(event) -- event is the information sent by the ability
     print( "DropItemOnDeath Called" )
@@ -218,8 +251,23 @@ function Heal(event)
     event.caster:Heal(event.heal_amount, event.caster)
 end
 
-function CustomMana(event)
-	event.caster:GiveMana(event.mana_amount)
+function GlobeHeal(event)
+	if(event.ability:GetAbilityName() == "item_potion_of_healing_red" and event.caster:GetTeamNumber() == 3) then
+	    event.caster:Heal(event.heal_amount, event.caster)
+	
+	elseif(event.ability:GetAbilityName() == "item_potion_of_healing_blue" and event.caster:GetTeamNumber() == 2) then
+	    event.caster:Heal(event.heal_amount, event.caster)
+	
+	end
+
+end
+
+function GlobeMana(event)
+	if(event.ability:GetAbilityName() == "item_potion_of_healing_red" and event.caster:GetTeamNumber() == 3) then
+		event.caster:GiveMana(event.mana_amount)
+	elseif(event.ability:GetAbilityName() == "item_potion_of_healing_blue" and event.caster:GetTeamNumber() == 2) then
+		event.caster:GiveMana(event.mana_amount)
+	end
 end
 
 

@@ -1,7 +1,15 @@
 function dropHealthGlobe(unit)
 		if (unit:GetUnitName() == "npc_dota_creep_badguys_ranged" or unit:GetUnitName() == "npc_dota_creep_goodguys_ranged")
 		then
-			local item = CreateItem("item_potion_of_healing", nil, nil)
+			local item = nil
+			
+			if (unit:GetTeamNumber() == 2)
+			then
+				item = CreateItem("item_potion_of_healing_red", nil, nil)
+			else
+				item = CreateItem("item_potion_of_healing_blue", nil, nil)
+			end
+
 			local pos = unit:GetAbsOrigin()
 			local drop = CreateItemOnPositionSync( pos, item )
 			local pos_launch = pos+RandomVector(RandomFloat(150,200))

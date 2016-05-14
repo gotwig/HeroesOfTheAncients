@@ -14,7 +14,7 @@ GOLD_PER_TICK = 0                       -- How much gold should players get per 
 GOLD_TICK_TIME = 5                      -- How long should we wait in seconds between gold ticks?
 
 RECOMMENDED_BUILDS_DISABLED = true     -- Should we disable the recommened builds for heroes
-CAMERA_DISTANCE_OVERRIDE = 1134.0       -- How far out should we allow the camera to go?  1134 is the default in Dota
+CAMERA_DISTANCE_OVERRIDE = 1240.0       -- How far out should we allow the camera to go?  1134 is the default in Dota
 
 MINIMAP_ICON_SIZE = 1                   -- What icon size should we use for our heroes?
 MINIMAP_CREEP_ICON_SIZE = 1             -- What icon size should we use for creeps?

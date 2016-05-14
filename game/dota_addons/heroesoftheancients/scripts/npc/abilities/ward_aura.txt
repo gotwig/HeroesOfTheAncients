@@ -6,11 +6,13 @@
 	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE"
 	"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 	"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
-	"AbilityManacost"	"30 45 100"
+	"AbilityManacost"	"7 14 28"
 	"AbilityCooldown" "4"
 	
 	"OnCastbar"					"0"
 	"AbilityTextureName"			"witch_doctor_voodoo_restoration"
+	
+	"ResetToggleOnRespawn" "1"
 	
 
 	// Special
@@ -25,7 +27,7 @@
 		"02"
 		{
 			"var_type"						"FIELD_INTEGER"
-			"manacost_per_second"				"15 30 45"
+			"manacost_per_second"				"7 14 28"
 		}
 		
 	}

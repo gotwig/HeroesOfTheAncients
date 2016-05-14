@@ -16,8 +16,11 @@ function Teleport( event )
 	PlayerResource:SetCameraTarget(event.caster:GetPlayerID(), event.caster)
 	
 	Timers:CreateTimer(0.1, 
-	function()
-		PlayerResource:SetCameraTarget(event.caster:GetPlayerID(), nil)
+		function()
+				
+			if (not event.caster:GetPlayerOwner().lockCamera) then
+				PlayerResource:SetCameraTarget(event.caster:GetPlayerID(), nil)
+			end
 		end
 	)
 	

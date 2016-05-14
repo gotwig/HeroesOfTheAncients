@@ -181,7 +181,7 @@
 		
 	}
 	
-	"item_potion_of_healing"
+	"item_potion_of_healing_blue"
 	{
 		"ID"							"2055"
 	
@@ -191,8 +191,10 @@
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
 		
+		"ItemCastOnPickup" "1"
+	
 		"Model"							"models/props_gameplay/salve.vmdl" //Green
-		"Effect" 						"particles/generic_gameplay/dropped_item.vpcf"
+		"Effect" 						"particles/dropped_item_blue.vpcf"
 	
 		"UIPickupSound"					"Item.PickUpRingShop"
 		"UIDropSound"					"Item.DropRingShop"
@@ -229,18 +231,117 @@
 			"RunScript"
 			{
 				"ScriptFile"		"items.lua"
-				"Function"			"Heal"
+				"Function"			"GlobeHeal"
 				"Target"			"CASTER"
 				"heal_amount"		"%heal_amount"
-	
 			}
 			"RunScript"
 			{
 				"ScriptFile"		"items.lua"
-				"Function"			"CustomMana"
+				"Function"			"GlobeMana"
 				"Target"			"CASTER"
 				"mana_amount"		"%mana_amount"
+			}
+			
+			"AttachEffect"
+			{
+				"Target"					"CASTER"
+				"EffectName"				"particles/units/heroes/hero_treant/treant_overgrowth_vine_glows_corerope.vpcf"
+				"EffectAttachType"			"follow_origin"
+			}
+			"FireSound"
+			{
+				"Target" 		"UNIT"
+				"EffectName" 	"DOTA_Item.HealingSalve.Activate"
+			}
+			
+		}
 	
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"heal_amount"				"250"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"mana_amount"				"80"
+			}
+		}
+		"OnOwnerDied"
+		{
+			"RunScript"
+			{
+				"ScriptFile"			"scripts/vscripts/items.lua"
+				"Function"			"DropItemOnDeath"
+			}
+		}
+	}
+	
+	"item_potion_of_healing_red"
+	{
+		"ID"							"2056"
+	
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		
+		"ItemCastOnPickup" "1"
+		
+		"Model"							"models/props_gameplay/salve.vmdl" //Green
+		"Effect" 						"particles/dropped_item_red.vpcf"
+	
+		"UIPickupSound"					"Item.PickUpRingShop"
+		"UIDropSound"					"Item.DropRingShop"
+		"WorldDropSound"				"Item.DropRingWorld"
+		
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"item_potion_of_healing"
+		"ItemKillable"                  "1"
+		"ItemSellable"                  "1"
+		"ItemDroppable"                 "1"
+	
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"100"
+		"AbilityCastPoint"				"0.0"
+	
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"600"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"SideShop"						"0"
+		"SecretShop" "1"
+	
+		"OnSpellStart"
+		{
+			"SpendCharge"
+			{}
+			"RunScript"
+			{
+				"ScriptFile"		"items.lua"
+				"Function"			"GlobeHeal"
+				"Target"			"CASTER"
+				"heal_amount"		"%heal_amount"
+			}
+			"RunScript"
+			{
+				"ScriptFile"		"items.lua"
+				"Function"			"GlobeMana"
+				"Target"			"CASTER"
+				"mana_amount"		"%mana_amount"
 			}
 			
 			"AttachEffect"
@@ -293,6 +394,8 @@
 	    "AbilityCastAnimation"      "ACT_DOTA_DISABLED"
 	    "AbilityTextureName"      "item_example_item"
 	
+		"ItemCastOnPickup" "1"
+		
 	    // Stats
 	    //-------------------------------------------------------------------------------------------------------------
 	    "AbilityCastRange"        "900"
@@ -504,6 +607,8 @@
 				}
 				
 	        }
+			
+			
 	       "Modifiers"
 	        {
 	            "modifier_teleport"
@@ -515,6 +620,17 @@
 	                "EffectName"        "particles/econ/events/ti4/teleport_start_ti4.vpcf"
 	                "EffectAttachType"  "attach_origin"
 					
+					
+						
+			"OnTakeDamage"{
+			
+				"Stun"
+				{
+						"Target"	"CASTER"
+						"Duration"		".06"
+				}
+			
+			}
 					
 	            }
 				

@@ -1,4 +1,3 @@
-lockCamera = 0
 MINESOPEN = false
 MINESOPENLOADED = false
 numSpawned = 0
@@ -54,15 +53,15 @@ end
 function hota:lockCameraToHero( event )
 local pID = event.pID
 
-if (lockCamera == 0) 
+if (not PlayerResource:GetPlayer(event.pID).lockCamera) 
 
 then 
 PlayerResource:SetCameraTarget(event.pID, EntIndexToHScript(event.entID))
-lockCamera = 1
+PlayerResource:GetPlayer(event.pID).lockCamera = true
 
 else
 PlayerResource:SetCameraTarget(event.pID, nil)
-lockCamera = 0
+PlayerResource:GetPlayer(event.pID).lockCamera = false
 
 end 
 

@@ -107,6 +107,8 @@
 			}
 			
         }
+		
+		
        "Modifiers"
         {
             "modifier_teleport"
@@ -118,6 +120,17 @@
                 "EffectName"        "particles/econ/events/ti4/teleport_start_ti4.vpcf"
                 "EffectAttachType"  "attach_origin"
 				
+				
+					
+		"OnTakeDamage"{
+		
+			"Stun"
+			{
+					"Target"	"CASTER"
+					"Duration"		".06"
+			}
+		
+		}
 				
             }
 			

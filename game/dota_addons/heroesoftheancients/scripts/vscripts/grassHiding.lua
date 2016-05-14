@@ -85,11 +85,13 @@ function bushEnd(trigger)
 			  if (found == false)
 			  then
 			  for k, v in pairs(previousHeroes) do
+				  if (not v:IsNull()) then
 				  if ( v:GetTeamNumber() ~= hero:GetTeamNumber() ) then
 						if (v:IsHero())
 						then
 							v:AddNewModifier(hero, nil, "modifier_invisible", {})
 						end
+					end
 					end
 				  end
 			  end
