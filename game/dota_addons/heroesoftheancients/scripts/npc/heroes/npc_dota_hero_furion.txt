@@ -3,4 +3,5 @@
         "override_hero" "npc_dota_hero_furion"
         "MovementTurnRate"  "1.0"
 		"Ability2"		"sentryWard_Aura"
+		"ModelScale"		"1.066500"
     }

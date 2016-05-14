@@ -2,7 +2,6 @@
     {
         "override_hero" "npc_dota_hero_crystal_maiden"
         "MovementTurnRate"  "1.0"
-		
 		"Ability3"		"crystal_maiden_brilliance_sentry_aura"
-
+		"ModelScale"		"1.093500"
     }

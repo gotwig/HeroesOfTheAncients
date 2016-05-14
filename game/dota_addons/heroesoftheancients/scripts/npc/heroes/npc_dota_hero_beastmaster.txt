@@ -2,4 +2,5 @@
     {
         "override_hero" "npc_dota_hero_beastmaster"
         "MovementTurnRate"  "1.0"
+		"ModelScale"		"1.0395000"
     }

@@ -2,4 +2,5 @@
     {
         "override_hero" "npc_dota_hero_bane"
         "MovementTurnRate"  "1.0"
+		"ModelScale"		"1.255500"
     }
