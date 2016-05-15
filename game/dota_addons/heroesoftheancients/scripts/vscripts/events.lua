@@ -125,11 +125,16 @@ end
 function GameMode:OnPlayerReconnect(keys)
   DebugPrint( '[BAREBONES] OnPlayerReconnect' )
   DebugPrintTable(keys) 
-
-  if (MINESOPEN) then
-  		CustomGameEventManager:Send_ServerToAllClients( "showDynamicEventInfo", {} )
-  end
   
+  Timers:CreateTimer({
+    useGameTime = false,
+    endTime = 3, -- when this timer should first execute, you can omit this if you want it to run first on the next frame
+    callback = function()
+      	if( MINESOPEN )then
+			CustomGameEventManager:Send_ServerToAllClients( "showDynamicEventInfo", {} )
+		end
+    end
+  })
 end
 
 -- An ability was used by a player

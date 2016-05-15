@@ -37,7 +37,6 @@ if (open)
 		
 		CustomGameEventManager:Send_ServerToAllClients( "showDynamicEventInfo", {} )
         CustomNetTables:SetTableValue( "dynamic_MapEvents", "dynamic_event" , { team1 = 0, team2 = 0, remaining = 100} )
-
 		
 		Notifications:TopToAll({text=minesopentexts[RandomInt( 1, #minesopentexts )], duration=10.0})
 
@@ -96,6 +95,9 @@ function hota:MoonWellOrder( event )
     moon_well:CastAbilityOnTarget(target, replenish, moon_well:GetPlayerOwnerID())
 end
 
+function hota:OnPlayerReconnect( event )
+
+end
 
 --Listen for events
 
@@ -106,5 +108,6 @@ CustomGameEventManager:RegisterListener( "mountHorse", Dynamic_Wrap(hota, "mount
 CustomGameEventManager:RegisterListener( "lockCameraToHero", Dynamic_Wrap(hota, "lockCameraToHero")) -- Check Camera Lock
 CustomGameEventManager:RegisterListener( "moonwell_order", Dynamic_Wrap(hota, "MoonWellOrder")) --Right click through panorama
 
+--ListenToGameEvent("player_reconnected", Dynamic_Wrap(hota, 'OnPlayerReconnect'), self)
 
 
