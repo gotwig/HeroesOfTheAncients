@@ -26,8 +26,6 @@ var per = 0;
 var minutes = "";
 var seconds = "";
 
-$("#mapEventInfo").style["background-image"] = 'url("file://{images}/custom_game/maps/' + Game.GetMapInfo().map_display_name + '/eventMap.png")';
-
 var deathMaxTime = 0;
 var showDeathTimebar = false;
 var initShowDeath = false;
@@ -248,14 +246,6 @@ function dynamicEventInfoChanged( table_name, key, data )
 	$("#mapEventInfoTeam2").text = data.team1;
 	$("#mapEventInfoTeam3").text = data.team2;
 	$("#mapEventInfoRemaining").text =  data.remaining;
-	
-	if (data.remaining > 0){
-		$("#mapEventInfo").visible = true;
-	}
-	
-	
-
-	
 }
 
 	var perTeam1 = 0.1;
@@ -507,8 +497,6 @@ $.Schedule(1/10, heroCamera);
 function showDynamicEventInfo(msg){
   $("#mapEventInfo").style["background-image"] = 'url("file://{images}/custom_game/maps/' + Game.GetMapInfo().map_display_name + '/eventMap.png")';
   $("#mapEventInfo").visible = true;
- 
-  
 }
 	
 function hideDynamicEventInfo(){

@@ -125,9 +125,10 @@ end
 function GameMode:OnPlayerReconnect(keys)
   DebugPrint( '[BAREBONES] OnPlayerReconnect' )
   DebugPrintTable(keys) 
-  
 
-  
+  if (MINESOPEN) then
+  		CustomGameEventManager:Send_ServerToAllClients( "showDynamicEventInfo", {} )
+  end
   
 end
 

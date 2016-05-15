@@ -316,7 +316,7 @@
 				{
 					"MODIFIER_PROPERTY_DISABLE_TURNING" "1"
 					"MODIFIER_PROPERTY_IGNORE_CAST_ANGLE" "1"
-					"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE"	"0.1"
+					"MODIFIER_PROPERTY_MOVESPEED_ABSOLUTE"	"0.0"
 				}
 				
 				"OnCreated"
@@ -326,6 +326,17 @@
 						"ScriptFile"	"neverMove.lua"
 						"Function"		"neverMove"
 					}
+				}
+				
+				"ThinkInterval"	"0.01"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"stopAllRotation.lua"
+						"Function"		"stop"
+					}
+		
 				}
 							
 				
