@@ -31,7 +31,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"20"		// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"				"40"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -44,7 +44,8 @@
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
-		"ProjectileSpeed"			"700"		// Speed of projectile.
+		"ProjectileSpeed"			"700"
+		"IsAncient"                    "1"		// Speed of projectile.
 
 		// Attributes
 		//----------------------------------------------------------------
@@ -124,7 +125,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"20"		// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"				"40"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -137,7 +138,8 @@
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
-		"ProjectileSpeed"			"700"		// Speed of projectile.
+		"ProjectileSpeed"			"700"
+		"IsAncient"                    "1"		// Speed of projectile.
 
 		// Attributes
 		//----------------------------------------------------------------
@@ -217,7 +219,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"20"		// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"				"40"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -230,7 +232,8 @@
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
-		"ProjectileSpeed"			"700"		// Speed of projectile.
+		"ProjectileSpeed"			"700"
+		"IsAncient"                    "1"		// Speed of projectile.
 
 		// Attributes
 		//----------------------------------------------------------------
@@ -310,7 +313,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"22"		// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"				"40"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -323,7 +326,8 @@
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
-		"ProjectileSpeed"			"700"		// Speed of projectile.
+		"ProjectileSpeed"			"700"
+		"IsAncient"                    "1"		// Speed of projectile.
 
 		// Attributes
 		//----------------------------------------------------------------
@@ -403,7 +407,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"22"		// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"				"40"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -416,7 +420,8 @@
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
-		"ProjectileSpeed"			"700"		// Speed of projectile.
+		"ProjectileSpeed"			"700"
+		"IsAncient"                    "1"		// Speed of projectile.
 
 		// Attributes
 		//----------------------------------------------------------------
@@ -497,7 +502,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"22"		// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"				"40"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -510,7 +515,8 @@
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
-		"ProjectileSpeed"			"700"		// Speed of projectile.
+		"ProjectileSpeed"			"700"
+		"IsAncient"                    "1"		// Speed of projectile.
 
 		// Attributes
 		//----------------------------------------------------------------
@@ -591,7 +597,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"22"		// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"				"40"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -604,7 +610,8 @@
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
-		"ProjectileSpeed"			"700"		// Speed of projectile.
+		"ProjectileSpeed"			"700"
+		"IsAncient"                    "1"		// Speed of projectile.
 
 		// Attributes
 		//----------------------------------------------------------------
@@ -683,7 +690,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"22"		// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"				"40"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -696,7 +703,8 @@
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
-		"ProjectileSpeed"			"700"		// Speed of projectile.
+		"ProjectileSpeed"			"700"
+		"IsAncient"                    "1"		// Speed of projectile.
 
 		// Attributes
 		//----------------------------------------------------------------
@@ -776,7 +784,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"22"		// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"				"40"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -789,7 +797,8 @@
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
-		"ProjectileSpeed"			"700"		// Speed of projectile.
+		"ProjectileSpeed"			"700"
+		"IsAncient"                    "1"		// Speed of projectile.
 
 		// Attributes
 		//----------------------------------------------------------------
@@ -870,7 +879,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"30"		// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"				"40"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -883,7 +892,8 @@
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_good.vpcf"		// Particle system model for projectile.
-		"ProjectileSpeed"			"700"		// Speed of projectile.
+		"ProjectileSpeed"			"700"
+		"IsAncient"                    "1"		// Speed of projectile.
 
 		// Attributes
 		//----------------------------------------------------------------
@@ -963,7 +973,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"20"		// Physical protection.
-		"MagicalResistance"				"50"			// Magical protection.
+		"MagicalResistance"				"40"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -976,7 +986,8 @@
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
-		"ProjectileSpeed"			"700"		// Speed of projectile.
+		"ProjectileSpeed"			"700"
+		"IsAncient"                    "1"		// Speed of projectile.
 
 		// Attributes
 		//----------------------------------------------------------------
@@ -1056,7 +1067,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"20"		// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"				"40"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -1069,7 +1080,8 @@
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
-		"ProjectileSpeed"			"700"		// Speed of projectile.
+		"ProjectileSpeed"			"700"
+		"IsAncient"                    "1"		// Speed of projectile.
 
 		// Attributes
 		//----------------------------------------------------------------
@@ -1148,7 +1160,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"20"		// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"				"40"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -1161,7 +1173,8 @@
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
-		"ProjectileSpeed"			"700"		// Speed of projectile.
+		"ProjectileSpeed"			"700"
+		"IsAncient"                    "1"		// Speed of projectile.
 
 		// Attributes
 		//----------------------------------------------------------------
@@ -1241,7 +1254,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"22"		// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"				"40"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -1254,7 +1267,8 @@
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
-		"ProjectileSpeed"			"700"		// Speed of projectile.
+		"ProjectileSpeed"			"700"
+		"IsAncient"                    "1"		// Speed of projectile.
 
 		// Attributes
 		//----------------------------------------------------------------
@@ -1334,7 +1348,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"22"		// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"				"40"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -1347,7 +1361,8 @@
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
-		"ProjectileSpeed"			"700"		// Speed of projectile.
+		"ProjectileSpeed"			"700"
+		"IsAncient"                    "1"		// Speed of projectile.
 
 		// Attributes
 		//----------------------------------------------------------------
@@ -1427,7 +1442,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"22"		// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"				"40"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -1440,7 +1455,8 @@
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
-		"ProjectileSpeed"			"700"		// Speed of projectile.
+		"ProjectileSpeed"			"700"
+		"IsAncient"                    "1"		// Speed of projectile.
 
 		// Attributes
 		//----------------------------------------------------------------
@@ -1520,7 +1536,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"22"		// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"				"40"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -1533,7 +1549,8 @@
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
-		"ProjectileSpeed"			"700"		// Speed of projectile.
+		"ProjectileSpeed"			"700"
+		"IsAncient"                    "1"		// Speed of projectile.
 
 		// Attributes
 		//----------------------------------------------------------------
@@ -1613,7 +1630,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"22"		// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"				"40"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -1626,7 +1643,8 @@
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
-		"ProjectileSpeed"			"700"		// Speed of projectile.
+		"ProjectileSpeed"			"700"
+		"IsAncient"                    "1"		// Speed of projectile.
 
 		// Attributes
 		//----------------------------------------------------------------
@@ -1706,7 +1724,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"22"		// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"				"40"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -1719,7 +1737,8 @@
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
-		"ProjectileSpeed"			"700"		// Speed of projectile.
+		"ProjectileSpeed"			"700"
+		"IsAncient"                    "1"		// Speed of projectile.
 
 		// Attributes
 		//----------------------------------------------------------------
@@ -1799,7 +1818,7 @@
 		// Armor
 		//----------------------------------------------------------------
 		"ArmorPhysical"				"30"		// Physical protection.
-		"MagicalResistance"				"0"			// Magical protection.
+		"MagicalResistance"				"40"			// Magical protection.
 
 		// Attack
 		//----------------------------------------------------------------
@@ -1812,7 +1831,8 @@
 		"AttackAcquisitionRange"	"700"		// Range within a target can be acquired.
 		"AttackRange"				"700"		// Range within a target can be attacked.
 		"ProjectileModel"			"particles/base_attacks/ranged_tower_bad.vpcf"		// Particle system model for projectile.
-		"ProjectileSpeed"			"700"		// Speed of projectile.
+		"ProjectileSpeed"			"700"
+		"IsAncient"                    "1"		// Speed of projectile.
 
 		// Attributes
 		//----------------------------------------------------------------
