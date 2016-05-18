@@ -1,5 +1,4 @@
 # Heroes of the Ancients
-x
 
 Heroes of the Ancients is an upcoming DotA2 mod.
 
