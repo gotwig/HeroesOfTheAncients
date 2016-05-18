@@ -1,7 +1,7 @@
 # Heroes of the Ancients
-<img src="https://www.dropbox.com/s/shmfox3ewlk0ffk/Logo_transparent_HD.png?raw=1" width="400">
+x
 
-Heroes of the Ancients is an upcoming DotA2 mod, trying to bring the best ideas from Heroes of the Storm TM from Blizzard Entertainment TM to Valves DotA2.
+Heroes of the Ancients is an upcoming DotA2 mod.
 
 Featuring
   - "Haunted Mines" - a complete playable map.
