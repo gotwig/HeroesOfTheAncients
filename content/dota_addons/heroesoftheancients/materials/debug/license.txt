@@ -1,5 +1,0 @@
-Taken from Blizzards Website , under http://us.battle.net/heroes/en/battlegrounds/haunted-mines/
-
-The content in this directory is supposed to be used for debuging purposes, and is never shown in the final mod.
-
-Copyright 2015 Blizzard Entertainment TM
