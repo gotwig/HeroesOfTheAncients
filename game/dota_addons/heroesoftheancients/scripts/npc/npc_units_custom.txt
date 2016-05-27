@@ -2302,7 +2302,7 @@
 		// General
 		//----------------------------------------------------------------
 		"BaseClass"					"npc_dota_creature"
-		"Model"						"models/props_structures/rock_statue001.vmdl"
+		"Model"						"models/props_structures/radiant_statue001.vmdl"
 		"ModelScale"				"1"
 		"Level"						"1"
 		"HealthBarOffset"			"140"

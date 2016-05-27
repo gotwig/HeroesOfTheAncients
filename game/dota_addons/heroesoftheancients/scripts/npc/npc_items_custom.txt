@@ -71,20 +71,13 @@
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_CHANNELLED | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		
 		
-	        "AbilityTextureName"                "chen_penitence"
-	        "AbilityCastAnimation"              "ACT_DOTA_TELEPORT"
+	    "AbilityTextureName"                "chen_penitence"
+	    "AbilityCastAnimation"              "ACT_DOTA_TELEPORT"
 	
-	        "AbilityManaCost"                   "0"
-	        "AbilityCooldown"                   "0"
-	        "MaxLevel"                          "1"
-	        "AbilityChannelTime"                "2"
-		
-		"Model"							"models/props_gameplay/salve.vmdl" //Green
-		"Effect" 						"particles/generic_gameplay/dropped_item.vpcf"
-	
-		"UIPickupSound"					"Item.PickUpRingShop"
-		"UIDropSound"					"Item.DropRingShop"
-		"WorldDropSound"				"Item.DropRingWorld"
+	    "AbilityManaCost"                   "0"
+	    "AbilityCooldown"                   "0"
+	    "MaxLevel"                          "1"
+	    "AbilityChannelTime"                "2"
 		
 		"BaseClass"						"item_datadriven"
 		"ItemKillable"                  "0"
@@ -113,11 +106,11 @@
 		
 			"OnAbilityPhaseStart"
 			{
-					"ApplyModifier"
-					{
+				"ApplyModifier"
+				{
 						"ModifierName"      "modifier_teleport"
 						"Target"            "CASTER"
-					}
+				}
 	            "RunScript"
 	            {
 	                "ScriptFile"            "units/mountHorse.lua"
