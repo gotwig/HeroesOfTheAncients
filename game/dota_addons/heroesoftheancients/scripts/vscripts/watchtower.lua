@@ -16,9 +16,7 @@ function initTowers(limitnumber)
 	for i = 1,limitnumber do
 		local tower = {}
 		
-		local unit = Entities:FindByName(nil,"watch_" .. i .. "_trigger")
-		
-		tower.position = unit:GetAbsOrigin()
+		tower.positionFOWArea = Entities:FindByName(nil,"watch_" .. i .. "_fow"):GetAbsOrigin()
 		tower.captureCounter = 50
 		tower.captureGood = false
 		tower.captureBad = false
@@ -91,7 +89,7 @@ Timers:CreateTimer(function()
 				
 				if (watchTowers[key].captureCounter <= 0)
 				then
-					AddFOWViewer( 3, watchTowers[key].position, 2400, 1.0, false)
+					AddFOWViewer( 3, watchTowers[key].positionFOWArea, 2000, 1.0, false)
 
 					if (watchTowers[key].onlyRunOnce)
 					then
@@ -104,7 +102,7 @@ Timers:CreateTimer(function()
 							
 				if (watchTowers[key].captureCounter >= 100)
 				then
-					AddFOWViewer( 2, watchTowers[key].position, 2400, 1.0, false)
+					AddFOWViewer( 2, watchTowers[key].positionFOWArea, 2000, 1.0, false)
 					
 					if (watchTowers[key].onlyRunOnce)
 					then
