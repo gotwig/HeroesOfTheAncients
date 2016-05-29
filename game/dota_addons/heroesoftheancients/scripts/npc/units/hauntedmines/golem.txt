@@ -2,14 +2,14 @@
 	{										
 		// General
 		//----------------------------------------------------------------
-		"Model"						"models/creeps/neutral_creeps/n_creep_golem_a/neutral_creep_golem_a.vmdl"	// Model.
+		"Model"						"models/creeps/lane_creeps/creep_dire_hulk/creep_dire_ancient_hulk.vmdl"	// Model.
 		"BaseClass"					"npc_dota_creep_neutral"
 		"SoundSet"					"n_creep_Melee"
 		"Level"						"5"
 		"IsAncient"					"1"
-		"ModelScale" 					"1"
+		"ModelScale" 					"1.4"
 		"IsNeutralUnitType"				"1"
- 		"UseNeutralCreepBehavior"   			"0" 
+ 		"UseNeutralCreepBehavior"   			"1" 
 
 		// Abilities
 		//----------------------------------------------------------------
@@ -52,8 +52,8 @@
 
 		// Status
 		//----------------------------------------------------------------
-		"StatusHealth"				"9000"		// Base health.
-		"StatusHealthRegen"			"0.5"		// Health regeneration rate.
+		"StatusHealth"				"1000"		// Base health.
+		"StatusHealthRegen"			"1"		// Health regeneration rate.
 		"StatusMana"				"400"		// Base mana.
 		"StatusManaRegen"			"1"			// Mana regeneration rate.		 
 		

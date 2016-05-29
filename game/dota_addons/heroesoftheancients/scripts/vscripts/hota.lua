@@ -21,9 +21,9 @@ if (open)
 		  value:ForceKill(false)
 		end
 		
-		if (Entities:FindByModel(nil,"models/creeps/neutral_creeps/n_creep_golem_a/neutral_creep_golem_a.vmdl"))
+		if (Entities:FindByModel(nil,"models/creeps/lane_creeps/creep_dire_hulk/creep_dire_ancient_hulk.vmdl"))
 		then
-			Entities:FindByModel(nil,"models/creeps/neutral_creeps/n_creep_golem_a/neutral_creep_golem_a.vmdl"):ForceKill(false)
+			Entities:FindByModel(nil,"models/creeps/lane_creeps/creep_dire_hulk/creep_dire_ancient_hulk.vmdl"):ForceKill(false)
 		end		
 		
 		for key,value in pairs(GameRules.koboldEntitiesPositions)
@@ -31,7 +31,7 @@ if (open)
 				CreateUnitByName("npc_dota_neutral_kobold", value, true, nil, nil, DOTA_TEAM_NEUTRALS)
 		end
 		
-		CreateUnitByName("npc_dota_neutral_granite_golem", GameRules.skullGolemPosition, true, nil, nil, DOTA_TEAM_NEUTRALS)
+		CreateUnitByName("npc_dota_neutral_skull_golem", GameRules.skullGolemPosition, true, nil, nil, DOTA_TEAM_NEUTRALS)
 		
 		MINESOPEN = true
 		

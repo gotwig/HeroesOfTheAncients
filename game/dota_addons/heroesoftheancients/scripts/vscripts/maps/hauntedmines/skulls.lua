@@ -24,7 +24,7 @@ function deadTrigger (unit)
 
 	if (MINESOPEN)
 	then
-		if (unit:GetUnitName() == "npc_dota_neutral_granite_golem")
+		if (unit:GetUnitName() == "npc_dota_neutral_skull_golem")
 		then
 
 			for i = 0, 37, 1 do
@@ -41,8 +41,6 @@ function deadTrigger (unit)
 		if (unit:GetUnitName() == "npc_dota_neutral_kobold")
 		then
 		
-		
-		
 		for i = 0, 1, 1 do
 				local item = CreateItem("item_skull", nil, nil)
 				local pos = unit:GetAbsOrigin()
@@ -57,7 +55,7 @@ function deadTrigger (unit)
 
 	
 	
-	if (unit:GetUnitName() == "npc_dota_neutral_skull_golem")
+	if (unit:GetUnitName() == "npc_dota_neutral_skull_golem_summoned")
 	then
 
 	if (unit:GetTeamNumber() == 2 )
@@ -119,20 +117,20 @@ then
 	firstSkullGolemSpawn = false
 end
 	
-	if (Entities:FindByModel(nil,"models/creeps/neutral_creeps/n_creep_golem_a/neutral_creep_golem_a.vmdl"))
+	if (Entities:FindByModel(nil,"models/creeps/lane_creeps/creep_dire_hulk/creep_dire_ancient_hulk.vmdl"))
 	then
-		Entities:FindByModel(nil,"models/creeps/neutral_creeps/n_creep_golem_a/neutral_creep_golem_a.vmdl"):ForceKill(false)
+		Entities:FindByModel(nil,"models/creeps/lane_creeps/creep_dire_hulk/creep_dire_ancient_hulk.vmdl"):ForceKill(false)
 	end
 	
-	skullunit_good = CreateUnitByName("npc_dota_neutral_skull_golem", GameRules.point1_good, true, nil, nil, DOTA_TEAM_GOODGUYS)
+	skullunit_good = CreateUnitByName("npc_dota_neutral_skull_golem_summoned", GameRules.point1_good, true, nil, nil, DOTA_TEAM_GOODGUYS)
 	
 	skullunit_good:SetMaxHealth((skullunit_good:GetMaxHealth() / 100 * 20) + (skullunit_good:GetMaxHealth() / 100 * teamSkullPoints[1]))
 	
-	for i = 1,6 do
-		ExecuteOrderFromTable({ UnitIndex = skullunit_good:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_top_pathcorner_goodguys_" .. i ):GetAbsOrigin(), Queue = true})
+	for i = 1,4 do
+		ExecuteOrderFromTable({ UnitIndex = skullunit_good:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_bot_pathcorner_goodguys_" .. i ):GetAbsOrigin(), Queue = true})
 	end
 
-	skullunit_bad = CreateUnitByName("npc_dota_neutral_skull_golem", GameRules.point1_bad, true, nil, nil, DOTA_TEAM_BADGUYS)
+	skullunit_bad = CreateUnitByName("npc_dota_neutral_skull_golem_summoned", GameRules.point1_bad, true, nil, nil, DOTA_TEAM_BADGUYS)
 	
 	skullunit_bad:SetMaxHealth((skullunit_bad:GetMaxHealth() / 100 * 20) + (skullunit_bad:GetMaxHealth() / 100 * teamSkullPoints[2]))
 	
