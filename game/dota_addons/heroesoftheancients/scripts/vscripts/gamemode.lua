@@ -390,7 +390,7 @@ function GameMode:OnGameInProgress()
 		return 30.0
 	end)
 	
-	--SCAN for GATE
+	--SCAN for TOWERS
 	
 	Timers:CreateTimer(function()
 	
@@ -422,7 +422,7 @@ function GameMode:OnGameInProgress()
 												false)
 								  
 			for k, v in pairs(scannedUnits) do
-				if (v:GetModelName() == "models/props_structures/gate_entrance002.vmdl" )
+				if (v:GetModelName() == "models/props_structures/tower_bad.vmdl" or v:GetModelName() == "models/props_structures/tower_good.vmdl")
 				then
 					local order = 
 					{
@@ -438,7 +438,7 @@ function GameMode:OnGameInProgress()
 		
 		end
 
-		return 1.0
+		return 2.0
 	end)
 	
 
@@ -477,6 +477,12 @@ function SpawnTop( teamselection , teamnumber, position)
 			
 			for ix = 2,4 do
 				local rangedCreep = CreateUnitByName("npc_dota_necronomicon_archer_1_custom", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
+			
+				if ( teamselection == "bad") then
+					rangedCreep:SetRenderColor(184,74,40)
+				else
+					rangedCreep:SetRenderColor(43,154,87)
+				end
 			
 				for i = 1,6 do
 				
@@ -527,6 +533,13 @@ function SpawnBot( teamselection , teamnumber, position )
 			
 			for ix = 2,4 do
 				local rangedCreep = CreateUnitByName("npc_dota_necronomicon_archer_1_custom", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_bot_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
+			
+				if ( teamselection == "bad") then
+					rangedCreep:SetRenderColor(184,74,40)
+				else
+					rangedCreep:SetRenderColor(43,154,87)
+				end
+			
 			
 				for i = 1,4 do
 				

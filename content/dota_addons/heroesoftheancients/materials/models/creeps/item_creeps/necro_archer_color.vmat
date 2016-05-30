@@ -1,0 +1,17 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "global_lit_simple.vfx"
+
+	//---- Tint Mask ----
+	F_TINT_MASK 1
+
+	//---- Color ----
+	g_vColorTint "[0.721569 0.721569 0.721569 0.392157]"
+	g_vColorTint2 "[1.000000 1.000000 1.000000 0.000000]"
+	g_vTexCoordOffset "[0.000 0.000]"
+	g_vTexCoordScale "[1.000 1.000]"
+	TextureColor "materials/models/creeps/item_creeps/necro_archer_color_psd_da5ae865.tga"
+	TextureTintMask "materials/models/creeps/item_creeps/necro_archer_color_psd_da5ae865_mask.tga"
+}

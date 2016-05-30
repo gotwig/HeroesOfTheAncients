@@ -105,7 +105,16 @@ end
 function summonGolems()
 
 Notifications:TopToAll({text=golemssummontexts[RandomInt( 1, #golemssummontexts )], duration=10.0})
+EmitAnnouncerSound("announcer_ann_custom_generic_alert_16")	
 
+	Timers:CreateTimer({
+				useGameTime = false,
+				endTime = 5, -- when this timer should first execute, you can omit this if you want it to run first on the next frame
+				callback = function()
+					EmitAnnouncerSoundForTeam("announcer_ann_custom_generic_alert_47", 2)
+					EmitAnnouncerSoundForTeam("announcer_ann_custom_generic_alert_47", 3)
+				end
+	})
 
 if (firstSkullGolemSpawn)
 then

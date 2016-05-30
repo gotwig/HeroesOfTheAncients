@@ -41,6 +41,45 @@ if (open)
 		Notifications:TopToAll({text=minesopentexts[RandomInt( 1, #minesopentexts )], duration=10.0})
 
 		print("The mines opened! Collect skulls")
+		
+		local firstMine = Entities:FindByName(nil,"mine_to_ug_top")
+		local secondMine = Entities:FindByName(nil,"mine_to_ug_bot")
+		local thirdMine = Entities:FindByName(nil,"minesOpenThirdPoint")
+
+
+		
+		for playerID = 0, DOTA_MAX_TEAM_PLAYERS do 
+
+		local player = PlayerResource:GetPlayer(playerID)
+
+		if PlayerResource:IsValidPlayerID(playerID) then 
+
+			local playerHeroChar = PlayerResource:GetSelectedHeroEntity(playerID)
+			MinimapEvent( player:GetTeamNumber(), playerHeroChar, firstMine:GetAbsOrigin().x, firstMine:GetAbsOrigin().y - 600, DOTA_MINIMAP_EVENT_HINT_LOCATION, 6 )
+
+			Timers:CreateTimer({
+				useGameTime = false,
+				endTime = 6, -- when this timer should first execute, you can omit this if you want it to run first on the next frame
+				callback = function()
+					MinimapEvent( player:GetTeamNumber(), playerHeroChar, secondMine:GetAbsOrigin().x, secondMine:GetAbsOrigin().y, DOTA_MINIMAP_EVENT_HINT_LOCATION, 8 )
+				end
+			})
+			
+			Timers:CreateTimer({
+				useGameTime = false,
+				endTime = 14, -- when this timer should first execute, you can omit this if you want it to run first on the next frame
+				callback = function()
+					MinimapEvent( player:GetTeamNumber(), playerHeroChar, thirdMine:GetAbsOrigin().x, thirdMine:GetAbsOrigin().y, DOTA_MINIMAP_EVENT_HINT_LOCATION, 14 )
+				end
+			})
+			
+			EmitAnnouncerSound("announcer_ann_custom_cp_alerts_51")	
+		end 
+
+	end
+		
+		
+		
 	else
 		MINESOPEN = false
 		CustomGameEventManager:Send_ServerToAllClients( "hideDynamicEventInfo", {} )
