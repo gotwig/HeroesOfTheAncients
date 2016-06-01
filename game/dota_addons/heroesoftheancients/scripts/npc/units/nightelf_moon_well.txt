@@ -10,10 +10,8 @@
 	"Model"						"models/props_structures/radiant_statue001.vmdl"
 	"ModelScale"				"1"
 	"Level"						"1"
-	"HealthBarOffset"			"140"
+	"HealthBarOffset"			"200"
 	"ConsideredHero"			"1"
-	
-
 	
 	// Abilities
 	//----------------------------------------------------------------

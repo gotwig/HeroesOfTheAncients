@@ -479,9 +479,9 @@ function SpawnTop( teamselection , teamnumber, position)
 				local rangedCreep = CreateUnitByName("npc_dota_necronomicon_archer_1_custom", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
 			
 				if ( teamselection == "bad") then
-					rangedCreep:SetRenderColor(184,74,40)
+					rangedCreep:SetRenderColor(180,63,30)
 				else
-					rangedCreep:SetRenderColor(43,154,87)
+					rangedCreep:SetRenderColor(144,167,61)
 				end
 			
 				for i = 1,6 do
@@ -535,9 +535,9 @@ function SpawnBot( teamselection , teamnumber, position )
 				local rangedCreep = CreateUnitByName("npc_dota_necronomicon_archer_1_custom", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_bot_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
 			
 				if ( teamselection == "bad") then
-					rangedCreep:SetRenderColor(184,74,40)
+					rangedCreep:SetRenderColor(180,63,30)
 				else
-					rangedCreep:SetRenderColor(43,154,87)
+					rangedCreep:SetRenderColor(144,167,61)
 				end
 			
 			
