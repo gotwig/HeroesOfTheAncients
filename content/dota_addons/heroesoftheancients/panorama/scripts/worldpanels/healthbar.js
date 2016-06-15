@@ -2,6 +2,8 @@ $.Msg("healthbar");
 
 var teamColors = GameUI.CustomUIConfig().team_colors;
 
+var atCharSelect = false;
+
 if (!teamColors) {
   GameUI.CustomUIConfig().team_colors = {}
   GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_GOODGUYS] = "#3dd296;";
@@ -28,8 +30,9 @@ function HealthCheck()
   if (!offScreen && wp){
     var ent = wp.entity;
     if (ent){
-      if (!Entities.IsAlive(ent)){
+      if (!Entities.IsAlive(ent) || atCharSelect ){
         $.GetContextPanel().style.opacity = "0";
+		
         $.Schedule(1/30, HealthCheck);
         return;
       }
@@ -43,7 +46,9 @@ function HealthCheck()
       else
         $.GetContextPanel().SetHasClass("Friendly", false);*/
 
-      $.GetContextPanel().style.opacity = "1";
+	  if (!atCharSelect){
+		$.GetContextPanel().style.opacity = "1";
+	  }
 
 	   var mp = Entities.GetMana(ent);
        var mpMax = Entities.GetMaxMana(ent);
@@ -89,8 +94,18 @@ function HealthCheck()
   $.Schedule(1/30, HealthCheck);
 }
 
+
+function GameStateChanged(data){
+
+    if (data.state == 2){
+		atCharSelect = true;
+    } else {
+		atCharSelect = false;
+    }
+}
+
 (function()
 { 
   HealthCheck();
-
+  SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
 })();

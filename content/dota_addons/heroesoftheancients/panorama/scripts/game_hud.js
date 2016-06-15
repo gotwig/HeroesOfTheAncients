@@ -248,26 +248,81 @@ function dynamicEventInfoChanged( table_name, key, data )
 	$("#mapEventInfoRemaining").text =  data.remaining;
 }
 
+function refreshTeamXP(){
+
+	  var data1 = CustomNetTables.GetTableValue( "team_experience", "2" );
+	  var data2 = CustomNetTables.GetTableValue( "team_experience", "3" );
+
+	
+	  if (data1){
+		if (data1.teamlevel){
+		  team_level2 = data1.teamlevel;
+		}
+		 
+		if (data1.teampercent){
+		  team_xpper2 = data1.teampercent;
+		}
+	  }
+	  
+	  if (data2){
+		if (data2.teamlevel){
+		  team_level3 = data2.teamlevel;
+		}
+		 
+		if (data2.teampercent){
+		  team_xpper3 = data2.teampercent;
+		}
+	  }
+	
+	  $.Schedule(3, refreshTeamXP);
+}
+
+
+function teamXPChanged( table_name, key, data )
+{
+	$.Msg( "Table ", table_name, " changed: '", key, "' = ", data );
+	if (key == 2){
+		if (data.teamlevel){
+			team_level2 = data.teamlevel;
+		}
+		
+		if (data.teampercent){
+			team_xpper2 = data.teampercent
+		}
+	}
+	
+	else {
+		if (data.teamlevel){
+			team_level3 = data.teamlevel;
+		}
+		if (data.teampercent){
+			team_xpper3 = data.teampercent;
+		}
+	}
+
+	
+	
+}
+
 	var perTeam1 = 0.1;
 	var perTeam2 = 0.1;
 	var perTeam1LvlFactor = 0.1;
 	var perTeam2LvlFactor = 0.1;
 
+	var team_level2 = 1;
+	var team_level3 = 1;
+
+	var team_xpper2 = 0;
+	var team_xpper3 = 0;
+	
+	
 function teamLevel2(){
 
 	if (Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_GOODGUYS).length > 0){
 
-		$("#teamLevel2").text = Players.GetLevel(Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_GOODGUYS)[0]);
+		$("#teamLevel2").text = team_level2;
 		
-		var currentXP = Entities.GetCurrentXP(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_GOODGUYS)[0]));
-		var neededXP =	Entities.GetNeededXPToLevel(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_GOODGUYS)[0]));
-		
-		//	$.Msg( neededXP - (neededXP - currentXP ) );
-		
-		currentXP -= perTeam1LvlFactor; 
-		neededXP -= perTeam1LvlFactor; 
-		
-		perTeam1 = (currentXP * 100) / neededXP;
+		perTeam1 = team_xpper2; 
 
 	
 	  var left1 = $("#xpbar1Left");
@@ -275,7 +330,7 @@ function teamLevel2(){
 	  left1.SetHasClass("TimeRed", false);
 
 	  left1.style.transition = "width 0.1s linear 0.0s;"
-	  left1.style.width = perTeam1 * 1 + "%";
+	  left1.style.width = perTeam1  * 1 + "%";
 	}
   
   
@@ -285,16 +340,10 @@ function teamLevel2(){
 function teamLevel3(){
 
 	if (Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_BADGUYS).length > 0){
-		$("#teamLevel3").text = Players.GetLevel(Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_BADGUYS)[0]);
 		
-		var currentXP2 = Entities.GetCurrentXP(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_BADGUYS)[0]));
-		var neededXP2 =	Entities.GetNeededXPToLevel(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(DOTATeam_t.DOTA_TEAM_BADGUYS)[0]));
+		$("#teamLevel3").text = team_level3;
 		
-		currentXP2 -= perTeam2LvlFactor; 
-		neededXP2 -= perTeam2LvlFactor; 
-		
-		perTeam2 = (currentXP2 * 100) / neededXP2;
-  
+		perTeam2 = team_xpper3; 
 	  
 	  var left2 = $("#xpbar2Left");
 	  left2.SetHasClass("TimeBlue", false);
@@ -366,37 +415,23 @@ function leveluptextteam3(){
 	$("#levelupTextTeam3").visible = false;
 }
 
-function OnPlayerLevelUp( data ) {
-	
+function OnPlayerLevelUp( data ) {	
 	if (Game.GetPlayerIDsOnTeam(2).length > 0){
 
-		if (data.playerID == Game.GetPlayerIDsOnTeam(2)[0] +1){
-
-			var currentXP = Entities.GetCurrentXP(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(2)[0]));
-			var neededXP =	Entities.GetNeededXPToLevel(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(2)[0]));
-			
-			perTeam1LvlFactor = ( neededXP - (neededXP - currentXP ) );
-			
+		if (Players.GetTeam( data.playerID -1 ) == 2){
 			$("#levelupTextTeam2").visible = true;
-			
-			$.Schedule( 4, leveluptextteam2 );
+			team_xpper2 = 0;
 
+			$.Schedule( 4, leveluptextteam2 );
 		}
 	}
 	if (Game.GetPlayerIDsOnTeam(3).length > 0){
-
-		if (data.playerID == Game.GetPlayerIDsOnTeam(3)[0] +1){
-			
-			var currentXP1 = Entities.GetCurrentXP(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(3)[0]));
-			var neededXP1 =	Entities.GetNeededXPToLevel(Players.GetPlayerHeroEntityIndex(Game.GetPlayerIDsOnTeam(3)[0]));
-			
-			perTeam2LvlFactor = ( neededXP1 - (neededXP1 - currentXP1 ) );
-			
+	
+		if (Players.GetTeam( data.playerID -1 ) == 3){
+					
 			$("#levelupTextTeam3").visible = true;
-			
+			team_xpper3 = 0;
 			$.Schedule( 4, leveluptextteam3 );
-			
-			
 		}
 	}
 
@@ -547,7 +582,8 @@ function hideDynamicEventInfo(){
 
   //showCustomCursor()
   
-  checkFlipped()
+  checkFlipped();
+  refreshTeamXP();
   
   GameEvents.Subscribe("showCapturepoint", showCapturepoint);
   GameEvents.Subscribe("hideCapturepoint", hideCapturepoint); 
@@ -561,6 +597,9 @@ function hideDynamicEventInfo(){
   GameEvents.Subscribe("showDynamicEventInfo", showDynamicEventInfo);
   GameEvents.Subscribe("hideDynamicEventInfo", hideDynamicEventInfo); 
   CustomNetTables.SubscribeNetTableListener( "dynamic_MapEvents", dynamicEventInfoChanged );
+  
+  CustomNetTables.SubscribeNetTableListener( "team_experience", teamXPChanged );
+
   
   GameEvents.Subscribe( "dota_player_gained_level_all", OnPlayerLevelUp );
   

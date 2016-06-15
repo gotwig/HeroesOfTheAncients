@@ -6,11 +6,18 @@ require('libraries/playertables')
 require("towers")
 require("worldpanels/worldpanelsInit")
 
+require('hero_selection')
+require('player')
+
 require ('libraries/notifications')
 require("libraries/worldpanels")
 
+require('chat')
+
+
 matchstarttexts = {'Fight, kill!','Let the battle begin!','Now go, and summon my golems!'}
 
+startCharSelect = true
 
 function GetGridAroundPoint( numUnits, point )
     local navPoints = {}  
@@ -103,6 +110,24 @@ require('events')
 
   This function should generally only be used if the Precache() function in addon_game_mode.lua is not working.
 ]]
+
+function GameMode:SetState(state)
+    self.State = state
+
+    CustomNetTables:SetTableValue("main", "gameState", { state = state })
+end
+
+function GameMode:RegisterThinker(period, callback)
+    local timer = {}
+    timer.period = period
+    timer.callback = callback
+    timer.next = Time() + period
+
+    self.Thinkers = self.Thinkers or {}
+
+    table.insert(self.Thinkers, timer)
+end
+
 function GameMode:PostLoadPrecache()
   DebugPrint("[BAREBONES] Performing Post-Load precache")    
   --PrecacheItemByNameAsync("item_example_item", function(...) end)
@@ -120,8 +145,111 @@ end
   This function is called once and only once as soon as the first player (almost certain to be the server in local lobbies) loads in.
   It can be used to initialize state that isn't initializeable in InitGameMode() but needs to be done before everyone loads in.
 ]]
+
+function GameMode:UpdateGameInfo()
+    local players = {}
+
+    for i, player in pairs(self.Players) do
+        local playerData = {}
+        playerData.id = i
+        playerData.team = player.team
+        playerData.color = self.TeamColors[player.team]
+        playerData.score = player.score
+
+        players[i] = playerData
+    end
+
+    CustomNetTables:SetTableValue("main", "gameInfo", {
+        goal = self.gameGoal,
+        hardHeroesLocked = self.heroSelection.HardHeroesLocked,
+        winner = self.winner,
+        roundNumber = self.roundNumber,
+        runnerUps = self.runnerUps,
+        players = players
+    })
+end
+
+
+function GameMode:CreateHeroesAfterSelection()
+    for i, player in pairs(self.Players) do
+        if (player:IsConnected() and player.selectionLocked and player.selectedHero ~= nil and player.selectedHero ~= "npc_dota_hero_wisp") then
+				PlayerResource:ReplaceHeroWith(player.id, player.selectedHero, 0, 0)
+			end
+
+		
+		
+    end
+end
+
+
+function GameMode:OnHeroSelectionEnd()
+
+	print("CHAR SELECTION ENDED")
+	
+    self:SetState(4)
+    self:UpdateGameInfo()
+    self:UpdatePlayerTable()
+	
+	GameMode:CreateHeroesAfterSelection();
+
+	
+    Timers:CreateTimer(1.5,
+        function()
+            --EmitAnnouncerSound("announcer_ann_custom_adventure_alerts_42")
+            --EmitAnnouncerSound("announcer_announcer_battle_begin_01")
+        end
+    )
+	
+	
+end
+
+
+function GameMode:UpdatePlayerTable()
+    local players = {}
+
+    for i, player in pairs(self.Players) do
+        local playerData = {}
+        playerData.id = i
+        playerData.hero = player.selectedHero;
+        playerData.team = player.team
+        playerData.color = self.TeamColors[player.team]
+        playerData.score = player.score
+		playerData.selectionLocked = player.selectionLocked
+
+        table.insert(players, playerData)
+    end
+
+    CustomNetTables:SetTableValue("main", "players", players)
+end
+
+function GameMode:UpdateAvailableHeroesTable()
+    local heroes = {}
+
+    for name, data in pairs(self.AvailableHeroes) do
+        data.name = name
+        table.insert(heroes, data)
+    end
+
+    CustomNetTables:SetTableValue("main", "heroes", self.AvailableHeroes)
+end
+
 function GameMode:OnFirstPlayerLoaded()
   DebugPrint("[BAREBONES] First Player has loaded")
+	
+	    for id = 0, DOTA_MAX_PLAYERS do
+        if PlayerResource:IsValidPlayer(id) then
+            local player = Player()
+            player:SetPlayerID(id)
+            self.Players[player.id] = player
+
+            id = id + 1
+        end
+    end
+  
+	DeepPrintTable(self.Players)
+  
+  
+    self:UpdatePlayerTable()
 	
 	-- Play Sound countdown 10..1 
 	Timers:CreateTimer(function()
@@ -187,10 +315,6 @@ function GameMode:OnFirstPlayerLoaded()
 
 		end
 	
-	
-	
-
-			
 		return 1
 	end)
 	
@@ -242,6 +366,35 @@ end
 ]]
 function GameMode:OnHeroInGame(hero)
 
+
+  if (startCharSelect) then
+		self.chat = Chat(self.Players, self.Users, self.TeamColors)
+
+  
+		self.heroSelection = HeroSelection(self.Players, self.AvailableHeroes, self.TeamColors, self.chat)
+		
+		
+		
+		
+		Timers:CreateTimer(function()
+		  if self.State == 2  then
+				self.heroSelection:Update()
+				self:UpdatePlayerTable()
+		  end
+		  return 1.0
+			end
+		)
+
+	  self:UpdateAvailableHeroesTable()
+	  self:UpdateGameInfo()
+
+	  
+	  self:SetState(2)
+	  self.heroSelection:Start()
+	  
+	  startCharSelect = false
+	  
+  end
   --Convars:SetBool("dota_hide_cursor", true)
 
   Convars:SetInt("dota_minimap_hero_size", 1100)
@@ -276,6 +429,8 @@ function GameMode:OnHeroInGame(hero)
 					hero:HeroLevelUp(false)
 				end
 				hero:AddExperience(PlayerResource:GetSelectedHeroEntity(playerID):GetCurrentXP(), 0, false, false)
+				print(hero:GetCurrentXP())
+				
 				return false
 			end
 
@@ -390,56 +545,7 @@ function GameMode:OnGameInProgress()
 		return 30.0
 	end)
 	
-	--SCAN for TOWERS
-	
-	Timers:CreateTimer(function()
-	
-		local allCreeps = Entities:FindAllByClassname('npc_dota_creep_lane')
-		for i = 1, #allCreeps, 1 do
 
-			local enemyTeam = 0
-		
-			if (allCreeps[i]:GetTeamNumber() == 2 )
-			then
-				enemyTeam = 3
-			end
-			
-			if (allCreeps[i]:GetTeamNumber() == 3 )
-			then
-				enemyTeam = 2
-			end
-			
-			
-		
-			local scannedUnits = FindUnitsInRadius(enemyTeam,
-												allCreeps[i]:GetAbsOrigin(),
-												nil,
-												600,
-												DOTA_UNIT_TARGET_TEAM_FRIENDLY,
-												DOTA_UNIT_TARGET_ALL,
-												DOTA_UNIT_TARGET_FLAG_NONE,
-												FIND_ANY_ORDER,
-												false)
-								  
-			for k, v in pairs(scannedUnits) do
-				if (v:GetModelName() == "models/props_structures/tower_bad.vmdl" or v:GetModelName() == "models/props_structures/tower_good.vmdl")
-				then
-					local order = 
-					{
-						UnitIndex = allCreeps[i]:entindex(),
-						OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-						TargetIndex = v:entindex()
-					}
-				
-					ExecuteOrderFromTable(order)
-				end
-			end
-		
-		
-		end
-
-		return 2.0
-	end)
 	
 
 	
@@ -586,25 +692,52 @@ function SpawnSiege()
 
 end
 
+	XP_PER_LEVEL_TABLE = {}
+	for i=1,25 do
+		XP_PER_LEVEL_TABLE[i] = (i-1) * 100
+	end
+
 function GameMode:FilterXP( filterTable )
  
 local actPlayer = PlayerResource:GetPlayer(filterTable.player_id_const)
  
 local xp = filterTable.experience
  
+	if (PlayerResource:GetLevel(filterTable.player_id_const) >= 25) then
+		return false
+	end
+ 
 	for playerID = 0, DOTA_MAX_TEAM_PLAYERS do 
 
 	local player = PlayerResource:GetPlayer(playerID)
-
+	
 		if PlayerResource:IsValidPlayerID(playerID) and player:GetTeamNumber() == actPlayer:GetTeamNumber() then 
+		
+			local gained_xp = math.floor(xp/3)
+		
+			TEAMXP[player:GetTeamNumber()] = TEAMXP[player:GetTeamNumber()] + gained_xp	
+
+			print (XP_PER_LEVEL_TABLE[TEAMLEVEL[player:GetTeamNumber()]+1])
+			
+			if (TEAMXP[player:GetTeamNumber()] > (XP_PER_LEVEL_TABLE[TEAMLEVEL[player:GetTeamNumber()]+1] - XP_PER_LEVEL_TABLE[TEAMLEVEL[player:GetTeamNumber()]]))
+			then
+				TEAMXP[player:GetTeamNumber()] = 0
+			end
+			
+			local neededxp = XP_PER_LEVEL_TABLE[TEAMLEVEL[player:GetTeamNumber()]+1] - XP_PER_LEVEL_TABLE[TEAMLEVEL[player:GetTeamNumber()]]
+			
+			print (neededxp)
+			
+			TEAMXPPER[player:GetTeamNumber()] = (TEAMXP[player:GetTeamNumber()] * 100) / neededxp;
+			
+			CustomNetTables:SetTableValue( "team_experience", player:GetTeamNumber() .. "" , { teampercent = TEAMXPPER[player:GetTeamNumber()] } )
 
 			local teamplayers = PlayerResource:GetPlayerCountForTeam(actPlayer:GetTeamNumber())
 
-			PlayerResource:GetSelectedHeroEntity(playerID):AddExperience(math.floor(xp/teamplayers),
+			PlayerResource:GetSelectedHeroEntity(playerID):AddExperience(gained_xp,
 																		filterTable.reason_const,
 																		false,
 																		false)
-
 		end 
 
 	end
@@ -722,7 +855,76 @@ function GameMode:InitGameMode()
   -- Commands can be registered for debugging purposes or as functions that can be called by the custom Scaleform UI
   Convars:RegisterCommand( "command_example", Dynamic_Wrap(GameMode, 'ExampleConsoleCommand'), "A console command example", FCVAR_CHEAT )
   
+  -- Setup for custom hero select
+  GameRules:GetGameModeEntity():SetCustomGameForceHero( "npc_dota_hero_wisp" )
+  
+    self.TeamColors = {}
+    self.TeamColors[DOTA_TEAM_GOODGUYS] = { 61, 210, 150 }  --      Teal
+    self.TeamColors[DOTA_TEAM_BADGUYS]  = { 243, 201, 9 }   --      Yellow
+    self.TeamColors[DOTA_TEAM_CUSTOM_1] = { 197, 77, 168 }  --      Pink
+    self.TeamColors[DOTA_TEAM_CUSTOM_2] = { 255, 108, 0 }   --      Orange
+    self.TeamColors[DOTA_TEAM_CUSTOM_3] = { 52, 85, 255 }   --      Blue
+    self.TeamColors[DOTA_TEAM_CUSTOM_4] = { 101, 212, 19 }  --      Green
+    self.TeamColors[DOTA_TEAM_CUSTOM_5] = { 129, 83, 54 }   --      Brown
+    self.TeamColors[DOTA_TEAM_CUSTOM_6] = { 27, 192, 216 }  --      Cyan
+    self.TeamColors[DOTA_TEAM_CUSTOM_7] = { 199, 228, 13 }  --      Olive
+    self.TeamColors[DOTA_TEAM_CUSTOM_8] = { 140, 42, 244 }  --      Purple
+  
+  
+  self.AvailableHeroes = {}
+  local customHeroes = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
+  
+  
+  GameMode.customHeroesAbilities = LoadKeyValues("scripts/npc/npc_heroes.txt")
+
+	
+  self.Players = {}
+
+  
+  local order = 0
+
+    for customName, data in pairs(customHeroes) do
+        if true then
+            self.AvailableHeroes[data.override_hero] = {
+                ultimate = data.Ultimate,
+                class = data.Class,
+                customIcons = data.CustomIcons,
+                difficulty = data.Difficulty or "easy",
+                order = data.Order or math.huge,
+                disabled = (data.Disabled and data.Disabled == "true" and not enableForDebug) or false,
+                initialCD = data.UltiCooldown
+            }
+        end
+    end
+	
+	for customName, data in pairs(GameMode.customHeroesAbilities) do
+        if true then
+           
+            local abilities = {}
+            for i = 0, 10 do
+                local abilityName = data["Ability"..tostring(i)]
+                if abilityName and #abilityName ~= 0 then
+                    table.insert(abilities, abilityName)
+                end
+            end
+			if (customName ~= "npc_dota_hero_base") then 
+				CustomNetTables:SetTableValue("hero_Abilities", customName, abilities)
+			end
+		end
+	end
+  
   DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
+end
+
+function GameMode:UpdateAvailableHeroesTable()
+    local heroes = {}
+
+    for name, data in pairs(self.AvailableHeroes) do
+        data.name = name
+        table.insert(heroes, data)
+end
+
+    CustomNetTables:SetTableValue("main", "heroes", self.AvailableHeroes)
 end
 
 -- This is an example console command
@@ -737,8 +939,39 @@ function GameMode:ExampleConsoleCommand()
     end
   end
 
-  print( '*********************************************' )
+  print( '*********************************************' )  
+  
+end
+
+function GameMode:OnPlayerPickHero(keys)
+    if keys.hero == "npc_dota_hero_wisp" then
+		
+    for id = 0, DOTA_MAX_PLAYERS do
+        if PlayerResource:IsValidPlayer(id) then
+            local player = Player()
+            player:SetPlayerID(id)
+            self.Players[player.id] = player
+
+            id = id + 1
+        end
+    end
+      self:UpdatePlayerTable()
+
+  		if (self.Players[keys.player])	then
+			if (self.Players[keys.player].selectionLocked) then
+				return
+			end
+		end
+	
+        local hero = EntIndexToHScript(keys.heroindex)
+		
+		--hero:AddNoDraw()
+        --hero:AddNewModifier(hero, nil, "modifier_hidden", {})
   
   
+	DeepPrintTable(self.Players)
   
+  
+
+    end
 end

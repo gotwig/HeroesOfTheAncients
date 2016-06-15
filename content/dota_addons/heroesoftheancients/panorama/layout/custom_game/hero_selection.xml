@@ -1,0 +1,50 @@
+<root>
+    <styles>
+        <include src="file://{resources}/styles/custom_game/ability_bar.css" />
+        <include src="file://{resources}/styles/custom_game/hero_selection_style.css" />
+        <include src="file://{resources}/styles/custom_game/util.css" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/underscore-min.js" />
+        <include src="file://{resources}/scripts/custom_game/util.js" />
+        <include src="file://{resources}/scripts/custom_game/hero_selection_script.js" />
+    </scripts>
+    <Panel class="MainPanel" hittest="false">
+        <Panel id="HeroSelectionBackground" hittest="false">
+            <DOTAScenePanel hittest="false" id="HeroSelectionBackgroundScene" map="backgrounds/dashboard_test" camera="shot_cameraA"/>
+            <Panel id="HeroSelectionTopGradient" hittest="false"/>
+            <Panel class="ExitGameOverlay" hittest="false"/>
+
+            <Panel id="HeroList" hittest="false">
+                <Label class="BlueLabel" text="CHOOSE A HERO TO ENTER THE WORLD OF HEROES OF THE ANCIENTS"></Label>
+				
+				<Label id="TimerText"></Label>
+			    <Label id="HeroName"></Label>
+
+                <Panel id="DifficultyList">
+				
+                    <Panel id="LeftHeroes" class="HeroButtons"> </Panel>
+                    <Panel id="RightHeroes" class="HeroButtons"/>
+                </Panel>
+            </Panel>
+
+            <Panel id="LeftSideHeroes">
+
+            </Panel>
+			<Button id="ConfirmSelection"  class="ConfirmSelectionButton" onactivate="confirmSelection()">
+				<Label id="ConfirmText" text="CONFIRM HERO" />
+			</Button>
+            <Panel id="HeroAbilities" />
+
+            <Panel id="RightSide">
+                <Label id="PlayersLabel" text="Players" class="YellowLabel"/>
+                <Panel id="PlayersContent"/>
+            </Panel>
+			
+            <Panel id="HeroSelectionChat"/>
+            <Panel id="PauseOverlay">
+                <Label text="#GamePaused"/>
+            </Panel>
+        </Panel>
+    </Panel>
+</root>

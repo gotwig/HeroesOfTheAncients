@@ -25,10 +25,15 @@
 	visibility: collapse;
 }
 
-#BuffFrame
+#BuffFrameUnder
 {
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #52ae21 ), to( #2c6e08 ) );
-	padding: 1px;
+	width: 45px;
+	height: 52px;
+	z-index: -10;
+	clip: radial(50% 50%, 0deg, 360deg);
+	margin-left: -4px;
+	margin-top: -12px;
 }
 
 .is_debuff #BuffFrame

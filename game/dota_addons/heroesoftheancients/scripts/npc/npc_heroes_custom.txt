@@ -1,5 +1,11 @@
 "DOTAHeroes"
 {
+    "npc_dota_hero_wisp_replace"
+    {
+        "override_hero" "npc_dota_hero_wisp"
+        "MovementTurnRate"  "1.0"
+		"ModelScale"		"1.255500"
+    }
     "npc_dota_hero_abaddon"
     {
         "override_hero" "npc_dota_hero_abaddon"
@@ -42,11 +48,6 @@
         "override_hero" "npc_dota_hero_bane"
         "MovementTurnRate"  "1.0"
 		"ModelScale"		"1.255500"
-    }
-    "npc_dota_hero_base"
-    {
-        "override_hero" "npc_dota_hero_base"
-        "MovementTurnRate"  "1.0"
     }
     "npc_dota_hero_batrider"
     {

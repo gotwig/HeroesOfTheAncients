@@ -24,7 +24,6 @@ if (wp){
 	otherSeconds = "0" + otherSeconds;
   }
   
-
   if (otherSeconds > 0){
 	 $("#respawnText").text = "Camp Respawn in";
 	 $("#countTime").text = "0" + minutes + ":" + otherSeconds;  

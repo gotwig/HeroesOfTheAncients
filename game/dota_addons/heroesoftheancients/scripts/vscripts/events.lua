@@ -73,8 +73,16 @@ function GameMode:OnNPCSpawned(keys)
   local npc = EntIndexToHScript(keys.entindex)
   
   if ( npc:IsRealHero() ) then   
-    npc:AddItemByName("item_mountHorse")
-    npc:AddItemByName("item_teleportBase")
+  
+  	if ( not npc:HasItemInInventory("item_mountHorse") )
+		then
+			npc:AddItemByName("item_mountHorse")
+	end
+  
+  	if ( not npc:HasItemInInventory("item_teleportBase") )
+		then
+			npc:AddItemByName("item_teleportBase")
+	end
 	
 	if ( not npc:HasItemInInventory("item_boots_of_riding") )
 		then
@@ -144,6 +152,15 @@ function GameMode:OnAbilityUsed(keys)
 
   local player = PlayerResource:GetPlayer(keys.PlayerID)
   local abilityname = keys.abilityname
+  
+  local caster = PlayerResource:GetSelectedHeroEntity(keys.PlayerID)
+  if (caster:HasItemInInventory("item_boots_of_riding"))
+  then
+  		local item = caster:GetItemInSlot(2)
+		caster:RemoveItem(item)
+  end
+	
+	
 end
 
 -- A non-player entity (necro-book, chen creep, etc) used an ability
@@ -185,16 +202,23 @@ end
 function GameMode:OnPlayerLevelUp(keys)
 
   CustomGameEventManager:Send_ServerToAllClients( "dota_player_gained_level_all", {playerID = keys.player} )
-
-
-  if MINESOPENLOADED then return end
-
+  
   DebugPrint('[BAREBONES] OnPlayerLevelUp')
   DebugPrintTable(keys)
 
-  
   local player = EntIndexToHScript(keys.player)
   local level = keys.level
+  
+  TEAMLEVEL[player:GetTeamNumber()] = level
+  TEAMXP[player:GetTeamNumber()] = 0
+  TEAMXPPER[player:GetTeamNumber()] = 0
+  
+  CustomNetTables:SetTableValue( "team_experience", player:GetTeamNumber() .. "" , { teamlevel = TEAMLEVEL[player:GetTeamNumber()], teampercent = 0 } )
+  
+  print(player:GetTeamNumber())
+  
+  if MINESOPENLOADED then return end
+
   
   local heroes = HeroList:GetAllHeroes()
   local allOver = true
@@ -241,6 +265,11 @@ function GameMode:OnRuneActivated (keys)
   local player = PlayerResource:GetPlayer(keys.PlayerID)
   local rune = keys.rune
 
+  -- ADD XP
+  if (keys.rune == DOTA_RUNE_BOUNTY ) then
+		return
+  end
+  
   --[[ Rune Can be one of the following types
   DOTA_RUNE_DOUBLEDAMAGE
   DOTA_RUNE_HASTE
@@ -293,7 +322,6 @@ function GameMode:OnEntityKilled( keys )
 
   GameMode:_OnEntityKilled( keys )
   
-
   -- The Unit that was Killed
   local killedUnit = EntIndexToHScript( keys.entindex_killed )
   -- The Killing entity
@@ -314,6 +342,17 @@ function GameMode:OnEntityKilled( keys )
 
   -- Put code here to handle when an entity gets killed
  		
+  -- set custom game over message
+  if (killedUnit:GetUnitName() == "npc_dota_badguys_fort_custom")
+  then
+	GameRules:SetCustomVictoryMessage( "BLUE WINS! - RED DEFEAT" )
+  end
+		
+  if (killedUnit:GetUnitName() == "npc_dota_goodguys_fort_custom")
+  then
+	GameRules:SetCustomVictoryMessage( "RED WINS! - BLUE DEFEAT" )
+  end		
+		
   --handle death of Heroes
   
   if (killedUnit:IsRealHero())

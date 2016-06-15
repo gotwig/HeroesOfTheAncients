@@ -70,8 +70,11 @@
     horizontal-align: center;
 }
 
-DOTAHeroImage{
-	border-radius: 10px;
+DOTAHeroMovie{
+	opacity: 0.96;
+	height: 120px;
+	width: 120px;
+	border-radius: 50%;
 }
 
 @keyframes 'scalein' {

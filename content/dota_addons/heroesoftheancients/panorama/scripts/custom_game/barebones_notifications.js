@@ -51,7 +51,7 @@ function AddNotification(msg, panel) {
   var notification = null;
   
   if (msg.hero != null)
-    notification = $.CreatePanel('DOTAHeroImage', lastNotification, '');
+    notification = $.CreatePanel('DOTAHeroMovie', lastNotification, '');
   else if (msg.image != null)
     notification = $.CreatePanel('Image', lastNotification, '');
   else if (msg.ability != null)

@@ -67,58 +67,58 @@
 				<Panel id="heroDeath2" class="heroDeath">
 
 				<Panel class="arrowTeamDeath"> </Panel>
-				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<DOTAHeroMovie class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
 				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
 				</Panel>
 				
 				<Panel id="heroDeath3" class="heroDeath">
 				<Panel class="arrowTeamDeath"> </Panel>
-				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<DOTAHeroMovie class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
 				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
 				
 				</Panel>
 				
 				<Panel id="heroDeath4" class="heroDeath">
 				<Panel class="arrowTeamDeath"> </Panel>
-				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<DOTAHeroMovie class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
 				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
 
 				</Panel>
 				
 				<Panel id="heroDeath5" class="heroDeath">
 				<Panel class="arrowTeamDeath"> </Panel>
-				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<DOTAHeroMovie class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
 				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
 
 				</Panel>
 		
 				<Panel id="heroDeath6" class="heroDeath">
 				<Panel class="arrowTeamDeath"> </Panel>
-				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<DOTAHeroMovie class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
 				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
 				</Panel>
 				
 				<Panel id="heroDeath7" class="heroDeath">
 				<Panel class="arrowTeamDeath"> </Panel>
-				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<DOTAHeroMovie class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
 				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
 				</Panel>
 				
 				<Panel id="heroDeath8" class="heroDeath">
 				<Panel class="arrowTeamDeath"> </Panel>
-				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<DOTAHeroMovie class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
 				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
 				</Panel>
 				
 				<Panel id="heroDeath9" class="heroDeath">
 				<Panel class="arrowTeamDeath"> </Panel>
-				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<DOTAHeroMovie class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
 				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
 				</Panel>
 				
 				<Panel id="heroDeath10" class="heroDeath">
 				<Panel class="arrowTeamDeath"> </Panel>
-				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<DOTAHeroMovie class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
 				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
 				</Panel>
 				

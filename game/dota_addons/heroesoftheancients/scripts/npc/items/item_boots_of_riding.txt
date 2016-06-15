@@ -4,7 +4,7 @@
     "AbilityBehavior"               "DOTA_ABILITY_BEHAVIOR_PASSIVE"
     "AbilityTextureName"            "item_boots_of_speed"
     
-    "ItemCost"                      "175"
+    "ItemCost"                      "0"
     "ItemQuality"                   "common"
     "ItemAliases"                   "circlet"
 
@@ -47,7 +47,7 @@
 			}
 		}
 		
-		"OnDealDamage"
+		"OnAttackStart"
 		{
 			"RunScript"
 			{

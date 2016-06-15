@@ -1,0 +1,81 @@
+<root>
+    <styles>
+        <include src="file://{resources}/styles/custom_game/simple_chat.css" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/kappa.js" />
+        <include src="file://{resources}/scripts/custom_game/util.js" />
+    </scripts>
+    <script>
+        var contentPanel = $("#ChatContent");
+        var entry = $("#ChatEntry");
+
+        $.GetContextPanel().RegisterListener = function(uniqueName) {
+            AddEnterListener(uniqueName, function() {
+                if (contentPanel.BCanSeeInParentScroll()) {
+                    entry.SetFocus();
+                }
+            });
+        }
+
+        function SubmitChat() {
+            GameEvents.SendCustomGameEventToServer("custom_chat_say", { message: $("#ChatEntry").text });
+
+            $("#ChatEntry").text = "";
+        }
+
+        function AddChatLine(token, vars) {
+            var last = $("#ChatContent").GetChild(0);
+            var line = $.CreatePanel("Label", $("#ChatContent"), "");
+
+            for (key in vars) {
+                line.SetDialogVariable(key, vars[key]);
+            }
+
+            line.html = true;
+            line.text = $.Localize(token, line);
+            line.AddClass("ChatLine");
+            line.AddClass("ChatLineAppear");
+
+            if (last != null) {
+                $("#ChatContent").MoveChildBefore(line, last);
+            }
+        }
+
+        function OnRandomedMessage(args) {
+            AddChatLine("#ChatRandomed", {
+                name: Players.GetPlayerName(args.player),
+                color: LuaColor(args.color),
+                hero: $.Localize("HeroName_" + args.hero)
+            });
+        }
+
+        function OnChatSay(args) {
+            AddChatLine("#ChatLine", {
+                name: Players.GetPlayerName(args.player),
+                color:  LuaColor(args.color),
+                message: InsertEmotes(args.message)
+            });
+        }
+		
+		function alwaysFocus(){
+			$("#ChatEntry").SetFocus() 
+			$.Schedule(0.01, alwaysFocus);
+		}
+		
+
+        GameEvents.Subscribe("custom_chat_say", OnChatSay);
+        GameEvents.Subscribe("custom_randomed_message", OnRandomedMessage);
+
+        $.Schedule(5, alwaysFocus);
+		
+		
+    </script>
+    <Panel class="Chat">
+		<Label id="ChatLabel" text="Chat (Allies)"></Label>
+
+        <Panel id="ChatContent">
+        </Panel>
+        <TextEntry id="ChatEntry" multiline="false" textmode="normal" oninputsubmit="SubmitChat()" maxchars="50" placeholder="#ChatPlaceholder"/>
+    </Panel>
+</root>

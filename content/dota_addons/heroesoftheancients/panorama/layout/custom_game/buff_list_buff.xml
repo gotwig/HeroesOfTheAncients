@@ -36,6 +36,8 @@
 				<DOTAAbilityImage id="AbilityImage" />
 				<DOTAItemImage id="ItemImage" scaling="stretch-to-fit-y-preserve-aspect" />
 			</Panel>
+			<Panel id="BuffFrameUnder">
+			</Panel>
 			<Label id="StackCount" />
 		</Button>
 	</Panel>

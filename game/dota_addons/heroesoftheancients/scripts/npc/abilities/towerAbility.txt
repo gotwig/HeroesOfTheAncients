@@ -10,6 +10,34 @@
 
         "Modifiers"
         {
+		"modifier_sentry"
+		{
+			"Passive"			"0"
+			"IsHidden"			"1"
+	
+			"Aura"          	"modifier_sentry_aura"
+			"Aura_Radius"   	"400"
+			"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+			"Aura_Types"    	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC" //mechanic?
+			"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_NONE" //immune?
+		}
+		
+		"modifier_sentry_aura"
+		{
+			"IsHidden"			"0" //hidden?
+			"IsDebuff"			"0"
+		
+			"Priority"                     "MODIFIER_PRIORITY_ULTRA"
+			
+			"States"
+			{
+                "MODIFIER_STATE_INVISIBLE"          "MODIFIER_STATE_VALUE_DISABLED"
+			}
+			
+			
+		}
+		
+		
          "modifier_customTowerStuff"
          {
             "IsHidden"              "0"
@@ -31,6 +59,13 @@
 				"ScriptFile"	"towers.lua"
 				"Function"		"initShots"
 			}
+			
+			"ApplyModifier"
+			{
+				"Target"	"CASTER"
+				"ModifierName"	"modifier_sentry"
+			}
+			
            } 
 			
 			"ThinkInterval" "1.0"

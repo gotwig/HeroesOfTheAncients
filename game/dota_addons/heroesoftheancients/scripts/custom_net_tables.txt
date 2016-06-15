@@ -7,6 +7,9 @@
 	"watch_capturepoints",
 	"dynamic_MapEvents",
 	"tower_ammoPoints",
-	"hero_attributes"
+	"hero_attributes",
+	"team_experience",
+	"main",
+	"hero_Abilities"
   ]
 }

@@ -271,10 +271,21 @@ Timers:CreateTimer(function()
 				[1]   = function (x) print(x,"one")
 						mercenaryCamps[key].captureCounter = 50
 						CustomNetTables:SetTableValue( "merc_capturepoints", "merc_" .. key, { value = mercenaryCamps[key].captureCounter } )
+						mercenaryCamps[key].wp = nil;
+						mercenaryCamps[key].wp = WorldPanels:CreateWorldPanelForAll(
+						{layout = "file://{resources}/layout/custom_game/worldpanels/mercReadyToBeCaptured.xml",
+							entity = Entities:FindByName(nil, "merc_" .. key .. "_delay"):GetEntityIndex(),
+							name = "merc_"  .. key .. "_delay"
+						})
+						
 						end,
+
+						
 				[2]   = function (x) print(x,"two")
 						respawnAllyCamp(key)
 						
+						mercenaryCamps[key].wp:Delete()
+						mercenaryCamps[key].wp = nil;
 						mercenaryCamps[key].wp = WorldPanels:CreateWorldPanelForAll(
 						{layout = "file://{resources}/layout/custom_game/worldpanels/mercSpawnCount.xml",
 							entity = Entities:FindByName(nil, "merc_" .. key .. "_delay"):GetEntityIndex(),
@@ -300,8 +311,6 @@ Timers:CreateTimer(function()
 									end
 						)
 
-					
-					
 						end,
 				  default = function (x) end,
 				  missing = function (x) end,

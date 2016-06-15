@@ -48,9 +48,6 @@ function UpdateAbility()
 	$.GetContextPanel().SetHasClass( "toggle_enabled", Abilities.GetToggleState(m_Ability) );
 	$.GetContextPanel().SetHasClass( "is_active", ( m_Ability == Abilities.GetLocalPlayerActiveAbility() ) );
 
-
-
-	
 	if ($( "#HotkeyText" )){
 		$( "#HotkeyText" ).text = hotkey;
 	}

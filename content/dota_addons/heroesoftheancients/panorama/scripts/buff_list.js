@@ -24,7 +24,20 @@ function UpdateBuff( buffPanel, queryUnit, buffSerial )
 	{
 		stackCount.text = nNumStacks;
 	}
+	 
+	if (Buffs.GetDuration(queryUnit, buffSerial) > 1) {
+		var countdownRemaining = Buffs.GetRemainingTime(queryUnit, buffSerial)
+		var countdownLength = Buffs.GetDuration(queryUnit, buffSerial)
+		
+		var progress = (-360 * (countdownRemaining / countdownLength)).toString();
+
+		var countdown  = buffPanel.FindChildInLayoutFile( "BuffFrameUnder" );
+		countdown.style.clip = "radial(50% 50%, 0deg, " + progress + "deg)";
+
+	}
+	 
 	
+ 
 	var buffTexture = Buffs.GetTexture( queryUnit, buffSerial );
 
 	var itemIdx = buffTexture.indexOf( "item_" );
@@ -61,7 +74,7 @@ function UpdateBuffs()
 		var buffSerial = Entities.GetBuff( queryUnit, i );
 		if ( buffSerial == -1 )
 			continue;
-
+		
 		if ( Buffs.IsHidden( queryUnit, buffSerial ) )
 			continue;
 		

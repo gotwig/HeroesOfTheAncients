@@ -3,7 +3,23 @@ MINESOPENLOADED = false
 numSpawned = 0
 numPlayerAmount = 0
 
+TEAMXP = {}
+TEAMLEVEL = {}
+TEAMXPPER = {}
+
 require ('libraries/notifications')
+
+for i=2, 3 do
+      TEAMXP[i] = 0
+end
+
+for i=2, 3 do
+      TEAMLEVEL[i] = 1
+end
+
+for i=2, 3 do
+      TEAMXPPER[i] = 0
+end
 
 print ('[HOTA] hota.lua' )
 

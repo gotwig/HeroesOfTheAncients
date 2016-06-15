@@ -1,0 +1,9 @@
+<root> 
+  <styles>
+    <include src="s2r://panorama/styles/dotastyles.vcss_c" />
+    <include src="file://{resources}/styles/custom_game/worldpanels/mercSpawnCount.css" />
+  </styles>
+  <Panel hittest="false" class="ArrowPanel">
+    <Label class="textthing" id="respawnText" text="Camp is READY To be Captured!"> </Label>
+  </Panel>
+</root>
