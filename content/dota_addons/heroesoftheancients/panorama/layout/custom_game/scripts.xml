@@ -24,34 +24,34 @@
 			<Panel hittest="false" id="topbar">
 				<Panel hittest="false" id="topInfo">
 				
-				<Panel id="timeGame" hittest="false">
+				<Panel id="timeGame" onmouseover="helpText($('#timeGame'), 'Total Playtime of this game session.')" onmouseout="helpHide()">
 					<Label id="timeGameMinutes" hittest="false"  class="TimerText" text=""/>
 					<Label id="timeGameSeconds" hittest="false"  class="TimerText" text=""/>
 				</Panel>
-					<Panel hittest="false" id="xpbars">
-						<Panel hittest="false" class="xpbar" id="xpbar1">
+					<Panel id="xpbars" hittest="false">
+						<Panel class="xpbar" id="xpbar1" onmouseover="helpText($('#xpbar1'), 'Team Experience of the BLUE team. If its filled blue, the BLUE team and all its players level up and get stronger. Kill enemies to reach more Team Experience.')" onmouseout="helpHide()">
 						  <Panel hittest="false" id="xpbar1Left" class="TimeYellow">
 						  
 						  </Panel>
 						  <Label id="levelupTextTeam2" text="LEVEL UP!" />
 
 						</Panel>
-						<Panel hittest="false" class="xpbar" id="xpbar2">
+						<Panel class="xpbar" id="xpbar2" onmouseover="helpText($('#xpbar2'), 'Team Experience of the RED team. If its filled red, the RED team and all its players level up and get stronger. Kill enemies to reach more Team Experience.')" onmouseout="helpHide()">
 						  <Panel hittest="false" id="xpbar2Left" class="TimeYellow"> 
 						  </Panel>
 						  <Label id="levelupTextTeam3" text="LEVEL UP!" />
 						</Panel>
 					</Panel>
 					<Panel hittest="false" id="teamLevels">
-						<Label id="teamLevel2" hittest="false" class="TimerText" text="1"/>
-						<Label id="teamLevel3" hittest="false" class="TimerText" text="1"/>
+						<Label id="teamLevel2" onmouseover="helpText($('#teamLevel2'), 'Team Level of the BLUE team. Each level all teamplayers of the BLUE team become stronger and get more skills.')" onmouseout="helpHide()" class="TimerText" text="1"/>
+						<Label id="teamLevel3" onmouseover="helpText($('#teamLevel3'), 'Team Level of the RED team. Each level all teamplayers of the RED team become stronger and get more skills.')" onmouseout="helpHide()" class="TimerText" text="1"/>
 					</Panel>
 				</Panel>
 				
 				<Panel id="heroDeath0" class="heroDeath">
 				
 				<Panel class="arrowTeamDeath"> </Panel>
-				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<DOTAHeroMovie class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
 				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
 				
 				</Panel>
@@ -59,7 +59,7 @@
 				<Panel id="heroDeath1" class="heroDeath">
 				
 				<Panel class="arrowTeamDeath"> </Panel>
-				<DOTAHeroImage class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
+				<DOTAHeroMovie class="heroTeamDeath" heroname="npc_dota_hero_pudge" heroimagestyle="portrait" />
 				<Label hittest="false" class="remainingTeamDeath" text="Test"/>
 				
 				</Panel>
@@ -132,21 +132,22 @@
 					</Panel>
 					
 					<Panel id="HeroPortraitContainer">
-						<DOTAHeroMovie id="HeroPortrait"/>
+						<DOTAHeroMovie id="HeroPortrait" onmouseclick="heroCamLock()" onmouseover="helpText($('#HeroPortrait'), 'Click to Lock the camera onto your hero. Click again to Unlock your hero.')" onmouseout="helpHide()" onactivate="heroCamLock()"/>
+
 					</Panel>
 
 					
-					<Panel hittest="false" id="healmanabars">
-						<Panel hittest="false" id="healthbar">
-								<Panel hittest="false" id="healthbarLeft" class="TimeYellow"> 
+					<Panel id="healmanabars" >
+						<Panel id="healthbar" onmouseover="helpText($('#healthbar'), 'Your health is essential to surviving. If its low, you should consider going back to base, using a moon well or collecting health globes from the enemy creeps. If it reaches 0 you die and have to wait some time until you respawn.')" onmouseout="helpHide()">
+								<Panel id="healthbarLeft" class="TimeYellow" > 
 								</Panel>
-								<Label id="healthbarText" hittest="false" class="TimerText" text="1212 / 1212"/>
+								<Label id="healthbarText" class="TimerText" text="1212 / 1212"/>
 
 						</Panel>
-						<Panel hittest="false" id="manabar">
-								<Panel hittest="false" id="manabarLeft" class="TimeYellow"> 
+						<Panel id="manabar" onmouseover="helpText($('#manabar'), 'Your mana is essential to casting spells. If its low, you should consider going back to base, using a moon well or collecting health globes from the enemy creeps. Doesnt kill if it hits 0.')" onmouseout="helpHide()">
+								<Panel id="manabarLeft" class="TimeYellow"> 
 								</Panel>
-								<Label id="manabarText" hittest="false" class="TimerText" text="1212 / 1212"/>
+								<Label id="manabarText" class="TimerText" text="1212 / 1212"/>
 
 						</Panel>
 						
@@ -154,38 +155,25 @@
 						
 					</Panel>
 
-					<Panel id="heroAttributes" hittest="false">
-					<Button onactivate="updateHeroStats()" class="attributeButtons"> 
-						<Label id="attributeStrText" class="attributeText" text=""/>
-					</Button>
-					
-					<Button onactivate="updateHeroStats()" class="attributeButtons" >
-						<Label id="attributeAgiText" class="attributeText" text=""/>
-					</Button>
-					
-					<Button onactivate="updateHeroStats()" class="attributeButtons">
-						<Label id="attributeIntText" class="attributeText" text=""/>
-					</Button>
-					
-
-					
+					<Panel id="heroAttributes" onactivate="updateHeroStats()">  
+						<Button id="strAtr" class="attributeButtons" onmouseover="helpText($('#strAtr'), 'Strength: Each point increases your Total Life and Life Regeneration')" onmouseout="helpHide()"> 
+							<Label id="attributeStrText" class="attributeText" text=""/>
+						</Button>
+						
+						<Button id="agiAtr" class="attributeButtons" onmouseover="helpText($('#agiAtr'), 'Agility: Each point increases your Armor and Attack Speed')" onmouseout="helpHide()" >
+							<Label id="attributeAgiText" class="attributeText" text=""/>
+						</Button>
+						
+						<Button id="intAtr" class="attributeButtons" onmouseover="helpText($('#intAtr'), 'Intelligence: Each point increases your Total Mana, Mana Regeneration and Spell Damage')" onmouseout="helpHide()">
+							<Label id="attributeIntText" class="attributeText" text=""/>
+						</Button>
 					</Panel>
 
-					<Label id="levelupAttributesHint" text="↑ LEVELUP YOUR STATS ↑"></Label>
+					<Label id="levelupAttributesHint" onactivate="updateHeroStats()" text=" ↑LEVELUP YOUR STATS↑ "></Label>
 
 					
 				</Panel>
-
-			
-				<Panel id="TimersPanel" hittest="false">
-				
-					<Button id="heroLockActivator" onactivate="heroCamLock()">
-						<Label id="herocamLockText" class="TimerText" text="Lock camera"/>
-					</Button>
-					
-					<Label id="SuddenDeathTimer" class="TimerText" text=""/>
-				</Panel>
-				
+	
 				<Panel id="mapEventInfo" hittest="false">
 					
 					<Label hittest="false" id="mapEventInfoRemaining" class="UIText" text="100"/>

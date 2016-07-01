@@ -56,7 +56,9 @@ Timers:CreateTimer(function()
 					end
 										
 					else
-						CustomGameEventManager:Send_ServerToPlayer(value:GetPlayerOwner() , "hideCapturepoint", { name = "watch_" .. tower .. "_trigger" } )
+						if (value:GetPlayerOwner()) then
+							CustomGameEventManager:Send_ServerToPlayer(value:GetPlayerOwner() , "hideCapturepoint", { name = "watch_" .. tower .. "_trigger" } )
+						end
 				end
 
 			end

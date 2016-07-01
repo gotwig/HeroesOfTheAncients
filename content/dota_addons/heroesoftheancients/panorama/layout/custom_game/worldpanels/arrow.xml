@@ -4,8 +4,8 @@
     <include src="file://{resources}/styles/custom_game/worldpanels/arrow.css" />
   </styles>
   <Panel hittest="false" class="ArrowPanel">
-    <Label class="textthing" id="head" text="Mercenary Camp"> </Label>
-    <Label class="textthing" text="Defeat or bribe this camp"> </Label>
-    <Label class="textthing" text="to gain Mercenaries"> </Label>
+    <Label class="textthing" id="head" text="Bandit Squad"> </Label>
+    <Label class="textthing" text="Kill and Capture this Squad"> </Label>
+    <Label class="textthing" text="to gain Allies"> </Label>
   </Panel>
 </root>

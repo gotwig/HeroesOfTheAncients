@@ -11,24 +11,24 @@
     </scripts>
     <Panel class="MainPanel" hittest="false">
         <Panel id="HeroSelectionBackground" hittest="false">
-            <DOTAScenePanel hittest="false" id="HeroSelectionBackgroundScene" map="backgrounds/dashboard_test" camera="shot_cameraA"/>
+            <DOTAScenePanel id="HeroSelectionBackgroundScene" map="backgrounds/dashboard_test" camera="shot_cameraA"/>
             <Panel id="HeroSelectionTopGradient" hittest="false"/>
             <Panel class="ExitGameOverlay" hittest="false"/>
-
+            <Panel id="topcharscreen" />
+			<Panel id="topcharscreen_underline" />
             <Panel id="HeroList" hittest="false">
-                <Label class="BlueLabel" text="CHOOSE A HERO TO ENTER THE WORLD OF HEROES OF THE ANCIENTS"></Label>
 				
 				<Label id="TimerText"></Label>
 			    <Label id="HeroName"></Label>
 
-                <Panel id="DifficultyList">
+                <Panel id="DifficultyList" hittest="false">
 				
                     <Panel id="LeftHeroes" class="HeroButtons"> </Panel>
                     <Panel id="RightHeroes" class="HeroButtons"/>
                 </Panel>
             </Panel>
 
-            <Panel id="LeftSideHeroes">
+            <Panel id="LeftSideHeroes" hittest="false">
 
             </Panel>
 			<Button id="ConfirmSelection"  class="ConfirmSelectionButton" onactivate="confirmSelection()">

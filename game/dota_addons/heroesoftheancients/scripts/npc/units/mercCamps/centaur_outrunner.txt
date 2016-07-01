@@ -3,7 +3,7 @@
 		// General
 		//----------------------------------------------------------------
 		"Model"						"models/creeps/neutral_creeps/n_creep_centaur_med/n_creep_centaur_med.vmdl"	// Model.
-		"BaseClass"					"npc_dota_creep_neutral"
+		"BaseClass"					"npc_dota_creep_lane"
 		"SoundSet"					"n_creep_Melee"
 		"Level"						"2"
 		"ModelScale" 					".80"

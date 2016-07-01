@@ -1,5 +1,5 @@
 function dropHealthGlobe(unit)
-		if (unit:GetUnitName() == "npc_dota_creep_badguys_ranged" or unit:GetUnitName() == "npc_dota_creep_goodguys_ranged")
+		if (unit:GetUnitName() == "npc_dota_creep_badguys_ranged_custom" or unit:GetUnitName() == "npc_dota_creep_goodguys_ranged_custom")
 		then
 			local item = nil
 			

@@ -3,7 +3,7 @@
 		// General
 		//----------------------------------------------------------------
 		"Model"						"models/creeps/neutral_creeps/n_creep_troll_dark_a/n_creep_troll_dark_a.vmdl"	// Model.
-		"BaseClass"					"npc_dota_creep_neutral"
+		"BaseClass"					"npc_dota_creep_lane"
 		"SoundSet"					"n_creep_Ranged"
 		"Level"						"3"
 		"ModelScale" 					".70"

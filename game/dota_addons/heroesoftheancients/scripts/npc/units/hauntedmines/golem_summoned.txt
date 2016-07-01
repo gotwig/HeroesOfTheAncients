@@ -3,7 +3,7 @@
 		// General
 		//----------------------------------------------------------------
 		"Model"						"models/creeps/lane_creeps/creep_dire_hulk/creep_dire_ancient_hulk.vmdl"	// Model.
-		"BaseClass"					"npc_dota_creep_neutral"
+		"BaseClass"					"npc_dota_creep_lane"
 		"SoundSet"					"n_creep_Melee"
 		"Level"						"5"
 		"IsAncient"					"1"

@@ -1,7 +1,7 @@
 .AbilityOverlayRoot
 {
 	vertical-align: bottom;
-	height: 138px;
+	height: 170px;
 	flow-children: right-wrap;
 	margin-bottom: -20px;
 	background-repeat: no-repeat;
@@ -13,17 +13,17 @@
 	width: 110px;
 	height: 76px;
 	vertical-align: bottom;
-	margin-bottom: 20px;
+	margin-bottom: 34px;
 }
 
 .abilityLeftWing{
-	background-image: url( "file://{images}/custom_game/hud/abilities/abilityBarLeft.png" );
-	margin-right: -12px;
+	//background-image: url( "file://{images}/custom_game/hud/abilities/abilityBarLeft.png" );
+	margin-right: -20px;
 }
 
 .abilityRightWing{
-	background-image: url( "file://{images}/custom_game/hud/abilities/abilityBarRight.png" );
-	margin-left: -3px;
+	//background-image: url( "file://{images}/custom_game/hud/abilities/abilityBarRight.png" );
+	margin-left: -10px;
 }
 
 #cooldownOverlay{
@@ -34,14 +34,15 @@
 
 #ability_list
 {
+	padding-top: 22px;
 	flow-children: right;
 	horizontal-align: center;
 	margin-left: 5px;
-	margin-top: 17px;
-	background-image: url("file://{images}/custom_game/hud/abilities/bottom.png");
-	background-size: 100% 35%;
-	background-repeat: no-repeat;
-	background-position: 40% bottom;
+
+	//background-image: url("file://{images}/custom_game/hud/abilities/bottom.png");
+	//background-size: 100% 35%;
+	//background-repeat: no-repeat;
+	//background-position: 40% bottom;
 }
 
 .AbilityPanel
@@ -62,12 +63,12 @@
 #LevelUpButton
 {
 	border: 1px solid black;
-	margin-top: -8px;
+	margin-left: -55%;
     background-color: #c4a529;
 	width: 114px;
 	height: 28px;
 	visibility: collapse;
-	margin-left: -50%;
+	margin-bottom: 130px;
 	vertical-align: top;
 }
 
@@ -113,6 +114,8 @@
 	margin-left: 3px;
 	height: 90px;
 	opacity-mask: url( "file://{images}/custom_game/hud/masks/abilityPanel.png" );
+
+	
 }
 
 #AbilityButton
@@ -184,7 +187,7 @@ height: 96px;
 {
 	horizontal-align: center;
 	flow-children: right;
-	margin-top: -20px;
+	margin-top: -14px;
 }
 
 .LevelPanel
@@ -208,22 +211,26 @@ height: 96px;
 
 #teleport
 {
-	width: 26px;
-	height: 26px;
+	width: 64px;
+	height: 64px;
 	
 	horizontal-align: center;
 	vertical-align: bottom;
-	margin-bottom: 20px;
+	margin-bottom: 12px;
+	border-radius: 50%;
+	border: 1px solid white;
 }
 
 #mount
 {
-	width: 26px;
-	height: 26px;
+	width: 64px;
+	height: 64px;
 	
 	horizontal-align: center;
 	vertical-align: bottom;
-	margin-bottom: 20px;
+	border-radius: 50%;
+	margin-bottom: 12px;
+	border: 1px solid white;
 }
 
 #TeleportHotkey
@@ -240,6 +247,7 @@ height: 96px;
 	border: 1px solid #ffffff05;
 	box-shadow: fill black 1px 1px 2px 2px;
 	z-index: 10;
+	border-radius: 50%;
 }
 
 #TeleportHotkeyText
@@ -248,10 +256,9 @@ height: 96px;
  	text-shadow: 1px 1px 2px 2 #000000;
     font-size: 14px;
     font-weight: bold;
-	vertical-align: center;
+
 	text-align: center;
 	width: 100%;
-	margin: -2px;
 }
 
 #MountHotkey
@@ -263,11 +270,11 @@ height: 96px;
 	horizontal-align: left;
 	min-width: 18px;
 	min-height: 18px;
-
 	background-color: gradient( linear, 0% 0%, 0% 100%, from( #393939 ), to( #414849 ) );
 	border: 1px solid #ffffff05;
 	box-shadow: fill black 1px 1px 2px 2px;
 	z-index: 10;
+	border-radius: 50%;
 }
 
 #MountHotkeyText
@@ -279,5 +286,4 @@ height: 96px;
 	vertical-align: center;
 	text-align: center;
 	width: 100%;
-	margin: -2px;
 }

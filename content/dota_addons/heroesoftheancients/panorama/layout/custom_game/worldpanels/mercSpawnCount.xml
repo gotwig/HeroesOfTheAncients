@@ -7,7 +7,7 @@
     <include src="file://{resources}/scripts/worldpanels/mercSpawnCount.js" /> 
   </scripts>
   <Panel hittest="false" class="ArrowPanel">
-    <Label class="textthing" id="respawnText" text="Camp is fighting"> </Label>
+    <Label class="textthing" id="respawnText" text="Squad is Fighting"> </Label>
     <Label class="textthing" text="" id="countTime"> </Label>
   </Panel>
 </root>

@@ -21,7 +21,7 @@
 		
 		</Panel>
 		
-		<Panel id="ability_list" />
+		<Panel id="ability_list" hittest="false" />
 					
 					
 		<Panel hittest="false" id="teleportBase"  class="abilityRightWing abilityWing">

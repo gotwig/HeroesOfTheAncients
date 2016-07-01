@@ -45,7 +45,7 @@ width: 100%;
 height: 400px;
 
 horizontal-align: center;
-margin-top: 78%;
+margin-top: 66%;
 }
 
 #mapEventInfo{
@@ -54,8 +54,8 @@ margin-top: 78%;
 	
 	horizontal-align: right;
 	vertical-align: bottom;
-	margin-right: 12px;
-	margin-left: 15px;
+	margin-left: 300px;
+	margin-bottom: 25px;
 	//background-image: url("file://{images}/custom_game/maps/hauntedmines/eventMap.png");
 	visibility: collapse;
 }
@@ -146,9 +146,9 @@ margin-top: 78%;
 .heroTeamDeath{
 	width: 70px;
     height: 62px;
-    overflow:clip;
-
-	opacity-mask: url( "file://{images}/custom_game/hud/masks/herocam.png" );
+	border: 2px solid black;
+	border-radius: 50%;
+	//opacity-mask: url( "file://{images}/custom_game/hud/masks/herocam.png" );
 }
 
 #topInfo{
@@ -157,20 +157,19 @@ margin-top: 78%;
 
 #teamLevels{
 	width: 180px;
-	padding-top: 15px;
 	horizontal-align: center;
-
-
 }
 
 #teamLevel2{
-	font-size: 46px;
+	font-size: 36px;
 	horizontal-align: left;
+	text-align: center;
 }
 
 #teamLevel3{
-	font-size: 46px;
+	font-size: 36px;
 	horizontal-align: right;
+	text-align: center;
 }
 
 #timeGame{
@@ -196,7 +195,7 @@ margin-top: 78%;
 	background-repeat: no-repeat;
     flow-children: right-wrap;
     transition: transform 1.0s linear 0.0ms;
-	margin-top: -120px;
+
 
 }
 
@@ -236,7 +235,7 @@ margin-top: 78%;
 
 #TimersPanel
 {
-	margin-top: 50px;
+
 	margin-left: 300px;
     width: 30%;
     height: 80px;
@@ -260,7 +259,7 @@ margin-top: 78%;
 	width: 220px;
 	height: 60px;
 	vertical-align:center;
-	margin-top: 26px;
+	margin-top: 27px;
 }
 
 #healthbar{
@@ -317,13 +316,13 @@ margin-top: 78%;
 
 #xpbars{
 margin-left:-2px;
-width: 450px;
+width: 505px;
 }
 
 .xpbar{
-	height: 18px;
-	margin-top: 26%;
-	width: 106px;
+	height: 20px;
+	margin-top: 25%;
+	width: 135px;
  
 
 }
@@ -331,7 +330,6 @@ width: 450px;
 #xpbar1{
   horizontal-align: left;
   opacity-mask: url( "file://{images}/custom_game/hud/masks/xpbar1.png" );
-
 }
 
 #xpbar2{
@@ -450,21 +448,6 @@ width: 450px;
 	margin-top: 55px;
 }
 
-#heroLockActivator{
-	background-color: black;
-	width: 200px;
-	height: 50px;
-	border: 3px solid white;
-	border-radius: 10px;
-	margin-bottom: 10px;
-}
-
-#herocamLockText{
-	horizontal-align: center;
-	vertical-align: middle;
-}
-
-
 .TimerDescription
 {
     font-family: Goudy Trajan Medium, FZKai-Z03, TH Sarabun New;
@@ -521,11 +504,11 @@ width: 450px;
 }
 
 #cursorImage{
-	width: 64px;
-	height: 64px;
-	background-image: url("file://{images}/custom_game/hud/cursors/cursor.png");
+	width: 32px;
+	height: 32px;
+	background-image: url("file://{images}/custom_game/hud/cursors/upgrade.png");
+	background-size: 100%;
 	z-index: 100;
-    visibility: collapse;
 }
 
 .AnimationHeroHudHidden

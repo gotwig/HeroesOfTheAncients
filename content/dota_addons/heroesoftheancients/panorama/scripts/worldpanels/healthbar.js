@@ -2,8 +2,6 @@ $.Msg("healthbar");
 
 var teamColors = GameUI.CustomUIConfig().team_colors;
 
-var atCharSelect = false;
-
 if (!teamColors) {
   GameUI.CustomUIConfig().team_colors = {}
   GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_GOODGUYS] = "#3dd296;";
@@ -27,15 +25,21 @@ function HealthCheck()
 {
   var wp = $.GetContextPanel().WorldPanel
   var offScreen = $.GetContextPanel().OffScreen;
-  if (!offScreen && wp){
+ //   if (!offScreen && wp){
+  if (wp){
     var ent = wp.entity;
+	
     if (ent){
-      if (!Entities.IsAlive(ent) || atCharSelect ){
+      if (!Entities.IsAlive(ent) ){
         $.GetContextPanel().style.opacity = "0";
 		
         $.Schedule(1/30, HealthCheck);
         return;
       }
+	  
+	  else {
+		$.GetContextPanel().style.opacity = "1";
+	  }
 
       //var pTeam = Players.GetTeam(Game.GetLocalPlayerID());
       var team = Entities.GetTeamNumber(ent);
@@ -46,10 +50,6 @@ function HealthCheck()
       else
         $.GetContextPanel().SetHasClass("Friendly", false);*/
 
-	  if (!atCharSelect){
-		$.GetContextPanel().style.opacity = "1";
-	  }
-
 	   var mp = Entities.GetMana(ent);
        var mpMax = Entities.GetMaxMana(ent);
        var mpPer = (mp * 100 / mpMax).toFixed(0);
@@ -59,10 +59,14 @@ function HealthCheck()
 			  if( Players.IsValidPlayerID( i ) ){
 				if (Players.GetPlayerHeroEntityIndex( i ) == ent ){
 					$("#playerHeroName").text = Players.GetPlayerName( i );
-
 				}
 			  }
 		  }
+		
+		if (wp.name){
+			$.Msg("hey there guys")
+			$("#playerHeroName").text = Players.GetPlayerName( wp.name - 1);
+		}
 		
         var pan = $("#hp");
 
@@ -94,18 +98,7 @@ function HealthCheck()
   $.Schedule(1/30, HealthCheck);
 }
 
-
-function GameStateChanged(data){
-
-    if (data.state == 2){
-		atCharSelect = true;
-    } else {
-		atCharSelect = false;
-    }
-}
-
 (function()
 { 
   HealthCheck();
-  SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
 })();

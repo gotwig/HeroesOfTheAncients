@@ -33,23 +33,74 @@
 .SeqImg
 {
   background-repeat: no-repeat;
-  background-position: 50% 50%;
+  background-position: 0% 0%;
   background-size: 100% 100%;
 }
 
 #CustomBg
 {
-	width: 60%;
-	height: 60%;
+	width: 100%;
+	height: 100%;
 	vertical-align: middle;
 }
 
-#gamemode
-{
-
-
-  
+#underline{
+    width: 34%;
+	height: 0.4%;
+	margin-top: 160px;
+    horizontal-align: left;
+	background-color: blue;
+	margin-left: 2.6%;
+	
+	blur: gaussian( 10, 10, 10 );
+    animation-name: shineAnim;
+    animation-duration: 10s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
+
+@define animStart: #5c41aa;
+@define animStop: #e99bff;
+
+@keyframes 'shineAnim'
+{
+    0%
+    {
+        opacity: 1;
+        background-color: gradient(linear, 0% 100%, 100% 0%, from(animStart), color-stop(-0.1, animStop), color-stop(0.0, animStop), to(animStart));
+    }
+
+    20%
+    {
+        opacity: 1;
+        background-color: gradient(linear, 0% 100%, 100% 0%, from(animStart), color-stop(-0.1, animStop), color-stop(0.0, animStop), to(animStart));
+    }
+
+    50%
+    {
+        background-color: gradient(linear, 0% 100%, 100% 0%, from(animStart), color-stop(0.45, animStop), color-stop(0.55, animStop), to(animStart));
+    }
+
+    80%
+    {
+        opacity: 1;
+        background-color: gradient(linear, 0% 100%, 100% 0%, from(animStart), color-stop(1, animStop), color-stop(1.1, animStop), to(animStart));
+    }
+
+	90%
+    {
+        opacity: 0.6;
+        background-color: gradient(linear, 0% 100%, 100% 0%, from(animStart), color-stop(1, animStop), color-stop(1.15, animStop), to(animStart));
+    }
+	
+    100%
+    {
+        opacity: 0.3;
+        background-color: gradient(linear, 0% 100%, 100% 0%, from(animStart), color-stop(1, animStop), color-stop(1.2, animStop), to(animStart));
+    }
+}
+
+
 
 @keyframes 'gamemode_anim'
 {

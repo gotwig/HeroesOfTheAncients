@@ -55,7 +55,7 @@ function PreloadHeroPreviews(heroes) {
 
         preview.style.visibility = "collapse";
         preview.SetHasClass("NotAvailableHero", allHeroes[hero].disabled);
-        preview.LoadLayoutFromStringAsync("<root><Panel><DOTAScenePanel style='" + previewStyle + "' unit='" + hero + "'/></Panel></root>", false, false);
+        preview.LoadLayoutFromStringAsync("<root><Panel><DOTAScenePanel acceptsinput='true' style='" + previewStyle + "' unit='" + hero + "'/></Panel></root>", false, false);
 
         heroPreviews[hero] = preview;
     }
@@ -71,7 +71,7 @@ function LoadHeroPreview(heroname) {
 
 			preview.style.visibility = "collapse";
 			preview.SetHasClass("NotAvailableHero", allHeroes[hero].disabled);
-			preview.LoadLayoutFromStringAsync("<root><Panel><DOTAScenePanel style='" + previewStyle + "' unit='" + hero + "'/></Panel></root>", false, false);
+			preview.LoadLayoutFromStringAsync("<root><Panel hittest='false' ><DOTAScenePanel allowrotation='true' antialias='true' style='" + previewStyle + "' unit='" + hero + "'/></Panel></root>", false, false);
 
 			heroPreviews[hero] = preview;
 		}
@@ -91,9 +91,6 @@ function SetAbilityButtonTooltipEvents(button, name) {
 function ShowHeroAbilities(heroName) {
     var hero = allHeroes[heroName];
 	
-	$.Msg(abilitiesToShow);
-    // {"1":"dragon_knight_breathe_fire","2":"dragon_knight_dragon_tail","3":"dragon_knight_dragon_blood","4":"dragon_knight_elder_dragon_form"}	
-
 		$("#HeroAbilities").RemoveAndDeleteChildren();
 		
 		for (var i = 1; i <= Object.keys(abilitiesToShow).length; i++) {
@@ -175,7 +172,7 @@ function confirmSelection(){
 	GameEvents.SendCustomGameEventToServer("selection_hero_confirm", {});
 	charLocked = true;
 	$("#ConfirmText").text = "LOCKED | Game starts Soon...";
-	$("#ConfirmSelection").RemoveClass("ConfirmSelectionButton");
+	$("#ConfirmSelection").RemoveClass("ConfirmSelectionButton");	
 } 
  
 
@@ -194,7 +191,6 @@ function AddButtonEvents(button, name) {
 
         if (!heroSelected) {
             Game.EmitSound("UI.SelectHeroLocal");
-			$.Msg(mySelectedHero)
 			//HideHeroDetails(mySelectedHero);
 			
 			abilitiesToShow =  CustomNetTables.GetTableValue( "hero_Abilities", name );
@@ -248,7 +244,7 @@ function CreateHeroList(heroList, heroes, rows, randomButtonRow, position){
 			container.AddClass("HeroButtonContainerChar");
 			var button = $.CreatePanel("Label", container, "");
 			button.AddClass("OrderChar")
-			button.text = heroes[i].charAt(14).toUpperCase();
+			button.text = $.Localize(heroes[i]).charAt(0).toUpperCase();
 		}
 		
 		if (position == "right"){
@@ -294,7 +290,7 @@ function CreateHeroList(heroList, heroes, rows, randomButtonRow, position){
 			container.AddClass("HeroButtonContainerChar");
 			var button = $.CreatePanel("Label", container, "");
 			button.AddClass("OrderChar")
-			button.text = heroes[i].charAt(14).toUpperCase();
+			button.text = $.Localize(heroes[i]).charAt(0).toUpperCase();
 			
 		}
 		
@@ -372,8 +368,8 @@ function HeroesUpdated(data){
     var heroes = Object.keys(data);
 	
 	heroes = heroes.sort(function(a, b){
-		if(a < b) return -1;
-		if(a > b) return 1;
+		if($.Localize(a) < $.Localize(b)) return -1;
+		if($.Localize(a) > $.Localize(b)) return 1;
 		return 0;
 	})
 	
@@ -418,6 +414,8 @@ function PlayersUpdated(data){
 				scorePanel.text = "RED";
 			}
 			
+			scorePanel.AddClass("TeamPlayerTeam");
+			
 				if (Players.GetTeam(Players.GetLocalPlayer()) == Players.GetTeam( player.id )  ){
 					var playerHero = $.CreatePanel("DOTAHeroMovie", playerPanel, "SelectionImage" + player.id);
 					playerHero.AddClass("SelectionImage");
@@ -449,6 +447,7 @@ function PlayersUpdated(data){
 
             var playerName = $.CreatePanel("Label", playerPanel, "");
             playerName.text = player.name;
+			playerName.AddClass("TeamPlayerName");
 
             var connectionStatePanel = $.CreatePanel("Panel", playerName, "");
             connectionStatePanel.AddClass("ConnectionStatePanel");
@@ -462,8 +461,6 @@ function PlayersUpdated(data){
 
 function HeroSelectionUpdated(data){
     selectedHeroes = data || {};
-
-	$.Msg("hey there")
 	
     for (var key in data){
         var hero = data[key];
@@ -503,6 +500,22 @@ function CheckConnectionState() {
     }
 }
 
+function CheckReconnect(){
+		$.Schedule(1, function () {
+		var playersTable = CustomNetTables.GetTableValue( "main", "players" )
+			for (var i = 0; i < Object.keys(playersTable).length; i++) {
+				if (playersTable[i+1].id == Players.GetLocalPlayer()){
+					if (playersTable[i+1].selectionLocked == 1){
+						charLocked = true;
+						$("#ConfirmText").text = "LOCKED | Game starts Soon...";
+						$("#ConfirmSelection").RemoveClass("ConfirmSelectionButton");
+						ShowHeroDetails(playersTable[i+1].hero);
+					}
+				}
+			}
+		});
+}
+
 (function () {
     GameEvents.Subscribe("timer_tick", OnTimerTick);
 
@@ -516,5 +529,8 @@ function CheckConnectionState() {
 
     CheckConnectionState();
     CheckPause();
+	
+	CheckReconnect();
+	
 	
 })();

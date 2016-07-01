@@ -79,6 +79,8 @@ function HeroSelection:OnConfirm(args)
     if player.selectionLocked then
         return
     end
+
+	--EmitAnnouncerSound("announcer_announcer_choose_hero")
 	
 end
 
@@ -176,7 +178,7 @@ function HeroSelection:Start()
 
     self:UpdateSelectedHeroes()
 
-    --EmitAnnouncerSound("announcer_announcer_choose_hero")
+    EmitAnnouncerSound("announcer_announcer_choose_hero")
 
 	self.ConfirmListener = CustomGameEventManager:RegisterListener("selection_hero_confirm", function(id, ...) Dynamic_Wrap(self, "OnConfirm")(self, ...) end)
     self.ClickListener = CustomGameEventManager:RegisterListener("selection_hero_click", function(id, ...) Dynamic_Wrap(self, "OnClick")(self, ...) end)
@@ -194,7 +196,6 @@ function HeroSelection:Update()
     if self.SelectionTimer == -1 then
         if self.PreGameTimer == self.PreGameTimerTime then
             --EmitAnnouncerSound("announcer_announcer_battle_prepare_01")
-            --EmitAnnouncerSound("announcer_ann_custom_round_begin_01")
         end
 
         self.PreGameTimer = self.PreGameTimer - 1

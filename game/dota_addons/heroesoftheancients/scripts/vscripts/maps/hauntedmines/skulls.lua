@@ -15,10 +15,10 @@ GameRules.siegeBot = {}
 
 require ('libraries/notifications')
 
-golemssummontexts = {'Break free and destroy your enemies!','Let my golems rise again!','Now is the hour of my golems return.','Rise again, my golems, and unleash your boundless anger!','Rise golems! Rise and let loose your wrath!'}
-golemsdefeatedtexts = {'And so, the bone golems fall. Dust to dust, as they say.','It seems my golems return to the earth. For now.','My golems have fallen. No matter, there are always more skulls to be had.','The golems have been defeated.','The golems will return, heroes.'}
+golemssummontexts = {'Break free and crush your enemies!'}
+golemsdefeatedtexts = {'And so the bones fall...'}
 
-minesopenwarningtexts = {'Are you prepared to fight the undead? The mines shall open shortly.','Death stirs within the mines... Shall you brave the darkness?','Listen, heroes... The undead shall rise within the mines shortly.','The damned shall soon return. Prepare yourselves, heroes.','The dead rise again, heroes. Dare you enter the mines?','The mines will open shortly, heroes... soon the undead will awaken.'}
+minesopenwarningtexts = {'Are you prepared to fight the undead? The mines open shortly.'}
 
 function deadTrigger (unit)
 
@@ -111,8 +111,8 @@ EmitAnnouncerSound("announcer_ann_custom_generic_alert_16")
 				useGameTime = false,
 				endTime = 5, -- when this timer should first execute, you can omit this if you want it to run first on the next frame
 				callback = function()
-					EmitAnnouncerSoundForTeam("announcer_ann_custom_generic_alert_47", 2)
-					EmitAnnouncerSoundForTeam("announcer_ann_custom_generic_alert_47", 3)
+					EmitAnnouncerSoundForTeam("announcer_ann_custom_generic_alert_48", 2)
+					EmitAnnouncerSoundForTeam("announcer_ann_custom_generic_alert_44", 3)
 				end
 	})
 
@@ -135,17 +135,13 @@ end
 	
 	skullunit_good:SetMaxHealth((skullunit_good:GetMaxHealth() / 100 * 20) + (skullunit_good:GetMaxHealth() / 100 * teamSkullPoints[1]))
 	
-	for i = 1,4 do
-		ExecuteOrderFromTable({ UnitIndex = skullunit_good:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_bot_pathcorner_goodguys_" .. i ):GetAbsOrigin(), Queue = true})
-	end
+	ExecuteOrderFromTable({ UnitIndex = skullunit_good:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_bot_pathcorner_goodguys_" .. 4 ):GetAbsOrigin(), Queue = true})
 
 	skullunit_bad = CreateUnitByName("npc_dota_neutral_skull_golem_summoned", GameRules.point1_bad, true, nil, nil, DOTA_TEAM_BADGUYS)
 	
 	skullunit_bad:SetMaxHealth((skullunit_bad:GetMaxHealth() / 100 * 20) + (skullunit_bad:GetMaxHealth() / 100 * teamSkullPoints[2]))
 	
-	for i = 1,6 do
-		ExecuteOrderFromTable({ UnitIndex = skullunit_bad:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_top_pathcorner_badguys_" .. i ):GetAbsOrigin(), Queue = true})
-	end
+	ExecuteOrderFromTable({ UnitIndex = skullunit_bad:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_top_pathcorner_badguys_" .. 6 ):GetAbsOrigin(), Queue = true})
 
 teamSkullPoints[1] = 0
 teamSkullPoints[2] = 0

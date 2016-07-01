@@ -15,7 +15,7 @@ require("libraries/worldpanels")
 require('chat')
 
 
-matchstarttexts = {'Fight, kill!','Let the battle begin!','Now go, and summon my golems!'}
+matchstarttexts = {'Fight, destroy!','Let the battle begin!','Hurry, and summon my golems!'}
 
 startCharSelect = true
 
@@ -138,6 +138,7 @@ function GameMode:PostLoadPrecache()
 	LinkLuaModifier("modifier_behindGate", "modifiers/modifier_behindGate", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_lowAttackPrio", "modifiers/modifier_lowAttackPrio", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_breaker_stun", "modifiers/modifier_breaker_stun", LUA_MODIFIER_MOTION_NONE)
+	LinkLuaModifier("modifier_rootedPreGame", "modifiers/modifier_rootedPreGame", LUA_MODIFIER_MOTION_NONE)
 
 end
 
@@ -172,12 +173,17 @@ end
 
 function GameMode:CreateHeroesAfterSelection()
     for i, player in pairs(self.Players) do
-        if (player:IsConnected() and player.selectionLocked and player.selectedHero ~= nil and player.selectedHero ~= "npc_dota_hero_wisp") then
-				PlayerResource:ReplaceHeroWith(player.id, player.selectedHero, 0, 0)
-			end
-
-		
-		
+        if (player:IsConnected() and player.selectionLocked and player.selectedHero ~= nil) then
+				
+				PlayerResource:SetCameraTarget(player.id, nil)
+				
+				PrecacheUnitByNameAsync(player.selectedHero, function()
+				
+					local newHero = PlayerResource:ReplaceHeroWith(player.id, player.selectedHero, 0, 0)
+					newHero:RespawnUnit();
+				
+				end, player.id)
+			end		
     end
 end
 
@@ -373,9 +379,6 @@ function GameMode:OnHeroInGame(hero)
   
 		self.heroSelection = HeroSelection(self.Players, self.AvailableHeroes, self.TeamColors, self.chat)
 		
-		
-		
-		
 		Timers:CreateTimer(function()
 		  if self.State == 2  then
 				self.heroSelection:Update()
@@ -385,14 +388,14 @@ function GameMode:OnHeroInGame(hero)
 			end
 		)
 
-	  self:UpdateAvailableHeroesTable()
-	  self:UpdateGameInfo()
+		self:UpdateAvailableHeroesTable()
+		self:UpdateGameInfo()
 
-	  
-	  self:SetState(2)
-	  self.heroSelection:Start()
-	  
-	  startCharSelect = false
+		  
+		self:SetState(2)
+		self.heroSelection:Start()
+		  
+		startCharSelect = false
 	  
   end
   --Convars:SetBool("dota_hide_cursor", true)
@@ -416,27 +419,6 @@ function GameMode:OnHeroInGame(hero)
 
   -- This line for example will set the starting gold of every hero to 0 unreliable gold
   hero:SetGold(0, false)
-
-  	for playerID = 0, DOTA_MAX_TEAM_PLAYERS do 
-
-	local player = PlayerResource:GetPlayer(playerID)
-
-		if (PlayerResource:IsValidPlayerID(playerID) and player:GetTeamNumber() == hero:GetTeamNumber()) then  
-
-			if (hero:GetPlayerID() ~= playerID)
-			then
-				for i = 1,PlayerResource:GetLevel(playerID)-1 do
-					hero:HeroLevelUp(false)
-				end
-				hero:AddExperience(PlayerResource:GetSelectedHeroEntity(playerID):GetCurrentXP(), 0, false, false)
-				print(hero:GetCurrentXP())
-				
-				return false
-			end
-
-		end 
-
-	end  
   
   -- These lines will create an item and add it to the player, effectively ensuring they start with the item
   --local item = CreateItem("item_example_item", hero, hero)
@@ -546,7 +528,90 @@ function GameMode:OnGameInProgress()
 	end)
 	
 
+	--SCAN for TOWER in radius
 	
+	Timers:CreateTimer(function()
+	
+		local allCreeps = Entities:FindAllByClassname('npc_dota_creep_lane')
+		for _,creep in pairs(allCreeps) do
+		
+			local scannedUnits = FindUnitsInRadius(creep:GetTeam(),
+												creep:GetAbsOrigin(),
+												nil,
+												460,
+												DOTA_UNIT_TARGET_TEAM_ENEMY,
+												DOTA_UNIT_TARGET_ALL,
+												DOTA_UNIT_TARGET_FLAG_NONE,
+												FIND_FARTHEST,
+												true)
+						local scannedUnitsGate = FindUnitsInRadius(creep:GetTeam(),
+												creep:GetAbsOrigin(),
+												nil,
+												100,
+												DOTA_UNIT_TARGET_TEAM_ENEMY,
+												DOTA_UNIT_TARGET_ALL,
+												DOTA_UNIT_TARGET_FLAG_NONE,
+												FIND_FARTHEST,
+												true)					  
+								  
+								  
+			for k, v in pairs(scannedUnits) do
+				if (v:HasAbility("towerAbility"))
+				then
+					local order = 
+					{
+						UnitIndex = creep:entindex(),
+						OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+						TargetIndex = v:entindex()
+					}
+				
+					ExecuteOrderFromTable(order)
+					
+				else 
+					if (v:HasAbility("ability_gate"))
+					then
+						local order = 
+						{
+							UnitIndex = creep:entindex(),
+							OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+							TargetIndex = v:entindex()
+						}
+					
+						ExecuteOrderFromTable(order)
+					end
+				
+				end
+				
+				
+			end
+			
+				for k, v in pairs(scannedUnitsGate) do
+				if (not v:HasAbility("towerAbility"))
+				then
+					if (v:HasAbility("ability_gate"))
+					then
+						local order = 
+						{
+							UnitIndex = creep:entindex(),
+							OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+							TargetIndex = v:entindex()
+						}
+					
+						ExecuteOrderFromTable(order)
+					end
+				
+				end
+				
+				
+			end
+			
+			
+		
+		
+		end
+
+		return 1.4
+	end)
 
 	
 end
@@ -562,7 +627,7 @@ function SpawnTop( teamselection , teamnumber, position)
 		
 		
 		
-			local meleeCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_melee", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
+			local meleeCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_melee_custom", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
 			
 				for i = 1,6 do
 				
@@ -571,7 +636,7 @@ function SpawnTop( teamselection , teamnumber, position)
 				end
 		
 			for ix = 5,6 do
-				local meleeCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_melee", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
+				local meleeCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_melee_custom", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
 			
 				for i = 1,6 do
 				
@@ -599,7 +664,7 @@ function SpawnTop( teamselection , teamnumber, position)
 			end
 			
 			
-			local rangedMageCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_ranged", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
+			local rangedMageCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_ranged_custom", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_top_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
 			for i = 1,6 do
 				ExecuteOrderFromTable({ UnitIndex = rangedMageCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE, Position = gridPositions[i][7]  , Queue = true})
 			end
@@ -618,7 +683,7 @@ function SpawnBot( teamselection , teamnumber, position )
 		
 		
 		
-			local meleeCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_melee", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_bot_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
+			local meleeCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_melee_custom", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_bot_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
 			
 				for i = 1,4 do
 				
@@ -627,7 +692,7 @@ function SpawnBot( teamselection , teamnumber, position )
 				end
 		
 			for ix = 5,6 do
-				local meleeCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_melee", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_bot_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
+				local meleeCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_melee_custom", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_bot_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
 			
 				for i = 1,4 do
 				
@@ -656,7 +721,7 @@ function SpawnBot( teamselection , teamnumber, position )
 			end
 			
 			
-			local rangedMageCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_ranged", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_bot_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
+			local rangedMageCreep = CreateUnitByName("npc_dota_creep_".. teamselection .. "guys_ranged_custom", Entities:FindByName( nil, "npc_dota_spawner_".. teamselection .. "_bot_".. position .. ""):GetAbsOrigin(), true, nil, nil, teamnumber)
 			for i = 1,4 do
 				ExecuteOrderFromTable({ UnitIndex = rangedMageCreep:entindex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE, Position = gridPositions[i][7]  , Queue = true})
 			end
@@ -876,6 +941,7 @@ function GameMode:InitGameMode()
   
   
   GameMode.customHeroesAbilities = LoadKeyValues("scripts/npc/npc_heroes.txt")
+  GameMode.customHeroesAbilities2 = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
 
 	
   self.Players = {}
@@ -912,6 +978,30 @@ function GameMode:InitGameMode()
 			end
 		end
 	end
+	
+	for customName, data in pairs(GameMode.customHeroesAbilities2) do
+        if true then
+            local abilities = CustomNetTables:GetTableValue("hero_Abilities", customName)
+            for i = 0, 10 do
+                local abilityName = data["Ability"..tostring(i)]
+                if abilityName and #abilityName ~= 0 then
+					
+					-- make index to string first
+					local abilityIndex = "" .. i 
+					
+					abilities[abilityIndex] = nil;
+                    abilities[abilityIndex] = abilityName;
+                end
+				for k, v in pairs(abilities) do print(k, type(k)) end 
+				
+            end
+			
+			if (customName ~= "npc_dota_hero_base") then 
+				CustomNetTables:SetTableValue("hero_Abilities", customName, abilities)
+			end
+		end
+	end
+	
   
   DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
 end

@@ -72,22 +72,51 @@ function GameMode:OnNPCSpawned(keys)
 
   local npc = EntIndexToHScript(keys.entindex)
   
+  
+  if (npc:IsIllusion()) then
+	if (npc:GetOwnerEntity()) then
+		npc:AddNewModifier(npc, nil, "modifier_no_health", {})
+		
+		print(npc:GetPlayerOwnerID())
+		
+		npc.worldPanel = WorldPanels:CreateWorldPanelForAll(
+		  {layout = "file://{resources}/layout/custom_game/worldpanels/healthbar.xml",
+			entity = npc:GetEntityIndex(),
+			entityHeight = 260,
+			name =  npc:GetPlayerOwnerID() + 1
+		  })
+
+	end
+  
+  end
+  
+  
   if ( npc:IsRealHero() ) then   
   
-  	if ( not npc:HasItemInInventory("item_mountHorse") )
-		then
-			npc:AddItemByName("item_mountHorse")
-	end
+	if (GameMode.State == 2) then
+		PlayerResource:SetCameraTarget(npc:GetPlayerOwnerID(), npc)
+		npc:AddNewModifier(npc, nil, "modifier_rootedPreGame", {}) 
+		npc:AddEffects( EF_NODRAW )
   
-  	if ( not npc:HasItemInInventory("item_teleportBase") )
-		then
-			npc:AddItemByName("item_teleportBase")
-	end
+	else
+		npc:AddNewModifier(npc, nil, "modifier_no_health", {})
 	
-	if ( not npc:HasItemInInventory("item_boots_of_riding") )
-		then
-			npc:AddItemByName("item_boots_of_riding")
+		if ( not npc:HasItemInInventory("item_mountHorse") )
+			then
+				npc:AddItemByName("item_mountHorse")
+		end
+	  
+		if ( not npc:HasItemInInventory("item_teleportBase") )
+			then
+				npc:AddItemByName("item_teleportBase")
+		end
+		
+		if ( not npc:HasItemInInventory("item_boots_of_riding") )
+			then
+				npc:AddItemByName("item_boots_of_riding")
+		end
 	end
+
 	
   end
   

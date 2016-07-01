@@ -9,6 +9,7 @@
   <Panel class="AddonLoadingRoot">
     <Panel id="CustomBg" >
       <Image id="gamemode" class="SeqImg" src="file://{images}/custom_game/loading_screen/hotaLogo.png" />
+	  <Panel id="underline" />
     </Panel>
   </Panel>
 </root>

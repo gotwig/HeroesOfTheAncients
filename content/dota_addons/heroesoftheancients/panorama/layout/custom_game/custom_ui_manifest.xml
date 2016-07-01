@@ -52,13 +52,14 @@
 
   <Panel>
     <!-- CustomUIElements go here.-->
+	
+    <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_worldpanels.xml" />
 
 	<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/action_bar.xml" />
 	<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/buff_list.xml" />
 	
 	<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/scripts.xml" />
 	
-    <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_worldpanels.xml" />
 	<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/hero_selection.xml" />
 
 	
@@ -66,6 +67,7 @@
     <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_attachments.xml" /> 
     <!--<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/containers/container_base.xml" /-->
     <!--<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_progress.xml" /> -->
+	
 
   </Panel>
 </root>

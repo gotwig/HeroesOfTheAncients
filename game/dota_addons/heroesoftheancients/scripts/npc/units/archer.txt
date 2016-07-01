@@ -89,4 +89,8 @@
 		//----------------------------------------------------------------
 		"VisionDaytimeRange"		"850"		// Range of vision during day light.
 		"VisionNighttimeRange"		"800"		// Range of vision at night time.
+		
+		"DisableClumpingBehavior"	"1"
+
+		
 	}

@@ -6,6 +6,8 @@ function ammoCheck()
 {
   var wp = $.GetContextPanel().WorldPanel
   var offScreen = $.GetContextPanel().OffScreen;
+  var onEdge = $.GetContextPanel().OnEdge;
+
   if (!offScreen && wp){
     ent = wp.entity;
     if (ent){
@@ -22,6 +24,12 @@ function ammoCheck()
 	teamNumber = Entities.GetTeamNumber( ent );
 	  
     }
+
+	$.GetContextPanel().style.opacity = "1";
+  }
+  
+  if (offScreen){
+	$.GetContextPanel().style.opacity = "0";
   }
 
   $.Schedule(1/30, ammoCheck);

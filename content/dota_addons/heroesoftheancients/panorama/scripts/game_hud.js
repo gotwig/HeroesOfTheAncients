@@ -1,19 +1,6 @@
 "use strict";
 
-function flipMinimap(){
-	$.Msg( "Flipping Minimap" );
-	var iPlayerid = Players.GetLocalPlayer();
-	GameEvents.SendCustomGameEventToServer( "flipMinimap", { pID: iPlayerid })
-}
 
-function heroCamLock(){
-	$.Msg( "Switching hero cam lock ON/OFF" );
-
-	
-	var iPlayerid = Players.GetLocalPlayer();
-	var entityID = Players.GetLocalPlayerPortraitUnit();
-	GameEvents.SendCustomGameEventToServer( "lockCameraToHero", { pID: iPlayerid, entID: entityID })
-}
 
 var tbClass = "TimeBlue";
 var tbName = "";
@@ -29,6 +16,32 @@ var seconds = "";
 var deathMaxTime = 0;
 var showDeathTimebar = false;
 var initShowDeath = false;
+
+var clickedHeroSwitch = true;
+
+
+function flipMinimap(){
+	$.Msg( "Flipping Minimap" );
+	var iPlayerid = Players.GetLocalPlayer();
+	GameEvents.SendCustomGameEventToServer( "flipMinimap", { pID: iPlayerid })
+}
+
+function helpText(button, newText){
+	$.DispatchEvent("DOTAShowTextTooltip", button, newText);
+}
+
+function helpHide(){
+	$.DispatchEvent("DOTAHideTextTooltip");
+}
+
+function heroCamLock(){
+	$.Msg( "Switching hero cam lock ON/OFF" );
+	
+	var iPlayerid = Players.GetLocalPlayer();
+	var entityID = Players.GetLocalPlayerPortraitUnit();
+	GameEvents.SendCustomGameEventToServer( "lockCameraToHero", { pID: iPlayerid, entID: entityID })
+}
+
 
 function TimeBar()
 {
@@ -358,23 +371,23 @@ function teamLevel3(){
 }
 
 function showCustomCursor(){
-	$("#cursorImage").style["position"] = GameUI.GetCursorPosition()[0] + "px " + GameUI.GetCursorPosition()[1] + "px 0px;" 
-		
-		
-	if (GameUI.FindScreenEntities( GameUI.GetCursorPosition() )[0]){
-		if ( Entities.GetTeamNumber(GameUI.FindScreenEntities( GameUI.GetCursorPosition() )[0].entityIndex) == yourTeam ){
-			$("#cursorImage").style["background-image"] = 'url("file://{images}/custom_game/hud/cursors/cursor_ally.png");';
-		}
-		
-		if ( Entities.GetTeamNumber(GameUI.FindScreenEntities( GameUI.GetCursorPosition() )[0].entityIndex) == enemyTeam){
-			$("#cursorImage").style["background-image"] = 'url("file://{images}/custom_game/hud/cursors/cursor_enemy.png");';
-		}
+	
+	if (Game.IsInAbilityLearnMode()){
+		$("#cursorImage").visible = true;
 	}
 	
 	else {
-		$("#cursorImage").style["background-image"] = 'url("file://{images}/custom_game/hud/cursors/cursor.png");'; 
+		$("#cursorImage").visible = false;
 	}
 	
+	var xCor = GameUI.GetCursorPosition()[0];
+	xCor += 25;
+	
+	var yCor = GameUI.GetCursorPosition()[1];
+	yCor -= 5;
+	
+	$("#cursorImage").style["position"] = xCor + "px " + yCor + "px 0px;" 
+			
 	$.Schedule(1/1000, showCustomCursor);
 }
 
@@ -382,7 +395,6 @@ function checkFlipped(){
 
 	if (Game.IsHUDFlipped()){
 		$("#heroPanel").style["horizontal-align"] = "left;";
-		$("#TimersPanel").style["horizontal-align"] = "right;";
 		$("#MiniMapBorders").style["horizontal-align"] = "right;";
 		$("#mapEventInfo").style["horizontal-align"] = "right;";
 
@@ -390,7 +402,6 @@ function checkFlipped(){
 	}
 	else {		
 		$("#heroPanel").style["horizontal-align"] = "right;";
-		$("#TimersPanel").style["horizontal-align"] = "left;";
 		$("#MiniMapBorders").style["horizontal-align"] = "left;";
 		$("#mapEventInfo").style["horizontal-align"] = "left;";
 
@@ -416,6 +427,9 @@ function leveluptextteam3(){
 }
 
 function OnPlayerLevelUp( data ) {	
+
+	$.Msg(data);
+
 	if (Game.GetPlayerIDsOnTeam(2).length > 0){
 
 		if (Players.GetTeam( data.playerID -1 ) == 2){
@@ -580,7 +594,7 @@ function hideDynamicEventInfo(){
   teamLevel2();
   teamLevel3();
 
-  //showCustomCursor()
+  showCustomCursor()
   
   checkFlipped();
   refreshTeamXP();

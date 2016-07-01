@@ -93,9 +93,7 @@ if (open)
 		end 
 
 	end
-		
-		
-		
+
 	else
 		MINESOPEN = false
 		CustomGameEventManager:Send_ServerToAllClients( "hideDynamicEventInfo", {} )

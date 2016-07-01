@@ -194,7 +194,7 @@ function PositionPanels()
 
     }
     else{
-      if (x < pw || x > sw || y < ph || y > sh)
+      if (x + 300 < pw || x - 300 > sw || y + 100 < ph || y - 300 > sh)
         wp.panel.OffScreen = true;
       else
         wp.panel.OffScreen = false;
