@@ -47,6 +47,7 @@ Thanks for your interest in this mod.
 **Free Software, Hell Yeah!**
 
 ***Credits***
+
 Character screen is based on the work by DoctorGester:
 https://github.com/DoctorGester/crumbling-island-arena
 
