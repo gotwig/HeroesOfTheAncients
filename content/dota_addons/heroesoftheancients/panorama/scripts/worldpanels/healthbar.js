@@ -64,7 +64,6 @@ function HealthCheck()
 		  }
 		
 		if (wp.name){
-			$.Msg("hey there guys")
 			$("#playerHeroName").text = Players.GetPlayerName( wp.name - 1);
 		}
 		
@@ -73,16 +72,15 @@ function HealthCheck()
         pan.style.width = Entities.GetHealthPercent(ent) + "%;";
 		
 		pan.style.backgroundColor = "#61C2D3;";
-
-		var yourTeamNumber = Entities.GetTeamNumber( Players.GetLocalPlayerPortraitUnit() );
+		
+		if ( Entities.GetTeamNumber(ent) == DOTATeam_t.DOTA_TEAM_BADGUYS){
+			pan.style.backgroundColor = "#d12746;";
+		}
 		
 		if (  Entities.IsControllableByPlayer( ent, Players.GetLocalPlayer() ) ){
 			pan.style.backgroundColor = "#f4e91e;";
 		}
 		
-		if ( yourTeamNumber  != Entities.GetTeamNumber(ent) ){
-			pan.style.backgroundColor = "#d12746;";
-		}
 	  
 	   if (mpMax > 0){
 			$("#mp").style.width = mpPer + "%;";

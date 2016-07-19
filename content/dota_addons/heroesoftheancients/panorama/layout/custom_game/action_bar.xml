@@ -36,7 +36,7 @@
 		</Panel>
 		<Button id="LevelUpButton" onactivate="OnLevelUpClicked()">
 			<Panel id="LevelUpButtonInset">
-				<Label text="#LevelUp" />
+				<Label id="LevelUpText" text="#LevelUp" />
 			</Panel>
 		</Button>
 

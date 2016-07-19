@@ -74,6 +74,7 @@ function UpdateAbilityList()
 	var bPointsToSpend = ( nRemainingPoints > 0 );
 	var bControlsUnit = Entities.IsControllableByPlayer( queryUnit, Game.GetLocalPlayerID() );
 	$.GetContextPanel().SetHasClass( "could_level_up", ( bControlsUnit && bPointsToSpend ) );
+	$("#LevelUpText").text = 'LEVEL UP  +' + nRemainingPoints ;
 
 	// update all the panels
 	var nUsedPanels = 0;

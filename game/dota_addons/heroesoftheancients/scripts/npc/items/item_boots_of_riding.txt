@@ -13,7 +13,7 @@
         "01"
         {
             "var_type"              "FIELD_INTEGER"
-            "bonus_movement_speed"  "70"
+            "bonus_movement_speed"  "50"
         }
     }
     
@@ -26,7 +26,7 @@
             
             "Properties"
             {
-                "MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "%bonus_movement_speed"
+                "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%bonus_movement_speed"
             }
         }
 		

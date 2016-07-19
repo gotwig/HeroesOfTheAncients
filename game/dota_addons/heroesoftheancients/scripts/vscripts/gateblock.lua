@@ -50,11 +50,14 @@ boxcollider.test = function(self, unit)
   else
 	if (unit:GetTeamNumber() ~= thisEntity:GetTeamNumber()) then
 		if (unit) then
-			if (unit:HasModifier("modifier_spirit_breaker_charge_of_darkness")) then
-				unit:AddNewModifier(v, nil, "modifier_breaker_stun", {duration = 0.06})
-				return unit:GetTeamNumber() ~= thisEntity:GetTeamNumber()
-			else
-				return unit:GetTeamNumber() ~= thisEntity:GetTeamNumber()
+			if (unit:IsHero())
+			then
+				if (unit:HasModifier("modifier_spirit_breaker_charge_of_darkness")) then
+					unit:AddNewModifier(v, nil, "modifier_breaker_stun", {duration = 0.06})
+					return unit:GetTeamNumber() ~= thisEntity:GetTeamNumber()
+				else
+					return unit:GetTeamNumber() ~= thisEntity:GetTeamNumber()
+				end
 			end
 		end
 	

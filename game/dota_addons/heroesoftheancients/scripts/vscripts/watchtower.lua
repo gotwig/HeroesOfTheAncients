@@ -72,12 +72,12 @@ Timers:CreateTimer(function()
 							
 					if (value.captureBad)
 					then
-						watchTowers[key].captureCounter = watchTowers[key].captureCounter - 1;
+						watchTowers[key].captureCounter = watchTowers[key].captureCounter - 3;
 					end
 									
 					if (value.captureGood)
 					then
-						watchTowers[key].captureCounter = watchTowers[key].captureCounter + 1;
+						watchTowers[key].captureCounter = watchTowers[key].captureCounter + 3;
 					end
 
 					end

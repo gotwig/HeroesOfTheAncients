@@ -20,7 +20,7 @@
 
 .NotificationLine
 {
-    margin-top: 15px;
+    margin-top: 0px;
     flow-children: right;
     horizontal-align: center;
     vertical-align: middle;
@@ -35,9 +35,8 @@
     horizontal-align: center;
     width:100%;
     opacity: 1;
-    margin-top: 110px;
+    margin-top: 100px;
     visibility: visible;
-    border: 0px solid blue;
 }
 
 #BottomNotifications
@@ -49,7 +48,6 @@
     opacity: 1;
     margin-bottom: 375px;
     visibility: visible;
-    border: 0px solid blue;
 }
 
 .NotificationMessage
@@ -57,11 +55,10 @@
     color: white;
     vertical-align: center;
     horizontal-align: center;
-    font-size: 36px;
+    font-size: 24px;
     font-weight: bold;
     text-align: center;
 	text-shadow: 0px 0px 20px 10 black;
-
 }
 
 .HeroImage
@@ -70,11 +67,12 @@
     horizontal-align: center;
 }
 
-DOTAHeroMovie{
-	opacity: 0.96;
-	height: 120px;
-	width: 120px;
-	border-radius: 50%;
+DOTAHeroImage{
+	height: 32px;
+	width: 32px;
+	margin-right: 320px;
+	margin-top: -20px;
+
 }
 
 @keyframes 'scalein' {

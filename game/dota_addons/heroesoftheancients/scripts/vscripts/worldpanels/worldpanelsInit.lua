@@ -9,7 +9,7 @@ function WorldPanelExample:OnNPCSpawned(keys)
   local npc = EntIndexToHScript(keys.entindex)
 
   if npc.IsRealHero and npc:IsRealHero() and not npc.worldPanel then
-    npc:AddNewModifier(npc, nil, "modifier_no_health", {})
+    --npc:AddNewModifier(npc, nil, "modifier_no_health", {})
 
     -- entityHeight could be loaded from the npc_heroes.txt "HealthBarOffset"
     npc.worldPanel = WorldPanels:CreateWorldPanelForAll(

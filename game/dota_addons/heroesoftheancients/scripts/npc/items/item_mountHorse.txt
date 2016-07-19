@@ -12,7 +12,7 @@
     "AbilityManaCost"                   "0"
     "AbilityCooldown"                   "0"
     "MaxLevel"                          "1"
-    "AbilityChannelTime"                "2"
+    "AbilityChannelTime"                "0.8"
 	
 	"BaseClass"						"item_datadriven"
 	"ItemKillable"                  "0"
@@ -24,12 +24,12 @@
 	"ItemCost"						"0"
 	"ItemShopTags"					"consumable"
 	"ItemQuality"					"consumable"
-	"ItemStackable"					"1"
+	"ItemStackable"					"0"
 	"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
 	"ItemPermanent"					"1"
 	"ItemInitialCharges"			"1"
 	"SideShop"						"0"
-	"SecretShop" "1"
+	"SecretShop" 					"1"
 
 	        "precache"
         {
@@ -91,6 +91,17 @@
         }
        "Modifiers"
         {
+			"modifier_speedincrease"
+			{
+				"Passive"           "1"
+				"IsHidden"          "1"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE" "20"
+				}
+			}
+		
             "modifier_teleport"
             {
                 "Passive"           "0"

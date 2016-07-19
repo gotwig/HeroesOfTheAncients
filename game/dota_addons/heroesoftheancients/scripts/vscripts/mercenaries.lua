@@ -217,12 +217,12 @@ Timers:CreateTimer(function()
 								
 									if (value.captureBad)
 									then
-										mercenaryCamps[key].captureCounter = mercenaryCamps[key].captureCounter - 1;
+										mercenaryCamps[key].captureCounter = mercenaryCamps[key].captureCounter - 1.4;
 									end
 									
 									if (value.captureGood)
 									then
-										mercenaryCamps[key].captureCounter = mercenaryCamps[key].captureCounter + 1;
+										mercenaryCamps[key].captureCounter = mercenaryCamps[key].captureCounter + 1.4;
 									end
 
 								end
@@ -232,7 +232,7 @@ Timers:CreateTimer(function()
 							
 							if (mercenaryCamps[key].captureCounter <= 0)
 							then
-							
+							mercenaryCamps[key].captureCounter = 0
 							print("red wins")
 							changeState(key, 2)
 							value.allyTeam = 3;
@@ -245,6 +245,7 @@ Timers:CreateTimer(function()
 							
 							if (mercenaryCamps[key].captureCounter >= 100)
 							then
+							mercenaryCamps[key].captureCounter = 100
 							print("blue wins")
 							changeState(key, 2)
 							value.allyTeam = 2;

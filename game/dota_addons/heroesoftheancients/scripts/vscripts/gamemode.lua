@@ -257,10 +257,15 @@ function GameMode:OnFirstPlayerLoaded()
   
     self:UpdatePlayerTable()
 	
-	-- Play Sound countdown 10..1 
+	-- Play Sound countdown 10..1  And also DONT show the normal dota healthbar
 	Timers:CreateTimer(function()
 	
-	
+		for _,hero in pairs(HeroList:GetAllHeroes()) do
+			if (hero:IsAlive()) then
+				hero:AddNewModifier(hero, nil, "modifier_no_health", {})
+			end
+		end
+		
 		for playerID = 0, DOTA_DEFAULT_MAX_TEAM_PLAYERS	 do 
 
 		local player = PlayerResource:GetPlayer(playerID)
@@ -534,41 +539,31 @@ function GameMode:OnGameInProgress()
 	
 		local allCreeps = Entities:FindAllByClassname('npc_dota_creep_lane')
 		for _,creep in pairs(allCreeps) do
-		
-			local scannedUnits = FindUnitsInRadius(creep:GetTeam(),
-												creep:GetAbsOrigin(),
-												nil,
-												460,
-												DOTA_UNIT_TARGET_TEAM_ENEMY,
-												DOTA_UNIT_TARGET_ALL,
-												DOTA_UNIT_TARGET_FLAG_NONE,
-												FIND_FARTHEST,
-												true)
-						local scannedUnitsGate = FindUnitsInRadius(creep:GetTeam(),
-												creep:GetAbsOrigin(),
-												nil,
-												100,
-												DOTA_UNIT_TARGET_TEAM_ENEMY,
-												DOTA_UNIT_TARGET_ALL,
-												DOTA_UNIT_TARGET_FLAG_NONE,
-												FIND_FARTHEST,
-												true)					  
-								  
-								  
-			for k, v in pairs(scannedUnits) do
-				if (v:HasAbility("towerAbility"))
-				then
-					local order = 
-					{
-						UnitIndex = creep:entindex(),
-						OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-						TargetIndex = v:entindex()
-					}
-				
-					ExecuteOrderFromTable(order)
-					
-				else 
-					if (v:HasAbility("ability_gate"))
+			
+			if (creep:IsAlive())
+			then
+				local scannedUnits = FindUnitsInRadius(creep:GetTeam(),
+													creep:GetAbsOrigin(),
+													nil,
+													460,
+													DOTA_UNIT_TARGET_TEAM_ENEMY,
+													DOTA_UNIT_TARGET_ALL,
+													DOTA_UNIT_TARGET_FLAG_NONE,
+													FIND_FARTHEST,
+													true)
+							local scannedUnitsGate = FindUnitsInRadius(creep:GetTeam(),
+													creep:GetAbsOrigin(),
+													nil,
+													100,
+													DOTA_UNIT_TARGET_TEAM_ENEMY,
+													DOTA_UNIT_TARGET_ALL,
+													DOTA_UNIT_TARGET_FLAG_NONE,
+													FIND_FARTHEST,
+													true)					  
+									  
+									  
+				for k, v in pairs(scannedUnits) do
+					if (v:HasAbility("towerAbility"))
 					then
 						local order = 
 						{
@@ -578,38 +573,50 @@ function GameMode:OnGameInProgress()
 						}
 					
 						ExecuteOrderFromTable(order)
-					end
-				
-				end
-				
-				
-			end
-			
-				for k, v in pairs(scannedUnitsGate) do
-				if (not v:HasAbility("towerAbility"))
-				then
-					if (v:HasAbility("ability_gate"))
-					then
-						local order = 
-						{
-							UnitIndex = creep:entindex(),
-							OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
-							TargetIndex = v:entindex()
-						}
+						
+					else 
+						if (v:HasAbility("ability_gate"))
+						then
+							local order = 
+							{
+								UnitIndex = creep:entindex(),
+								OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+								TargetIndex = v:entindex()
+							}
+						
+							ExecuteOrderFromTable(order)
+						end
 					
-						ExecuteOrderFromTable(order)
 					end
+					
+					
+				end
 				
+					for k, v in pairs(scannedUnitsGate) do
+					if (not v:HasAbility("towerAbility"))
+					then
+						if (v:HasAbility("ability_gate"))
+						then
+							local order = 
+							{
+								UnitIndex = creep:entindex(),
+								OrderType = DOTA_UNIT_ORDER_ATTACK_TARGET,
+								TargetIndex = v:entindex()
+							}
+						
+							ExecuteOrderFromTable(order)
+						end
+					
+					end
+					
+					
 				end
 				
 				
+			
+			
 			end
-			
-			
-		
-		
 		end
-
 		return 1.4
 	end)
 
@@ -757,10 +764,33 @@ function SpawnSiege()
 
 end
 
-	XP_PER_LEVEL_TABLE = {}
-	for i=1,25 do
-		XP_PER_LEVEL_TABLE[i] = (i-1) * 100
-	end
+XP_PER_LEVEL_TABLE = {
+    [1] = 0,
+    [2] = 200,
+    [3] = 500,
+    [4] = 900, 
+    [5] = 1400, 
+    [6] = 2000, 
+    [7] = 2600, 
+    [8] = 3400, 
+    [9] = 4400, 
+    [10] = 5400, 
+    [11] = 6000, 
+    [12] = 8200, 
+    [13] = 9000,
+    [14] = 10400,
+    [15] = 11900, 
+    [16] = 13500, 
+    [17] = 15200,
+    [18] = 17000, 
+    [19] = 18900, 
+    [20] = 20900, 
+    [21] = 23000, 
+    [22] = 25200,
+    [23] = 27500, 
+    [24] = 29900, 
+    [25] = 32400 
+}
 
 function GameMode:FilterXP( filterTable )
  
@@ -772,37 +802,21 @@ local xp = filterTable.experience
 		return false
 	end
  
+ 	local gained_xp = math.floor(xp/2)
+ 
 	for playerID = 0, DOTA_MAX_TEAM_PLAYERS do 
 
 	local player = PlayerResource:GetPlayer(playerID)
 	
 		if PlayerResource:IsValidPlayerID(playerID) and player:GetTeamNumber() == actPlayer:GetTeamNumber() then 
-		
-			local gained_xp = math.floor(xp/3)
-		
-			TEAMXP[player:GetTeamNumber()] = TEAMXP[player:GetTeamNumber()] + gained_xp	
-
-			print (XP_PER_LEVEL_TABLE[TEAMLEVEL[player:GetTeamNumber()]+1])
-			
-			if (TEAMXP[player:GetTeamNumber()] > (XP_PER_LEVEL_TABLE[TEAMLEVEL[player:GetTeamNumber()]+1] - XP_PER_LEVEL_TABLE[TEAMLEVEL[player:GetTeamNumber()]]))
-			then
-				TEAMXP[player:GetTeamNumber()] = 0
-			end
-			
-			local neededxp = XP_PER_LEVEL_TABLE[TEAMLEVEL[player:GetTeamNumber()]+1] - XP_PER_LEVEL_TABLE[TEAMLEVEL[player:GetTeamNumber()]]
-			
-			print (neededxp)
-			
-			TEAMXPPER[player:GetTeamNumber()] = (TEAMXP[player:GetTeamNumber()] * 100) / neededxp;
-			
-			CustomNetTables:SetTableValue( "team_experience", player:GetTeamNumber() .. "" , { teampercent = TEAMXPPER[player:GetTeamNumber()] } )
-
-			local teamplayers = PlayerResource:GetPlayerCountForTeam(actPlayer:GetTeamNumber())
 
 			PlayerResource:GetSelectedHeroEntity(playerID):AddExperience(gained_xp,
-																		filterTable.reason_const,
-																		false,
-																		false)
+																		 filterTable.reason_const,
+																		 false,
+																		 false)
+																		 
+			local teamplayers = PlayerResource:GetPlayerCountForTeam(actPlayer:GetTeamNumber())
+
 		end 
 
 	end
@@ -991,9 +1005,7 @@ function GameMode:InitGameMode()
 					
 					abilities[abilityIndex] = nil;
                     abilities[abilityIndex] = abilityName;
-                end
-				for k, v in pairs(abilities) do print(k, type(k)) end 
-				
+                end				
             end
 			
 			if (customName ~= "npc_dota_hero_base") then 

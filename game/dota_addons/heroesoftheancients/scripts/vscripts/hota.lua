@@ -90,6 +90,14 @@ if (open)
 			})
 			
 			EmitAnnouncerSound("announcer_ann_custom_cp_alerts_51")	
+			
+			
+			teamSkullPoints[1] = 0
+			teamSkullPoints[2] = 0
+
+			CustomNetTables:SetTableValue( "dynamic_MapEvents", "dynamic_event" , { team1 = teamSkullPoints[1], team2 = teamSkullPoints[2], remaining = (100 - (teamSkullPoints[1] + teamSkullPoints[2]))} )
+			
+			
 		end 
 
 	end

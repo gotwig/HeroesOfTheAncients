@@ -47,10 +47,33 @@ MAX_LEVEL = 25                          -- What level should we let heroes get t
 USE_CUSTOM_XP_VALUES = true            -- Should we use custom XP values to level up heroes, or the default Dota numbers?
 
 -- Fill this table up with the required XP per level if you want to change it
-XP_PER_LEVEL_TABLE = {}
-for i=1,MAX_LEVEL do
-  XP_PER_LEVEL_TABLE[i] = (i-1) * 100
-end
+XP_PER_LEVEL_TABLE = {
+    [1] = 0,
+    [2] = 200,
+    [3] = 500,
+    [4] = 900, 
+    [5] = 1400, 
+    [6] = 2000, 
+    [7] = 2600, 
+    [8] = 3400, 
+    [9] = 4400, 
+    [10] = 5400, 
+    [11] = 6000, 
+    [12] = 8200, 
+    [13] = 9000,
+    [14] = 10400,
+    [15] = 11900, 
+    [16] = 13500, 
+    [17] = 15200,
+    [18] = 17000, 
+    [19] = 18900, 
+    [20] = 20900, 
+    [21] = 23000, 
+    [22] = 25200,
+    [23] = 27500, 
+    [24] = 29900, 
+    [25] = 32400 
+}
 
 ENABLE_FIRST_BLOOD = true               -- Should we enable first blood for the first kill in this game?
 HIDE_KILL_BANNERS = false               -- Should we hide the kill banners that show when a player is killed?

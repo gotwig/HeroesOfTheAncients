@@ -259,7 +259,7 @@ margin-top: 66%;
 	width: 220px;
 	height: 60px;
 	vertical-align:center;
-	margin-top: 27px;
+	margin-top: 25px;
 }
 
 #healthbar{
@@ -269,8 +269,6 @@ margin-top: 66%;
   opacity-mask: url( "file://{images}/custom_game/hud/masks/hpbar.png" );
   margin-left: 4px;
   z-index: 10;
-
-
 }
 
 #healthbarLeft
@@ -287,8 +285,9 @@ margin-top: 66%;
 #manabar{
   vertical-align: bottom;
   width: 194px;
-  height: 21px;
+  height: 19px;
   margin-left: -9px;
+
 
   opacity-mask: url( "file://{images}/custom_game/hud/masks/hpmpbar.png" );
 }

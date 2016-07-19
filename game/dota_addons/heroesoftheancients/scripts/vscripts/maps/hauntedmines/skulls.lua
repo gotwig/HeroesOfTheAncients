@@ -135,16 +135,13 @@ end
 	
 	skullunit_good:SetMaxHealth((skullunit_good:GetMaxHealth() / 100 * 20) + (skullunit_good:GetMaxHealth() / 100 * teamSkullPoints[1]))
 	
-	ExecuteOrderFromTable({ UnitIndex = skullunit_good:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_bot_pathcorner_goodguys_" .. 4 ):GetAbsOrigin(), Queue = true})
+	ExecuteOrderFromTable({ UnitIndex = skullunit_good:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_top_pathcorner_goodguys_" .. 6 ):GetAbsOrigin(), Queue = true})
 
 	skullunit_bad = CreateUnitByName("npc_dota_neutral_skull_golem_summoned", GameRules.point1_bad, true, nil, nil, DOTA_TEAM_BADGUYS)
 	
 	skullunit_bad:SetMaxHealth((skullunit_bad:GetMaxHealth() / 100 * 20) + (skullunit_bad:GetMaxHealth() / 100 * teamSkullPoints[2]))
 	
-	ExecuteOrderFromTable({ UnitIndex = skullunit_bad:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_top_pathcorner_badguys_" .. 6 ):GetAbsOrigin(), Queue = true})
-
-teamSkullPoints[1] = 0
-teamSkullPoints[2] = 0
+	ExecuteOrderFromTable({ UnitIndex = skullunit_bad:GetEntityIndex(), OrderType =  DOTA_UNIT_ORDER_ATTACK_MOVE , Position = Entities:FindByName( nil, "lane_bot_pathcorner_badguys_" .. 4 ):GetAbsOrigin(), Queue = true})
 
 hota:triggerMines(false)
 
@@ -153,6 +150,10 @@ do
 	  value:ForceKill(false)
 end
 
+teamSkullPoints[1] = 0
+teamSkullPoints[2] = 0
+
+CustomNetTables:SetTableValue( "dynamic_MapEvents", "dynamic_event" , { team1 = teamSkullPoints[1], team2 = teamSkullPoints[2], remaining = (100 - (teamSkullPoints[1] + teamSkullPoints[2]))} )
 
 end
 

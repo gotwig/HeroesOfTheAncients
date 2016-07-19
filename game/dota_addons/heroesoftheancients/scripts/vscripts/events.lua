@@ -75,9 +75,7 @@ function GameMode:OnNPCSpawned(keys)
   
   if (npc:IsIllusion()) then
 	if (npc:GetOwnerEntity()) then
-		npc:AddNewModifier(npc, nil, "modifier_no_health", {})
-		
-		print(npc:GetPlayerOwnerID())
+		--npc:AddNewModifier(npc, nil, "modifier_no_health", {})
 		
 		npc.worldPanel = WorldPanels:CreateWorldPanelForAll(
 		  {layout = "file://{resources}/layout/custom_game/worldpanels/healthbar.xml",
@@ -99,7 +97,7 @@ function GameMode:OnNPCSpawned(keys)
 		npc:AddEffects( EF_NODRAW )
   
 	else
-		npc:AddNewModifier(npc, nil, "modifier_no_health", {})
+		--npc:AddNewModifier(npc, nil, "modifier_no_health", {})
 	
 		if ( not npc:HasItemInInventory("item_mountHorse") )
 			then
@@ -230,21 +228,17 @@ end
 -- A player leveled up
 function GameMode:OnPlayerLevelUp(keys)
 
-  CustomGameEventManager:Send_ServerToAllClients( "dota_player_gained_level_all", {playerID = keys.player} )
-  
   DebugPrint('[BAREBONES] OnPlayerLevelUp')
   DebugPrintTable(keys)
 
   local player = EntIndexToHScript(keys.player)
   local level = keys.level
+  local teamNumber = PlayerResource:GetTeam(player:GetPlayerID())
   
-  TEAMLEVEL[player:GetTeamNumber()] = level
-  TEAMXP[player:GetTeamNumber()] = 0
-  TEAMXPPER[player:GetTeamNumber()] = 0
+  print("teamNUMBER:" .. teamNumber)
   
-  CustomNetTables:SetTableValue( "team_experience", player:GetTeamNumber() .. "" , { teamlevel = TEAMLEVEL[player:GetTeamNumber()], teampercent = 0 } )
-  
-  print(player:GetTeamNumber())
+  CustomGameEventManager:Send_ServerToAllClients( "dota_player_gained_level_all", {team = teamNumber, level = keys.level} )
+
   
   if MINESOPENLOADED then return end
 
@@ -394,7 +388,7 @@ function GameMode:OnEntityKilled( keys )
 		deathMessage = string.upper(deathMessage)
 		
 	    Notifications:TopToAll({text=deathMessage, style={color="red"}, duration=8.0})
-		Notifications:TopToAll({hero=killedUnit:GetUnitName(), duration=8.0, imagestyle="landscape"})
+		Notifications:TopToAll({hero=killedUnit:GetUnitName(), duration=8.0, imagestyle="icon"})
 		
 		
 	elseif (killedUnit:GetTeamNumber() == 3 )
@@ -403,7 +397,7 @@ function GameMode:OnEntityKilled( keys )
 		deathMessage = string.upper(deathMessage)
 		
 		Notifications:TopToAll({text=deathMessage, style={color="#52e2ff"}, duration=8.0})
-		Notifications:TopToAll({hero=killedUnit:GetUnitName(), duration=8.0, imagestyle="landscape"})
+		Notifications:TopToAll({hero=killedUnit:GetUnitName(), duration=8.0, imagestyle="icon"})
 
 	end
 	Notifications:Top(killedUnit:GetPlayerID(), {text="YOU HAVE DIED", style={color="red"}, duration=3.0})
