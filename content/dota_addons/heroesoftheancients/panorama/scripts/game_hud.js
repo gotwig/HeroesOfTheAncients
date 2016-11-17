@@ -18,8 +18,6 @@ var showDeathTimebar = false;
 var initShowDeath = false;
 
 var clickedHeroSwitch = true;
-
-
 	
 var selectedPlayerIDBlue = 100;
 var selectedPlayerIDRed = 100;

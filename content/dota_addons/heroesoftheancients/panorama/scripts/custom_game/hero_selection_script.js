@@ -381,7 +381,7 @@ function HeroesUpdated(data){
     var rightSide =  heroes.slice(55, 116)
 
     CreateHeroList($("#LeftHeroes"), leftSide, [ 5, 6, 6, 5, 5, 5, 5, 5, 5, 4, 3, 2 ] , 1, "left");
-	CreateHeroList($("#RightHeroes"), rightSide, [ 6, 6, 6, 5, 5, 5, 5, 5, 5, 4, 3, 1 ] , 1, "right");
+	CreateHeroList($("#RightHeroes"), rightSide, [ 6, 6, 6, 5, 5, 5, 5, 5, 5, 4, 3, 2 ] , 1, "right");
 }
 
 function PlayersUpdated(data){

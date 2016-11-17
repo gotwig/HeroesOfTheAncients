@@ -10,9 +10,10 @@
 	<include src="file://{resources}/scripts/buff_bar.js" />
 	<include src="file://{resources}/scripts/game_hud.js" />
 
-		
 	</scripts>
 	<script>
+		GameUI.SetRenderTopInsetOverride( 0 ); 
+	    GameUI.SetRenderBottomInsetOverride( 0 ); 
 		$.Msg( "Compiled Panorama Scripts!" );
 	</script>
 
